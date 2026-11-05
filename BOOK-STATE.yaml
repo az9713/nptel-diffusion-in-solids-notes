@@ -1,4 +1,4 @@
-phase: ready_for_publication
+phase: published
 course: Diffusion in Solids
 instructor: Mayur Vaidya
 institution: IIT Hyderabad
@@ -14,4 +14,11 @@ gates:
   final_integrity: release gate passed; source-free labs and byte identity passed
 current_chapter: null
 completed_sections: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
-next_action: commit, push, and verify GitHub publication
+publication:
+  repository: https://github.com/az9713/nptel-diffusion-in-solids-notes
+  branch: main
+  content_commit: bfd3e4fdb923d5af9cad6c696eeba497408fb0ea
+  reader: https://az9713.github.io/nptel-diffusion-in-solids-notes/
+  evidence: validation/publication-checks.json
+  status: served bytes and live browser behavior verified
+next_action: none

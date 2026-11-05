@@ -105,6 +105,10 @@ Every chapter has **two accepted independent full AI scientific/editorial
 reviews** (56 in total), bound to current chapter, code, and scientific-asset
 digests, with targeted checks after repairs. Review acceptance, source coverage, laboratory execution,
 browser behavior, clean export, and publication have separate records.
+All 28 laboratories pass with saved-output agreement. All 34 reader pages
+pass desktop, tablet, and phone checks, with targeted reruns after repairs.
+The source-free export reproduces the reader and scientific figures byte for
+byte. The live reader also passes served-file integrity and browser checks.
 
 - [Completion inventory](completion.json), [edition audit](validation/edition-checks.json),
   and [chapter review records](validation/chapters/).
@@ -114,6 +118,8 @@ browser behavior, clean export, and publication have separate records.
 - [Search, copy, text sizing, and PDF checks](validation/controls-checks.json),
   [source-free rebuild checks](validation/export-checks.json), and
   [release gate](validation/release-checks.json).
+- [Publication verification](validation/publication-checks.json): 126 served files
+  match the content commit; eight live desktop/mobile checks pass.
 - [Production workflow](WORKFLOW.md), [source manifest](source-manifest.json),
   and [detailed outline](plan/outline.md).
 
