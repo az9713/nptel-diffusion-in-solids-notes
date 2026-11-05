@@ -1,0 +1,42 @@
+{
+  "reviews": [
+    {
+      "chapter": 22,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "210c6b1cf584921299a4436b2050f2e7e2c0989fada6b2177f32adfe3ad908fd",
+      "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+      "assets": {
+        "assets/ch22-geometry.svg": "25e0b8cfd7978523562ff6c8717d252ece22fb6ea2a67654b8170846f49ed301"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full reader/browser/print acceptance in this science report",
+        "No empirical quasicrystal tables or detailed network-transition formulas retained or verified"
+      ],
+      "private_review_record_sha256": "59ea7fe5ec402dec6d0fc02011d7937f800433453ca62ca20f0c0dfb2cd50374"
+    },
+    {
+      "chapter": 22,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "210c6b1cf584921299a4436b2050f2e7e2c0989fada6b2177f32adfe3ad908fd",
+      "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+      "assets": {
+        "assets/ch22-geometry.svg": "25e0b8cfd7978523562ff6c8717d252ece22fb6ea2a67654b8170846f49ed301"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Detailed regime transition prefactors, empirical quasicrystal tables and mechanism-specific tracer ratios are not reconstructed from uncertain captions.",
+        "The code counts configurations and geometric coefficients; it does not calculate cycle barriers or frequencies. Browser/print/accessibility and full source-video verification are separate."
+      ],
+      "private_review_record_sha256": "32a84010c23ba1eeb42b0e8f23e344c6ed66249b8621f1a2a056a6f01e903fa2"
+    }
+  ]
+}

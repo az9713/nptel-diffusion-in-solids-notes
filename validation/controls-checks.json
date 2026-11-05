@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "search": "Kirkendall reaches Ch13",
+  "font_controls": "passed",
+  "copy_control": "exact code payload captured through isolated clipboard mock; OS clipboard unchanged",
+  "print_proofs": [
+    "Ch1 motion/static/solutions",
+    "Ch20 eager offscreen scientific image"
+  ],
+  "shared_assets": {
+    "book.js": "cb3d7fc3b8fd754906cf8e6215cbc004cc1a36beda062a9f8b611b00bd3fa607",
+    "book.css": "d801c94d032b5cb07e7d74dd63b09641aa602e0e2d4827343efb9d203eec3ef6",
+    "search-index.js": "c4919b6f98e8711e9d10990a9932314edae0bb4531eb74fed8ca5d7751335923"
+  }
+}

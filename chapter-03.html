@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Gaussian and error-function diffusion solutions — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a aria-current=page href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Gaussian and error-function diffusion solutions</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#specification">3.1 Specify the source before solving the equation L7 00:20</a></li><li><a href="#gaussian">3.2 A finite plane dose produces a Gaussian L7 10:33</a></li><li><a href="#surface-tracer">3.3 Surface tracers and slope measurements L7 25:53</a></li><li><a href="#maintained">3.4 A maintained surface gives an error-function profile L8 00:19</a></li><li><a href="#couple">3.5 A diffusion couple is a superposition of plane sources L8 10:33</a></li><li><a href="#imposed-flux">3.6 An imposed flux supplies a fourth boundary model</a></li><li><a href="#inverse">3.7 Infer a depth or coefficient with a controlled inverse L10 09:52</a></li><li><a href="#exercises">3.8 Exercises with worked solutions</a></li><li><a href="#sources">3.9 Sources and model boundaries</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A thin tracer deposit and a maintained carburizing atmosphere do not supply the same amount of solute. The tracer deposit is finite; the atmosphere can keep adding material. Their profiles have different amplitudes and amount balances, even when the solid has the same constant diffusivity. Selecting a formula by its shape alone can therefore give a wrong treatment time or inferred coefficient.</p>
+<p class="source-note">Source spine: L7's instantaneous plane source, L8's maintained surface and diffusion couple, and the corresponding L10 tutorial problems. Finite-slab modes and the Scilab demonstrations are developed in Chapter 4. The solution checks, parameterized plots, and inverse computations here are original derivations. Where tutorial input values are used, that provenance is stated; they are not certified material constants.</p>
+
+<section id="specification"><h2>3.1 Specify the source before solving the equation <a class="timestamp" href="https://www.youtube.com/watch?v=r84i9_02kx0&amp;t=20s">L7 00:20</a></h2>
+<p>Use one-dimensional, nonreacting diffusion with uniform constant <span class="math">\(D&gt;0\)</span>, in m²/s. Position <span class="math">\(x\)</span> is measured in meters, time <span class="math">\(t&gt;0\)</span> in seconds, concentration <span class="math">\(c\)</span> in mol/m³, and signed flux is <span class="math">\(J=-D\partial_xc\)</span>. The governing equation is <span class="math">\(\partial_tc=D\partial_{xx}c\)</span>. Its domain and source specification will now change while this local equation remains fixed.</p>
+<p>An <dfn>instantaneous plane source</dfn> deposits a finite amount per area at one location and then supplies nothing further. A <dfn>maintained surface</dfn> fixes a concentration while allowing the total supplied amount to grow. A <dfn>diffusion couple</dfn> initially joins two regions with different uniform concentrations. In an effectively infinite couple, each side contains an unbounded reservoir in the mathematical approximation; only the amount transferred across a specified plane over a finite time is finite.</p>
+<p>The infinite-domain approximation is useful when real remote boundaries lie many diffusion lengths away from the region observed. The relevant length will be proportional to <span class="math">\(\sqrt{Dt}\)</span>. Increasing annealing time eventually makes a previously remote boundary important. There is no universal numerical definition of “semi-infinite” independent of the desired error tolerance and measurement location.</p>
+<p>For comparison, the steady planar membrane from L7 has endpoints <span class="math">\(c_1,c_2\)</span> over thickness <span class="math">\(L\)</span>. Chapter 1 gives <span class="math">\(c(L/3)=(2c_1+c_2)/3\)</span> and <span class="math">\(J=D(c_1-c_2)/L\)</span>. Solving that steady boundary-value problem needs no initial profile. A transient problem does. Boundary conditions may themselves vary with time; being prescribed does not make them constant.</p>
+</section>
+
+<section id="gaussian"><h2>3.2 A finite plane dose produces a Gaussian <a class="timestamp" href="https://www.youtube.com/watch?v=r84i9_02kx0&amp;t=633s">L7 10:33</a></h2>
+<p>Let <span class="math">\(M&gt;0\)</span>, in mol/m², be the deposited amount per area. Put the source at the origin in an effectively infinite solid. The total amount condition is <span class="math">\(\int_{-\infty}^{\infty}c(x,t)dx=M\)</span>. An infinitely thin initial deposit is represented as <span class="math">\(c(x,0)=M\delta(x)\)</span>, where the <dfn>Dirac delta</dfn> is defined through <span class="math">\(\int\delta(x)\varphi(x)dx=\varphi(0)\)</span> for a smooth test function <span class="math">\(\varphi\)</span>. It is not an ordinary finite concentration at the origin.</p>
+<p>Seek an even, smooth spreading profile with the conserved amount and no independent length scale. Define <span class="math">\(\xi=x/(2\sqrt{Dt})\)</span> and write <span class="math">\(c=M(Dt)^{-1/2}F(\xi)\)</span>. The amplitude factor preserves the possibility of a constant integral while width grows. Substitution into the diffusion equation gives</p>
+\[
+F''+2\xi F'+2F=0,
+\qquad (F'+2\xi F)'=0. \tag{3.1}
+\]
+<p>Primes denote derivatives with respect to <span class="math">\(\xi\)</span>. Even symmetry gives <span class="math">\(F'(0)=0\)</span>, so the integrated constant is zero. Solving <span class="math">\(F'=-2\xi F\)</span> gives <span class="math">\(F=Ae^{-\xi^2}\)</span>. Normalization requires <span class="math">\(2A\int_{-\infty}^{\infty}e^{-\xi^2}d\xi=1\)</span>. The Gaussian integral is <span class="math">\(\sqrt\pi\)</span>: squaring the integral and using polar coordinates gives <span class="math">\(\int_0^{2\pi}\int_0^\infty e^{-r^2}rdrd\theta=\pi\)</span>. Hence</p>
+<div class="keyresult"><strong>Derived solution 3.1 — infinite plane source.</strong>
+\[
+c(x,t)=\frac{M}{\sqrt{4\pi Dt}}\exp\!\left(-\frac{x^2}{4Dt}\right). \tag{3.2}
+\]
+The source is a plane in a three-dimensional specimen, uniform along the plane; <span class="math">\(M\)</span> is an areal amount, not total moles from a three-dimensional point source.</div>
+<p>Three checks give the formula physical meaning. Its prefactor has units <span class="math">\((\mathrm{mol/m^2})/\mathrm m=\mathrm{mol/m^3}\)</span>. Its integral is <span class="math">\(M\)</span>. Its normalized second moment is <span class="math">\(M^{-1}\int x^2c\,dx=2Dt\)</span>, as follows by the same substitution and one integration by parts. The first moment is zero by symmetry. Thus width grows like the square root of time even though the mean position remains fixed.</p>
+<p>The singular initial state is recovered in an integral sense. Substitute <span class="math">\(x=2\sqrt{Dt}\xi\)</span> into <span class="math">\(\int c(x,t)\varphi(x)dx\)</span>. It becomes <span class="math">\((M/\sqrt\pi)\int e^{-\xi^2}\varphi(2\sqrt{Dt}\xi)d\xi\)</span>, which tends to <span class="math">\(M\varphi(0)\)</span> for bounded continuous test functions by dominated convergence. Setting the initial concentration equal to zero everywhere would instead lose the entire dose.</p>
+</section>
+
+<section id="surface-tracer"><h2>3.3 Surface tracers and slope measurements <a class="timestamp" href="https://www.youtube.com/watch?v=r84i9_02kx0&amp;t=1553s">L7 25:53</a></h2>
+<p>A thin source deposited at the surface of a half-space <span class="math">\(x\geq0\)</span> has a different normalization. After deposition, assume no further supply and no loss through the exposed surface. The boundary is reflecting: <span class="math">\(\partial_xc(0,t)=0\)</span>. Restrict the even Gaussian to positive positions and double it, so its half-line integral remains <span class="math">\(M\)</span>:</p>
+\[
+c(x,t)=\frac{M}{\sqrt{\pi Dt}}e^{-x^2/(4Dt)},\qquad x\geq0. \tag{3.3}
+\]
+<p>The zero surface derivative verifies the boundary condition; doubling the amplitude supplies the lost negative half of the integral. This is a finite-dose experiment, unlike a maintained nonzero surface concentration. A maintained surface keeps its concentration fixed, whereas the finite-dose surface value in (3.3) decays as <span class="math">\(t^{-1/2}\)</span>.</p>
+<p>At a known annealing time, natural logarithms give <span class="math">\(\ln c=\ln[M/\sqrt{\pi Dt}]-x^2/(4Dt)\)</span>. If a measured activity is proportional to concentration by a position-independent factor, the proportionality changes the intercept but not the slope. A graph of natural-log activity against squared depth therefore has slope <span class="math">\(m=-1/(4Dt)\)</span>, giving <span class="math">\(D=-1/(4tm)\)</span>. For base-ten logarithms the slope is instead <span class="math">\(-1/(4Dt\ln10)\)</span>.</p>
+<p>A straight line is evidence compatible with the model, not proof of a unique atomistic mechanism. Initial source thickness, section averaging, instrument resolution, surface loss, multiple paths, and background can alter the profile. A finite-thickness Gaussian initial layer adds its initial variance to <span class="math">\(2Dt\)</span>; confusing that width with diffusion alone biases an inferred coefficient. Chapter 16 develops measurement broadening explicitly.</p>
+<p>For (3.3), the normalized second moment about the surface is still <span class="math">\(2Dt\)</span>, but the mean depth is positive, <span class="math">\(2\sqrt{Dt/\pi}\)</span>. The centered variance is therefore <span class="math">\(2Dt(1-2/\pi)\)</span>. A half-Gaussian surface profile and a whole-line Gaussian have different centered-variance conventions. Reporting merely a “width” without defining it can conceal this distinction.</p>
+</section>
+
+<section id="maintained"><h2>3.4 A maintained surface gives an error-function profile <a class="timestamp" href="https://www.youtube.com/watch?v=yefh0CvSAU8&amp;t=19s">L8 00:19</a></h2>
+<p>Now let a half-space initially have uniform concentration <span class="math">\(c_0\)</span>, with maintained surface value <span class="math">\(c_s\ne c_0\)</span> and far-field value <span class="math">\(c_0\)</span>. Define normalized excess <span class="math">\(\theta=(c-c_0)/(c_s-c_0)\)</span>. Its boundary value is one and its initial interior value is zero. Seek <span class="math">\(\theta=F(\xi)\)</span> with the same <span class="math">\(\xi=x/(2\sqrt{Dt})\)</span>. Chain differentiation yields <span class="math">\(F''+2\xi F'=0\)</span>.</p>
+<p>Integrate once: <span class="math">\(F'=Ae^{-\xi^2}\)</span>. The two boundary conditions require <span class="math">\(F(\xi)=-A\int_\xi^\infty e^{-u^2}du\)</span> and <span class="math">\(-A\sqrt\pi/2=1\)</span>. Define the <dfn>error function</dfn> and its complement by</p>
+\[
+\operatorname{erf}z=\frac{2}{\sqrt\pi}\int_0^z e^{-u^2}du,
+\qquad \operatorname{erfc}z=1-\operatorname{erf}z.
+\tag{3.4}
+\]
+<p>The error function is odd because its integrand is even. It is zero at zero and tends to one at positive infinity. Its derivative <span class="math">\(2e^{-z^2}/\sqrt\pi\)</span> is positive for every finite real <span class="math">\(z\)</span>, so it has a unique real inverse on <span class="math">\((-1,1)\)</span>. The normalized solution is <span class="math">\(F=\operatorname{erfc}\xi\)</span>, giving</p>
+\[
+c(x,t)=c_0+(c_s-c_0)\operatorname{erfc}\!\left(\frac{x}{2\sqrt{Dt}}\right). \tag{3.5}
+\]
+<p>This independently derives the inverse of the half-line transform in Chapter 2. At the surface the complement is one; far away it tends to zero. At each fixed positive depth it tends to zero as time approaches zero, recovering the initial interior state. The incompatibility of the initial interior concentration and changed boundary at the single corner <span class="math">\((0,0)\)</span> is part of the ideal sudden-switch model.</p>
+<p>Differentiate (3.5). The inward surface flux is <span class="math">\(J(0,t)=(c_s-c_0)\sqrt{D/(\pi t)}\)</span>. Integrating the excess concentration over the half-line gives uptake per area</p>
+\[
+M_{\rm excess}(t)=2(c_s-c_0)\sqrt{\frac{Dt}{\pi}}. \tag{3.6}
+\]
+<p>One derivation uses <span class="math">\(\int_0^\infty\operatorname{erfc}u\,du=1/\sqrt\pi\)</span>, obtained by integration by parts. Differentiating (3.6) then reproduces the surface flux, a separate global balance check. A negative concentration difference gives outward loss instead of inward uptake. The initial <span class="math">\(t^{-1/2}\)</span> flux singularity is integrable: finite time supplies a finite amount. Real surface-transfer kinetics can regularize this short-time idealization.</p>
+<p>A constant gas flow does not by itself establish a fixed solid-surface concentration. Surface reactions, gas-to-solid transfer, and equilibrium partitioning may impose a flux or mixed boundary condition instead. Likewise, composition-dependent diffusivity can change the error-function shape. The profile is exact for the stated scalar constant-diffusivity boundary problem, not a universal carburizing law.</p>
+</section>
+
+<section id="couple"><h2>3.5 A diffusion couple is a superposition of plane sources <a class="timestamp" href="https://www.youtube.com/watch?v=yefh0CvSAU8&amp;t=633s">L8 10:33</a></h2>
+<p>On the whole line let the initial concentration be <span class="math">\(c_L\)</span> for <span class="math">\(x&lt;0\)</span> and <span class="math">\(c_R\)</span> for <span class="math">\(x&gt;0\)</span>. The values <span class="math">\(c_L,c_R\)</span> are constant end-member concentrations in the same convention. Subtract the uniform right-side baseline. The initial excess on each infinitesimal source slice at position <span class="math">\(y&lt;0\)</span> is <span class="math">\((c_L-c_R)dy\)</span>, an areal amount.</p>
+<p>Linearity permits these elementary sources to be added. With the normalized Gaussian kernel <span class="math">\(G(x,t)=e^{-x^2/(4Dt)}/\sqrt{4\pi Dt}\)</span>, the excess at observation position <span class="math">\(x\)</span> is <span class="math">\((c_L-c_R)\int_{-\infty}^0G(x-y,t)dy\)</span>. The integration coordinate <span class="math">\(y\)</span> labels source position; it is not the observation coordinate. Substitute <span class="math">\(u=(x-y)/(2\sqrt{Dt})\)</span> to obtain</p>
+\[
+c(x,t)=c_R+\frac{c_L-c_R}{2}\operatorname{erfc}\!\left(\frac{x}{2\sqrt{Dt}}\right)
+=\frac{c_L+c_R}{2}-\frac{c_L-c_R}{2}\operatorname{erf}\!\left(\frac{x}{2\sqrt{Dt}}\right). \tag{3.7}
+\]
+<p>At negative and positive infinity the solution approaches the respective end members. At the original contact plane it equals their mean. The midpoint equality is a result of this constant-coefficient symmetric scalar model. Real binary interdiffusion with composition-dependent coefficients or unequal partial volumes need not keep a fixed arithmetic midpoint at the original plane.</p>
+<p>The lecture motivates a dilute species moving much faster than its host. That is one physical route to a simple scalar approximation, not a mathematical requirement that all diffusion couples obey an inequality between two atom-specific diffusivities. Equation (3.7) assumes a single constant coefficient for the represented concentration field. Chapter 13 distinguishes the interdiffusion coefficient governing a binary composition profile from the individual intrinsic and tracer coefficients.</p>
+<p>The flux through the original plane is <span class="math">\((c_L-c_R)\sqrt D/(2\sqrt{\pi t})\)</span>. Integrating it from zero to time <span class="math">\(t\)</span> gives transferred amount <span class="math">\((c_L-c_R)\sqrt{Dt/\pi}\)</span> per area. This equals the excess on the initially right side, found by integrating (3.7) relative to <span class="math">\(c_R\)</span>. Although the total amount on an infinite line may diverge when the end members are nonzero, the transferred excess is finite and has a well-defined balance.</p>
+<p>Figure 3.1 compares the three source classes. Let an arbitrary reference length be <span class="math">\(\ell_0&gt;0\)</span> and define plotted position <span class="math">\(X=x/\ell_0\)</span> and time <span class="math">\(\tau=Dt/\ell_0^2\)</span>. The finite-dose peak falls as it widens. The diffusion-couple midpoint stays fixed. The maintained surface keeps its boundary value fixed while uptake grows.</p>
+<figure><img src="figures/ch03-profile-families.svg" width="1200" height="360" alt="Three analytic profile families at dimensionless times0.25,1 and4: a conserved finite dose broadens and lowers; a diffusion couple smooths across a fixed midpoint; a maintained half-space surface penetrates with fixed surface value."><figcaption>Figure 3.1. Original analytic comparison, generated by <a href="code/ch03.py">the chapter program</a>. Left ordinate is <span class="math">\(c\ell_0/M\)</span>; middle is <span class="math">\((c-c_R)/(c_L-c_R)\)</span>; right is <span class="math">\((c-c_0)/(c_s-c_0)\)</span>. The shared time colors are defined by the left-panel legend. These static time slices support side-by-side comparison and printing; the curve families are mathematical solutions, not measured profiles.</figcaption></figure>
+</section>
+
+<section id="imposed-flux"><h2>3.6 An imposed flux supplies a fourth boundary model</h2>
+<p>As an original extension, impose a constant inward flux <span class="math">\(q\)</span>, in mol/(m²·s), on an initially uniform half-space of concentration <span class="math">\(c_0\)</span>. The boundary condition is <span class="math">\(-D\partial_xc(0,t)=q\)</span>. The transformed excess solves the zero-initial-state homogeneous spatial equation; its boundary derivative fixes the amplitude as <span class="math">\(q/[s\sqrt{Ds}]\)</span>, rather than <span class="math">\((c_s-c_0)/s\)</span>.</p>
+<p>A direct construction avoids needing a new transform table. The spatial derivative <span class="math">\(w=\partial_xc\)</span> itself solves the constant-coefficient diffusion equation, has zero initial interior value, and maintained boundary <span class="math">\(w(0,t)=-q/D\)</span>. Equation (3.5) therefore gives <span class="math">\(w=-(q/D)\operatorname{erfc}[x/(2\sqrt{Dt})]\)</span>. Integrate from position <span class="math">\(x\)</span> to infinity, using <span class="math">\(c\to c_0\)</span>, to find</p>
+\[
+c-c_0=\frac qD\left[\frac{2\sqrt{Dt}}{\sqrt\pi}e^{-x^2/(4Dt)}
+-x\operatorname{erfc}\!\left(\frac{x}{2\sqrt{Dt}}\right)\right]. \tag{3.8}
+\]
+<p>The bracket is the integral of a nonnegative complement and is therefore nonnegative for an inward positive flux. At the surface, concentration grows as <span class="math">\(c(0,t)-c_0=2q\sqrt{t/(\pi D)}\)</span>. Integrating the amount balance gives excess <span class="math">\(qt\)</span> per area, because the imposed entry rate is constant. A fixed-flux surface and a fixed-concentration surface cannot generally be imposed simultaneously; their time-dependent concentration/flux responses differ.</p>
+</section>
+
+<section id="inverse"><h2>3.7 Infer a depth or coefficient with a controlled inverse <a class="timestamp" href="https://www.youtube.com/watch?v=W550ilil_mc&amp;t=592s">L10 09:52</a></h2>
+<p>A case depth must name a concentration threshold. For (3.5), let <span class="math">\(c_*\)</span> lie strictly between the initial and surface values. Define the normalized deficit <span class="math">\(r=(c_s-c_*)/(c_s-c_0)\in(0,1)\)</span>. The target depth satisfies <span class="math">\(\operatorname{erf}[x_*/(2\sqrt{Dt})]=r\)</span>. Its unique positive inverse gives</p>
+\[
+x_*=2\sqrt{Dt}\operatorname{erf}^{-1}(r),\qquad
+t=\frac{x_*^2}{4D[\operatorname{erf}^{-1}(r)]^2}. \tag{3.9}
+\]
+<p>The second form is appropriate when choosing a treatment duration. With the same coefficient and concentration threshold, doubling depth requires four times the duration. This scaling is exact within the model and independent of the particular inverse-function value. It fails if temperature, diffusivity, surface conditions, phase state, or target convention changes with the treatment.</p>
+<p>The caption-stated tutorial inputs <span class="math">\(c_0=0.25\)</span>, <span class="math">\(c_s=1.2\)</span>, <span class="math">\(c_*=0.8\)</span> in a common mass-percent convention, depth 0.5 mm, and <span class="math">\(D=1.6\times10^{-11}\)</span> m²/s give <span class="math">\(\operatorname{erf}^{-1}(r)=0.3923898\)</span> and duration approximately 7.04729 hours. The use of mass fraction assumes the constant-density scalar approximation; it is not a conversion to molar concentration. The program substitutes the computed duration back into the profile and recovers the target. No temperature recommendation follows from this arithmetic alone.</p>
+<p>The approximation <span class="math">\(\operatorname{erf}z\approx z\)</span> is not the correct leading Taylor approximation: the leading coefficient is <span class="math">\(2/\sqrt\pi\)</span>. More precisely, <span class="math">\(\operatorname{erf}z=(2/\sqrt\pi)(z-z^3/3+\cdots)\)</span>. Even if a restricted table suggests numerical proximity to the identity, inverse calculations square the inferred argument and can magnify a shape error. The code gives <span class="math">\(\operatorname{erf}(0.5)=0.5204999\)</span> and <span class="math">\(\operatorname{erf}(0.8)=0.7421010\)</span>, which show that an uncontrolled identity substitution changes direction and size of the discrepancy across the interval.</p>
+<p>A second tutorial uses couple end members 50% and 40%, target 42.5% at 20 mm after 40 hours. Equation (3.7) requires <span class="math">\(\operatorname{erf}z=0.5\)</span>. Its exact inverse yields <span class="math">\(D=3.0529296\times10^{-9}\)</span> m²/s. Replacing the inverse argument by 0.5 gives <span class="math">\(2.7777778\times10^{-9}\)</span> m²/s instead. The repeated-depth statement remains fourfold time in either calculation, but the inferred coefficient changes. Agreement with a scaling relation does not validate an approximate parameter estimate.</p>
+</section>
+
+<section id="exercises"><h2>3.8 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. A surface width needs a definition</h3><p>Normalize the reflecting half-space thin-source solution. Derive its mean depth, second moment about the surface, and centered variance. Explain why using the whole-line Gaussian variance for every quoted surface “width” is ambiguous.</p><details><summary>Worked solution</summary><p>The half-line normalized density is <span class="math">\(p(x)=e^{-x^2/(4Dt)}/\sqrt{\pi Dt}\)</span>. Set <span class="math">\(u=x/(2\sqrt{Dt})\)</span>. Its integral is <span class="math">\((2/\sqrt\pi)\int_0^\infty e^{-u^2}du=1\)</span>. The first moment is <span class="math">\((4\sqrt{Dt}/\sqrt\pi)\int_0^\infty u e^{-u^2}du=2\sqrt{Dt/\pi}\)</span>. The second moment is <span class="math">\((8Dt/\sqrt\pi)\int_0^\infty u^2e^{-u^2}du=2Dt\)</span>. Subtracting the square of the mean gives <span class="math">\(2Dt(1-2/\pi)\)</span>. The whole-line symmetric Gaussian has zero mean and variance <span class="math">\(2Dt\)</span>; a half-line centered variance is smaller. The program independently integrates the moments.</p></details></div>
+<div class="exercise"><h3>2. Check a maintained-source amount balance</h3><p>Starting from (3.5), derive the surface flux and integrated excess amount. Why does the infinite initial flux not imply an infinite dose at every positive time?</p><details><summary>Worked solution</summary><p>The chain rule gives <span class="math">\(\partial_xc=-(c_s-c_0)e^{-x^2/(4Dt)}/\sqrt{\pi Dt}\)</span>. Thus the inward surface flux is <span class="math">\((c_s-c_0)\sqrt{D/(\pi t)}\)</span>. Integrating this rate from zero to <span class="math">\(t\)</span> gives <span class="math">\(2(c_s-c_0)\sqrt{Dt/\pi}\)</span>. Integrating the profile in space gives the same answer because <span class="math">\(\int_0^\infty\operatorname{erfc}u\,du=1/\sqrt\pi\)</span>. The integral of <span class="math">\(t^{-1/2}\)</span> at zero is finite. The ideal flux diverges instantaneously but supplies a finite accumulated dose over each finite interval.</p></details></div>
+<div class="exercise"><h3>3. A finite initial layer approaches a plane source</h3><p>On the infinite line let <span class="math">\(c(x,0)=C_0\)</span> for <span class="math">\(|x|&lt;a\)</span> and zero elsewhere, with <span class="math">\(a,C_0&gt;0\)</span>. Use Gaussian superposition to derive the profile. Identify its areal amount and its thin-layer approximation.</p><details><summary>Worked solution</summary><p>Convolution gives <span class="math">\(c=C_0\int_{-a}^{a}G(x-y,t)dy\)</span>. The substitution used for the couple yields <span class="math">\(c=(C_0/2)\{\operatorname{erf}[(x+a)/(2\sqrt{Dt})]-\operatorname{erf}[(x-a)/(2\sqrt{Dt})]\}\)</span>. Integrating in <span class="math">\(x\)</span> first gives amount <span class="math">\(2aC_0\)</span> because every normalized kernel integrates to one. If <span class="math">\(a\ll\sqrt{Dt}\)</span> on the observation scale, the kernel varies little across the initial layer, so the convolution is approximately <span class="math">\(2aC_0G(x,t)\)</span>. This is (3.2) with <span class="math">\(M=2aC_0\)</span>. The approximation is not justified at arbitrarily short times for a fixed finite layer. The laboratory checks the finite-layer amount by quadrature.</p></details></div>
+<div class="exercise"><h3>4. Infer time and interpret a limiting threshold</h3><p>Derive the treatment-time formula (3.9), reproduce the 0.5 mm tutorial result with the exact inverse function, and explain the limits as the target approaches the maintained surface value or the initial value.</p><details><summary>Worked solution</summary><p>The deficit ratio is <span class="math">\(r=(1.2-0.8)/(1.2-0.25)=0.4/0.95\)</span>. Its inverse error-function value is <span class="math">\(z=0.3923897758\)</span>. Using meters and seconds gives <span class="math">\(t=(0.5\times10^{-3})^2/[4(1.6\times10^{-11})z^2]\)</span>, approximately 7.04729 hours. Substitution into (3.5) recovers 0.8 in the common concentration convention. As the target approaches <span class="math">\(c_s\)</span>, <span class="math">\(r\to0\)</span> and <span class="math">\(z\to0\)</span>, so a fixed positive depth reaches that exact maintained value only asymptotically. As the target approaches the initial value, <span class="math">\(r\to1\)</span> and the required time tends to zero. These limits assume the initial and surface values remain distinct.</p></details></div>
+<div class="exercise"><h3>5. A logarithm convention changes the inferred coefficient</h3><p>A depth-profile fit at known time gives slope <span class="math">\(m_{10}\)</span> when plotting <span class="math">\(\log_{10}\)</span> activity against <span class="math">\(x^2\)</span>. Derive the diffusivity formula and quantify the multiplicative error if that slope is treated as a natural-log slope. Which calibration factors cancel?</p><details><summary>Worked solution</summary><p>Since <span class="math">\(\log_{10}c=\ln c/\ln10\)</span>, the slope is <span class="math">\(m_{10}=-1/(4Dt\ln10)\)</span>. Therefore <span class="math">\(D=-1/(4tm_{10}\ln10)\)</span>. Treating it as a natural-log slope instead gives <span class="math">\(D_{\rm wrong}=D\ln10\)</span>. A uniform multiplicative activity-to-concentration factor only adds an intercept, as does the unknown finite dose. A depth-dependent sensitivity or additive background does not generally cancel; either can change the shape and fitted slope.</p></details></div>
+<div class="exercise"><h3>6. Choose between a fixed dose, concentration, and flux</h3><p>A surface experiment reports total excess amount proportional to time while its surface concentration grows approximately as the square root of time. Which of the three half-space source models is compatible with both observations? Show the balance and identify one additional check before inferring a mechanism.</p><details><summary>Worked solution</summary><p>A finite instantaneous dose preserves its total amount and has a surface concentration decreasing as <span class="math">\(t^{-1/2}\)</span>, so it fails both trends. A maintained concentration fixes the surface value and gives uptake proportional to <span class="math">\(\sqrt t\)</span>, so it also fails. A fixed inward flux gives <span class="math">\(M_{\rm excess}=qt\)</span> and <span class="math">\(c(0,t)-c_0=2q\sqrt{t/(\pi D)}\)</span>, matching both scalings. These observations are compatible with the boundary model, not a unique atomic mechanism. Check the entire scaled profile against (3.8), account for instrumental broadening and surface reactions, or independently measure the imposed entry rate. Several microscopic mechanisms can share the same scalar diffusion coefficient.</p></details></div>
+</section>
+
+<section id="sources"><h2>3.9 Sources and model boundaries</h2><p><a href="https://www.youtube.com/watch?v=r84i9_02kx0">L7</a> supplies the plane-source and tracer-slope spine; <a href="https://www.youtube.com/watch?v=yefh0CvSAU8">L8</a> supplies maintained-source carburizing and diffusion-couple superposition; <a href="https://www.youtube.com/watch?v=W550ilil_mc">L10</a> supplies tutorial inverse problems. The finite-layer and constant-flux constructions are original extensions. The executable program evaluates the analytic models and selected caption-stated tutorial inputs; it does not establish the experimental identity or calibration of a source table that has not been visually recovered.</p><p>All profiles assume scalar constant diffusivity, a specified concentration convention, no reaction in the modeled region, and the stated effectively infinite geometry. The Gaussian plane dose, reflecting surface source, maintained surface, and constant-flux boundary have distinct normalization and amount balances. Finite specimen size, phase changes, concentration-dependent coefficients, coupled species, surface transfer resistance, and measurement convolution require explicit changes to the model. The next chapter replaces the infinite-domain approximation by finite-domain modes and checks a numerical solver against exact solutions.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch03.py"><code>code/ch03.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Analytic diffusion profiles, inverse checks, and original figure data.
+
+All material parameters are synthetic unless a result explicitly names a
+caption-stated tutorial input. Empirical validation is separate.
+Run with --figures to create original SVG plots in figures/.
+&quot;&quot;&quot;
+
+import argparse
+import json
+from pathlib import Path
+import numpy as np
+from scipy.integrate import quad
+from scipy.special import erf, erfc, erfinv
+
+
+def run():
+    D, time, dose = 2e-12, 10000.0, 3e-5
+
+    def gaussian(x):
+        return (
+            dose
+            / np.sqrt(4 * np.pi * D * time)
+            * np.exp(-x * x / (4 * D * time))
+        )
+
+    scale = np.sqrt(D * time)
+    mass = quad(lambda z: gaussian(z * scale) * scale, -12, 12, epsabs=1e-14)[
+        0
+    ]
+    moment = quad(
+        lambda z: (z * scale) ** 2 * gaussian(z * scale) * scale / dose,
+        -12,
+        12,
+        epsabs=1e-18,
+    )[0]
+    assert np.isclose(mass, dose, rtol=1e-10, atol=0)
+    assert np.isclose(moment, 2 * D * time, rtol=1e-10, atol=0)
+    x = scale
+    left, right = 0.8, 0.2
+    couple = right + (left - right) / 2 * erfc(x / (2 * scale))
+    assert np.isclose(
+        couple, (left + right) / 2 - (left - right) / 2 * erf(x / (2 * scale))
+    )
+    uptake = 2 * (left - right) * np.sqrt(D * time / np.pi)
+    numerical_uptake = quad(
+        lambda z: (left - right) * erfc(z / 2) * scale, 0, 16
+    )[0]
+    assert np.isclose(uptake, numerical_uptake, rtol=1e-10, atol=0)
+
+    # Independent integral checks: flux uptake and half-source moments.
+    def flux_profile(z):
+        return 2 / np.sqrt(np.pi) * np.exp(-z * z / 4) - z * erfc(z / 2)
+
+    assert abs(quad(flux_profile, 0, 16)[0] - 1) &lt; 1e-10
+    half_mean = quad(lambda z: z * np.exp(-z * z / 4) / np.sqrt(np.pi), 0, 16)[
+        0
+    ]
+    half_second = quad(
+        lambda z: z * z * np.exp(-z * z / 4) / np.sqrt(np.pi), 0, 16
+    )[0]
+    assert np.isclose(half_mean, 2 / np.sqrt(np.pi))
+    assert np.isclose(half_second - half_mean**2, 2 * (1 - 2 / np.pi))
+    a = 0.4
+
+    def top_hat(z):
+        return 0.5 * (erf((z + a) / 2) - erf((z - a) / 2))
+
+    assert abs(quad(top_hat, -16, 16)[0] - 2 * a) &lt; 1e-10
+    # Tutorial inverse-erf calculation retains the mass-percent convention.
+    initial, surface, target, depth, D_carbon = 0.25, 1.2, 0.8, 0.5e-3, 1.6e-11
+    deficit = (surface - target) / (surface - initial)
+    z = erfinv(deficit)
+    treatment_seconds = depth**2 / (4 * D_carbon * z * z)
+    assert np.isclose(
+        initial
+        + (surface - initial)
+        * erfc(depth / (2 * np.sqrt(D_carbon * treatment_seconds))),
+        target,
+    )
+    # Couple tutorial: doubling depth at fixed composition requires 4t.
+    z_couple = erfinv(0.5)
+    D_couple = (20e-3) ** 2 / (4 * (40 * 3600) * z_couple * z_couple)
+    approximate_D = (20e-3) ** 2 / (4 * (40 * 3600) * 0.5**2)
+    # Natural log and base10 slopes need distinct conversion factors.
+    positions = np.linspace(0, 4 * scale, 31)
+    concentrations = np.array([gaussian(x) for x in positions])
+    slope = np.polyfit(positions**2, np.log(concentrations), 1)[0]
+    recovered_D = -1 / (4 * time * slope)
+    assert np.isclose(recovered_D, D, rtol=1e-12, atol=0)
+    return dict(
+        synthetic_profile_parameters=dict(D=D, t=time, dose=dose),
+        integrated_dose=mass,
+        second_moment=moment,
+        synthetic_couple_concentration_at_sqrt_Dt=float(couple),
+        maintained_surface_excess_uptake=uptake,
+        half_source_mean_in_sqrt_Dt_units=half_mean,
+        half_source_centered_variance_in_Dt_units=half_second - half_mean**2,
+        constant_flux_integral_check=1.0,
+        finite_initial_layer_amount_check=2 * a,
+        recovered_D_from_log_slope=float(recovered_D),
+        tutorial_carburizing_hours=float(treatment_seconds / 3600),
+        tutorial_carburizing_erf_argument=float(z),
+        tutorial_couple_exact_D=float(D_couple),
+        tutorial_couple_approximate_D=float(approximate_D),
+        erf_at_0_5=float(erf(0.5)),
+        erf_at_0_8=float(erf(0.8)),
+    )
+
+
+def figures():
+    import matplotlib
+
+    matplotlib.use(&quot;Agg&quot;)
+    matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch03&quot;
+    import matplotlib.pyplot as plt
+
+    root = Path(__file__).resolve().parents[1]
+    target = root / &quot;figures&quot;
+    target.mkdir(exist_ok=True)
+    plt.style.use(&quot;dark_background&quot;)
+    fig, axes = plt.subplots(1, 3, figsize=(12, 3.6), constrained_layout=True)
+    xx = np.linspace(-4, 4, 501)
+    for tau, color in ((0.25, &quot;#e3c88c&quot;), (1, &quot;#87d3c5&quot;), (4, &quot;#aaa0df&quot;)):
+        axes[0].plot(
+            xx,
+            np.exp(-(xx**2) / (4 * tau)) / np.sqrt(4 * np.pi * tau),
+            color=color,
+            label=f&quot;τ={tau:g}&quot;,
+        )
+        axes[1].plot(xx, 0.5 * erfc(xx / (2 * np.sqrt(tau))), color=color)
+        positive = xx[xx &gt;= 0]
+        axes[2].plot(
+            positive, erfc(positive / (2 * np.sqrt(tau))), color=color
+        )
+    for axis, title in zip(
+        axes,
+        (
+            &quot;Finite plane dose&quot;,
+            &quot;Infinite diffusion couple&quot;,
+            &quot;Maintained surface&quot;,
+        ),
+    ):
+        axis.set_title(title)
+        axis.set_xlabel(&quot;Dimensionless position&quot;)
+        axis.set_ylabel(&quot;Normalized concentration&quot;)
+        axis.grid(alpha=0.2)
+    axes[0].legend()
+    fig.savefig(
+        target / &quot;ch03-profile-families.svg&quot;,
+        metadata={
+            &quot;Creator&quot;: &quot;Original analytic teaching construction&quot;,
+            &quot;Date&quot;: None,
+        },
+    )
+    plt.close(fig)
+
+
+if __name__ == &quot;__main__&quot;:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--figures&quot;, action=&quot;store_true&quot;)
+    args = parser.parse_args()
+    print(json.dumps(run(), indent=2))
+    if args.figures:
+        figures()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic_profile_parameters&quot;: {
+    &quot;D&quot;: 2e-12,
+    &quot;t&quot;: 10000.0,
+    &quot;dose&quot;: 3e-05
+  },
+  &quot;integrated_dose&quot;: 2.9999999999999994e-05,
+  &quot;second_moment&quot;: 3.999999999999994e-08,
+  &quot;synthetic_couple_concentration_at_sqrt_Dt&quot;: 0.34385003665608604,
+  &quot;maintained_surface_excess_uptake&quot;: 9.574614729634385e-05,
+  &quot;half_source_mean_in_sqrt_Dt_units&quot;: 1.1283791670955126,
+  &quot;half_source_centered_variance_in_Dt_units&quot;: 0.7267604552648375,
+  &quot;constant_flux_integral_check&quot;: 1.0,
+  &quot;finite_initial_layer_amount_check&quot;: 0.8,
+  &quot;recovered_D_from_log_slope&quot;: 1.9999999999999987e-12,
+  &quot;tutorial_carburizing_hours&quot;: 7.047290405526537,
+  &quot;tutorial_carburizing_erf_argument&quot;: 0.3923897758210403,
+  &quot;tutorial_couple_exact_D&quot;: 3.0529296365524065e-09,
+  &quot;tutorial_couple_approximate_D&quot;: 2.777777777777778e-09,
+  &quot;erf_at_0_5&quot;: 0.5204998778130465,
+  &quot;erf_at_0_8&quot;: 0.7421009647076605
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-02.html">← Previous</a><a href="chapter-04.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

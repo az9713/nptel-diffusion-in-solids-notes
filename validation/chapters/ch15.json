@@ -1,0 +1,45 @@
+{
+  "reviews": [
+    {
+      "chapter": 15,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "f18c2978bbc498b5f7e13bd4c7c44c461ff9694c6fa1b0d4c40639c44093d6bd",
+      "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+      "assets": {
+        "assets/figures/ch15-stefan.svg": "f19e48b80f2a557984c4a89d960fd0e0073ad9a56c0c9e5dc2350e49f3bcbcae"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new full raw-caption/audiovisual review",
+        "No local DICTRA run or general PDE front-tracker execution",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "067d9772002ee6d954c8c2bcedfc92bf2c370fb44613e2f1730a013fbddd6a32"
+    },
+    {
+      "chapter": 15,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "f18c2978bbc498b5f7e13bd4c7c44c461ff9694c6fa1b0d4c40639c44093d6bd",
+      "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+      "assets": {
+        "assets/figures/ch15-stefan.svg": "f19e48b80f2a557984c4a89d960fd0e0073ad9a56c0c9e5dc2350e49f3bcbcae"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Source map fully read; selected12 L34 frames inspected; no full direct audiovisual reread",
+        "Owning DICTRA setup guide inspected; training curriculum request timed out",
+        "No proprietary software run or assessed database validation",
+        "Current SVG inspected; reader/print validation separate"
+      ],
+      "private_review_record_sha256": "aac00e7001c64a14051860060dcb4e6b7ac8c3d7b2f73a94b46ffb025a4d2509"
+    }
+  ]
+}

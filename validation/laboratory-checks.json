@@ -1,0 +1,229 @@
+{
+  "chapters": [
+    {
+      "chapter": 1,
+      "exit_code": 0,
+      "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+      "stdout_sha256": "24b8f92866ee532eb35c6d9c7306f85db72c5635665380bc448288fedf369391",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 2,
+      "exit_code": 0,
+      "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+      "stdout_sha256": "8cf416210c2b5e36e4fe3d6148b9cf5a1fb82b16bcd0e4ab246e0817f3fa37b8",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 3,
+      "exit_code": 0,
+      "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+      "stdout_sha256": "967fb998c0d1be3efd655b92e9ed9cdc187a424dcac664e7953b1739096be31d",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 4,
+      "exit_code": 0,
+      "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+      "stdout_sha256": "60848a202921a4684885ecd0e6356fef89863020ed74f2bd4160bfc21bd7d0e3",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 5,
+      "exit_code": 0,
+      "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+      "stdout_sha256": "6709182451b936bd4802221d507bef97cc9ef3de57451982e47c200a69b39ec8",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 6,
+      "exit_code": 0,
+      "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+      "stdout_sha256": "837155ba9f36d7e4f4097bfa66b2a31da16de390ab09e16f1244c6cb656f8cdc",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 7,
+      "exit_code": 0,
+      "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+      "stdout_sha256": "442f6e8b3bd9120fab2eb898a304e257330bfda77fb32e5702ce8c9d323b46de",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 8,
+      "exit_code": 0,
+      "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+      "stdout_sha256": "6f3509bffa7505453f5987b8a8fc429a8910c9c2efbe2c84513802626ccf1ca8",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 9,
+      "exit_code": 0,
+      "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+      "stdout_sha256": "c6cd4e49069bb8d6ae6f1c113b6f10b10ad4a9970da619c74c02b262ed0d7909",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 10,
+      "exit_code": 0,
+      "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+      "stdout_sha256": "4b362410cc6e368d2f3d2c7354bc24f0aa57e74c85f3a521954991a1857c62f8",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 11,
+      "exit_code": 0,
+      "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+      "stdout_sha256": "3584250a2037fb18a4a41b786c9089ab8a3174129c66682abea1d22ee1a1e65c",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 12,
+      "exit_code": 0,
+      "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+      "stdout_sha256": "ed2d0506d34d865af66e10c39ef249343eb17f90723f9e097d19a3ca065ce1c7",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 13,
+      "exit_code": 0,
+      "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+      "stdout_sha256": "27e13857e2ceee4ae461cd6e5afce9fd1d60da24452217012b11a225c65e7560",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 14,
+      "exit_code": 0,
+      "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+      "stdout_sha256": "752d1477fc1c0f0e9164eaf96919dd21df0a4327f0eb5b71aea6fc5a3ccba312",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 15,
+      "exit_code": 0,
+      "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+      "stdout_sha256": "b1d37f2f7c6ea7fcb53f39a812aa55d25b50d0940199f0d4a0653b7120c975e1",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 16,
+      "exit_code": 0,
+      "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+      "stdout_sha256": "ae7e2d84212432fae27bd6e613ed420edcc4f1f6c5f7f5eedb04bd4560089d88",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 17,
+      "exit_code": 0,
+      "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+      "stdout_sha256": "5358fb7b3f6abb9ac1c87ba28bfd2c91971d601f6a5635db16e337e2216f8e8a",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 18,
+      "exit_code": 0,
+      "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+      "stdout_sha256": "edd8705b108dac9931670c280927d40d6514479c95fade907735d3f6a13bdbe4",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 19,
+      "exit_code": 0,
+      "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+      "stdout_sha256": "d174be814b3a9331f3d11c36112d10ed3700aab4667aa92577a287b777c671c5",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 20,
+      "exit_code": 0,
+      "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+      "stdout_sha256": "9ca3e53de4e9d227829d1387fcf39ec54cf003889e63247ae2aa287e2ffd99bc",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 21,
+      "exit_code": 0,
+      "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+      "stdout_sha256": "5be403cfac0ed245b63dea98e7435b061212b92fdb3fe0b05b32ebab2eb37e70",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 22,
+      "exit_code": 0,
+      "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+      "stdout_sha256": "74f0efd4b0f71e94f49bdb84629b80649f7998bb90808fd865b7cddcab0e6bbd",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 23,
+      "exit_code": 0,
+      "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+      "stdout_sha256": "67005ad24d95c2f628d8031c3d94f132fb5efcca793c7bfb776baa57082744fb",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 24,
+      "exit_code": 0,
+      "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+      "stdout_sha256": "c897b1192ebb2b9f785273e05ad3714041a3a73ea71570f3aa120f35cfad03d9",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 25,
+      "exit_code": 0,
+      "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+      "stdout_sha256": "c40e12bf0ef42fee856e33de3d527774c49062c328c0707c05cec385fcae0797",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 26,
+      "exit_code": 0,
+      "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+      "stdout_sha256": "9052db86bfb33541c3355789ee239960a269639ab51124f663310c41e7e2591b",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 27,
+      "exit_code": 0,
+      "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+      "stdout_sha256": "c343ae22e1c6b92d47742bf8d88a3f48c2c9937b9a5a14c949fbf9d2b4b46251",
+      "saved_output_agrees": true,
+      "passed": true
+    },
+    {
+      "chapter": 28,
+      "exit_code": 0,
+      "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+      "stdout_sha256": "e838733781c5730f67dd45980ad1ce6cd47eb0bd558afadd2ae08ff75ee46d1b",
+      "saved_output_agrees": true,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,36 @@
+{
+  "reviews": [
+    {
+      "chapter": 2,
+      "round": 1,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "1270955effc8e65be08504475e4cabf58c6355fca1d7f46519dbba7df0733df7",
+      "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+      "assets": {},
+      "open_blockers": 0,
+      "limitations": [],
+      "private_review_record_sha256": "90736228706a2710668aac43cf1464f54c58afe0e83c3aef83e181dc9867ba78"
+    },
+    {
+      "chapter": 2,
+      "round": 2,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "1270955effc8e65be08504475e4cabf58c6355fca1d7f46519dbba7df0733df7",
+      "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+      "assets": {},
+      "open_blockers": 0,
+      "limitations": [
+        "One selected source frame inspected at L4 1628s; no comprehensive audiovisual review",
+        "No full reader MathJax/browser/print/accessibility/export acceptance by this reviewer",
+        "Scientific current-content acceptance is separate from source and release acceptance"
+      ],
+      "private_review_record_sha256": "feed9645808b59011c4724ed4665798d1ca6a8e49fcf94b04da9d87659dc0ff2"
+    }
+  ]
+}

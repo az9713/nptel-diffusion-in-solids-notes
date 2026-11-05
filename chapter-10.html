@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Free energy, interdiffusion, and phase formation — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a aria-current=page href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Free energy, interdiffusion, and phase formation</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#molar-energy">10.1 From a specimen to a molar free-energy curve L21 01:21</a></li><li><a href="#chemical-potential">10.2 The quantity transported down a thermodynamic force L21 10:33</a></li><li><a href="#phase-equilibrium">10.3 Common tangents and the amount of each phase L21 15:40</a></li><li><a href="#driving-force">10.4 Downhill free energy can mean uphill composition L22 00:20</a></li><li><a href="#growing-phases">10.5 Why a phase diagram does not predict a layer thickness L23 00:20</a></li><li><a href="#exercises">10.6 Exercises with complete solutions</a></li><li><a href="#sources">10.7 Sources, calculations, and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">Two polished alloys are pressed together and annealed. Does the junction become a smooth composition gradient, develop a new layer, or separate into two compositions? A diffusivity supplies a rate only after thermodynamics has identified the direction in which redistribution can lower free energy.</p>
+<p class="source-note">Lectures 21–23 supply the free-energy, chemical-potential, diffusion-couple, and phase-development spine. The regular-solution calculation is a synthetic teaching model, not an assessed Cu–Ni phase diagram. Its parameters and all printed numerical results are computed in <a href="code/ch10.py">the companion laboratory</a>.</p>
+
+<section id="molar-energy"><h2>10.1 From a specimen to a molar free-energy curve <a class="timestamp" href="https://www.youtube.com/watch?v=YZ6QeWFWHYU&amp;t=81s">L21 01:21</a></h2>
+<p>Consider a closed binary specimen containing chemical components A and B at fixed temperature <span class="math">\(T\)</span>, in kelvin, and pressure <span class="math">\(p\)</span>, in pascals. A <dfn>component</dfn> is an independently specified chemical constituent; a <dfn>phase</dfn> is a macroscopically homogeneous state with a particular structure and thermodynamic constitutive function. A single crystal structure can support many compositions. Two regions with the same structure can also be distinct phases when they have different equilibrium compositions.</p>
+<p>Let <span class="math">\(n_A,n_B\)</span> be amounts in moles, <span class="math">\(n=n_A+n_B\)</span>, and <span class="math">\(z=N_B=n_B/n\)</span> the B mole fraction. Then <span class="math">\(N_A=1-z\)</span>. For a homogeneous phase with negligible surface contributions, extensivity permits <span class="math">\(G=n g(z,T,p)\)</span>, where <span class="math">\(G\)</span> is Gibbs energy in joules and <span class="math">\(g\)</span> is molar Gibbs energy in J/mol. The plot of <span class="math">\(g\)</span> against <span class="math">\(z\)</span> is always associated with a specified phase, temperature, and pressure.</p>
+<p>A reference state separates mixing from the energies of pure components in that phase. Write <span class="math">\(g=(1-z)g_A^0+zg_B^0+g_{\rm mix}\)</span>. The superscript zero denotes the chosen pure reference, not zero numerical energy. Changing either reference adds a straight line to the entire curve. Such a line changes the individual chemical-potential values but leaves curvature and the equilibrium compositions of a self-consistently transformed model unchanged. Comparing phases requires common references; independently shifting one phase is a physical change to their relative stability.</p>
+<p>For an ideal substitutional solution, all arrangements of atoms on equivalent sites have the same energy at a specified composition. The number of arrangements produces the molar mixing entropy <span class="math">\(s_{\rm mix}=-R[(1-z)\ln(1-z)+z\ln z]\)</span>, where <span class="math">\(R\)</span> is the molar gas constant. The logarithm acts on dimensionless fractions, and the limiting convention is <span class="math">\(z\ln z\to0\)</span> at zero. With zero mixing enthalpy, the definition <span class="math">\(g=h-Ts\)</span> gives</p>
+\[
+g_{\rm mix}^{\rm ideal}=RT[(1-z)\ln(1-z)+z\ln z]. \tag{10.1}
+\]
+<p>The plus sign before the bracket is essential: its contents are nonpositive. At equal proportions the laboratory gives <span class="math">\(g_{\rm mix}=-5763.15\)</span> J/mol at the synthetic temperature 1000 K. Disorder lowers Gibbs energy in this ideal model. The temperature derivative at fixed pressure and composition is <span class="math">\(\partial_T g=-s\)</span>; free energy is not generally inversely proportional to temperature.</p>
+<p>A <dfn>regular solution</dfn> retains this random configurational entropy but adds an interaction enthalpy <span class="math">\(\Omega z(1-z)\)</span>, with <span class="math">\(\Omega\)</span> in J/mol. Positive <span class="math">\(\Omega\)</span> penalizes unlike neighbors in this mean-field representation. The model is useful because one adjustable competition generates either complete miscibility or a tendency to separate. It does not establish the actual phase diagram of a named alloy; ordering, magnetic contributions, vibrational entropy, and composition-dependent interactions can all change that diagram.</p>
+</section>
+<section id="chemical-potential"><h2>10.2 The quantity transported down a thermodynamic force <a class="timestamp" href="https://www.youtube.com/watch?v=YZ6QeWFWHYU&amp;t=633s">L21 10:33</a></h2>
+<p>Moving one component between two neighboring regions changes their amounts, so the relevant derivative is with respect to amount, not composition alone. Define the <dfn>chemical potential</dfn> of A as <span class="math">\(\mu_A=(\partial G/\partial n_A)_{T,p,n_B}\)</span>, in J/mol; define <span class="math">\(\mu_B\)</span> by holding <span class="math">\(n_A\)</span> fixed. The subscripts matter because changing <span class="math">\(n_A\)</span> changes both the total amount and the mole fraction. Chemical potential is a partial molar Gibbs energy, rather than the energy of an isolated atom.</p>
+<p>At fixed B amount, <span class="math">\(\partial n/\partial n_A=1\)</span> and <span class="math">\(\partial z/\partial n_A=-z/n\)</span>. The product and chain rules applied to <span class="math">\(ng(z)\)</span> therefore give <span class="math">\(\mu_A=g-zg'\)</span>, where a prime denotes differentiation with respect to <span class="math">\(z\)</span>. For a B addition, <span class="math">\(\partial z/\partial n_B=(1-z)/n\)</span>. Thus</p>
+\[
+\mu_A=g-zg',\qquad \mu_B=g+(1-z)g',\qquad
+\mu_B-\mu_A=g',\qquad g=(1-z)\mu_A+z\mu_B. \tag{10.2}
+\]
+<p>A tangent drawn at composition <span class="math">\(z\)</span> has equation <span class="math">\(y(u)=g(z)+(u-z)g'(z)\)</span>. Its intercept at <span class="math">\(u=0\)</span> is <span class="math">\(\mu_A\)</span>; its value at <span class="math">\(u=1\)</span> is <span class="math">\(\mu_B\)</span>. The tangent-intercept construction is therefore a graphical expression of the amount derivative, not a separate definition. The slope gives the difference between two chemical potentials, so equal slope does not imply equal individual potentials unless the tangent intercepts also agree.</p>
+<p>Substitution of (10.1) gives <span class="math">\(\mu_A=g_A^0+RT\ln(1-z)\)</span> and <span class="math">\(\mu_B=g_B^0+RT\ln z\)</span>. The regular-solution model adds <span class="math">\(\Omega z^2\)</span> to the A potential and <span class="math">\(\Omega(1-z)^2\)</span> to the B potential. For the synthetic example used here and below, take <span class="math">\(T=1000\)</span> K, <span class="math">\(\Omega=3RT\)</span>, and zero pure-reference energies. At <span class="math">\(z=0.3\)</span>, the computed values are <span class="math">\(\mu_A=-720.656\)</span> and <span class="math">\(\mu_B=2211.873\)</span> J/mol. Their weighted average is <span class="math">\(g=159.103\)</span> J/mol, checking extensivity explicitly.</p>
+<p>Activity packages nonideality into a dimensionless quantity: <span class="math">\(\mu_i=\mu_i^0+RT\ln a_i\)</span>. With the pure-component reference, <span class="math">\(a_i=\gamma_iN_i\)</span> defines the activity coefficient <span class="math">\(\gamma_i\)</span>. An ideal solution has <span class="math">\(\gamma_i=1\)</span>. A pure stable phase has activity one relative to itself at the same conditions, even though its chemical potential is not zero. “Pure silver has unit activity” is consequently a reference-state statement; it does not assign unit activity to dilute silver in every host.</p>
+</section>
+
+<section id="phase-equilibrium"><h2>10.3 Common tangents and the amount of each phase <a class="timestamp" href="https://www.youtube.com/watch?v=YZ6QeWFWHYU&amp;t=940s">L21 15:40</a></h2>
+<p>Suppose the specimen can split into phases <span class="math">\(\alpha\)</span> and <span class="math">\(\beta\)</span>, with compositions <span class="math">\(z_\alpha,z_\beta\)</span>. Transferring a small A amount from alpha to beta changes total Gibbs energy by <span class="math">\((\mu_A^\beta-\mu_A^\alpha)dn_A\)</span>. If either transfer direction is allowed at equilibrium, the first-order change must vanish. Repeating for B gives two equalities: <span class="math">\(\mu_A^\alpha=\mu_A^\beta\)</span> and <span class="math">\(\mu_B^\alpha=\mu_B^\beta\)</span>. Equilibrium does not require the A potential to equal the B potential.</p>
+<p>By (10.2), those two equalities require a line tangent to both phase curves. If the phases share a single regular-solution curve, the line touches that curve at two distinct compositions. For a total B fraction <span class="math">\(\bar z\)</span> between them, let <span class="math">\(f_\beta\)</span> be the fraction of total moles in beta. Conservation gives <span class="math">\(\bar z=(1-f_\beta)z_\alpha+f_\beta z_\beta\)</span>, hence the <dfn>lever rule</dfn></p>
+\[
+f_\beta=\frac{\bar z-z_\alpha}{z_\beta-z_\alpha},\qquad
+g_{\rm pair}=(1-f_\beta)g(z_\alpha)+f_\beta g(z_\beta). \tag{10.3}
+\]
+<p>This fraction is a molar fraction of phases. A volume fraction additionally needs their molar volumes. Between the two contact compositions, the equilibrium energy follows the straight segment, while the homogeneous energy follows the curved branch. The stable equilibrium is the lower convex envelope of all candidate phase curves: the lowest energy achievable by conserving composition while combining phases. The sign of mixing energy relative to an unmixed reference does not alone answer the stability question.</p>
+<p>The synthetic calculation sets <span class="math">\(\Omega=3RT\)</span>. Symmetry makes the common tangent horizontal, so its contact compositions solve <span class="math">\(g'(z)=RT\ln[z/(1-z)]+\Omega(1-2z)=0\)</span>. The noncentral roots are 0.0707202 and 0.9292798. At <span class="math">\(\bar z=0.3\)</span>, the B-rich phase fraction is 0.267052. The two-phase energy is −485.077 J/mol, lower than the homogeneous 159.103 J/mol. Figure 10.1 visualizes the energy reduction; its values describe the declared model only.</p>
+<figure><img src="assets/figures/ch10-free-energy.svg" alt="Computed regular-solution molar mixing energy with a horizontal tangent connecting compositions 0.0707 and 0.9293; the homogeneous composition 0.3 lies above it."><figcaption>Figure 10.1. Synthetic regular solution at 1000 K with interaction parameter 3RT. The common-tangent segment gives a lower conserved-composition energy than the homogeneous branch between the contact compositions. The curve is an original calculation, not an experimental phase diagram.</figcaption></figure>
+<p>The <dfn>Gibbs phase rule</dfn> counts independent intensive variables at equilibrium. With <span class="math">\(C\)</span> independent components and <span class="math">\(P\)</span> phases, each phase contributes <span class="math">\(C-1\)</span> independent compositions; temperature and pressure add two. Equality of each component potential between a reference phase and each other phase imposes <span class="math">\(C(P-1)\)</span> constraints. The remaining count is <span class="math">\(F=P(C-1)+2-C(P-1)=C-P+2\)</span>, assuming independent constraints and no additional fields or reactions. Fixing pressure subtracts one; fixing temperature as well subtracts another.</p>
+<p>A binary two-phase equilibrium at fixed temperature and pressure has zero intensive composition freedom. Its two compositions are fixed, but the phase amounts can vary through (10.3). Phase fraction is an extensive partition of total material, not an additional intensive degree of freedom. This distinction will matter when a diffusion path crosses a two-phase region.</p>
+</section>
+
+<section id="driving-force"><h2>10.4 Downhill free energy can mean uphill composition <a class="timestamp" href="https://www.youtube.com/watch?v=88RitgMkDfQ&amp;t=20s">L22 00:20</a></h2>
+<p>A concentration gradient is useful only when it represents the thermodynamic force of interest. To expose that restriction, take a binary lattice with constant molar site concentration <span class="math">\(c_s=1/V_m\)</span>, where <span class="math">\(V_m\)</span> is a constant molar volume. Exchange of B for A leaves the number of occupied sites unchanged. The exchange potential is <span class="math">\(\Delta\mu=\mu_B-\mu_A=g'(z)\)</span>. For one spatial coordinate <span class="math">\(x\)</span>, in meters, adopt the simple isothermal kinetic closure <span class="math">\(J_B=-\mathcal K(z)\partial_x\Delta\mu\)</span> with <span class="math">\(J_A=-J_B\)</span>. Here <span class="math">\(J_B\)</span> is the exchange molar flux in mol/(m²·s), and the nonnegative exchange coefficient <span class="math">\(\mathcal K\)</span> has units mol²/(J·m·s).</p>
+<p>The closure is a constitutive assumption, rather than a consequence of conservation. Species balance gives <span class="math">\(c_s\partial_t z=-\partial_xJ_B\)</span>. On a fixed interval with zero flux at both ends, the total free energy per area is <span class="math">\(\mathcal G=\int c_s g(z)dx\)</span>. Differentiate, substitute balance, and integrate by parts. The boundary term is zero, yielding</p>
+\[
+\frac{d\mathcal G}{dt}=\int (\partial_x\Delta\mu)J_B\,dx
+=-\int\mathcal K(\partial_x\Delta\mu)^2dx\leq0. \tag{10.4}
+\]
+<p>The sign is controlled by the kinetic coefficient. Within a homogeneous branch, <span class="math">\(\partial_x\Delta\mu=g''\partial_xz\)</span>, so comparison with a Fick form gives <span class="math">\(\widetilde D=\mathcal K g''/c_s\)</span>. Positive curvature produces ordinary down-gradient diffusion. Negative curvature gives a flux up the composition gradient while still reducing total Gibbs energy. Uphill diffusion therefore need not violate the second law.</p>
+<p>The regular solution has <span class="math">\(g''=RT/[z(1-z)]-2\Omega\)</span>. At <span class="math">\(\Omega=3RT\)</span>, curvature is negative between 0.211325 and 0.788675. This <dfn>spinodal</dfn> interval is the local instability region: infinitesimal long-wavelength composition fluctuations lower the homogeneous free energy. It is narrower than the coexistence interval. Between a common-tangent contact and the adjacent spinodal boundary, separation may lower global energy even though small fluctuations cost energy; creating a new phase then entails an interfacial barrier that this bulk curve omits.</p>
+<p>A negative coefficient in the local second-order diffusion equation amplifies ever shorter wavelengths without bound, so it is not by itself a well-posed continuum phase-separation model. A finite interfacial penalty supplies a length scale. For example, adding <span class="math">\(\tfrac12\kappa(\partial_xz)^2\)</span> to the free-energy density, with <span class="math">\(\kappa&gt;0\)</span> in J/m, changes the exchange potential to <span class="math">\(g'(z)-(\kappa/c_s)\partial_{xx}z\)</span>. The resulting conserved fourth-order model damps sufficiently short wavelengths. This is an original model extension, not a claim that a local negative diffusivity alone predicts an alloy microstructure.</p>
+<p>For several independent fluxes, linear irreversible thermodynamics instead writes a vector flux as a matrix times chemical-potential gradients. Thermodynamic admissibility constrains the symmetric part of that kinetic matrix to be positive semidefinite. Cross coefficients can make one component flux oppose its own isolated force; the nonnegative total dissipation is the requirement. Thus “each species always moves down its own chemical potential” needs the additional diagonal approximation. Chapter 13 will make the reference-frame and mobility conventions explicit.</p>
+</section>
+
+<section id="growing-phases"><h2>10.5 Why a phase diagram does not predict a layer thickness <a class="timestamp" href="https://www.youtube.com/watch?v=_jAsVLjZSdA&amp;t=20s">L23 00:20</a></h2>
+<p>A <dfn>diffusion couple</dfn> joins two initially uniform specimens with different compositions. A useful planar experiment needs a clean contact, controlled temperature, an atmosphere that limits oxidation or evaporation, and an annealing time short enough that the far ends retain their original compositions when semi-infinite analysis is intended. A fixture maintains contact; inert marker particles can identify lattice motion. None of these preparations alone proves that the interface is equilibrated or that every phase is visible in a later microscope.</p>
+<p>If one solid-solution phase spans the relevant compositions, a smooth profile can develop. With composition-dependent interdiffusion coefficient <span class="math">\(\widetilde D(c)\)</span>, balance in a fixed-volume frame becomes <span class="math">\(\partial_t c=\partial_x[\widetilde D(c)\partial_xc]\)</span>, with <span class="math">\(c\)</span> in mol/m³. The product rule gives <span class="math">\(\partial_t c=\widetilde D\partial_{xx}c+(d\widetilde D/dc)(\partial_xc)^2\)</span>. Dropping the gradient-squared term while allowing a variable coefficient is inconsistent. The concentration-independent equation is a special case, not the generic binary alloy equation.</p>
+<p>If an intermediate phase has lower Gibbs energy, its formation can produce a layer bounded by composition jumps. Under local equilibrium, each side of an interface approaches the corresponding phase composition selected by equality of component chemical potentials. The concentration jump is compatible with a continuous chemical potential across an ideal equilibrated interface. A smooth measured jump may reflect finite instrumental resolution rather than a true homogeneous intermediate composition.</p>
+<p>Phase existence and layer growth are separate questions. A stable phase can grow slowly because its mobility is small, fail to nucleate during a finite anneal, occupy a layer below the instrument's spatial resolution, or be bypassed by nonequilibrium kinetics. Temperature and time change diffusion lengths as well as thermodynamic stability. Changing either end member changes which phases a composition path can reach. An equilibrium phase diagram supplies admissible coexistence, not all these kinetic and observational facts.</p>
+<p>For an ideal isothermal planar binary construction with locally equilibrated two-phase material, the coexistence compositions and chemical potentials are fixed. Changing only the local phase fraction does not create a chemical-potential gradient through that equilibrium mixture. This explains why a simple layer sequence is often built from single-phase diffusion regions separated by interfaces. It is not a universal theorem forbidding two-phase binary reaction zones: morphology, moving phase fractions, stress, interface kinetics, and departures from local equilibrium require a richer model. Ternary systems add intensive composition freedom and permit paths through two-phase fields with changing tie-lines.</p>
+<p>The laboratory consumes only declared synthetic thermodynamic parameters, solves the symmetric common-tangent problem, checks the lever-rule balance, and writes a figure and <a href="code/ch10-output.json">saved numerical output</a>. A numerical root finder brackets the noncentral root to avoid selecting the central stationary point. Successful convergence verifies an equation of the chosen model; it does not validate its parameters for any real alloy. This distinction becomes decisive when a database supplies hundreds of coupled phase models in Chapter 14.</p>
+</section>
+
+<section id="exercises"><h2>10.6 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Differentiate the amount, not just the fraction</h3><p>Derive the two chemical potentials from <span class="math">\(G=(n_A+n_B)g[n_B/(n_A+n_B)]\)</span>. Why is simply identifying <span class="math">\(g'\)</span> with the B chemical potential wrong?</p><details><summary>Worked solution</summary><p>At fixed B amount, differentiating total amount gives one, while differentiating the fraction gives <span class="math">\(-z/n\)</span>. The product rule gives <span class="math">\(\mu_A=g-zg'\)</span>. At fixed A amount the fraction derivative is <span class="math">\((1-z)/n\)</span>, giving <span class="math">\(\mu_B=g+(1-z)g'\)</span>. Subtraction yields <span class="math">\(g'=\mu_B-\mu_A\)</span>. The composition derivative describes exchange at fixed total amount; adding only B also increases total amount. The two operations have different constraints.</p></details></div>
+<div class="exercise"><h3>2. A reference change</h3><p>Replace <span class="math">\(g(z)\)</span> by <span class="math">\(g(z)+a+bz\)</span>, with constants in J/mol. Determine the chemical-potential shifts and whether a coexistence pair changes.</p><details><summary>Worked solution</summary><p>The derivative shifts by <span class="math">\(b\)</span>. Formula (10.2) gives an A shift <span class="math">\(a\)</span> and a B shift <span class="math">\(a+b\)</span>. Applying the same reference transformation to every candidate phase leaves equality of each component potential unchanged. Curvature is unchanged, and a common tangent acquires the same added straight line. Its contact compositions consequently remain unchanged. Shifting only one phase independently would alter relative stability and is a different thermodynamic model.</p></details></div>
+<div class="exercise"><h3>3. Reconstruct the synthetic phase mixture</h3><p>For coexistence fractions 0.0707202 and 0.9292798 and total composition 0.3, compute the B-rich molar phase fraction. Explain why it need not equal a measured volume fraction.</p><details><summary>Worked solution</summary><p>Subtracting the A-rich composition from the amount balance gives <span class="math">\(f_\beta=(0.3-0.0707202)/(0.9292798-0.0707202)=0.267052\)</span>, with rounding. Substitution returns 0.3. If the molar volumes differ, the beta volume fraction is <span class="math">\(f_\beta V_m^\beta/[(1-f_\beta)V_m^\alpha+f_\beta V_m^\beta]\)</span>. It equals the molar fraction only for equal molar volumes. Microscopy measures geometry, so the conversion is part of comparison with a thermodynamic lever rule.</p></details></div>
+<div class="exercise"><h3>4. Locate local instability</h3><p>For a regular solution with <span class="math">\(\Omega=3RT\)</span>, derive the spinodal limits. Explain why they are not the common-tangent contact compositions.</p><details><summary>Worked solution</summary><p>Setting curvature to zero gives <span class="math">\(1/[z(1-z)]=6\)</span>, or <span class="math">\(z^2-z+1/6=0\)</span>. The roots are <span class="math">\((1\pm\sqrt{1/3})/2\)</span>, numerically 0.211325 and 0.788675. Between them curvature is negative. Common tangency compares a finite composition separation and minimizes the conserved total energy; the spinodal tests the second variation about one homogeneous composition. A locally stable state can still be globally metastable, so the two intervals need not coincide.</p></details></div>
+<div class="exercise"><h3>5. Check dissipation with cross coupling</h3><p>Let two dimensionless force gradients be the components of <span class="math">\(\boldsymbol f\)</span>, and let <span class="math">\(\boldsymbol J=-\begin{pmatrix}1&2\\2&5\end{pmatrix}\boldsymbol f\)</span> in a consistently scaled kinetic model. Can an individual flux go uphill while total dissipation remains nonnegative?</p><details><summary>Worked solution</summary><p>The symmetric matrix has positive first principal minor one and determinant one, so it is positive definite. For <span class="math">\(\boldsymbol f=(1,-1)\)</span>, the flux is <span class="math">\((1,3)\)</span>: the first flux has the same sign as its own gradient. Nevertheless <span class="math">\(-\boldsymbol f\cdot\boldsymbol J=2&gt;0\)</span>. Equivalently the quadratic form is <span class="math">\((f_1+2f_2)^2+f_2^2\)</span>. Cross coupling permits the individual uphill contribution; total free-energy decrease constrains the sum.</p></details></div>
+<div class="exercise"><h3>6. A missing intermediate phase</h3><p>A phase diagram permits three intermediate phases, but an annealed couple shows two layers. Give a defensible inference and design a follow-up that distinguishes two explanations.</p><details><summary>Worked solution</summary><p>The observation establishes only that two layers were resolved under the preparation and characterization conditions. It does not establish thermodynamic absence of the third phase. A nucleation barrier and an unresolved thin layer are two different explanations. Longer anneals with controlled interfaces test time dependence; higher-resolution cross-sectional composition and diffraction measurements test whether a thin structurally distinct region already exists. A seeded couple can test nucleation sensitivity. Each test must retain atmosphere and temperature control, because changing those also changes possible phases and rates.</p></details></div>
+</section>
+
+<section id="sources"><h2>10.7 Sources, calculations, and limits</h2><p><a href="https://www.youtube.com/watch?v=YZ6QeWFWHYU">L21</a>, <a href="https://www.youtube.com/watch?v=88RitgMkDfQ">L22</a>, and <a href="https://www.youtube.com/watch?v=_jAsVLjZSdA">L23</a> establish the subject sequence. The equations and synthetic calculations are derived locally. Source thought experiments about particular Cu–Ni temperatures are used only to motivate competing outcomes; no assessed Cu–Ni phase boundary is inferred here. Experimental micrograph phase labels obscured in captions are not reconstructed as facts.</p><p>The homogeneous regular-solution model omits interface energy until the explicitly labeled extension, elastic strain, vacancy transport, and explicit atomistic correlations. Equal chemical potentials describe equilibrium; finite-rate interfaces can depart from that condition. The next chapter makes the spatial reading of composition profiles and diffusion paths precise before an inverse diffusivity is extracted from them.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch10.py"><code>code/ch10.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic binary thermodynamics; no material assessment is implied.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import brentq
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch10&quot;
+
+BASE = Path(__file__).resolve().parents[1]
+R = 8.31446261815324
+T = 1000.0
+omega = 3.0 * R * T
+
+
+def energy(z):
+    return R * T * (z * np.log(z) + (1 - z) * np.log(1 - z)) + omega * z * (
+        1 - z
+    )
+
+
+def derivative(z):
+    return R * T * np.log(z / (1 - z)) + omega * (1 - 2 * z)
+
+
+z = np.linspace(0.0001, 0.9999, 1001)
+za = brentq(derivative, 0.001, 0.2)
+zb = 1 - za
+spinodal = (1 - np.sqrt(1 - 2 / 3)) / 2
+bulk = 0.3
+fraction = (bulk - za) / (zb - za)
+mu_a = energy(bulk) - bulk * derivative(bulk)
+mu_b = energy(bulk) + (1 - bulk) * derivative(bulk)
+assert abs(derivative(za)) &lt; 1e-7
+assert abs(energy(za) - energy(zb)) &lt; 1e-8
+assert abs((1 - fraction) * za + fraction * zb - bulk) &lt; 1e-12
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.plot(z, energy(z) / 1000, label=&quot;homogeneous regular solution&quot;)
+ax.plot([za, zb], [energy(za) / 1000] * 2, &quot;--&quot;, label=&quot;two-phase tangent&quot;)
+ax.scatter(
+    [za, zb, bulk], [energy(za) / 1000, energy(zb) / 1000, energy(bulk) / 1000]
+)
+ax.set(xlabel=&quot;B mole fraction&quot;, ylabel=&quot;Mixing Gibbs energy (kJ/mol)&quot;)
+ax.legend(loc=&quot;upper center&quot;, bbox_to_anchor=(0.5, 1.25))
+fig.tight_layout()
+(BASE / &quot;assets/figures&quot;).mkdir(parents=True, exist_ok=True)
+fig.savefig(
+    BASE / &quot;assets/figures/ch10-free-energy.svg&quot;, metadata={&quot;Date&quot;: None}
+)
+out = {
+    &quot;synthetic&quot;: True,
+    &quot;temperature_K&quot;: T,
+    &quot;omega_J_mol&quot;: omega,
+    &quot;coexistence_mole_fractions&quot;: [za, zb],
+    &quot;spinodal_mole_fractions&quot;: [spinodal, 1 - spinodal],
+    &quot;bulk_mole_fraction&quot;: bulk,
+    &quot;B_rich_mole_fraction&quot;: fraction,
+    &quot;homogeneous_energy_J_mol&quot;: float(energy(bulk)),
+    &quot;two_phase_energy_J_mol&quot;: float(energy(za)),
+    &quot;mu_A_J_mol&quot;: float(mu_a),
+    &quot;mu_B_J_mol&quot;: float(mu_b),
+    &quot;ideal_equimolar_energy_J_mol&quot;: -R * T * np.log(2),
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch10-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;temperature_K&quot;: 1000.0,
+  &quot;omega_J_mol&quot;: 24943.387854459717,
+  &quot;coexistence_mole_fractions&quot;: [
+    0.07072018167987036,
+    0.9292798183201296
+  ],
+  &quot;spinodal_mole_fractions&quot;: [
+    0.21132486540518708,
+    0.7886751345948129
+  ],
+  &quot;bulk_mole_fraction&quot;: 0.3,
+  &quot;B_rich_mole_fraction&quot;: 0.2670517090896028,
+  &quot;homogeneous_energy_J_mol&quot;: 159.10304523685863,
+  &quot;two_phase_energy_J_mol&quot;: -485.07696902346856,
+  &quot;mu_A_J_mol&quot;: -720.6555813091196,
+  &quot;mu_B_J_mol&quot;: 2211.873173844141,
+  &quot;ideal_equimolar_energy_J_mol&quot;: -5763.14632164398
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-09.html">← Previous</a><a href="chapter-11.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

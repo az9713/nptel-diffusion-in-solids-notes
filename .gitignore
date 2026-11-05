@@ -1,0 +1,10 @@
+sources/private/
+work/
+.venv/
+__pycache__/
+*.pyc
+.serena/
+dist/
+HANDOFF.md
+
+.ruff_cache/

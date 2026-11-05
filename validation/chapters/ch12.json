@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 12,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b4188fd195c7b0726f6b753a85606b7dd99fb76008b6219fbe7da83dac417700",
+      "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+      "assets": {
+        "assets/figures/ch12-inversion.svg": "4d7ee9ecc15a8c5cf3832712c0bee5f9a9c14fadb51ba4e444dacaff61342064"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full raw L27 or audiovisual review by this reviewer",
+        "Scientific laboratory uses declared synthetic inputs, not general production API",
+        "Reader/release checks separate"
+      ],
+      "private_review_record_sha256": "df9fc768ec30a4795c086b2a4b395a07b27b7498bc147c7801e2b4e3e5ae6a06"
+    },
+    {
+      "chapter": 12,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b4188fd195c7b0726f6b753a85606b7dd99fb76008b6219fbe7da83dac417700",
+      "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+      "assets": {
+        "assets/figures/ch12-inversion.svg": "4d7ee9ecc15a8c5cf3832712c0bee5f9a9c14fadb51ba4e444dacaff61342064"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map checked; no complete direct audiovisual reread",
+        "Primary PDFpp1-2/4-6 inspected; NIST andSauer-Freise abstract-only",
+        "Current scientific SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "9653af0fa5d8c4ed289cea6508cdcf6982ef97089732722b825b0a279be6330b"
+    }
+  ]
+}

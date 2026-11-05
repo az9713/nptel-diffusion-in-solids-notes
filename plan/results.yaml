@@ -1,0 +1,282 @@
+{
+  "results": [
+    {
+      "id": "R01",
+      "statement": "For fixed geometry with no reaction, partial_t c = -partial_x J; with J=-D partial_x c, partial_t c=partial_x(D partial_x c).",
+      "planned_chapter": 1,
+      "depends_on": [],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "finite-volume conservation, layered-slab resistance, radial profiles, and rotated tensors"
+    },
+    {
+      "id": "R02",
+      "statement": "Under stated regularity and convergence assumptions, D C_xx-s C=-c(x,0), where C is the one-sided time transform.",
+      "planned_chapter": 2,
+      "depends_on": [
+        "R01"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "ODE residuals, initial data, inverse-transform coefficients, and transformed PDE units"
+    },
+    {
+      "id": "R03",
+      "statement": "An instantaneous infinite-domain plane source of areal amount M has c=M exp(-x²/(4Dt))/sqrt(4 pi Dt).",
+      "planned_chapter": 3,
+      "depends_on": [
+        "R02"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "normalization, second moment, error-function boundary limits, uptake and inverse-profile recovery"
+    },
+    {
+      "id": "R04",
+      "statement": "For the source-free constant-D uniform-grid explicit interior update, 0<=D dt/dx²<=1/2 makes each new cell value a convex average; positivity of the whole scheme also requires positivity-preserving boundary updates.",
+      "planned_chapter": 4,
+      "depends_on": [
+        "R03"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "positivity, mass conservation, refinement against an exact solution"
+    },
+    {
+      "id": "R05",
+      "statement": "A crystal defect count requires a specified sublattice and site multiplicity; equal defect numbers need not imply equal site fractions.",
+      "planned_chapter": 5,
+      "depends_on": [
+        "R04"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "site counting, charge/stoichiometric balance, and geometry"
+    },
+    {
+      "id": "R06",
+      "statement": "Independent vacancy sites give x_v/(1-x_v)=exp(-g_f/(k_B T)); dilute favorable pair binding gives x_2v=(z/2)exp(g_b/(k_B T))x_1v² with explicit counting conventions.",
+      "planned_chapter": 6,
+      "depends_on": [
+        "R05"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "free-energy minimum, missing-site balance, differential dilatometry and trapping-model identifiability"
+    },
+    {
+      "id": "R07",
+      "statement": "Independent isotropic jumps of length ell and total rate Gamma in d dimensions give D=Gamma ell²/(2d).",
+      "planned_chapter": 7,
+      "depends_on": [
+        "R06"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "exact walk moments and seeded ensemble simulation"
+    },
+    {
+      "id": "R08",
+      "statement": "For stationary zero-mean fixed-length jump increments with absolutely summable correlations, f=1+2 sum_{k>=1} E(step_0 dot step_k)/ell²; the finite-step factor includes weights 1-k/n.",
+      "planned_chapter": 8,
+      "depends_on": [
+        "R07"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "one-dimensional persistent-walk exact moments"
+    },
+    {
+      "id": "R09",
+      "statement": "For a single Arrhenius mechanism with temperature-independent prefactor, d ln D/d(1/T)=-Q/R.",
+      "planned_chapter": 9,
+      "depends_on": [
+        "R08"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "synthetic parameter recovery and two-path curvature"
+    },
+    {
+      "id": "R10",
+      "statement": "For binary molar free energy g(N_B), mu_B-mu_A=dg/dN_B; a common tangent equates both component chemical potentials.",
+      "planned_chapter": 10,
+      "depends_on": [
+        "R09"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "regular-solution curvature and tangent conditions"
+    },
+    {
+      "id": "R11",
+      "statement": "A sharp locally equilibrated interface permits a concentration jump; conservation requires v(c_right-c_left)=J_right-J_left.",
+      "planned_chapter": 11,
+      "depends_on": [
+        "R10"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "interface mass balance and scaling"
+    },
+    {
+      "id": "R12",
+      "statement": "For an isothermal single-phase semi-infinite step with constant molar volume, no reaction or short-circuit heterogeneity and a strictly monotone smooth similarity profile, D(c*)=-[1/(2t c_x)] integral_{c_left}^{c*}(x-x_M)dc at interior nonzero-slope points; x_M is fixed by the mass-balance area condition.",
+      "planned_chapter": 12,
+      "depends_on": [
+        "R11"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "recover a constant diffusivity and quantify noise sensitivity"
+    },
+    {
+      "id": "R13",
+      "statement": "For constant V_m and binary intrinsic diffusivities, D-tilde=N_A D_B+N_B D_A; marker velocity v_K=V_m(D_B-D_A) partial_x c_B.",
+      "planned_chapter": 13,
+      "depends_on": [
+        "R12"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "independent frame-transformation calculation"
+    },
+    {
+      "id": "R14",
+      "statement": "Thermodynamic functions determine driving forces; mobilities determine rates, so equilibrium data alone do not identify diffusion time scales.",
+      "planned_chapter": 14,
+      "depends_on": [
+        "R13"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "same equilibrium with distinct kinetic trajectories"
+    },
+    {
+      "id": "R15",
+      "statement": "For a quasi-steady layer with fixed concentration drop and partition jump, thickness squared grows linearly with time under stated sign and geometry conventions.",
+      "planned_chapter": 15,
+      "depends_on": [
+        "R14"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "mass balance and an independent interface trajectory"
+    },
+    {
+      "id": "R16",
+      "statement": "On the infinite line, a normalized Gaussian initial profile under constant-D diffusion has variance sigma_0²+2Dt; convolution with an independent centered Gaussian response adds its variance. A half-space surface source uses a different centered-variance convention.",
+      "planned_chapter": 16,
+      "depends_on": [
+        "R15"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "recover D with and without instrumental broadening"
+    },
+    {
+      "id": "R17",
+      "statement": "For a single Debye relaxation, the loss peak occurs at omega tau=1; its activation fit uses ln omega versus 1/T_peak.",
+      "planned_chapter": 17,
+      "depends_on": [
+        "R16"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "loss-peak sweep and independent Gorsky time ratios"
+    },
+    {
+      "id": "R18",
+      "statement": "For the stated free-diffusion pulsed-gradient sequence, echo attenuation is exp[-gamma² g² delta² D(Delta-delta/3)].",
+      "planned_chapter": 18,
+      "depends_on": [
+        "R17"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "synthetic attenuation fit and timing/units sensitivity"
+    },
+    {
+      "id": "R19",
+      "statement": "Exponential free-diffusion self-correlation gives angular-frequency HWHM D q²; energy HWHM is hbar D q².",
+      "planned_chapter": 19,
+      "depends_on": [
+        "R18"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "Fourier-transform linewidth and q-dependent jump model"
+    },
+    {
+      "id": "R20",
+      "statement": "Boundary transport depends on both fast along-boundary diffusion and leakage into adjoining grains; the relevant bulk penetration scale is sqrt(Dt).",
+      "planned_chapter": 20,
+      "depends_on": [
+        "R19"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "regime length-scale comparison and two-region conservation"
+    },
+    {
+      "id": "R21",
+      "statement": "For parallel connected pathways sharing a gradient and local equilibrium, D_eff=sum_i phi_i D_i; this arithmetic average fails when exchange or connectivity is limiting.",
+      "planned_chapter": 21,
+      "depends_on": [
+        "R20"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "path-volume sensitivity and series/parallel counterexample"
+    },
+    {
+      "id": "R22",
+      "statement": "A larger interfacial volume fraction increases a simple parallel-path coefficient only if interfacial diffusivity, connectivity, and exchange assumptions remain fixed.",
+      "planned_chapter": 22,
+      "depends_on": [
+        "R21"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "grain-size geometry and model sensitivity"
+    },
+    {
+      "id": "R23",
+      "statement": "A measured diffusivity reflects pathway populations, jump mobilities, correlations and reference conditions; no single material label determines its ordering.",
+      "planned_chapter": 23,
+      "depends_on": [
+        "R22"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "trap-limited transport, defect-population competition and controlled rate comparisons"
+    },
+    {
+      "id": "R24",
+      "statement": "A diffusion ranking requires named species, phase, coefficient, temperature convention and comparable microstructure; high configurational entropy alone proves no universal kinetic ordering.",
+      "planned_chapter": 24,
+      "depends_on": [
+        "R23"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "same-absolute versus homologous-temperature ranking and primary-data audit"
+    },
+    {
+      "id": "R25",
+      "statement": "The semiconductor diffusion coefficient depends on the populations and mobilities of participating defects; a single constant-D profile is a restricted process model.",
+      "planned_chapter": 25,
+      "depends_on": [
+        "R24"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "charged-defect population and mobility sensitivity, source/sink nonequilibrium, and explicit tutorial measurement limits"
+    },
+    {
+      "id": "R26",
+      "statement": "For spatially uniform D(t), the diffusion equation reduces to constant-coefficient form under accumulated diffusion time tau=int_0^t D(s) ds.",
+      "planned_chapter": 26,
+      "depends_on": [
+        "R25"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "equal final profiles from distinct time histories"
+    },
+    {
+      "id": "R27",
+      "statement": "For independent dilute carriers of charge q and number concentration n, conductivity=n q² D/(k_B T); tracer-to-charge correlation and multiple carriers require qualification.",
+      "planned_chapter": 27,
+      "depends_on": [
+        "R26"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "neutrality and mass-action solutions, conductivity-minimum location, intrinsic/extrinsic crossover, and tracer-versus-charge correlation"
+    },
+    {
+      "id": "R28",
+      "statement": "Identical concentration profiles can arise from different microscopic mechanisms; mechanism inference requires additional observables or constraints.",
+      "planned_chapter": 28,
+      "depends_on": [
+        "R27"
+      ],
+      "status": "developed in the corresponding chapter; see current-content acceptance and numerical evidence in completion.json and validation/",
+      "concrete_check": "construct an explicit nonidentifiability example and experimental remedy"
+    }
+  ]
+}

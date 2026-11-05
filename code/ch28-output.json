@@ -1,0 +1,42 @@
+{
+  "status": "synthetic identifiability construction; no material fit",
+  "models": [
+    {
+      "vacancy_fraction": 1e-06,
+      "mobility_factor_m2_s": 1e-10,
+      "tracer_D_m2_s": 1e-16,
+      "independent_signal": 5e-07
+    },
+    {
+      "vacancy_fraction": 0.0001,
+      "mobility_factor_m2_s": 1e-12,
+      "tracer_D_m2_s": 1e-16,
+      "independent_signal": 5e-05
+    }
+  ],
+  "at_3600s": {
+    "observed_variance_m2": 7.20625e-13,
+    "observed_width_m": 8.488963423174822e-07,
+    "profile_max_difference": 0.0
+  },
+  "time_series": {
+    "times_s": [
+      900.0,
+      1800.0,
+      3600.0,
+      7200.0
+    ],
+    "variances_m2": [
+      1.80625e-13,
+      3.60625e-13,
+      7.20625e-13,
+      1.4406249999999998e-12
+    ],
+    "recovered_D_m2_s": 1.0000000000000001e-16,
+    "recovered_initial_plus_resolution_var_m2": 6.250000000003159e-16
+  },
+  "log_parameter_ranks": {
+    "profile_only": 1,
+    "augmented": 2
+  }
+}

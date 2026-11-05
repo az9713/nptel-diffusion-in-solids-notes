@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Moving boundaries and multiphase simulation — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a aria-current=page href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Moving boundaries and multiphase simulation</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#interface-balance">15.1 A moving front couples phase equilibrium to conservation L34 00:20</a></li><li><a href="#parabolic">15.2 Parabolic growth is a derived regime L34 12:39</a></li><li><a href="#exact-stefan">15.3 An exact similarity solution tests the approximation</a></li><li><a href="#simulation">15.4 Reading a multiphase demonstration as a model L34 17:49</a></li><li><a href="#exercises">15.5 Exercises with complete solutions</a></li><li><a href="#sources">15.6 Sources and boundaries</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">An intermediate layer grows by receiving solute through material that it has already formed. The same layer that records progress also increases the transport resistance. A moving-boundary calculation must couple that changing diffusion field to the amount needed to transform the next increment of material.</p>
+<p class="source-note">Lectures 34–35 provide moving-interface and carburization demonstrations and a database tutorial. The mathematical Stefan problem below is an original reduced teaching calculation. It does not execute DICTRA, reproduce licensed databases, or represent measured Fe–C growth constants.</p>
+
+<section id="interface-balance"><h2>15.1 A moving front couples phase equilibrium to conservation <a class="timestamp" href="https://www.youtube.com/watch?v=-tW2HyemTGw&amp;t=20s">L34 00:20</a></h2>
+<p>Consider planar product material occupying <span class="math">\(0&lt;x&lt;s(t)\)</span> and an initially uniform parent material at <span class="math">\(x&gt;s(t)\)</span>. The interface coordinate <span class="math">\(s\)</span> is in meters, and <span class="math">\(v=ds/dt\)</span> is positive for growth to the right. Let the selected conserved solute have molar concentration <span class="math">\(c(x,t)\)</span> in the product, with constant diffusivity <span class="math">\(D&gt;0\)</span> in m²/s. Use a fixed laboratory coordinate and neglect bulk motion in this reduced equal-volume setting.</p>
+<p>Impose a maintained surface concentration <span class="math">\(c_s\)</span> at zero and a product-side interfacial concentration <span class="math">\(c_i\)</span>. The parent remains at <span class="math">\(c_0\)</span> and is taken to have zero diffusive flux. Choose <span class="math">\(c_s&gt;c_i&gt;c_0\)</span> so solute travels toward the advancing front. Local equilibrium is the assumption that fixes the two interfacial concentrations through thermodynamics; it is not derived from the diffusion equation. Define the positive concentration jump requirement <span class="math">\(q_c=c_i-c_0\)</span>, in mol/m³.</p>
+<p>The general interfacial balance is <span class="math">\(v(c_R-c_L)=J_R-J_L\)</span>, with both fluxes in the same frame. Here <span class="math">\(c_L=c_i\)</span>, <span class="math">\(c_R=c_0\)</span>, and <span class="math">\(J_R=0\)</span>. Therefore</p>
+\[
+q_c\frac{ds}{dt}=J_L=-D\left.\partial_xc\right|_{s^-},
+\qquad c_t=Dc_{xx}\quad(0&lt;x&lt;s(t)). \tag{15.1}
+\]
+<p>The left side is the amount per area and time required for interface conversion. The right side is the flux supplied through the product. Their units both equal mol/(m²·s). A reaction that consumes a nonconserved chemical species would need its stoichiometric balance; the present component is conserved through phase conversion.</p>
+<p>This formulation is a one-phase <dfn>Stefan problem</dfn>: a diffusion field and a moving boundary tied by a flux jump. “One-phase” refers to solving diffusion in only one region while the other supplies a fixed state, not to denying the existence of two physical phases. Including parent diffusion, unequal volumes, nonlocal equilibrium, or a finite surface supply changes the problem and its interface law.</p>
+</section>
+
+<section id="parabolic"><h2>15.2 Parabolic growth is a derived regime <a class="timestamp" href="https://www.youtube.com/watch?v=-tW2HyemTGw&amp;t=759s">L34 12:39</a></h2>
+<p>First approximate the product concentration as quasisteady: diffusion across the current layer equilibrates much faster than the interface moves appreciably. Setting <span class="math">\(c_{xx}=0\)</span> at fixed current thickness gives <span class="math">\(c=c_s-(c_s-c_i)x/s\)</span>. The flux is then <span class="math">\(J_L=D(c_s-c_i)/s\)</span>. Substitute this into (15.1) and define <span class="math">\(\beta=(c_s-c_i)/q_c&gt;0\)</span>, a dimensionless concentration ratio:</p>
+\[
+\frac{ds}{dt}=\frac{D\beta}{s},\qquad
+s^2(t)=s_0^2+2D\beta t. \tag{15.2}
+\]
+<p>The initial thickness <span class="math">\(s_0\)</span> regularizes the zero-thickness singularity of this approximation. A prescribed seed states that product already exists; it does not model the probability or kinetics of nucleation. For negligible seed thickness, growth proportional to <span class="math">\(\sqrt t\)</span> is called <dfn>parabolic growth</dfn> because thickness squared is linear in time.</p>
+<p>The growing resistance <span class="math">\(s/D\)</span> explains the slowing rate. A larger fixed concentration drop or diffusivity increases the parabolic constant; a larger concentration jump needed to convert parent to product decreases it. These are conditional comparisons with geometry, boundary states, and phase identities held fixed. An observed parabolic law alone does not identify which microscopic diffusion path controls D.</p>
+<p>The approximation has an internal scale check. The diffusion time through the layer is approximately <span class="math">\(s^2/D\)</span>, while the interface growth time is <span class="math">\(s/(ds/dt)=s^2/(D\beta)\)</span>. Their ratio is <span class="math">\(\beta\)</span>. Thus small <span class="math">\(\beta\)</span> supports quasisteady diffusion; values near one demand a transient calculation. This estimate explains why a linear profile can be useful in a slowly moving layer but inaccurate when its front advances on the diffusion time scale.</p>
+<p>Neither (15.2) nor its similarity counterpart applies indefinitely to a finite closed specimen. As reservoirs deplete and the total phase fractions approach equilibrium, the driving concentration or potential difference changes. Growth can slow more strongly and saturate. Saturation in a numerical trajectory should be checked against conserved inventory and the equilibrium phase amounts, rather than identified from a flat curve alone.</p>
+</section>
+
+<section id="exact-stefan"><h2>15.3 An exact similarity solution tests the approximation</h2>
+<p>For the ideal zero-seed problem, a similarity solution retains concentration storage inside the growing product. Let <span class="math">\(s(t)=2\lambda\sqrt{Dt}\)</span> with a constant dimensionless <span class="math">\(\lambda&gt;0\)</span>. The error-function solution satisfying the two concentration boundaries is</p>
+\[
+c(x,t)=c_s-(c_s-c_i)
+\frac{\operatorname{erf}[x/(2\sqrt{Dt})]}{\operatorname{erf}\lambda},
+\quad 0&lt;x&lt;2\lambda\sqrt{Dt}. \tag{15.3}
+\]
+<p>Substituting into the diffusion equation confirms it directly. Differentiating at the front gives <span class="math">\(J_L=(c_s-c_i)\sqrt D e^{-\lambda^2}/[\sqrt{\pi t}\operatorname{erf}\lambda]\)</span>. The interface velocity is <span class="math">\(\lambda\sqrt D/\sqrt t\)</span>. Their equality in (15.1) reduces the moving-boundary problem to</p>
+\[
+\lambda e^{\lambda^2}\operatorname{erf}\lambda
+=\frac{\beta}{\sqrt\pi}. \tag{15.4}
+\]
+<p>The left side increases from zero for positive lambda, so a unique positive root exists for each positive beta. For small lambda, <span class="math">\(\operatorname{erf}\lambda\approx2\lambda/\sqrt\pi\)</span> and <span class="math">\(e^{\lambda^2}\approx1\)</span>, giving <span class="math">\(\lambda\approx\sqrt{\beta/2}\)</span>. Then <span class="math">\(s\approx\sqrt{2D\beta t}\)</span>, recovering the quasisteady law as a controlled small-beta limit.</p>
+<p>The <a href="code/ch15.py">laboratory</a> uses synthetic <span class="math">\(D=10^{-14}\)</span> m²/s and <span class="math">\(t=10^5\)</span> s. At beta 0.1, the computed root is 0.220016 and the exact layer thickness is 13.9151 micrometers, compared with 14.1421 micrometers quasisteady: a 1.632% overestimate. At beta one, the root is 0.620063 and thickness is 39.2162 micrometers versus 44.7214 micrometers, a 14.038% overestimate. Both follow square-root-time growth, so observing that exponent would not distinguish them.</p>
+<figure><img src="assets/figures/ch15-stefan.svg" alt="Exact and quasisteady interface positions grow as square root of time. Their discrepancy is larger at concentration ratio beta one than beta 0.1. Normalized transient concentration profiles differ from a straight line."><figcaption>Figure 15.1. Original planar Stefan model. Left: exact similarity and quasisteady trajectories. Right: the exact normalized product concentration at a fixed scaled position. The comparison isolates concentration storage within the product; it does not compare a Python run with DICTRA.</figcaption></figure>
+<p>The code brackets the positive root and checks (15.4), evaluates profiles and trajectories, and writes <a href="code/ch15-output.json">the saved output</a>. A solver for more general initial data would additionally need conservative spatial discretization, interface tracking, and refinement checks. This exact case can serve as a benchmark for such a solver; plotting the analytic curve is not equivalent to having implemented that general solver.</p>
+</section>
+
+<section id="simulation"><h2>15.4 Reading a multiphase demonstration as a model <a class="timestamp" href="https://www.youtube.com/watch?v=-tW2HyemTGw&amp;t=1069s">L34 17:49</a></h2>
+<p>The source Fe–C demonstration places a small ferrite region next to austenite and follows an interface through diffusion. Its phase-specific compositions, geometry, grids, thermodynamic database, mobility database, and thermal schedule are inputs, not details that can be inferred from the final line plot. Continuation to a longer annealing time retains an evolved spatial state. Restarting with a nominal average composition would instead pose a different problem.</p>
+<p>Selected source screenshots establish an initially homogeneous Fe–0.15 mass% C composition, an isothermal condition of 1050 K, and a BCC ferrite seed with displayed width 0.001 micrometers, or one nanometer. The seed uses ten linear-grid points in the displayed setup. An equilibrium calculation supplies an approximately 0.01 mass% carbon content for BCC at those conditions; this is a phase-specific input, distinct from the specimen's overall 0.15 mass%. The plotted carbon-profile distance axis spans zero to 2000 micrometers and the displayed output times include zero, <span class="math">\(10^{-4}\)</span> hours, and 300 hours. These are observed demonstration settings, not parameters of the synthetic solution in Figure 15.1.</p>
+<p>A finite ferrite seed makes an initially absent region numerically available. It does not calculate ferrite nucleation, interface creation energy, or a nucleation delay. Similarly, local equilibrium at the moving boundary is a modeling choice. A finite interface mobility would relate chemical driving force to interface velocity and permit departure from the equilibrium boundary compositions. The reduced solution above holds those compositions fixed and cannot quantify that departure.</p>
+<p>The source carburization example introduces another description: a local region can contain a matrix and carbides, with phase fractions changing across depth. A homogenized transport calculation assigns an effective response to that mixture. It is distinct from explicitly tracking every carbide interface. Effective-property bounds constrain possible responses under stated geometrical and constitutive assumptions; selecting an upper bound is a topology-sensitive modeling choice, not a measured diffusivity of every mixture.</p>
+<p>The inspected multiphase setup uses a planar austenite region of width 0.003 m, or 3 mm, with 100 geometrically spaced points and a displayed spacing ratio of 1.02. Its selected phases are FCC_A1, M3C2, and M7C3. The source phase-fraction plot places the M3C2 region nearer the carbon-rich surface and M7C3 farther into the material. These labels are read from the screen; the calculation is not evidence that any unmodeled carbide must be absent in every real Ni–Cr–C alloy. The displayed homogenization choice is the general upper Hashin–Shtrikman bound. Selecting that option embodies an effective-medium assumption whose suitability must be checked against actual morphology.</p>
+<p>An imposed carbon activity is also distinct from an imposed carbon concentration. Activity is defined through <span class="math">\(\mu_C=\mu_C^0+RT\ln a_C\)</span>. At fixed activity, the surface concentration follows from the selected thermodynamic phase state and can change when that state changes. The reference, such as graphite, is part of the boundary definition. A zero chromium flux boundary states a transport constraint on chromium; it is not a statement that chromium concentration is uniform throughout the evolving specimen.</p>
+<p>The <a href="https://thermocalc.com/support/getting-started-guides/diffusion-module-dictra-guide/">owning DICTRA guide</a> supports the need for thermodynamic and mobility databases, regions, profiles, meshes, boundary conditions, and thermal history. Its inspected setup sections support the workflow, not an independent validation of source demonstration numbers. The source screenshots separately verify the settings stated here, including a graphite carbon reference; viewing those selected frames does not establish that a local calculation with matching inputs was executed. Full database versions, complete initial profiles, and solver history would still be needed for exact reproduction.</p>
+<p>The associated tutorial distinguishes data capture, assessment, optimization, storage, and validation; counts six binary subsystems for four components; and notes the need for metastable elemental end-member functions. Magnetic ordering can contribute a thermodynamic transition even when a conventional structural diagram suppresses its line. Diffusion calculations always require spatial initial composition information, even if the interface asks for profiles rather than one bulk-composition box. These distinctions prevent interface conventions from becoming mistaken physical claims.</p>
+</section>
+
+<section id="exercises"><h2>15.5 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Recover the interface condition</h3><p>Derive (15.1) from the general jump balance and explain its sign for an advancing solute-rich product.</p><details><summary>Worked solution</summary><p>Use <span class="math">\(v(c_R-c_L)=J_R-J_L\)</span> with parent values on the right. The parent flux is zero, <span class="math">\(c_R=c_0\)</span>, and the product limit is <span class="math">\(c_L=c_i\)</span>. Thus <span class="math">\(v(c_0-c_i)=-J_L\)</span>, or <span class="math">\(q_cv=J_L\)</span>. With decreasing concentration toward the front, <span class="math">\(c_x&lt;0\)</span> and <span class="math">\(J_L=-Dc_x&gt;0\)</span>, giving positive growth speed because <span class="math">\(q_c&gt;0\)</span>. Using an unsigned concentration jump would obscure this directional check.</p></details></div>
+<div class="exercise"><h3>2. Derive and test the quasisteady law</h3><p>Integrate the quasisteady growth equation with a finite seed. What dimensionless ratio supports the approximation?</p><details><summary>Worked solution</summary><p>The linear concentration profile gives <span class="math">\(ds/dt=D\beta/s\)</span>. Multiplying by twice s gives <span class="math">\(d(s^2)/dt=2D\beta\)</span>; integration gives <span class="math">\(s^2=s_0^2+2D\beta t\)</span>. Diffusion across the layer takes approximately <span class="math">\(s^2/D\)</span>, while appreciable interface motion takes <span class="math">\(s^2/(D\beta)\)</span>. Their ratio is beta. Small beta separates those time scales; beta near one warns that the neglected concentration storage can be consequential.</p></details></div>
+<div class="exercise"><h3>3. Obtain the exact root equation</h3><p>Differentiate (15.3) and use the moving-front balance to obtain (15.4).</p><details><summary>Worked solution</summary><p>The derivative of the error function supplies <span class="math">\(e^{-\lambda^2}/\sqrt{\pi Dt}\)</span> at the front. Hence <span class="math">\(J_L=(c_s-c_i)\sqrt D e^{-\lambda^2}/[\sqrt{\pi t}\operatorname{erf}\lambda]\)</span>. The speed from <span class="math">\(s=2\lambda\sqrt{Dt}\)</span> is <span class="math">\(\lambda\sqrt D/\sqrt t\)</span>. Canceling the common factor in <span class="math">\(q_cv=J_L\)</span> yields <span class="math">\(\lambda e^{\lambda^2}\operatorname{erf}\lambda=(c_s-c_i)/(q_c\sqrt\pi)\)</span>. The ratio on the right is beta divided by the square root of pi.</p></details></div>
+<div class="exercise"><h3>4. An exponent does not identify a model</h3><p>Both the exact and quasisteady trajectories are proportional to square root of time. How can an experiment discriminate them?</p><details><summary>Worked solution</summary><p>The growth exponent is the same, so one must compare the prefactor using independently constrained D and concentration ratios, or compare internal concentration profiles. At beta one, the laboratory predicts 39.2162 micrometers exact and 44.7214 micrometers quasisteady at the declared time. Fitting an unconstrained effective D to either thickness can hide the difference. Multiple times do not necessarily break that degeneracy when both retain the same exponent; internal profiles or separate diffusivity evidence add information.</p></details></div>
+<div class="exercise"><h3>5. Activity versus concentration</h3><p>Why can a fixed carbon activity boundary yield a changing surface concentration?</p><details><summary>Worked solution</summary><p>Fixed activity fixes chemical potential relative to a stated reference at the specified temperature. The concentration corresponding to that potential follows from the phase's thermodynamic constitutive function. If temperature, phase fractions, or surface phase identity changes, the concentration at the same activity can change. Imposing a fixed concentration instead constrains another variable and generally gives a different boundary problem. The reference chemical potential and thermal history must therefore accompany an activity boundary.</p></details></div>
+<div class="exercise"><h3>6. Diagnose a saturated interface</h3><p>A closed-system simulation's interface appears to stop. What checks distinguish equilibrium saturation from numerical arrest?</p><details><summary>Worked solution</summary><p>Check total conserved component amounts against the initial inventory, local partition relations and equality of relevant chemical potentials, and final phase fractions against a separately calculated constrained equilibrium. Refine the mesh and time integration and tighten solver tolerances to test numerical sensitivity. Examine remaining gradients and fluxes. A seed reaching the end of a region or a failed nonlinear iteration can also stop apparent motion. A flat trajectory alone is insufficient evidence of equilibrium.</p></details></div>
+</section>
+
+<section id="sources"><h2>15.6 Sources and boundaries</h2><p><a href="https://www.youtube.com/watch?v=-tW2HyemTGw">L34</a> supplies the screenshot-based moving-boundary and carburization examples; <a href="https://www.youtube.com/watch?v=AJRE-lFZpXc">L35</a> supplies the tutorial distinctions. <a href="https://learn.thermocalc.com/courses/dictra/">The owning training curriculum</a> lists moving-boundary Fe–C and carburization modules; only its curriculum, not the complete lessons, was inspected.</p><p>The explicit Stefan derivation assumes a planar fixed-volume geometry, constant product diffusivity, fixed boundary concentrations, no parent flux, and local interfacial partitioning. Finite reservoirs, multidimensional morphology, nucleation, elastic stress, and coupled component transport are outside that model. The next chapter asks what measured depth profiles can identify when sample preparation and instrumental broadening enter the observation.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch15.py"><code>code/ch15.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;One-phase planar Stefan problem; not a DICTRA reproduction.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import brentq
+from scipy.special import erf
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch15&quot;
+BASE = Path(__file__).resolve().parents[1]
+D, time = 1e-14, 1e5
+rows = []
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+times = np.linspace(0, 4e5, 401)
+for beta in [0.1, 1.0]:
+    lam = brentq(
+        lambda v: v * np.exp(v * v) * erf(v) - beta / np.sqrt(np.pi), 1e-9, 2
+    )
+    exact = 2 * lam * np.sqrt(D * time)
+    approximate = np.sqrt(2 * D * beta * time)
+    assert (
+        abs(lam * np.exp(lam * lam) * erf(lam) - beta / np.sqrt(np.pi)) &lt; 1e-10
+    )
+    ax[0].plot(
+        times / 1e5,
+        2 * lam * np.sqrt(D * times) * 1e6,
+        label=f&quot;exact, beta={beta:g}&quot;,
+    )
+    ax[0].plot(
+        times / 1e5,
+        np.sqrt(2 * D * beta * times) * 1e6,
+        &quot;--&quot;,
+        label=f&quot;quasi-steady, beta={beta:g}&quot;,
+    )
+    u = np.linspace(0, 1, 201)
+    profile = 1 - erf(lam * u) / erf(lam)
+    ax[1].plot(u, profile, label=f&quot;beta={beta:g}&quot;)
+    rows.append(
+        {
+            &quot;beta&quot;: beta,
+            &quot;lambda&quot;: float(lam),
+            &quot;exact_position_m&quot;: float(exact),
+            &quot;quasi_steady_position_m&quot;: float(approximate),
+            &quot;quasi_steady_relative_error&quot;: float(approximate / exact - 1),
+        }
+    )
+ax[0].set(xlabel=&quot;Time / 100000 s&quot;, ylabel=&quot;Interface position (micrometers)&quot;)
+ax[1].set(
+    xlabel=&quot;Position / current layer thickness&quot;,
+    ylabel=&quot;(c - c_interface) / (c_surface - c_interface)&quot;,
+)
+for panel in ax:
+    panel.legend(fontsize=8)
+fig.tight_layout()
+fig.savefig(BASE / &quot;assets/figures/ch15-stefan.svg&quot;, metadata={&quot;Date&quot;: None})
+out = {
+    &quot;synthetic&quot;: True,
+    &quot;D_m2_s&quot;: D,
+    &quot;time_s&quot;: time,
+    &quot;cases&quot;: rows,
+    &quot;four_component_binary_count&quot;: 6,
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch15-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;D_m2_s&quot;: 1e-14,
+  &quot;time_s&quot;: 100000.0,
+  &quot;cases&quot;: [
+    {
+      &quot;beta&quot;: 0.1,
+      &quot;lambda&quot;: 0.22001627274293725,
+      &quot;exact_position_m&quot;: 1.3915050883370073e-05,
+      &quot;quasi_steady_position_m&quot;: 1.4142135623730951e-05,
+      &quot;quasi_steady_relative_error&quot;: 0.016319361119424114
+    },
+    {
+      &quot;beta&quot;: 1.0,
+      &quot;lambda&quot;: 0.6200626333135955,
+      &quot;exact_position_m&quot;: 3.921620426465521e-05,
+      &quot;quasi_steady_position_m&quot;: 4.4721359549995795e-05,
+      &quot;quasi_steady_relative_error&quot;: 0.1403796055372517
+    }
+  ],
+  &quot;four_component_binary_count&quot;: 6
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-14.html">← Previous</a><a href="chapter-16.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

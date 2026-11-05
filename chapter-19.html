@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Mössbauer and neutron scattering probes — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a aria-current=page href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Mössbauer and neutron scattering probes</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#mossbauer">19.1 Recoil-free resonance preserves momentum conservation L41 00:21</a></li><li><a href="#self-correlation">19.2 Motion enters through a self-correlation function L41 09:35</a></li><li><a href="#neutrons">19.3 Neutrons supply both momentum and energy transfer L41 21:04</a></li><li><a href="#jump-model">19.4 Derive jump-sensitive widths and the low-q limit L41 30:18</a></li><li><a href="#resolution">19.5 Fit the spectrum convolved with the measured resolution</a></li><li><a href="#exercises">19.6 Exercises with complete solutions</a></li><li><a href="#sources">19.7 Sources and boundaries</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A broadened nuclear resonance can report motion, but its width also contains the finite lifetime of the nuclear state and the instrument response. Neutron scattering adds wavevector dependence, which can distinguish a continuum displacement model from discrete jumps. Both methods require a consistent dictionary between lifetime, angular frequency, energy, and full or half width.</p>
+<p class="source-note">Lecture 41 supplies Mössbauer and quasielastic neutron methods. The evaluated Fe57 half-life was checked in the BIPM DDEP Co57 report, PDF p. 11, Tables 2–3. The jump-model formulas below are derived locally; the original Chudley–Elliott paper was available only at publisher-abstract level.</p>
+
+<section id="mossbauer"><h2>19.1 Recoil-free resonance preserves momentum conservation <a class="timestamp" href="https://www.youtube.com/watch?v=DNWW6Uvasqc&amp;t=21s">L41 00:21</a></h2>
+<p>Emission or absorption of a gamma photon transfers momentum. For an isolated nucleus the associated recoil energy can move emission and absorption out of resonance. In a crystal, a fraction of events can occur without creating or destroying a lattice phonon. Momentum is then accepted by the crystal as a whole with negligible recoil energy on the nuclear-line scale. This <dfn>recoil-free</dfn> fraction enables the Mössbauer effect. It does not mean that photon momentum disappears.</p>
+<p>A source and absorber can be brought through resonance by moving one relative to the other. At speeds small compared with the speed of light <span class="math">\(c_{\rm light}\)</span>, a source velocity component v along the photon path shifts energy by <span class="math">\(\Delta E\simeq E_\gamma v/c_{\rm light}\)</span>. A measured transmission versus velocity spectrum is therefore an energy spectrum expressed through the Doppler conversion. Hyperfine magnetic and electric interactions, chemical environment, thickness, source structure, and motion can all change its shape.</p>
+<p>For the Fe57 resonance used with a Co57 source, the inspected <a href="https://www.bipm.org/documents/d/guest/co-57_report">BIPM DDEP report, p. 11, Table 2</a> lists the 14.41295 keV level and half-life <span class="math">\(t_{1/2}=98.0(4)\)</span> ns. An exponential population <span class="math">\(P(t)=e^{-t/\tau_n}\)</span> reaches one half at <span class="math">\(t_{1/2}=\tau_n\ln2\)</span>. Its mean lifetime is consequently 141.384 ns using the central value, rather than 98 ns. The reported precision of the evaluated input should not be inferred from the extra digits of that arithmetic conversion.</p>
+<p>A decaying transition amplitude has factor <span class="math">\(e^{-t/(2\tau_n)}\)</span>. Its frequency response has a Lorentzian intensity profile with angular-frequency half width at half maximum <span class="math">\(1/(2\tau_n)\)</span>. Multiplying by reduced Planck constant <span class="math">\(\hbar\)</span> converts angular frequency to energy. Thus the natural single-transition energy full width is</p>
+\[
+\Gamma_{E,\rm natural}^{\rm FWHM}=\frac{\hbar}{\tau_n}. \tag{19.1}
+\]
+<p>The laboratory computes 4.6555 neV for the central half-life input, corresponding to a single-line Doppler full width about 0.09683 mm/s at the stated resonance energy. Identical Lorentzian source and absorber lines would contribute additive widths in a transmission convolution, before other broadening mechanisms. One should not substitute the half-life into (19.1) or confuse the width of one transition with a complete measured source–absorber spectrum.</p>
+</section>
+
+<section id="self-correlation"><h2>19.2 Motion enters through a self-correlation function <a class="timestamp" href="https://www.youtube.com/watch?v=DNWW6Uvasqc&amp;t=575s">L41 09:35</a></h2>
+<p>Let <span class="math">\(\boldsymbol r(t)\)</span> be the position of a tagged resonant atom. At wavevector <span class="math">\(\boldsymbol q\)</span>, in m⁻¹, define its intermediate self-scattering function <span class="math">\(I_s(\boldsymbol q,t)=\langle e^{i\boldsymbol q\cdot[\boldsymbol r(t)-\boldsymbol r(0)]}\rangle\)</span>. It is the characteristic function of the displacement distribution. The average includes an equilibrium ensemble or a justified stationary time average. This object connects nuclear resonance motion broadening and incoherent neutron scattering without equating their experimental resolutions.</p>
+<p>For unrestricted isotropic Gaussian diffusion with coefficient D, each Cartesian displacement has variance <span class="math">\(2D|t|\)</span>. The Gaussian characteristic function gives <span class="math">\(I_s=e^{-Dq^2|t|}\)</span>, where <span class="math">\(q=|\boldsymbol q|\)</span>. More generally, suppose the relevant correlation has a single exponential rate <span class="math">\(r(q)&gt;0\)</span>, in s⁻¹. Define the angular-frequency spectrum with the explicit convention</p>
+\[
+S_s(q,\omega)=\frac1{2\pi}\int_{-\infty}^{\infty}
+I_s(q,t)e^{-i\omega t}dt
+=\frac{r(q)}{\pi[\omega^2+r(q)^2]}. \tag{19.2}
+\]
+<p>The last equality follows by the exponential cosine transform. The spectrum integrates to one over angular frequency and has angular-frequency HWHM r. Since <span class="math">\(E=\hbar\omega\)</span>, energy HWHM is <span class="math">\(\hbar r\)</span> and energy FWHM is <span class="math">\(2\hbar r\)</span>. A width in hertz instead uses <span class="math">\(\omega=2\pi\nu\)</span>. These distinctions account for common factors of two and two-pi; none is a physical discrepancy once the conventions are aligned.</p>
+<p>In a simple recoil-free resonance model, multiplying the natural time correlation by a motion correlation that decays as <span class="math">\(e^{-r|t|}\)</span> adds r to its angular HWHM. The additional energy FWHM is then <span class="math">\(2\hbar r\)</span>. This statement assumes independent exponential broadening and a compatible line model. Hyperfine multiplets, distributions of environments, and nonexponential motion require more than one Lorentzian width.</p>
+<p>If high-wavevector decorrelation corresponds to independent jumps with total rate <span class="math">\(\Gamma\)</span> and length ell, one obtains <span class="math">\(r\simeq\Gamma\)</span> and <span class="math">\(D=\ell^2\Gamma/6\)</span>. Only then does an additional energy FWHM <span class="math">\(\Delta\Gamma_E\)</span> imply <span class="math">\(D=\ell^2\Delta\Gamma_E/(12\hbar)\)</span>. A local reorientation or correlated vacancy encounter need not obey that identification. The precise jump derivation below establishes when it is justified.</p>
+</section>
+
+<section id="neutrons"><h2>19.3 Neutrons supply both momentum and energy transfer <a class="timestamp" href="https://www.youtube.com/watch?v=DNWW6Uvasqc&amp;t=1264s">L41 21:04</a></h2>
+<p>A neutron with wavevector <span class="math">\(\boldsymbol k\)</span> has momentum <span class="math">\(\hbar\boldsymbol k\)</span> and nonrelativistic kinetic energy <span class="math">\(\hbar^2k^2/(2m_n)\)</span>, with neutron mass <span class="math">\(m_n\)</span>. Scattering from initial to final states transfers wavevector <span class="math">\(\boldsymbol q=\boldsymbol k_i-\boldsymbol k_f\)</span> and energy <span class="math">\(\hbar\omega=E_i-E_f\)</span> to the specimen. The sign convention should be recorded because instruments may display specimen energy gain or loss differently.</p>
+<p>An elastic component has zero energy transfer within resolution. Inelastic features can reflect phonon excitation and other modes. <dfn>Quasielastic neutron scattering</dfn> (QENS) resolves a narrow distribution near zero transfer associated with relaxational dynamics. For incoherent scattering dominated by single-particle correlations, the self-function in (19.2) is the relevant idealized object. Coherent scattering instead contains correlations between different atoms as well, and can also carry transport information. It is incorrect to claim that only incoherent scattering ever probes diffusion.</p>
+<p>In the continuum free-diffusion limit, the predicted angular HWHM is <span class="math">\(Dq^2\)</span>. Measuring width at several q values tests this dependence and distinguishes it from a q-independent instrumental or local time scale. A linewidth too narrow relative to resolution cannot reliably determine arbitrarily small D; a broad feature can leave the accessible energy window. The method's time and length windows follow from resolution and wavevector coverage, rather than a universal diffusivity interval.</p>
+<p>The synthetic laboratory chooses jump length 0.3 nm and mean waiting time one nanosecond, giving <span class="math">\(D=1.5\times10^{-11}\)</span> m²/s in the independent isotropic model. At <span class="math">\(q=10^9\)</span> m⁻¹, the continuum angular HWHM is <span class="math">\(1.5\times10^7\)</span> s⁻¹ and energy HWHM is 9.87318 neV. The corresponding full widths are twice those values. These are calculated illustration scales, not measured diffusion for a named element.</p>
+</section>
+
+<section id="jump-model"><h2>19.4 Derive jump-sensitive widths and the low-q limit <a class="timestamp" href="https://www.youtube.com/watch?v=DNWW6Uvasqc&amp;t=1818s">L41 30:18</a></h2>
+<p>Suppose jumps occur as a Poisson process of total rate <span class="math">\(\Gamma=1/\tau_j\)</span>, with independent identically distributed jump vectors <span class="math">\(\boldsymbol\ell\)</span>. Let their characteristic function be <span class="math">\(\varphi(\boldsymbol q)=\langle e^{i\boldsymbol q\cdot\boldsymbol\ell}\rangle\)</span>. Conditional on exactly n jumps, the displacement characteristic function is <span class="math">\(\varphi^n\)</span>. Averaging over the Poisson count gives</p>
+\[
+I_s(\boldsymbol q,t)=\sum_{n=0}^{\infty}
+e^{-\Gamma t}\frac{(\Gamma t)^n}{n!}\varphi^n
+=\exp[-\Gamma t(1-\varphi(\boldsymbol q))],\quad t\geq0. \tag{19.3}
+\]
+<p>For a symmetric jump distribution the characteristic function is real. The rate entering (19.2) is <span class="math">\(r=\Gamma(1-\varphi)\)</span>. With fixed length ell and uniformly distributed directions, averaging over polar angle yields <span class="math">\(\varphi=\tfrac12\int_{-1}^1e^{iq\ell u}du=\sin(q\ell)/(q\ell)\)</span>. Therefore</p>
+\[
+r(q)=\frac1{\tau_j}\left[1-\frac{\sin(q\ell)}{q\ell}\right]
+\simeq\frac{\ell^2q^2}{6\tau_j}=Dq^2\quad(q\ell\ll1). \tag{19.4}
+\]
+<p>The low-q limit depends only on the second displacement moment. At larger q, the discrete jump geometry becomes visible; the continuum quadratic law cannot be extrapolated indefinitely. For six equally probable jumps along cubic axes, <span class="math">\(\varphi=[\cos(q_x\ell)+\cos(q_y\ell)+\cos(q_z\ell)]/3\)</span>. Different orientations of a single crystal give different high-q rates even though they share the isotropic quadratic limit. Figure 19.1 compares the [100] and [111] directions with the isotropic-direction model.</p>
+<p><a href="https://doi.org/10.1088/0370-1328/77/2/319">Chudley and Elliott's original jump-diffusion paper</a> is a historical primary reference for this class of interpretation; only its indexed publisher abstract was inspected. Equations (19.3)–(19.4) are therefore supplied as independent derivations under their explicit assumptions, not attributed to an unread page or equation number.</p>
+<p>A vacancy can exchange repeatedly with the same atom, producing a sequence of correlated jumps. The independent-jump Poisson model then fails at the atom-jump level. One possible reduced description treats whole encounters as independent events with their own net-displacement distribution. Its rate and net displacement, rather than the count of every microscopic exchange, control the long-time coefficient. Returning jumps can decorrelate a local signal while contributing little net transport. Detailed finite-q spectra require the actual encounter model, not an arbitrary universal correction factor.</p>
+</section>
+
+<section id="resolution"><h2>19.5 Fit the spectrum convolved with the measured resolution</h2>
+<p>A measured spectrum is an intrinsic scattering model blurred by an instrument response, with backgrounds and sometimes elastic contributions. If <span class="math">\(R(\omega)\)</span> is a normalized resolution function, an idealized observation is <span class="math">\(S_{\rm obs}=R*S_s\)</span>, where the asterisk denotes integration over intermediate frequency. The <a href="https://docs.mantidproject.org/v6.1.0/concepts/ConvFit.html">official Mantid convolution-fitting documentation</a> explicitly models this relation. It supports fitting the convolved physical model rather than pretending a fitted observed width is already an intrinsic one.</p>
+<p>Two normalized Lorentzians with HWHM a and b convolve to another Lorentzian with HWHM <span class="math">\(a+b\)</span>. Their time-domain exponential factors multiply, adding decay rates. Two independent Gaussian widths instead add variances. A Gaussian convolved with a Lorentzian gives a Voigt profile; subtracting measured full widths linearly is not a valid general deconvolution. In the right panel of Figure 19.1, angular frequency is scaled by an arbitrary positive reference rate <span class="math">\(r_{\rm ref}\)</span>. The intrinsic Lorentzian has HWHM <span class="math">\(0.1r_{\rm ref}\)</span>. The Lorentzian resolution has HWHM <span class="math">\(0.2r_{\rm ref}\)</span>, giving combined HWHM <span class="math">\(0.3r_{\rm ref}\)</span>; the alternative Gaussian resolution has standard deviation <span class="math">\(0.2r_{\rm ref}\)</span>, giving the plotted Voigt profile. These are explicitly chosen synthetic kernels, not resolution functions matched to equal full width.</p>
+<figure><img src="assets/figures/ch19-scattering.svg" alt="Left: jump-model angular half widths vary with wavevector and orientation, approaching a common quadratic limit near zero. Right: a sample Lorentzian is broadened differently by Lorentzian and Gaussian resolution functions."><figcaption>Figure 19.1. Original jump and resolution calculations. Finite-q shape contains information beyond a diffusion coefficient, while resolution convolution can obscure that information. The plotted rates and line shapes use declared synthetic parameters.</figcaption></figure>
+<p>A careful analysis calibrates resolution under relevant conditions, distinguishes coherent and incoherent weights for the sample, records energy versus frequency units and half versus full widths, and examines q and temperature dependence. A single broadened line does not uniquely select jump length, waiting time, dimensionality, or vacancy mechanism. Mixtures of localized and translating populations may add an elastic fraction plus several dynamic components, increasing the inverse problem's ambiguity.</p>
+<p>The <a href="code/ch19.py">laboratory</a> computes the lifetime conversion, natural width, Doppler conversion, jump-model small-q limit, and synthetic resolution curves. It checks that the discrete model tends to the expected quadratic coefficient, then saves <a href="code/ch19-output.json">its actual output</a>. It does not fit source nuclear or neutron spectra, infer an empirical jump mechanism, or validate a specific instrument resolution.</p>
+</section>
+
+<section id="exercises"><h2>19.6 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Half-life is not mean lifetime</h3><p>Convert the evaluated 98 ns half-life into the mean lifetime and natural single-transition energy FWHM.</p><details><summary>Worked solution</summary><p>From <span class="math">\(e^{-t_{1/2}/\tau_n}=1/2\)</span>, <span class="math">\(\tau_n=98/\ln2=141.384\)</span> ns using the central input. Then <span class="math">\(\hbar/\tau_n=4.65549\)</span> neV is the natural single-line FWHM. Its HWHM is half that value. Substituting 98 ns directly into the mean-lifetime formula would overestimate the width by <span class="math">\(1/\ln2\)</span>. The arithmetic precision does not reduce the evaluated half-life uncertainty.</p></details></div>
+<div class="exercise"><h3>2. Derive the spectral normalization</h3><p>Show that the exponential self-correlation gives a normalized Lorentzian with angular HWHM r.</p><details><summary>Worked solution</summary><p>Evenness reduces the transform to <span class="math">\(\pi^{-1}\int_0^\infty e^{-rt}\cos\omega t\,dt=r/[\pi(r^2+\omega^2)]\)</span>. Integrating over all omega gives one because the antiderivative is <span class="math">\(\pi^{-1}\arctan(\omega/r)\)</span>. The value at zero is <span class="math">\(1/(\pi r)\)</span>; at absolute omega r the value is half as large. Thus HWHM is r and FWHM is twice r. Energy conversion multiplies either width by hbar.</p></details></div>
+<div class="exercise"><h3>3. Recover the diffusion coefficient from jumps</h3><p>Expand the isotropic fixed-length characteristic function at small q and identify D.</p><details><summary>Worked solution</summary><p>The expansion <span class="math">\(\sin u/u=1-u^2/6+O(u^4)\)</span> with <span class="math">\(u=q\ell\)</span> gives rate <span class="math">\(r=\ell^2q^2/(6\tau_j)+O(q^4)\)</span>. Matching the continuum rate Dq² identifies <span class="math">\(D=\ell^2/(6\tau_j)\)</span>. This also follows from a Poisson mean jump count t/tau and independent mean-square displacement ell² per jump. Correlated or confined jumps can invalidate that identification even while producing measurable local relaxation.</p></details></div>
+<div class="exercise"><h3>4. Why does crystal orientation matter?</h3><p>For six cubic-axis jumps, compare the characteristic functions along [100] and [111], and explain their common low-q limit.</p><details><summary>Worked solution</summary><p>Along [100], <span class="math">\(\varphi=(\cos u+2)/3\)</span>. Along [111], each Cartesian projection is <span class="math">\(u/\sqrt3\)</span>, giving <span class="math">\(\varphi=\cos(u/\sqrt3)\)</span>. Both expand as <span class="math">\(1-u^2/6+O(u^4)\)</span>, so they have the same isotropic quadratic diffusion coefficient. Their higher-order terms differ because finite wavevectors resolve the discrete directional network. Powder averaging can suppress some orientation information and needs its own averaging model.</p></details></div>
+<div class="exercise"><h3>5. When may widths be subtracted?</h3><p>A fitted observed line is broader than the resolution. State two cases with different valid broadening rules.</p><details><summary>Worked solution</summary><p>If both intrinsic and resolution profiles are Lorentzian under the same frequency convention, their HWHM values add and linear subtraction can recover the intrinsic HWHM. If both are independent Gaussians, variances add, so squared standard deviations are subtracted. A Lorentzian–Gaussian convolution is Voigt and generally requires fitting that convolved shape. Using linear full-width subtraction for arbitrary resolution can bias the inferred relaxation rate and therefore D.</p></details></div>
+<div class="exercise"><h3>6. Broadening without a unique mechanism</h3><p>A Mössbauer line broadens with temperature and a QENS width is approximately quadratic at small q. What is established, and what remains unidentified?</p><details><summary>Worked solution</summary><p>With controlled source and resolution, the first observation supports increased dynamics or a changed local spectral environment, but does not by itself isolate translation from other broadening. The second supports a diffusive long-wavelength correlation rate in the measured channel under its scattering model. Jump geometry, individual waiting time, vacancy encounters, and species-specific transport still require finite-q, orientation, isotope, structural, and temperature evidence. A common low-q coefficient does not imply a unique microscopic network.</p></details></div>
+</section>
+
+<section id="sources"><h2>19.7 Sources and boundaries</h2><p><a href="https://www.youtube.com/watch?v=DNWW6Uvasqc">L41</a> supplies both probe families. The BIPM report supports the evaluated level energy and half-life at its inspected tables. The Mantid page supports resolution convolution; the Chudley–Elliott reference is used at abstract-level historical scope, while the Poisson derivation is explicit here.</p><p>The independent-jump model assumes stationary isotropic or specified crystalline jumps and exponential waiting times. Real spectra may contain coherent collective motion, correlated encounters, multiple species, localized fractions, and non-Lorentzian resolution. The following chapters introduce fast microstructural paths, for which a measured displacement distribution can depart strongly from homogeneous bulk diffusion even when each local region obeys a sensible transport law.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch19.py"><code>code/ch19.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Nuclear lifetime and synthetic jump-scattering linewidth checks.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.constants import c, electron_volt, hbar
+from scipy.special import voigt_profile
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch19&quot;
+BASE = Path(__file__).resolve().parents[1]
+half_life = 98e-9
+mean_life = half_life / np.log(2)
+natural_fwhm_ev = hbar / mean_life / electron_volt
+resonance_ev = 14412.95
+doppler_fwhm = c * natural_fwhm_ev / resonance_ev
+ell, residence = 0.3e-9, 1e-9
+diffusion = ell**2 / (6 * residence)
+u = np.linspace(0, 12, 601)
+rate_iso = 1 - np.sinc(u / np.pi)
+rate_100 = (1 - np.cos(u)) / 3
+rate_111 = 1 - np.cos(u / np.sqrt(3))
+small = 0.01
+small_ratio = (1 - np.sinc(small / np.pi)) / (small**2 / 6)
+assert abs(small_ratio - 1) &lt; 1e-5
+q = 1e9
+angular_hwhm = diffusion * q * q
+energy_hwhm_ev = hbar * angular_hwhm / electron_volt
+freq = np.linspace(-2, 2, 1001)
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+ax[0].plot(u, rate_iso, label=&quot;isotropic fixed length&quot;)
+ax[0].plot(u, rate_100, label=&quot;cubic, q along [100]&quot;)
+ax[0].plot(u, rate_111, label=&quot;cubic, q along [111]&quot;)
+ax[0].plot(u, u * u / 6, &quot;--&quot;, label=&quot;continuum low-q limit&quot;)
+ax[0].set(
+    xlabel=&quot;Wavevector magnitude × jump length&quot;,
+    ylabel=&quot;Angular HWHM × residence time&quot;,
+    ylim=(0, 2.2),
+)
+ax[0].legend(fontsize=7)
+ax[1].plot(
+    freq, 0.1 / (np.pi * (freq * freq + 0.1**2)), label=&quot;sample Lorentzian&quot;
+)
+ax[1].plot(
+    freq,
+    0.3 / (np.pi * (freq * freq + 0.3**2)),
+    label=&quot;convolved with Lorentzian resolution&quot;,
+)
+ax[1].plot(
+    freq,
+    voigt_profile(freq, 0.2, 0.1),
+    label=&quot;convolved with Gaussian resolution&quot;,
+)
+ax[1].set(
+    xlabel=&quot;Angular frequency / reference rate&quot;,
+    ylabel=&quot;Normalized spectral density&quot;,
+)
+ax[1].legend(fontsize=7, loc=&quot;upper center&quot;, bbox_to_anchor=(0.5, 1.25))
+fig.tight_layout()
+fig.savefig(
+    BASE / &quot;assets/figures/ch19-scattering.svg&quot;, metadata={&quot;Date&quot;: None}
+)
+out = {
+    &quot;Fe57_evaluated_half_life_s&quot;: half_life,
+    &quot;Fe57_mean_life_s&quot;: float(mean_life),
+    &quot;natural_single_line_FWHM_eV&quot;: float(natural_fwhm_ev),
+    &quot;natural_single_line_Doppler_FWHM_m_s&quot;: float(doppler_fwhm),
+    &quot;synthetic_jump_length_m&quot;: ell,
+    &quot;synthetic_residence_time_s&quot;: residence,
+    &quot;synthetic_D_m2_s&quot;: diffusion,
+    &quot;test_q_per_m&quot;: q,
+    &quot;continuum_angular_HWHM_per_s&quot;: angular_hwhm,
+    &quot;continuum_energy_HWHM_eV&quot;: float(energy_hwhm_ev),
+    &quot;small_q_jump_to_continuum_ratio&quot;: float(small_ratio),
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch19-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;Fe57_evaluated_half_life_s&quot;: 9.8e-08,
+  &quot;Fe57_mean_life_s&quot;: 1.4138411400711842e-07,
+  &quot;natural_single_line_FWHM_eV&quot;: 4.655487369095562e-09,
+  &quot;natural_single_line_Doppler_FWHM_m_s&quot;: 9.68351379536536e-05,
+  &quot;synthetic_jump_length_m&quot;: 3e-10,
+  &quot;synthetic_residence_time_s&quot;: 1e-09,
+  &quot;synthetic_D_m2_s&quot;: 1.5e-11,
+  &quot;test_q_per_m&quot;: 1000000000.0,
+  &quot;continuum_angular_HWHM_per_s&quot;: 15000000.0,
+  &quot;continuum_energy_HWHM_eV&quot;: 9.8731793542636e-09,
+  &quot;small_q_jump_to_continuum_ratio&quot;: 0.9999950000127988
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-18.html">← Previous</a><a href="chapter-20.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 26,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "75438c39e958ee19f278299234009657d02b384d8ead2edf1739329f9dd1b7f1",
+      "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+      "assets": {
+        "assets/ch26-histories.svg": "99a61cb850e0ccc2ecedd8c0a8bee6ccdab1c437979fa8489e8a4950a5eda060"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Nature direct page redirected to authentication; Liu check is publisher-indexed content, not full downloaded article",
+        "No Vitreloy4 empirical table/kink-temperature reconstruction",
+        "Whole reader/browser/print acceptance remains separate"
+      ],
+      "private_review_record_sha256": "117978e915bfc6d646168e4264c1e009c5ce48607958c4ad51eb19110a49d8d6"
+    },
+    {
+      "chapter": 26,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "75438c39e958ee19f278299234009657d02b384d8ead2edf1739329f9dd1b7f1",
+      "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+      "assets": {
+        "assets/ch26-histories.svg": "99a61cb850e0ccc2ecedd8c0a8bee6ccdab1c437979fa8489e8a4950a5eda060"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No browser layout or interactive acceptance is granted. No local atomistic-glass simulation or unprovided Vitreloy4 dataset was used.",
+        "The manuscript Gaussian density needs only the local domain repair above; numerical examples use positive accumulated time and are unchanged."
+      ],
+      "private_review_record_sha256": "c1a88b435e7496648842041633efb8fe9fb43eb6f57cc21796dc4e6ea07d37ea"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows",
+  "machine": "AMD64",
+  "dependencies": {
+    "numpy": "2.2.6",
+    "scipy": "1.16.0",
+    "matplotlib": "3.9.3",
+    "sympy": "1.14.0",
+    "beautifulsoup4": "4.14.3",
+    "playwright": "1.57.0",
+    "pycodestyle": "2.14.0"
+  }
+}

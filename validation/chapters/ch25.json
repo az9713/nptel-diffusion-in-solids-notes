@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 25,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "44f61e29b59529dfe420086995dad4694e29339eedc793270728fe6f98cb0878",
+      "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+      "assets": {
+        "assets/ch25-defects.svg": "1ac258359252de34d40879af1eb3e24ef01d285c9db0cfe14045fd529259f600"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Primary full article not accessed; no numerical barrier attributed to it",
+        "Source solubility values not accepted as physical number densities",
+        "No complete reader/browser/print acceptance"
+      ],
+      "private_review_record_sha256": "714588ba3bd8680d0d5bfba07013bb7a610902f54a1bf3b251bb6c9c06848742"
+    },
+    {
+      "chapter": 25,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "44f61e29b59529dfe420086995dad4694e29339eedc793270728fe6f98cb0878",
+      "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+      "assets": {
+        "assets/ch25-defects.svg": "1ac258359252de34d40879af1eb3e24ef01d285c9db0cfe14045fd529259f600"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The semiconductor source data provide an exercise extrapolation, not empirical validation at1000C or a calibrated wafer process.",
+        "The Nichols article is checked at abstract scope only. Scientific acceptance does not include fabrication advice, complete audiovisual audit, browser/print/accessibility or device validation."
+      ],
+      "private_review_record_sha256": "4292f923de0aa9ea8d0621eed35b51e8f5df5362fb92d6c781d59e22d0737e3d"
+    }
+  ]
+}

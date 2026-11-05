@@ -1,0 +1,44 @@
+{
+  "synthetic": true,
+  "k_B_eV_per_K": 8.617333262145179e-05,
+  "temperatures_K": [
+    300.0,
+    1200.0
+  ],
+  "vacancy_fractions_1_2eV": [
+    6.932458184442733e-21,
+    9.124684391962118e-06
+  ],
+  "copper_exercise": {
+    "temperature_K": 1273.15,
+    "atomic_density_per_m3": 7.966296438425196e+28,
+    "vacancy_fraction": 0.00027366628621823075,
+    "vacancy_number_per_m3": 2.1807035462581894e+25
+  },
+  "pair_temperatures_K": [
+    800.0,
+    1200.0,
+    1600.0
+  ],
+  "monovacancy_fractions": [
+    2.139190895273758e-06,
+    0.000166022275116285,
+    0.0014625973113860692
+  ],
+  "divacancy_pair_fractions": [
+    2.418848918437804e-10,
+    7.054337691817889e-07,
+    3.809605427157362e-05
+  ],
+  "pair_to_mono_ratio": [
+    0.00011307307467425703,
+    0.004249030852562949,
+    0.02604685101975942
+  ],
+  "unpaired_linear": 0.94,
+  "independent_no_neighbor": 0.9416228069143757,
+  "exact_strain_vacancy_fraction": 0.0002970002950595241,
+  "linear_strain_estimate": 0.0002999999999999982,
+  "mean_positron_lifetime_ps": 150.0,
+  "recovered_capture_rate_per_s": 9999999999.999998
+}

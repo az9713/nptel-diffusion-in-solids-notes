@@ -1,0 +1,17 @@
+{
+  "status": "synthetic; lecture tutorial inputs recomputed separately",
+  "pipe_fraction": 7.853981633974484e-05,
+  "spacing_m": 1e-07,
+  "parallel_m2_s": 7.854981555434667e-17,
+  "series_m2_s": 1.0000785459845414e-20,
+  "pipe_to_lattice_contribution": 7854.598532700665,
+  "density_diameter_multiplier": 200.0,
+  "tutorial": {
+    "D_673K_m2_s": 3.65098649033168e-28,
+    "sqrt_Dt_m": 2.1014835851619686e-11,
+    "alpha_delta_half_nm": 11.896357495494387,
+    "q_ratio": 0.6763267578712442,
+    "exp_minus_41_m3_s": 1.5628821893349888e-18
+  },
+  "exchange_mass_max_error": 1.1102230246251565e-16
+}

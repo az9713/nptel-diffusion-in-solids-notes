@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Mechanical relaxation and electrical diffusion probes — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a aria-current=page href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Mechanical relaxation and electrical diffusion probes</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#anelasticity">17.1 Delayed reversible strain produces a frequency-dependent loss L38 00:22</a></li><li><a href="#snoek">17.2 Snoek relaxation measures local orientation changes L38 11:40</a></li><li><a href="#gorsky">17.3 Gorsky relaxation requires transport across a specimen L38 18:52</a></li><li><a href="#electrical">17.4 Electrical measurements see charge transport and active carriers L38 22:59</a></li><li><a href="#exercises">17.5 Exercises with complete solutions</a></li><li><a href="#sources">17.6 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A bent strip relaxes after its load changes. That response can arise from local interstitial reorientation, from solute moving across the whole thickness, or from mechanisms unrelated to diffusion. A relaxation time becomes a diffusion coefficient only after geometry, coupling, and the measured loss convention have been specified.</p>
+<p class="source-note">Lecture 38 supplies mechanical and electrical methods; Lecture 40 supplies relaxation, Haven-ratio, carrier-profile, Snoek, and Gorsky problems. The Snoek and Gorsky numerical inputs were visually checked at 16:47–19:49. The standard-linear-solid and RC plots use separately declared synthetic parameters.</p>
+
+<section id="anelasticity"><h2>17.1 Delayed reversible strain produces a frequency-dependent loss <a class="timestamp" href="https://www.youtube.com/watch?v=7EUhh_fEUy8&amp;t=22s">L38 00:22</a></h2>
+<p><dfn>Elastic</dfn> strain responds reversibly and effectively instantaneously on the observation time scale. <dfn>Anelastic</dfn> strain is reversible but delayed: an internal population or configuration approaches the state favored by applied stress. Plastic deformation instead leaves a permanent strain in the elementary distinction used here. Real specimens can combine these responses, so a measured phase lag need not have a single microscopic origin.</p>
+<p>Let stress <span class="math">\(\sigma\)</span> and strain <span class="math">\(\varepsilon\)</span> vary sinusoidally at angular frequency <span class="math">\(\omega\)</span>, in rad/s. Represent the linear response with complex Young's modulus <span class="math">\(E^*=E'+iE''\)</span> under an <span class="math">\(e^{i\omega t}\)</span> convention. The storage modulus <span class="math">\(E'\)</span> and positive loss modulus <span class="math">\(E''\)</span> are in pascals. For imposed strain amplitude <span class="math">\(\varepsilon_0\)</span>, the dissipated energy per volume in one cycle is <span class="math">\(\Delta W=\pi E''\varepsilon_0^2\)</span>; the storage-energy scale is <span class="math">\(W=E'\varepsilon_0^2/2\)</span>. The conventional inverse quality factor is consequently <span class="math">\(Q^{-1}=\Delta W/(2\pi W)=E''/E'=\tan\delta\)</span>, with loss angle delta. Different energy normalizations must be identified rather than hidden in a factor of pi.</p>
+<p>For the real imposed strain \(\varepsilon(t)=\varepsilon_0\cos\omega t\), the stress is \(\sigma(t)=\varepsilon_0(E'\cos\omega t-E''\sin\omega t)\). Therefore the work per cycle is \(\Delta W=\int_0^{2\pi/\omega}\sigma\dot\varepsilon\,dt=\pi E''\varepsilon_0^2\): the mixed sine–cosine term integrates to zero and the squared-sine term supplies the positive dissipation.</p>
+<p>To construct a single-time constitutive model, introduce a dimensionless internal strain coordinate \(h(t)\) that approaches the imposed strain according to \(\tau_\sigma\dot h+h=\varepsilon\), where \(\tau_\sigma\gt0\) is in seconds. Let \(\sigma=E_\infty\varepsilon-(E_\infty-E_0)h\), with relaxed modulus \(E_0\gt0\) and unrelaxed modulus \(E_\infty\gt E_0\), both in pascals. Immediately after a strain step from equilibrium, h has not changed and the modulus is \(E_\infty\); after h reaches the imposed strain, the modulus is \(E_0\).</p>
+<p>For harmonic amplitudes, the internal equation becomes \((1+i\omega\tau_\sigma)\hat h=\hat\varepsilon\). Substituting into the stress equation gives the standard-linear-solid response \(E^*=\hat\sigma/\hat\varepsilon=E_\infty-(E_\infty-E_0)/(1+i\omega\tau_\sigma)\). Eliminating h also gives \(\sigma+\tau_\sigma\dot\sigma=E_0\varepsilon+E_\infty\tau_\sigma\dot\varepsilon\). At fixed strain the stress relaxes with time \(\tau_\sigma\); at fixed stress the strain relaxes with creep time \(\tau_\varepsilon=\tau_\sigma E_\infty/E_0\). Rationalizing the complex modulus gives</p>
+\[
+E'=E_\infty-\frac{E_\infty-E_0}{1+y^2},\qquad
+E''=\frac{(E_\infty-E_0)y}{1+y^2},\quad y=\omega\tau_\sigma. \tag{17.1}
+\]
+<p>The normalized Debye modulus loss peaks at <span class="math">\(y=1\)</span>, since differentiating <span class="math">\(y/(1+y^2)\)</span> gives <span class="math">\((1-y^2)/(1+y^2)^2\)</span>. But the loss tangent is <span class="math">\((E_\infty-E_0)y/(E_0+E_\infty y^2)\)</span>, whose peak is at <span class="math">\(y=\sqrt{E_0/E_\infty}\)</span>. Defining <span class="math">\(\tau_R=\tau_\sigma\sqrt{E_\infty/E_0}=\sqrt{\tau_\sigma\tau_\varepsilon}\)</span>, with creep time <span class="math">\(\tau_\varepsilon=\tau_\sigma E_\infty/E_0\)</span>, places that peak at <span class="math">\(\omega\tau_R=1\)</span>. The geometric mean is not an arithmetic mean.</p>
+<p>The distinction matters in a temperature sweep. If the relevant relaxation time obeys <span class="math">\(\tau=\tau_0\exp[H/(RT)]\)</span>, with activation enthalpy <span class="math">\(H&gt;0\)</span> in J/mol, a fixed-convention peak gives <span class="math">\(\ln\omega=-\ln\tau_0-H/(RT_p)\)</span>. The slope against inverse peak temperature is <span class="math">\(-H/R\)</span>. Relaxation time decreases as temperature increases; the positive sign in its Arrhenius exponent is consistent with the inverse rate. Temperature-dependent strengths or broad distributions can shift and broaden the peak beyond this single-time model.</p>
+</section>
+
+<section id="snoek"><h2>17.2 Snoek relaxation measures local orientation changes <a class="timestamp" href="https://www.youtube.com/watch?v=7EUhh_fEUy8&amp;t=700s">L38 11:40</a></h2>
+<p>An interstitial atom can distort its local lattice anisotropically. A stress then favors some orientations of that distortion over others. Redistribution among equivalent orientations produces delayed strain even if an atom moves only over a few site spacings. The <dfn>Snoek effect</dfn> in a dilute BCC interstitial model arises from this stress-driven reorientation among octahedral-site classes. A relaxation peak reports an orientation-population time; connecting it to diffusion requires the jump geometry and rate convention.</p>
+<p>For the simplest ideal BCC octahedral network, each site has four nearest allowed neighbors at distance <span class="math">\(a/2\)</span>, where <span class="math">\(a\)</span> is the cubic lattice parameter. Let <span class="math">\(w\)</span>, in s⁻¹, be the rate to each individual neighbor. The total jump rate is <span class="math">\(\Gamma=4w\)</span>. With unbiased uncorrelated jump vectors, the three-dimensional random-walk relation gives <span class="math">\(D=\Gamma(a/2)^2/6=wa^2/6\)</span>.</p>
+<p>The three orientation classes each connect to two neighbors in either other class. If <span class="math">\(p_x,p_y,p_z\)</span> are their probabilities, the unforced rate equation is <span class="math">\(\dot p_x=2w(p_y+p_z-2p_x)\)</span>, and similarly for the others; their sum remains one. Write <span class="math">\(p_\alpha=1/3+\delta p_\alpha\)</span>, where <span class="math">\(\alpha=x,y,z\)</span> and <span class="math">\(\delta p_x+\delta p_y+\delta p_z=0\)</span>. The anisotropic deviations then obey <span class="math">\(\dot{\delta p}_x=2w(\delta p_y+\delta p_z-2\delta p_x)=-6w\delta p_x\)</span>, with the same rate for the other components. Their population relaxation time is <span class="math">\(\tau_S=1/(6w)\)</span>. Combining this with the jump diffusivity gives</p>
+\[
+D=\frac{a^2}{36\tau_S}. \tag{17.2}
+\]
+<p>This factor 36 encodes the specific octahedral geometry and rate definitions. Interactions, trapping, blocked sites, or another jump network can change it. Strong coupling between stress and strain can also distinguish an inferred mechanical loss time from the bare orientation-population time; the dilute weak-relaxation approximation must be stated when equating them.</p>
+<p>The visually checked tutorial gives <span class="math">\(a=0.287\)</span> nm and relaxation time one microsecond. In the model above, conversion to meters and seconds gives <span class="math">\(D=2.28803\times10^{-15}\)</span> m²/s, consistent with the displayed rounded answer <span class="math">\(2.3\times10^{-15}\)</span> m²/s. The original statement says only a cubic metal, but the supplied Snoek relation presumes this BCC interstitial model. Cubic symmetry by itself does not specify the jump network.</p>
+</section>
+
+<section id="gorsky"><h2>17.3 Gorsky relaxation requires transport across a specimen <a class="timestamp" href="https://www.youtube.com/watch?v=7EUhh_fEUy8&amp;t=1132s">L38 18:52</a></h2>
+<p>Bending a strip produces a stress gradient across its thickness. If a solute changes the local strain energy, the gradient can drive it toward the more favorable side. This <dfn>Gorsky effect</dfn> involves long-range redistribution and therefore depends on specimen dimensions, unlike a purely local orientation process. A time scale that changes with thickness is a useful discriminator, provided geometry and boundary conditions are controlled.</p>
+<p>After subtracting the stress-biased equilibrium profile, let a small concentration perturbation <span class="math">\(u(x,t)\)</span> satisfy <span class="math">\(u_t=D_{\rm chem}u_{xx}\)</span> on a strip of thickness <span class="math">\(d\)</span>, with zero normal flux at both faces. The slowest nonconstant mode is <span class="math">\(u\propto\cos(\pi x/d)e^{-\pi^2D_{\rm chem}t/d^2}\)</span>. Hence</p>
+\[
+\tau_G=\frac{d^2}{\pi^2D_{\rm chem}},\qquad
+D_{\rm chem}\simeq\Phi D^* \tag{17.3}
+\]
+<p>The second relation is an additional dilute diagonal-mobility approximation with thermodynamic factor Phi. The mode derivation supplies the thickness-squared dependence; it does not supply the tracer coefficient or Phi from the relaxation data separately.</p>
+<p>The source tutorial compares a 0.5 mm strip at 300 °C with a 1 mm strip at 400 °C, supplies Arrhenius constants <span class="math">\(D_0=2.3\times10^{-4}\)</span> m²/s and <span class="math">\(Q=280\)</span> kJ/mol, and asks to neglect thermodynamic-factor variation. Its wording calls those constants host-metal self-diffusion data even though the response concerns solute B. A quantitative B relaxation prediction needs the B mobility; the calculation below is conditional on using the supplied constants as its proxy. Host self diffusion does not establish that proxy physically.</p>
+<p>Using absolute temperatures 573.15 and 673.15 K gives proxy coefficients <span class="math">\(6.98435\times10^{-30}\)</span> and <span class="math">\(4.31421\times10^{-26}\)</span> m²/s. With common Phi, <span class="math">\(\tau_1/\tau_2=(d_1/d_2)^2D_2/D_1=1544.24\)</span>. The thinner but colder specimen relaxes much more slowly in this model. Setting Phi to one gives enormous times <span class="math">\(3.62672\times10^{21}\)</span> and <span class="math">\(2.34855\times10^{18}\)</span> s. That scale is another reason to treat the inputs as an exercise rather than an experimentally practical relaxation protocol. The ratio direction is stated explicitly because reversing it gives its reciprocal.</p>
+</section>
+
+<section id="electrical"><h2>17.4 Electrical measurements see charge transport and active carriers <a class="timestamp" href="https://www.youtube.com/watch?v=7EUhh_fEUy8&amp;t=1379s">L38 22:59</a></h2>
+<p>For one mobile ionic species with number density <span class="math">\(n_c\)</span> in m⁻³ and charge <span class="math">\(q_e\)</span> in coulombs, a simple independent-carrier Einstein model gives conductivity <span class="math">\(\sigma=n_cq_e^2D_\sigma/(k_BT)\)</span>, in S/m. Here <span class="math">\(k_B\)</span> is the Boltzmann constant and <span class="math">\(D_\sigma\)</span> is the conductivity diffusivity defined by that relation. Conductivity weights collective charge displacement, whereas tracer diffusion weights individual tagged-particle displacement. Correlations can make them differ.</p>
+<p>Using the chapter's convention, the <dfn>Haven ratio</dfn> is <span class="math">\(H_R=D^*/D_\sigma\)</span>. Its interpretation requires a consistent carrier density and the same species, phase, and conditions. Electronic conduction, grain-boundary resistance, electrode polarization, and multiple mobile ionic species can contaminate a naive single-carrier inversion. Measuring conductivity alone does not uniquely identify both carrier concentration and diffusivity.</p>
+<p>Impedance spectroscopy separates responses by frequency. A synthetic parallel resistor–capacitor element has <span class="math">\(Z(\omega)=R_e/(1+i\omega R_eC_e)\)</span>, with resistance <span class="math">\(R_e\)</span> in ohms and capacitance <span class="math">\(C_e\)</span> in farads. Writing real and imaginary parts gives a semicircle <span class="math">\((\Re Z-R_e/2)^2+(-\Im Z)^2=(R_e/2)^2\)</span>. The plotted sign convention uses negative imaginary impedance. Its peak is at <span class="math">\(\omega R_eC_e=1\)</span>.</p>
+<p>Figure 17.1 uses <span class="math">\(R_e=1000\)</span> ohms and <span class="math">\(C_e=10^{-6}\)</span> F, giving peak angular frequency 1000 rad/s and peak negative imaginary impedance 500 ohms. A series resistance would shift the circle; additional phases or interfaces can add arcs. Identifying an equivalent-circuit element with a specific physical process requires more evidence than fitting a semicircle.</p>
+<figure><img src="assets/figures/ch17-relaxation.svg" alt="Left: normalized modulus loss peaks at angular frequency times stress-relaxation time one; the finite-strength loss tangent peaks slightly earlier. Right: a parallel RC impedance traces a semicircle with resistance 1000 ohms."><figcaption>Figure 17.1. Synthetic response conventions. The mechanical panel distinguishes modulus loss from loss tangent. The electrical panel uses negative imaginary impedance for a parallel RC model. Neither panel assigns a unique microscopic mechanism from curve shape alone.</figcaption></figure>
+<p><dfn>Spreading resistance profiling</dfn> measures a local electrical resistance on a prepared semiconductor section or bevel. Conversion to carrier concentration needs geometry and mobility calibration. Electrically active dopants change carrier populations, so this method can track diffusion-related activation profiles in materials such as silicon or gallium arsenide. It does not directly count every chemical dopant atom: inactive complexes, compensation, and mobility changes can separate chemical concentration from electrically active concentration.</p>
+<p>The <a href="code/ch17.py">laboratory</a> evaluates the verified tutorial inputs, labels the host-to-solute proxy assumption, checks the loss-tangent peak convention, and draws the RC semicircle. <a href="code/ch17-output.json">Saved output</a> reports the enormous conditional Gorsky times rather than silently presenting them as a practical measurement. It fits no experimental loss spectrum or impedance data.</p>
+</section>
+
+<section id="exercises"><h2>17.5 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Which loss peaks at one?</h3><p>For <span class="math">\(E_0=100\)</span> and <span class="math">\(E_\infty=120\)</span> in common modulus units, compare the peak positions of normalized modulus loss and loss tangent.</p><details><summary>Worked solution</summary><p>The normalized modulus loss is <span class="math">\(y/(1+y^2)\)</span>, so its derivative vanishes at y one. The loss tangent is <span class="math">\(20y/(100+120y^2)\)</span>. Differentiating gives a numerator proportional to <span class="math">\(100-120y^2\)</span>, so its peak is <span class="math">\(y=\sqrt{100/120}=0.912871\)</span>. Rescaling time to the geometric mean relaxation time puts that peak at <span class="math">\(\omega\tau_R=1\)</span>. The phrase “Debye peak” must therefore identify the response and time convention.</p></details></div>
+<div class="exercise"><h3>2. Recover the Snoek factor</h3><p>Use four jumps per site, individual rate w, jump length a/2, and orientation decay rate 6w to derive (17.2).</p><details><summary>Worked solution</summary><p>The total rate is 4w. The uncorrelated three-dimensional coefficient is <span class="math">\(D=4w(a/2)^2/6=wa^2/6\)</span>. The population time is <span class="math">\(\tau_S=1/(6w)\)</span>, so <span class="math">\(w=1/(6\tau_S)\)</span> and <span class="math">\(D=a^2/(36\tau_S)\)</span>. Inserting 0.287 nm and one microsecond gives <span class="math">\(2.28803\times10^{-15}\)</span> m²/s. Using total rate in place of individual w in the orientation equation would create a coordination-factor error.</p></details></div>
+<div class="exercise"><h3>3. Interpret an activation plot</h3><p>Derive the slope of ln angular frequency versus inverse peak temperature and explain why a positive activation enthalpy makes relaxation faster at high temperature.</p><details><summary>Worked solution</summary><p>At the specified single-time peak, <span class="math">\(\omega\tau_0e^{H/(RT_p)}=1\)</span>. Taking logarithms gives slope <span class="math">\(-H/R\)</span> against <span class="math">\(1/T_p\)</span>. As temperature rises, <span class="math">\(H/(RT)\)</span> decreases, so the positive exponential in the time decreases. Rates have the opposite Arrhenius sign because they are proportional to inverse time. Changes of relaxation strength or multiple times require a more detailed peak model.</p></details></div>
+<div class="exercise"><h3>4. State the Gorsky ratio direction</h3><p>For the two verified tutorial strips, calculate sample-one time divided by sample-two time under the supplied mobility-proxy assumption.</p><details><summary>Worked solution</summary><p>The thickness ratio squared is one quarter. The coefficient ratio is <span class="math">\(\exp[(Q/R)(1/573.15-1/673.15)]\)</span>, since the Arrhenius prefactor cancels. Multiplication gives 1544.24. The reciprocal answers the opposite question. The formula additionally assumes a common thermodynamic factor and the same relaxation-mode geometry. Because the supplied constants are called host self-diffusion constants, interpreting them as B transport needs an explicit proxy assumption; the numerical ratio alone does not validate it.</p></details></div>
+<div class="exercise"><h3>5. What does a semicircle determine?</h3><p>Derive the parallel RC circle and peak frequency. Does one fitted circle prove ionic bulk diffusion?</p><details><summary>Worked solution</summary><p>Set <span class="math">\(y=\omega R_eC_e\)</span>. Then <span class="math">\(\Re Z=R_e/(1+y^2)\)</span> and <span class="math">\(-\Im Z=R_ey/(1+y^2)\)</span>. Eliminating y gives the circle centered at <span class="math">\(R_e/2\)</span> with radius <span class="math">\(R_e/2\)</span>; its height peaks at y one. A fitted arc can constrain an effective resistance and time scale in this circuit model. Electrode, grain-boundary, or electronic responses can produce related shapes, so physical assignment needs geometry, temperature, frequency-range, and carrier evidence.</p></details></div>
+<div class="exercise"><h3>6. Local motion versus long-range diffusion</h3><p>A loss peak persists when specimen thickness is changed, while another time grows as thickness squared. What interpretation is supported?</p><details><summary>Worked solution</summary><p>The thickness-independent time is compatible with local reorientation such as a Snoek process, provided the defect population and stress coupling remain comparable. The thickness-squared time supports a specimen-spanning diffusion mode such as Gorsky redistribution under fixed boundaries. Neither scaling alone uniquely identifies the microscopic species or jump network. An electrically active profile can supply complementary carrier evidence, while a tracer profile can test long-range tagged transport. Keep those observables distinct before combining them into a mechanism claim.</p></details></div>
+</section>
+
+<section id="sources"><h2>17.6 Sources and limits</h2><p><a href="https://www.youtube.com/watch?v=7EUhh_fEUy8">L38</a> supplies the method sequence and <a href="https://www.youtube.com/watch?v=BYsrUKCe578">L40</a> the worked input problems. The selected L40 frames at 16:47, 17:48, 18:48, and 19:49 establish the stated input values and the supplied Snoek relation. The rate-network derivation, explicit finite-strength loss convention, and RC calculation are original teaching developments.</p><p>Relaxation spectra and electrical signals can mix several processes. A single-time fit or equivalent circuit is a model for an observable, not proof that every measured event contributes to macroscopic mass transport. NMR next exposes that distinction through phase accumulation and local-field correlation times.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch17.py"><code>code/ch17.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Mechanical and electrical probe checks with explicit conventions.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch17&quot;
+BASE = Path(__file__).resolve().parents[1]
+R = 8.31446261815324
+a, tau_s = 0.287e-9, 1e-6
+snoek_d = a * a / (36 * tau_s)
+d0, activation = 2.3e-4, 280e3
+temperatures = np.array([300, 400]) + 273.15
+diffusivities = d0 * np.exp(-activation / (R * temperatures))
+thickness = np.array([0.5e-3, 1e-3])
+gorsky_times = thickness**2 / (np.pi**2 * diffusivities)
+ratio = gorsky_times[0] / gorsky_times[1]
+e0, einf = 100.0, 120.0
+y = np.logspace(-2, 2, 1001)
+eprime = einf - (einf - e0) / (1 + y * y)
+edouble = (einf - e0) * y / (1 + y * y)
+loss = edouble / eprime
+expected = np.sqrt(e0 / einf)
+assert abs(y[np.argmax(loss)] / expected - 1) &lt; 0.01
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+ax[0].semilogx(y, edouble / (einf - e0), label=&quot;normalized modulus loss&quot;)
+ax[0].semilogx(y, loss, label=&quot;loss tangent&quot;)
+ax[0].set(
+    xlabel=&quot;Angular frequency × stress-relaxation time&quot;,
+    ylabel=&quot;Dimensionless response&quot;,
+)
+ax[0].legend(fontsize=8, loc=&quot;upper center&quot;, bbox_to_anchor=(0.5, 1.22))
+theta = np.linspace(0, np.pi, 301)
+resistance, capacitance = 1000.0, 1e-6
+omega = np.logspace(-1, 7, 501)
+z = resistance / (1 + 1j * omega * resistance * capacitance)
+ax[1].plot(z.real, -z.imag)
+ax[1].set(xlabel=&quot;Real impedance (ohm)&quot;, ylabel=&quot;Negative imaginary (ohm)&quot;)
+ax[1].set_aspect(&quot;equal&quot;, adjustable=&quot;box&quot;)
+fig.tight_layout()
+fig.savefig(
+    BASE / &quot;assets/figures/ch17-relaxation.svg&quot;, metadata={&quot;Date&quot;: None}
+)
+out = {
+    &quot;source_Snoek_D_m2_s&quot;: snoek_d,
+    &quot;Gorsky_host_mobility_proxy_assumption&quot;: True,
+    &quot;temperatures_K&quot;: temperatures.tolist(),
+    &quot;proxy_diffusivities_m2_s&quot;: diffusivities.tolist(),
+    &quot;proxy_Gorsky_times_s_Phi_equals_1&quot;: gorsky_times.tolist(),
+    &quot;time_ratio_sample1_over_sample2&quot;: float(ratio),
+    &quot;synthetic_modulus_loss_peak_omega_tau&quot;: 1.0,
+    &quot;synthetic_tan_delta_peak_omega_tau&quot;: float(expected),
+    &quot;synthetic_RC_peak_angular_frequency_rad_s&quot;: 1
+    / (resistance * capacitance),
+    &quot;synthetic_RC_peak_negative_imaginary_ohm&quot;: resistance / 2,
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch17-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;source_Snoek_D_m2_s&quot;: 2.2880277777777775e-15,
+  &quot;Gorsky_host_mobility_proxy_assumption&quot;: true,
+  &quot;temperatures_K&quot;: [
+    573.15,
+    673.15
+  ],
+  &quot;proxy_diffusivities_m2_s&quot;: [
+    6.984346117658529e-30,
+    4.314205006889422e-26
+  ],
+  &quot;proxy_Gorsky_times_s_Phi_equals_1&quot;: [
+    3.626724031694511e+21,
+    2.3485481909305743e+18
+  ],
+  &quot;time_ratio_sample1_over_sample2&quot;: 1544.2408402347835,
+  &quot;synthetic_modulus_loss_peak_omega_tau&quot;: 1.0,
+  &quot;synthetic_tan_delta_peak_omega_tau&quot;: 0.9128709291752769,
+  &quot;synthetic_RC_peak_angular_frequency_rad_s&quot;: 1000.0,
+  &quot;synthetic_RC_peak_negative_imaginary_ohm&quot;: 500.0
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-16.html">← Previous</a><a href="chapter-18.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

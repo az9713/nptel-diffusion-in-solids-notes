@@ -1,0 +1,887 @@
+{
+  "artifacts": [
+    {
+      "path": "about.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "chapter-01.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L05"
+      ]
+    },
+    {
+      "path": "chapter-02.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L04",
+        "L05",
+        "L06"
+      ]
+    },
+    {
+      "path": "chapter-03.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L07",
+        "L08",
+        "L10"
+      ]
+    },
+    {
+      "path": "chapter-04.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L09",
+        "L10",
+        "L11"
+      ]
+    },
+    {
+      "path": "chapter-05.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L12",
+        "L13",
+        "L15"
+      ]
+    },
+    {
+      "path": "chapter-06.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L12",
+        "L13",
+        "L15",
+        "L16",
+        "L20"
+      ]
+    },
+    {
+      "path": "chapter-07.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L14",
+        "L15",
+        "L16",
+        "L20"
+      ]
+    },
+    {
+      "path": "chapter-08.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L17",
+        "L18",
+        "L20"
+      ]
+    },
+    {
+      "path": "chapter-09.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L19",
+        "L20"
+      ]
+    },
+    {
+      "path": "chapter-10.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L21",
+        "L22",
+        "L23"
+      ]
+    },
+    {
+      "path": "chapter-11.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L24",
+        "L25",
+        "L26"
+      ]
+    },
+    {
+      "path": "chapter-12.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L27"
+      ]
+    },
+    {
+      "path": "chapter-13.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L28",
+        "L29",
+        "L30"
+      ]
+    },
+    {
+      "path": "chapter-14.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L31",
+        "L32",
+        "L33"
+      ]
+    },
+    {
+      "path": "chapter-15.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L34",
+        "L35"
+      ]
+    },
+    {
+      "path": "chapter-16.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L36",
+        "L37",
+        "L40"
+      ]
+    },
+    {
+      "path": "chapter-17.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L38",
+        "L40"
+      ]
+    },
+    {
+      "path": "chapter-18.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L39",
+        "L40",
+        "L41"
+      ]
+    },
+    {
+      "path": "chapter-19.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L41"
+      ]
+    },
+    {
+      "path": "chapter-20.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L42",
+        "L43"
+      ]
+    },
+    {
+      "path": "chapter-21.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L44",
+        "L45"
+      ]
+    },
+    {
+      "path": "chapter-22.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L46",
+        "L47",
+        "L48"
+      ]
+    },
+    {
+      "path": "chapter-23.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L49",
+        "L50",
+        "L51"
+      ]
+    },
+    {
+      "path": "chapter-24.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L52",
+        "L55"
+      ]
+    },
+    {
+      "path": "chapter-25.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L53",
+        "L54",
+        "L55"
+      ]
+    },
+    {
+      "path": "chapter-26.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L56",
+        "L59"
+      ]
+    },
+    {
+      "path": "chapter-27.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L57",
+        "L58",
+        "L59"
+      ]
+    },
+    {
+      "path": "chapter-28.html",
+      "purpose": "Study chapter",
+      "source_dependencies": [
+        "L60"
+      ]
+    },
+    {
+      "path": "index.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "laboratory.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "references.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "source-map.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "study-guide.html",
+      "purpose": "Reader companion/navigation page",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "L12",
+        "L13",
+        "L14",
+        "L15",
+        "L16",
+        "L17",
+        "L18",
+        "L19",
+        "L20",
+        "L21",
+        "L22",
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L40",
+        "L41",
+        "L42",
+        "L43",
+        "L44",
+        "L45",
+        "L46",
+        "L47",
+        "L48",
+        "L49",
+        "L50",
+        "L51",
+        "L52",
+        "L53",
+        "L54",
+        "L55",
+        "L56",
+        "L57",
+        "L58",
+        "L59",
+        "L60"
+      ]
+    },
+    {
+      "path": "code/ch01.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L01",
+        "L02",
+        "L03",
+        "L05"
+      ]
+    },
+    {
+      "path": "code/ch02.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L04",
+        "L05",
+        "L06"
+      ]
+    },
+    {
+      "path": "code/ch03.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L07",
+        "L08",
+        "L10"
+      ]
+    },
+    {
+      "path": "code/ch04.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L09",
+        "L10",
+        "L11"
+      ]
+    },
+    {
+      "path": "code/ch05.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L12",
+        "L13",
+        "L15"
+      ]
+    },
+    {
+      "path": "code/ch06.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L12",
+        "L13",
+        "L15",
+        "L16",
+        "L20"
+      ]
+    },
+    {
+      "path": "code/ch07.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L14",
+        "L15",
+        "L16",
+        "L20"
+      ]
+    },
+    {
+      "path": "code/ch08.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L17",
+        "L18",
+        "L20"
+      ]
+    },
+    {
+      "path": "code/ch09.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L19",
+        "L20"
+      ]
+    },
+    {
+      "path": "code/ch10.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L21",
+        "L22",
+        "L23"
+      ]
+    },
+    {
+      "path": "code/ch11.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L24",
+        "L25",
+        "L26"
+      ]
+    },
+    {
+      "path": "code/ch12.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L27"
+      ]
+    },
+    {
+      "path": "code/ch13.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L28",
+        "L29",
+        "L30"
+      ]
+    },
+    {
+      "path": "code/ch14.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L31",
+        "L32",
+        "L33"
+      ]
+    },
+    {
+      "path": "code/ch15.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L34",
+        "L35"
+      ]
+    },
+    {
+      "path": "code/ch16.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L36",
+        "L37",
+        "L40"
+      ]
+    },
+    {
+      "path": "code/ch17.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L38",
+        "L40"
+      ]
+    },
+    {
+      "path": "code/ch18.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L39",
+        "L40",
+        "L41"
+      ]
+    },
+    {
+      "path": "code/ch19.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L41"
+      ]
+    },
+    {
+      "path": "code/ch20.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L42",
+        "L43"
+      ]
+    },
+    {
+      "path": "code/ch21.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L44",
+        "L45"
+      ]
+    },
+    {
+      "path": "code/ch22.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L46",
+        "L47",
+        "L48"
+      ]
+    },
+    {
+      "path": "code/ch23.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L49",
+        "L50",
+        "L51"
+      ]
+    },
+    {
+      "path": "code/ch24.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L52",
+        "L55"
+      ]
+    },
+    {
+      "path": "code/ch25.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L53",
+        "L54",
+        "L55"
+      ]
+    },
+    {
+      "path": "code/ch26.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L56",
+        "L59"
+      ]
+    },
+    {
+      "path": "code/ch27.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L57",
+        "L58",
+        "L59"
+      ]
+    },
+    {
+      "path": "code/ch28.py",
+      "purpose": "Original executable teaching laboratory",
+      "source_dependencies": [
+        "L60"
+      ]
+    }
+  ],
+  "boundary": "Original public reader and laboratories; raw recordings/captions and private research/review files excluded"
+}

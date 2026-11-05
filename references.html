@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>References and attribution — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>References and attribution</h1><p class="lede">Primary sources and owning documentation support specific claims beside the exposition. Access scope matters: a verified abstract or bibliographic entry is not a complete-paper inspection.</p>
+<h2 id="course">Course source</h2><ul>
+<li><a href="https://nptel.ac.in/courses/113106635">NPTEL113106635, Diffusion in Solids</a>, Mayur Vaidya, IIT Hyderabad. <a href="source-map.html">Official lecture order and timestamp navigation</a>.</li>
+<li><a href="https://www.youtube.com/playlist?list=PLyqSpQzTE6M9XsKFqxvlh5_sxnYhwcDKQ">Supplied NPTEL-NOC IITM playlist</a>. Its upload order differs from the official teaching order.</li>
+</ul>
+<h2 id="foundations">Foundations and inverse transport</h2><ul>
+<li><a href="https://doi.org/10.1080/14786445508641925">Fick (1855), On liquid diffusion</a>. Publisher bibliographic metadata supports the historical attribution; no complete historical-paper reading is claimed.</li>
+<li><a href="https://home.agh.edu.pl/~dabrowa/files/Darken---1948full.pdf">Darken (1948), original scan</a>. Original printed pp.185–193, especially p.188 Eqs.7–9 and p.192 Eq.18, support the constant-volume frame and mobility discussion. The scan’s opening commentary is a separate later work.</li>
+<li><a href="https://arxiv.org/pdf/1707.07324">Tas Kavakbasi and colleagues (2017), inverse-profile analysis</a>. Inspected equations and fitting comparisons support the discussion of derivative/tail sensitivity; a specific fit is not a universal estimator.</li>
+</ul>
+<h2 id="measurements">Software and measurements</h2><ul>
+<li><a href="https://thermocalc.com/support/getting-started-guides/diffusion-module-dictra-guide/">Thermo-Calc, Diffusion Module getting-started guide</a>. Owning workflow documentation for thermodynamic/mobility databases, geometry, initial profiles, boundary conditions, and thermal history.</li>
+<li><a href="https://www.nist.gov/programs-projects/magnetic-sector-secondary-ion-mass-spectrometry">NIST magnetic-sector SIMS program</a>. Technique and calibration context.</li>
+<li><a href="https://doi.org/10.1063/1.1695690">Stejskal and Tanner (1965)</a>. The inspected original gradient-timing derivation supports the pulsed-gradient diffusion attenuation model.</li>
+<li><a href="https://www.bipm.org/documents/d/guest/co-57_report">BIPM DDEP Co57 evaluation</a>, Table2. Evaluated Fe57 level half-life, distinguished from mean lifetime in linewidth calculations.</li>
+<li><a href="https://docs.mantidproject.org/v6.1.0/concepts/ConvFit.html">Mantid resolution-convolution documentation</a>. Owning documentation for the measured spectrum versus intrinsic model distinction.</li>
+</ul>
+<h2 id="materials">Material-specific transport</h2><ul>
+<li><a href="https://arxiv.org/pdf/1707.03919">Vaidya and colleagues (2017), high-entropy-alloy grain-boundary diffusion</a>; <a href="https://doi.org/10.1038/s41598-017-12551-9">published paper</a>. Inspected B/C analysis, Table1, and comparisons support a scoped counterexample to universal component-count rankings.</li>
+<li><a href="https://doi.org/10.1098/rsos.170824">Morgan (2017), lattice-geometry effects in garnet solid electrolytes</a>. Inspected equations distinguish single-particle and collective correlation factors. Garnet numerical factors are not transferred to unrelated ionic lattices.</li>
+<li><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.40.5484">Nichols, Van de Walle, and Pantelides (1989), semiconductor dopant diffusion mechanisms</a>. Publisher abstract access only; no uninspected full-paper formula is attributed to it.</li>
+<li><a href="https://arxiv.org/html/1209.2030v1">Ruta and colleagues (2012), metallic-glass relaxation and aging</a>. Scoped primary context for thermal-history-dependent relaxation.</li>
+</ul>
+<p>Additional locally derived results and chapter-specific primary references are cited beside their use. Raw source captions, recordings, screenshots, downloaded research copies, and working review reports remain outside the public repository. Original computational figures retain their generator code; MathJax retains its <a href="assets/mathjax-LICENSE">license</a>.</p>
+
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

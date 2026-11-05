@@ -1,0 +1,47 @@
+{
+  "synthetic_checks": true,
+  "ode_checks": [
+    {
+      "residual": "0",
+      "initial_value": 1,
+      "initial_derivative": 0
+    },
+    {
+      "residual": "0",
+      "initial_value": 2,
+      "initial_derivative": 1
+    },
+    {
+      "residual": "0",
+      "initial_value": 1,
+      "initial_derivative": 5
+    }
+  ],
+  "tutorial_inverse": "3 + 5*cos(2*t) - 2*sin(2*t)",
+  "parameter_integral": 1.3862943611200687,
+  "log_4": 1.3862943611198906,
+  "quadrature_error_estimate": 5.465421448747065e-10,
+  "power_transforms": [
+    {
+      "n": 0,
+      "transform_at_s_2_5": 0.4
+    },
+    {
+      "n": 1,
+      "transform_at_s_2_5": 0.16000000000000003
+    },
+    {
+      "n": 2,
+      "transform_at_s_2_5": 0.1280000000000001
+    },
+    {
+      "n": 3,
+      "transform_at_s_2_5": 0.15359999999999924
+    },
+    {
+      "n": 4,
+      "transform_at_s_2_5": 0.24575999999997789
+    }
+  ],
+  "antiderivative_verified": true
+}

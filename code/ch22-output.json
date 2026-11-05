@@ -1,0 +1,52 @@
+{
+  "status": "synthetic ideal structures and transport coefficients",
+  "six_jump_history": [
+    {
+      "vacancy_site": 1,
+      "antisites": 1
+    },
+    {
+      "vacancy_site": 2,
+      "antisites": 2
+    },
+    {
+      "vacancy_site": 3,
+      "antisites": 3
+    },
+    {
+      "vacancy_site": 0,
+      "antisites": 2
+    },
+    {
+      "vacancy_site": 1,
+      "antisites": 1
+    },
+    {
+      "vacancy_site": 2,
+      "antisites": 0
+    }
+  ],
+  "grain_examples": {
+    "1e-08": {
+      "boundary_fraction": 0.1426250000000001,
+      "thin_limit": 0.15000000000000002,
+      "parallel_m2_s": 1.426258573750001e-15,
+      "series_m2_s": 1.1663505859737544e-20
+    },
+    "1e-07": {
+      "boundary_fraction": 0.014925124999999984,
+      "thin_limit": 0.015000000000000003,
+      "parallel_m2_s": 1.4926110074874983e-16,
+      "series_m2_s": 1.0151512440602454e-20
+    }
+  },
+  "golden_ratio": 1.618033988749895,
+  "fibonacci_ratio_34_over_21": 1.619047619047619,
+  "L12_A_neighbors": {
+    "A": 8,
+    "B": 4
+  },
+  "L12_B_neighbors": {
+    "A": 12
+  }
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Random walks and atomistic diffusion mechanisms — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a aria-current=page href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Random walks and atomistic diffusion mechanisms</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#moments">7.1 A random displacement is a sum of vectors L14 04:27</a></li><li><a href="#rates">7.2 A jump rate needs a counting convention L14 29:13</a></li><li><a href="#master">7.3 The diffusion equation is a long-scale limit L14 13:41</a></li><li><a href="#mechanisms">7.4 A jump mechanism supplies the rate and memory L16 18:47</a></li><li><a href="#exercises">7.5 Exercises with worked solutions</a></li><li><a href="#sources">7.6 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">An atom can travel a long zigzag path while making little net progress. Macroscopic diffusion measures the growth of displacement fluctuations, not the distance accumulated along that path. Connecting a jump mechanism to a diffusion coefficient therefore requires three separate decisions: which jumps are possible, how often they occur, and how their directions are statistically related.</p>
+<p class="source-note">Source spine: L14–16 and the mechanism/geometry tutorial in L20. The ensemble simulation and parameter choices below are synthetic. The source's mean-square-displacement exercises are recomputed with explicit units; captioned numerical statements are not used as an independent numerical authority.</p>
+<section id="moments"><h2>7.1 A random displacement is a sum of vectors <a class="timestamp" href="https://www.youtube.com/watch?v=gRKMf94dhrg&amp;t=267s">L14 04:27</a></h2>
+<p>Let \(\boldsymbol\xi_j\) be the displacement vector of a tracer's jth successful jump. Its position relative to its starting point after n jumps is \(\mathbf R_n=\sum_{j=1}^n\boldsymbol\xi_j\). If every jump has length \(\ell\), the accumulated path length is exactly \(n\ell\); the displacement magnitude \(|\mathbf R_n|\) generally is much smaller and may vanish after many jumps.</p>
+<p>Use \(\mathbb E\) for an ensemble expectation over the specified stochastic process. Expanding the squared displacement before making statistical assumptions gives</p>
+\[\mathbb E|\mathbf R_n|^2
+=\sum_{j=1}^n\mathbb E|\boldsymbol\xi_j|^2
++2\sum_{1\le i\lt j\le n}\mathbb E(\boldsymbol\xi_i\cdot\boldsymbol\xi_j).\tag{7.1}\]
+<p>This identity is exact. “Random” alone does not set the cross terms to zero. If distinct jumps are independent, their cross expectation factorizes into \(\mathbb E\boldsymbol\xi_i\cdot\mathbb E\boldsymbol\xi_j\). If they are also unbiased, each mean is zero. Fixed-length jumps then give</p>
+\[\mathbb E\mathbf R_n=0,\qquad
+\mathbb E|\mathbf R_n|^2=n\ell^2,\qquad
+R_{\rm rms}\equiv\sqrt{\mathbb E|\mathbf R_n|^2}=\sqrt n\,\ell.\tag{7.2}\]
+<p>The root-mean-square displacement, abbreviated RMS, is not the expectation of the displacement magnitude. A finite sample of tracers need not have exactly zero mean even when the underlying process does. The sample is an estimate of an expectation, with sampling uncertainty.</p>
+<p>Figure 7.1 uses 40,000 independently simulated tracers on a simple cubic lattice, each selecting one of six directions with equal probability at each step. After 200 jumps, the sample mean squared displacement is \(200.02775\ell^2\), close to the exact \(200\ell^2\). Its sample mean displacement has components \((0.006625,0.001225,-0.03835)\ell\), illustrating that symmetry constrains the distribution, rather than forcing exact cancellation in every realization. The companion fixes the random seed and verifies the measured moments against the exact result.</p>
+<figure><img src="assets/ch07-walk-moments.svg" width="700" height="380" alt="Seeded simulation values lie close to the straight exact mean-square-displacement curve through 200 jumps."><figcaption>Figure 7.1. Original synthetic simple-cubic ensemble. The expectation grows linearly with jump count, while individual paths wander irregularly. These markers validate a specified independent-walk model; they do not establish independence for vacancy-mediated diffusion in a real solid.</figcaption></figure>
+<p>Unbiased and independent are different requirements. A vacancy left immediately behind a tracer makes a return jump comparatively likely, even in an inversion-symmetric crystal with zero ensemble drift. Chapter 8 retains the cross terms in (7.1). Conversely, independent biased steps have nonzero mean and a raw mean-square displacement containing a term quadratic in time.</p>
+</section>
+<section id="rates"><h2>7.2 A jump rate needs a counting convention <a class="timestamp" href="https://www.youtube.com/watch?v=gRKMf94dhrg&amp;t=1753s">L14 29:13</a></h2>
+<p>Let \(\Gamma\) be the <em>total successful jump rate per tracer</em>, in s⁻¹, summed over all accessible neighbors. For a homogeneous continuous-time walk with independent exponentially distributed waiting times, the number of jumps by time t is Poisson with mean \(\Gamma t\). Conditioning on that number and applying equation (7.2) gives \(\mathbb E|\mathbf R(t)|^2=\Gamma t\ell^2\). The same long-time result applies more broadly when an appropriate finite mean waiting time and independent zero-mean increments exist; a broad waiting-time distribution can invalidate normal diffusion.</p>
+<p>For isotropic diffusion in d spatial dimensions, \(\mathbb E|\mathbf R(t)|^2=2dDt\). Hence</p>
+\[D=\frac{\Gamma\ell^2}{2d},\qquad
+D_{\rm cubic,3D}=\frac{\Gamma\ell^2}{6}.\tag{7.3}\]
+<p>The units are length squared divided by time. For synthetic \(\Gamma=6.0\times10^6\) s⁻¹ and \(\ell=0.20\) nm, this is \(4.0\times10^{-14}\) m² s⁻¹. One must convert nanometers to meters before squaring.</p>
+<p>If z equivalent neighbor directions each have a successful transition rate w, then \(\Gamma=zw\). A thermal attempt frequency \(\nu\) is different again: only some attempts cross the migration free-energy barrier. For a per-neighbor activated rate, one model is \(w=\nu\exp[-g_m/(k_BT)]\), where \(g_m\) is a free-energy barrier per jump. Using a molar barrier instead requires R in place of \(k_B\). A vacancy-exchange opportunity must also be available; multiplying a host atom's per-neighbor exchange rate by every occupied neighbor would miscount successful tracer jumps.</p>
+<p>Cubic symmetry gives a scalar diffusivity, but unequal jump geometries require a second-moment tensor. For independent zero-mean jumps \(\boldsymbol\delta_\alpha\) with rates \(w_\alpha\),</p>
+\[\mathbf D=\frac12\sum_\alpha w_\alpha
+\boldsymbol\delta_\alpha\boldsymbol\delta_\alpha^{\mathsf T}.\tag{7.4}\]
+<p>The outer product has components \(\delta_{\alpha i}\delta_{\alpha j}\); its rate-weighted sum determines spreading along each direction. For twelve FCC nearest-neighbor unit directions, the companion enumerates all permutations of \((\pm1,\pm1,0)/\sqrt2\). Their outer products sum to \(4\mathbf I\), where \(\mathbf I\) is the identity matrix. With equal per-direction rate w and jump length \(\ell=a/\sqrt2\), equation (7.4) gives \(D=2w\ell^2=(12w)\ell^2/6\). This also explains the tutorial's sum of squared direction cosines, four along any cubic axis.</p>
+<p>When drift is present, diffusion measures spreading about the mean. In a one-dimensional discrete-time walk with probabilities p and \(1-p\) for \(\pm\ell\), the mean after n jumps is \(n(2p-1)\ell\) and the variance is \(n[1-(2p-1)^2]\ell^2\). For \(p=0.6,n=100\), they are \(20\ell\) and \(96\ell^2\), while the raw second moment is \(496\ell^2\). Substituting the latter into an unbiased diffusion formula would fold directed motion into apparent diffusion. A Poisson clock adds jump-count fluctuations and must be treated with its own centered moment; the discrete-time variance above assumes exactly n jumps.</p>
+</section>
+<section id="master"><h2>7.3 The diffusion equation is a long-scale limit <a class="timestamp" href="https://www.youtube.com/watch?v=gRKMf94dhrg&amp;t=821s">L14 13:41</a></h2>
+<p>A continuum equation should emerge from an explicit discrete balance. Let \(c_j(t)\) be an expected tracer concentration on a one-dimensional lattice with spacing \(\ell\), normalized per physical volume using the same cell volume at each site. A tracer jumps to each neighbor at rate w, independent of other tracers. Gain from both neighbors minus loss to both neighbors gives the exact master equation</p>
+\[\frac{dc_j}{dt}=w[c_{j-1}-2c_j+c_{j+1}].\tag{7.5}\]
+<p>This is an equation for a spatially discrete stochastic process's expectation, not a numerical approximation introduced to solve an already assumed PDE. With a concentration smooth over many sites, expand \(c(x\pm\ell,t)\) about x. Odd terms cancel; the first surviving term is \(\ell^2\partial_{xx}c\), followed by \(\ell^4\partial_{xxxx}c/12\). Retaining the second derivative gives \(\partial_tc=D\partial_{xx}c\) with \(D=w\ell^2=\Gamma\ell^2/2\). A controlled diffusion scaling sends \(\ell\) to zero and w to infinity with \(w\ell^2\) fixed, or interprets this equation as a coarse-grained long-wavelength approximation at finite spacing.</p>
+<p>The wavelength restriction can be quantified without Taylor's theorem. Insert \(c_j\propto\exp(ikj\ell)\) into (7.5), where k is a wave number in m⁻¹. Its decay rate is \(2w[1-\cos(k\ell)]\), whereas the PDE predicts \(w\ell^2k^2\). Their ratio is</p>
+\[\frac{\hbox{lattice decay rate}}{\hbox{diffusive decay rate}}
+=\frac{2(1-\cos q)}{q^2},\qquad q=k\ell.\tag{7.6}\]
+<p>The limit is one as \(q\to0\). At synthetic \(q=0.1,0.5,2\), the ratios are 0.99916694, 0.97933950 and 0.70807342. Structure varying over just a few lattice spacings can decay substantially differently from the continuum prediction. A formally successful second-order expansion is not an exact finite-spacing identity.</p>
+<p>The lecture also writes a finite-time transition relation. If \(p(X,\tau)\) is the probability mass of displacement X during a time interval \(\tau\), spatial homogeneity gives \(c(x,t+\tau)=\sum_Xp(X,\tau)c(x-X,t)\). The masses sum to one. If displacements are continuous, replace the sum by an integral and use a probability density with inverse-length units. Expanding both time and space produces a diffusion equation only under scaling and regularity assumptions that control the discarded terms. In a drifting process, terms from temporal variation must be retained consistently; the central covariance after subtracting mean motion defines diffusive spreading.</p>
+<p>A complementary flux count uses dilute interstitial tracers on a simple-cubic network. Let \(c_1,c_2\) be volume number concentrations in adjacent planes separated by \(\ell\). Their associated plane populations per area are \(\sigma_1=c_1\ell,\sigma_2=c_2\ell\). Equal choice among six directions gives forward minus backward number flux \(J=(\Gamma/6)(\sigma_1-\sigma_2)\). For a slowly varying profile, \(c_2-c_1\simeq\ell\,\partial_xc\), hence \(J=-\Gamma\ell^2\partial_xc/6\). The result agrees with (7.3). Occupation blocking, nonequivalent sites and correlated jumps require modifications to that microscopic count.</p>
+</section>
+<section id="mechanisms"><h2>7.4 A jump mechanism supplies the rate and memory <a class="timestamp" href="https://www.youtube.com/watch?v=NhiTJ-3kZug&amp;t=1127s">L16 18:47</a></h2>
+<p>For an <dfn>interstitial mechanism</dfn>, a solute occupying one interstitial site moves to another. If solutes are dilute and sites equivalent, the availability of empty destination sites is nearly unity. Its successful jump rate can then be dominated by migration across an energy barrier. This is different from self-diffusion by thermally generated host self-interstitials: the latter also needs a population of those defects, whose creation has a formation cost. A fixed imposed interstitial-solute concentration should not acquire that host-defect formation factor by analogy.</p>
+<p>For a <dfn>vacancy mechanism</dfn>, a neighboring atom exchanges positions with an empty regular site. In a dilute random monovacancy approximation, a tracer has roughly \(zx_v\) vacant nearest neighbors on average. If the per-neighbor exchange rate when a vacancy is present is w, its total successful tracer rate is approximately \(zx_vw\). Its long-time tracer diffusivity is \(D^*=f\,zx_vw\ell^2/6\), with f a dimensionless correlation factor. The star denotes tracer diffusion. Even without a macroscopic force, the vacancy just used by the tracer remains behind it and can induce backtracking. Neither vacancy concentration nor a migration barrier alone determines the transport coefficient.</p>
+<p>A <dfn>divacancy mechanism</dfn> uses a bound pair whose possible rearrangements differ from those of an isolated vacancy. Chapter 6 counted pairs per site separately from missing sites; here one must additionally count actual tracer moves generated by each pair configuration. A pair population cannot simply be inserted for \(x_v\) in an isolated-vacancy expression without checking geometry and rates.</p>
+<p>In <dfn>interstitialcy</dfn>, an interstitial atom displaces a host atom and
+the displaced atom carries the defect onward, possibly through a sequence of
+substitutions. Tagged-atom motion need not coincide with the path of the defect.
+Direct two-atom exchange and larger cyclic or ring rearrangements move occupied
+atoms cooperatively. To see the limit of a pure exchange model, consider fixed,
+equal-volume lattice sites: one A/B swap moves A by a vector
+\(\boldsymbol\delta\) and B by \(-\boldsymbol\delta\). Their summed atomic
+displacement is zero, and each such swap produces equal and opposite component
+transfers. A model built only from these swaps cannot independently adjust the
+two component transfers. In an interdiffusing specimen, inert markers attached
+to the lattice can move relative to the laboratory; this observation is called
+the <dfn>Kirkendall effect</dfn>. Its connection to unequal component fluxes in
+the lattice frame is derived in Chapter 13. The restricted exchange model is
+therefore not a complete explanation of those observations. This does not prove
+that individual exchanges or collective ring events are forbidden in all
+solids. Disordered solids may have collective rearrangements for which a single
+fixed lattice jump length is itself an approximation.</p>
+<p>Mechanisms can interconvert. Let \(B_i,B_s\) denote solute B on interstitial and substitutional sites, \(V\) a host vacancy and \(A_i\) a host self-interstitial. A schematic dissociative balance is \(B_i+V\rightleftharpoons B_s\). A kick-out balance is \(B_i\rightleftharpoons B_s+A_i\): B enters a regular host position while the displaced A becomes interstitial. Each expression conserves the atoms under its site convention; a charged crystal needs effective-charge balance too. If interconversion is slow, transport must track several populations and reaction rates instead of averaging unrelated single-species diffusivities.</p>
+<p>Irradiation creates vacancies and self-interstitials out of thermal equilibrium. Their migration, recombination and loss to sinks determine their evolving populations. An equilibrium formation factor is then an additional assumption to test, not a universal prefactor to apply. Chapter 9 separates thermodynamic formation costs, migration costs and the apparent activation parameters of a measured coefficient.</p>
+</section>
+<section id="exercises"><h2>7.5 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. Separate path length from RMS progress</h3><p>An independent unbiased fixed-length walk takes \(10^6\) jumps of 0.1 nm. Find the accumulated path length and RMS displacement. How can the RMS become nine times larger if the length is fixed, or if each jump becomes three times longer?</p><details><summary>Worked solution</summary><p>The path length is \(10^6(0.1\ {\rm nm})=10^5\) nm, or 100 μm. The RMS is \(\sqrt{10^6}(0.1\ {\rm nm})=100\) nm. At fixed length, nine times the RMS needs 81 times the jump count. If the length triples, the jump count need only increase ninefold: \(\sqrt9\times3=9\). These are comparisons within the specified walk model. A hypothetical change in jump length should not be presented as a physically achievable large thermal expansion of the same crystal.</p></details></div>
+<div class="exercise"><h3>2. Recompute an MSD tutorial</h3><p>A three-dimensional isotropic tracer diffusivity is \(2\times10^{-9}\) m² s⁻¹. Find the MSD and RMS after one second. Explain why a quantity in square meters cannot be reported directly as a penetration distance.</p><details><summary>Worked solution</summary><p>The MSD is \(6Dt=1.2\times10^{-8}\) m². Its square root is \(1.09544512\times10^{-4}\) m, or about 109.5445 μm. The square root must be taken before converting a squared displacement to a length. These are ensemble moments, not a sharp front or the farthest tracer distance. The source-caption numerical discussion around L15 19:55 is dimensionally ambiguous; the recomputed values follow the explicitly stated D, t and dimensionality.</p></details></div>
+<div class="exercise"><h3>3. Audit a neighbor-rate convention</h3><p>For twelve FCC directions with equal rate w per direction and nearest-neighbor distance \(a/\sqrt2\), derive D from the tensor sum. Explain the error in interpreting w as the total rate.</p><details><summary>Worked solution</summary><p>Each direction has two nonzero components \(\pm1/\sqrt2\). Eight directions have a nonzero x component, so the sum of x-direction cosines squared is \(8/2=4\); sign symmetry cancels off-diagonal sums. Equation (7.4) gives \(D_{xx}=w\ell^2(4)/2=2w\ell^2=wa^2\), and the other diagonal components agree. The total rate is \(12w\). Replacing it by w in \(D=\Gamma\ell^2/6\) undercounts this walk by twelve.</p></details></div>
+<div class="exercise"><h3>4. Find the drift contribution</h3><p>Take exactly 100 independent one-dimensional jumps with probabilities 0.6 and 0.4 for \(\pm\ell\). Compute the mean, variance and raw second moment. Which quantity describes spreading about the mean?</p><details><summary>Worked solution</summary><p>One jump has mean \(0.2\ell\), second moment \(\ell^2\) and variance \(0.96\ell^2\). Independence makes the variances additive. Thus the mean is \(20\ell\), variance \(96\ell^2\), and raw second moment is \(96\ell^2+(20\ell)^2=496\ell^2\). The variance describes centered spreading. In a time-dependent walk the mean-squared drift contributes a term proportional to \(t^2\) if velocity is constant; it cannot be absorbed into a constant diffusion coefficient.</p></details></div>
+<div class="exercise"><h3>5. Test the continuum approximation</h3><p>Find the decay rate of a lattice Fourier mode in equation (7.5), and compare it with the diffusion equation for \(k\ell=0.5\) and 2. State which limit justifies the approximation.</p><details><summary>Worked solution</summary><p>Neighbor shifts multiply the mode by \(e^{\pm ik\ell}\), so its time derivative is \(-2w[1-\cos(k\ell)]\) times its amplitude. The continuum rate is \(w\ell^2k^2\). Ratios are 0.97933950 and 0.70807342. They approach one for \(k\ell\ll1\), meaning wavelengths much larger than the spacing. Small jump spacing alone is not sufficient unless it is small relative to the profile's variation scale, and the appropriate scaling of rate preserves finite D.</p></details></div>
+<div class="exercise"><h3>6. Count mobile populations before choosing an activation law</h3><p>Compare a fixed dilute interstitial-solute population with host self-diffusion carried by equilibrium monovacancies. What extra ingredients are needed for an irradiated specimen or a reversible \(B_i+V\rightleftharpoons B_s\) system?</p><details><summary>Worked solution</summary><p>The dilute interstitial tracer can have \(\Gamma\simeq zw\), with temperature dependence set mainly by migration for equivalent empty destination sites. A host tracer moving through monovacancies has \(\Gamma\simeq zx_vw\) and a correlation factor; equilibrium \(x_v\) contributes a formation free energy as well as the exchange migration free energy. Irradiation requires defect production, recombination and sink kinetics because equilibrium \(x_v\) need not apply. Reversible interstitial/substitutional transport requires population balance, forward/backward reaction rates, the mobility of each state and any charge constraints. A single barrier cannot be assigned from mechanism names alone.</p></details></div>
+</section>
+<section id="sources"><h2>7.6 Sources and limits</h2><p><a href="https://www.youtube.com/watch?v=gRKMf94dhrg">L14</a> develops walk moments and the continuum connection; <a href="https://www.youtube.com/watch?v=pJuYh17uGyo">L15</a> supplies tutorial prompts, and <a href="https://www.youtube.com/watch?v=NhiTJ-3kZug">L16</a> develops the mechanism and flux-count arguments. The FCC direction count follows the L20 tutorial. All formulas used numerically are derived here and computed in <a href="code/ch07.py">the Python companion</a>. The source's Scilab Gaussian plotting activity evaluates an analytic solution; it is not a numerical PDE solution. Chapter 3 develops that analytic profile, while this chapter's laboratory tests discrete moments. A finite independent-walk simulation validates its own specified stochastic assumptions; physical correlations and concentration interactions remain separate questions.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch07.py"><code>code/ch07.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Exact moments and seeded synthetic random-walk checks for Chapter 7.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import numpy as np
+import matplotlib
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch07&quot;
+import matplotlib.pyplot as plt  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def run():
+    rng = np.random.default_rng(7142026)
+    walkers, steps = 40000, 200
+    position = np.zeros((walkers, 3), dtype=np.int64)
+    sample_steps = np.array([1, 5, 10, 25, 50, 100, 200])
+    measured = []
+    for count in range(1, steps + 1):
+        direction = rng.integers(0, 6, walkers)
+        axis = direction // 2
+        sign = 2 * (direction % 2) - 1
+        position[np.arange(walkers), axis] += sign
+        if count in sample_steps:
+            measured.append(float(np.mean(np.sum(position**2, axis=1))))
+    measured = np.array(measured)
+    assert np.all(np.abs(measured / sample_steps - 1) &lt; 0.025)
+    gamma, length = 6e6, 0.2e-9
+    diffusivity = gamma * length**2 / 6
+    tutorial_msd = 6 * 2e-9 * 1
+    million_rms = np.sqrt(1e6) * 0.1e-9
+    n, p = 100, 0.6
+    step_mean = 2 * p - 1
+    biased_mean = n * step_mean
+    biased_variance = n * (1 - step_mean**2)
+    biased_second = biased_variance + biased_mean**2
+    q = np.array([0.1, 0.5, 2.0])
+    decay_ratio = 2 * (1 - np.cos(q)) / q**2
+    fcc_vectors = []
+    for zero_axis in range(3):
+        for s1 in (-1, 1):
+            for s2 in (-1, 1):
+                vector = [s1, s2]
+                vector.insert(zero_axis, 0)
+                fcc_vectors.append(vector)
+    # Unit directions: each integer vector above has squared length two.
+    unit = np.array(fcc_vectors) / np.sqrt(2)
+    second_moment = unit.T @ unit
+    assert np.allclose(second_moment, 4 * np.eye(3))
+    fig, ax = plt.subplots(figsize=(7, 3.8), layout=&quot;constrained&quot;)
+    ax.plot(sample_steps, sample_steps, label=&quot;Exact independent-walk moment&quot;)
+    ax.scatter(
+        sample_steps, measured, label=&quot;Seeded ensemble&quot;, color=&quot;#9a5415&quot;
+    )
+    ax.set(
+        xlabel=&quot;Number of successful jumps&quot;,
+        ylabel=&quot;Mean squared displacement / length squared&quot;,
+        title=&quot;Synthetic cubic walk: 40,000 independent tracers&quot;,
+    )
+    ax.grid(alpha=0.25)
+    ax.legend()
+    fig.savefig(ROOT / &quot;assets/ch07-walk-moments.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    return {
+        &quot;synthetic&quot;: True,
+        &quot;seed&quot;: 7142026,
+        &quot;walkers&quot;: walkers,
+        &quot;sample_steps&quot;: sample_steps.tolist(),
+        &quot;sample_msd_over_length_squared&quot;: measured.tolist(),
+        &quot;final_sample_mean_over_length&quot;: position.mean(axis=0).tolist(),
+        &quot;gamma_per_s&quot;: gamma,
+        &quot;jump_length_m&quot;: length,
+        &quot;diffusivity_m2_per_s&quot;: diffusivity,
+        &quot;tutorial_msd_m2&quot;: tutorial_msd,
+        &quot;tutorial_rms_m&quot;: np.sqrt(tutorial_msd),
+        &quot;million_step_rms_nm&quot;: million_rms / 1e-9,
+        &quot;biased_walk&quot;: {
+            &quot;steps&quot;: n,
+            &quot;positive_probability&quot;: p,
+            &quot;mean_over_length&quot;: biased_mean,
+            &quot;variance_over_length_squared&quot;: biased_variance,
+            &quot;second_moment_over_length_squared&quot;: biased_second,
+        },
+        &quot;dimensionless_wave_numbers&quot;: q.tolist(),
+        &quot;exact_to_diffusive_decay_ratio&quot;: decay_ratio.tolist(),
+        &quot;fcc_direction_second_moment&quot;: second_moment.tolist(),
+        &quot;ninefold_rms_step_ratio_fixed_length&quot;: 81,
+        &quot;ninefold_rms_step_ratio_tripled_length&quot;: 9,
+    }
+
+
+if __name__ == &quot;__main__&quot;:
+    print(json.dumps(run(), indent=2))
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;seed&quot;: 7142026,
+  &quot;walkers&quot;: 40000,
+  &quot;sample_steps&quot;: [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    200
+  ],
+  &quot;sample_msd_over_length_squared&quot;: [
+    1.0,
+    4.9919,
+    10.0238,
+    24.98695,
+    50.0669,
+    100.0105,
+    200.02775
+  ],
+  &quot;final_sample_mean_over_length&quot;: [
+    0.006625,
+    0.001225,
+    -0.03835
+  ],
+  &quot;gamma_per_s&quot;: 6000000.0,
+  &quot;jump_length_m&quot;: 2e-10,
+  &quot;diffusivity_m2_per_s&quot;: 4.0000000000000006e-14,
+  &quot;tutorial_msd_m2&quot;: 1.2000000000000002e-08,
+  &quot;tutorial_rms_m&quot;: 0.00010954451150103323,
+  &quot;million_step_rms_nm&quot;: 100.0,
+  &quot;biased_walk&quot;: {
+    &quot;steps&quot;: 100,
+    &quot;positive_probability&quot;: 0.6,
+    &quot;mean_over_length&quot;: 19.999999999999996,
+    &quot;variance_over_length_squared&quot;: 96.0,
+    &quot;second_moment_over_length_squared&quot;: 495.9999999999999
+  },
+  &quot;dimensionless_wave_numbers&quot;: [
+    0.1,
+    0.5,
+    2.0
+  ],
+  &quot;exact_to_diffusive_decay_ratio&quot;: [
+    0.9991669443948357,
+    0.9793395048770179,
+    0.7080734182735712
+  ],
+  &quot;fcc_direction_second_moment&quot;: [
+    [
+      3.9999999999999996,
+      -3.3140008060500445e-17,
+      -3.3140008060500445e-17
+    ],
+    [
+      -3.3140008060500445e-17,
+      3.9999999999999996,
+      -3.3140008060500445e-17
+    ],
+    [
+      -3.3140008060500445e-17,
+      -3.3140008060500445e-17,
+      3.9999999999999996
+    ]
+  ],
+  &quot;ninefold_rms_step_ratio_fixed_length&quot;: 81,
+  &quot;ninefold_rms_step_ratio_tripled_length&quot;: 9
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-06.html">← Previous</a><a href="chapter-08.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

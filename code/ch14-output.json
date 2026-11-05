@@ -1,0 +1,18 @@
+{
+  "synthetic": true,
+  "temperature_K": 1000.0,
+  "ordered_eta": 0.8585596366401104,
+  "ordered_sublattice_A_fractions": [
+    0.9292798183200552,
+    0.07072018167994476
+  ],
+  "ordered_configurational_entropy_J_mol_K": 2.124327424202985,
+  "disordered_entropy_J_mol_K": 5.763146321643979,
+  "perfect_order_entropy_J_mol_K": -0.0,
+  "mode_amplitudes_at_100000_s": [
+    0.37270783885343794,
+    0.01929630291101678
+  ],
+  "eight_element_binary_count": 28,
+  "eight_element_ternary_count": 56
+}

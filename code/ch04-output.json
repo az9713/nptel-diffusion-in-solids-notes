@@ -1,0 +1,43 @@
+{
+  "absorbing_mean_at_tau_point1": 0.30211809377327326,
+  "first_mode_mean_at_tau_point1": 0.3021055950832642,
+  "first_mode_relative_error": 4.137021339230699e-05,
+  "outward_flux_in_Dc0_per_L_units": 2.982772925059304,
+  "closed_mean": 1.0,
+  "refinements": [
+    {
+      "cells": 40,
+      "steps": 200,
+      "actual_ratio": 0.3999999999999999,
+      "max_error": 0.000217033513196907
+    },
+    {
+      "cells": 80,
+      "steps": 800,
+      "actual_ratio": 0.3999999999999999,
+      "max_error": 5.42165743065981e-05
+    },
+    {
+      "cells": 160,
+      "steps": 3200,
+      "actual_ratio": 0.3999999999999999,
+      "max_error": 1.3551533839195606e-05
+    }
+  ],
+  "error_ratios": [
+    4.0030842223554925,
+    4.000770315001943
+  ],
+  "unstable_spike_center": -0.19999999999999996,
+  "illustrative_source_parameters": {
+    "Q_J_per_mol": 200000.0,
+    "D0_m2_per_s": 1e-05,
+    "R_J_per_mol_K": 8.314,
+    "T_C": 1000.0,
+    "T_K": 1273.15,
+    "days": 1.0
+  },
+  "illustrative_source_D_m2_per_s": 6.224844244642626e-14,
+  "activation_unit_error_multiplier": 157639714.37907174,
+  "illustrative_normalized_1mm_profile": 5.317960140531607e-22
+}

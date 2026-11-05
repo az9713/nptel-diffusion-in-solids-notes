@@ -1,0 +1,35 @@
+{
+  "status": "synthetic rate comparison; no empirical HEA fit",
+  "entropy_equiatomic_5_J_mol_K": 13.381611359171915,
+  "entropy_nonequiatomic_J_mol_K": 12.511505932902232,
+  "crossover_K": 1044.6724024112932,
+  "absolute_comparisons": {
+    "800.0": {
+      "A": 1.7678095384920048e-18,
+      "B": 7.229636783270254e-18
+    },
+    "1200.0": {
+      "A": 1.462032348885485e-14,
+      "B": 8.055224571251813e-15
+    }
+  },
+  "homologous_comparison": {
+    "T_over_Tm": 0.6,
+    "A_T_K": 900.0,
+    "B_T_K": 1200.0,
+    "A": 3.5749994217199207e-17,
+    "B": 8.055224571251813e-15
+  },
+  "materials": {
+    "A": {
+      "prefactor": 1e-06,
+      "Q": 180000.0,
+      "Tm": 1500.0
+    },
+    "B": {
+      "prefactor": 1e-08,
+      "Q": 140000.0,
+      "Tm": 2000.0
+    }
+  }
+}

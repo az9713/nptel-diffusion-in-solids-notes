@@ -1,0 +1,26 @@
+{
+  "status": "synthetic coefficients, not material data",
+  "at_1000K": {
+    "D1_m2_s": 3.962309341158244e-15,
+    "D2_m2_s": 3.225548478141256e-15,
+    "Q_effective_J_mol": 197949.98487299297,
+    "Q_finite_difference_J_mol": 197949.98878536242
+  },
+  "trap_example": {
+    "Dmobile_m2_s": 1e-09,
+    "K": 99.0,
+    "Dapparent_m2_s": 1.0000000000000001e-11
+  },
+  "hybrid": {
+    "theta_i": 1e-06,
+    "D_eff_m2_s": 1.000999999e-14,
+    "interstitial_share": 0.999000999999002
+  },
+  "divacancy_Q_J_mol": 230000,
+  "composition_example": {
+    "N": 0.02,
+    "b1": 5.0,
+    "linear_factor": 1.1,
+    "exponential_factor": 1.1051709180756477
+  }
+}

@@ -1,0 +1,2690 @@
+{
+  "course": {
+    "title": "Diffusion in Solids",
+    "instructor": "Mayur Vaidya",
+    "institution": "IIT Hyderabad",
+    "course_id": "113106635",
+    "official_url": "https://nptel.ac.in/courses/113106635",
+    "playlist": "https://www.youtube.com/playlist?list=PLyqSpQzTE6M9XsKFqxvlh5_sxnYhwcDKQ"
+  },
+  "retrieved_at_utc": "2026-11-04T23:15:28.958440+00:00",
+  "sequence_basis": "official NPTEL lesson IDs",
+  "recordings": [
+    {
+      "number": 1,
+      "title": "Diffusion in materials world",
+      "video_id": "hbh3DvU2cM4",
+      "url": "https://www.youtube.com/watch?v=hbh3DvU2cM4",
+      "playlist_position": 13,
+      "duration_seconds": 1477,
+      "caption_status": "acquired",
+      "caption_cues": 970,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "b8e503267a15c26c20d719b856a90bd54c0c0b016a47275e7ad78ecb4825e08e",
+      "last_cue_start_seconds": 1467.039,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 1,
+        "video_id": "hbh3DvU2cM4",
+        "normalized_text_sha256": "7ab2114dfe868e106825f9ba1046aab0c9939ffdaf2a43c0e127e44b35e839db",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 2,
+      "title": "Revisiting relevant mathematical concepts",
+      "video_id": "0epFtle16cE",
+      "url": "https://www.youtube.com/watch?v=0epFtle16cE",
+      "playlist_position": 18,
+      "duration_seconds": 1799,
+      "caption_status": "acquired",
+      "caption_cues": 1096,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "b51fc6b64e2e4d0df6757c4dda96616196d08232d3fc93551cd3e192fe182715",
+      "last_cue_start_seconds": 1789.6,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 2,
+        "video_id": "0epFtle16cE",
+        "normalized_text_sha256": "f8e7649c05adc2060b63acf7d88997216d81014e54f3702ee9026e6fbc76275a",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "root",
+          "lecture": 2,
+          "seconds": [
+            700
+          ],
+          "scope": "Selected derivative/tangent source discussion; not complete audiovisual review."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Ficks law of Diffusion",
+      "video_id": "TADNJc_jZLg",
+      "url": "https://www.youtube.com/watch?v=TADNJc_jZLg",
+      "playlist_position": 12,
+      "duration_seconds": 1721,
+      "caption_status": "acquired",
+      "caption_cues": 1112,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "183014830f719ef75a086d3bcd6d3eaad6543e1d244b10a46f070be6e80e45fe",
+      "last_cue_start_seconds": 1712.2,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 3,
+        "video_id": "TADNJc_jZLg",
+        "normalized_text_sha256": "53653606cb6cbec1c299b3dd2cc929198c3806eb91b43eca60b90450951e3bf7",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 4,
+      "title": "Introduction to Laplace transform",
+      "video_id": "NEplnnhpGno",
+      "url": "https://www.youtube.com/watch?v=NEplnnhpGno",
+      "playlist_position": 11,
+      "duration_seconds": 1695,
+      "caption_status": "acquired",
+      "caption_cues": 978,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "98e1f91a3a252c8ec975bcb43ea675bf7a94e08e110b3f8542bbd1c2c1be3ada",
+      "last_cue_start_seconds": 1684.48,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 4,
+        "video_id": "NEplnnhpGno",
+        "normalized_text_sha256": "a63c1a52bc27e893c80bda75fd465708843281cc759705e5445faf1bd1334cc5",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "root",
+          "lecture": 4,
+          "seconds": [
+            1628
+          ],
+          "scope": "Displayed ODE solution coefficient distinguished from inconsistent captioned verbal correction."
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 4,
+          "seconds": [
+            1628
+          ],
+          "scope": "Displayed ODE particular solution has the correct sine coefficient; bounded check of verbal/caption conflict.",
+          "frame_sha256": "542f000083b87f6b10597d4431e1e81d46ced19bf39953da3d1a76b3e3d40241"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 4,
+          "seconds": [
+            1628
+          ],
+          "scope": "Correct displayed ODE solution has minus1/3 sin2t; differs from final captioned verbal correction.",
+          "frame_sha256": "542f000083b87f6b10597d4431e1e81d46ced19bf39953da3d1a76b3e3d40241"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Tutorial 1",
+      "video_id": "yqFbiDsvJ2c",
+      "url": "https://www.youtube.com/watch?v=yqFbiDsvJ2c",
+      "playlist_position": 14,
+      "duration_seconds": 1805,
+      "caption_status": "acquired",
+      "caption_cues": 1038,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "2f51f2bc7e1f820ef44f807401900a5e899aaf09d3a618cb3bd5429585effde6",
+      "last_cue_start_seconds": 1796.159,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 5,
+        "video_id": "yqFbiDsvJ2c",
+        "normalized_text_sha256": "101c07a1298a558c0bd9dd22d931704aac4091ac573b23851faf89976f2964cb",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "root",
+          "lecture": 5,
+          "seconds": [
+            636
+          ],
+          "scope": "Displayed rational numerator/partial-fraction setup."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 5,
+          "seconds": [
+            636
+          ],
+          "scope": "Rational numerator8s²−4s+12 and partial-fraction setup; not final inversion.",
+          "frame_sha256": "1b32b1549513d01243f5078fcfe7a4783e0bdf3366c3398c4844ad331c3b7b2d"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Laplace transformation of Fick's second law",
+      "video_id": "pnpuZTLnfbg",
+      "url": "https://www.youtube.com/watch?v=pnpuZTLnfbg",
+      "playlist_position": 17,
+      "duration_seconds": 1126,
+      "caption_status": "acquired",
+      "caption_cues": 666,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "c04fe5ce3075cb74bc1271e23946aabf8dd28d58dffaa1f853a3adcc9ee488b6",
+      "last_cue_start_seconds": 1116.6,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 6,
+        "video_id": "pnpuZTLnfbg",
+        "normalized_text_sha256": "b2866a29a1a5657a51f59c51278d5806f68f45d7fca31f1346109d5e93fee4f8",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 7,
+      "title": "Solutions to Diffusion equations - 1",
+      "video_id": "r84i9_02kx0",
+      "url": "https://www.youtube.com/watch?v=r84i9_02kx0",
+      "playlist_position": 15,
+      "duration_seconds": 1777,
+      "caption_status": "acquired",
+      "caption_cues": 1108,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "c0ecc43b97793c269d1ebe6bb4c51114691730396b0bea86310eecdcbb1337c1",
+      "last_cue_start_seconds": 1768.48,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 7,
+        "video_id": "r84i9_02kx0",
+        "normalized_text_sha256": "30becf37cb9759dac8b39b8dfffe7d32024bb3946746df27ee42195564ab6d26",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 8,
+      "title": "Solutions to Diffusion equations - 2",
+      "video_id": "yefh0CvSAU8",
+      "url": "https://www.youtube.com/watch?v=yefh0CvSAU8",
+      "playlist_position": 16,
+      "duration_seconds": 1323,
+      "caption_status": "acquired",
+      "caption_cues": 832,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "ce234dde9bf4b79079786a5f168eaaad807ed49d1cce07d40cbc84a4a1dd75c4",
+      "last_cue_start_seconds": 1313.279,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 8,
+        "video_id": "yefh0CvSAU8",
+        "normalized_text_sha256": "cab6eca6756cbd816388ec959165b9ab095d1d88b3380d0abc4f0d51b10d9332",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 9,
+      "title": "Solutions to Diffusion equations - 3",
+      "video_id": "KtM4Oz1whN4",
+      "url": "https://www.youtube.com/watch?v=KtM4Oz1whN4",
+      "playlist_position": 20,
+      "duration_seconds": 1726,
+      "caption_status": "acquired",
+      "caption_cues": 1058,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "97a229c131e507dbed27a4b0ff205dbcb8e5981dd108180ae67fe6baedc34b46",
+      "last_cue_start_seconds": 1717.36,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 9,
+        "video_id": "KtM4Oz1whN4",
+        "normalized_text_sha256": "d6f46568aabb1076f4161075c82ef66d4bef65dd47bdef69fac16ab73d71e6ca",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "root",
+          "lecture": 9,
+          "seconds": [
+            1323
+          ],
+          "scope": "First-mode mean and outward-loss expression."
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 9,
+          "seconds": [
+            1323
+          ],
+          "scope": "Finite-domain numerical tutorial settings and boundary interpretation.",
+          "frame_sha256": "7457fab1a555668cdf902f94128c483a9b121d2b1cfd0dded56aad6a6992b5b8"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 9,
+          "seconds": [
+            1323
+          ],
+          "scope": "First-mode mean concentration and combined outward loss expression.",
+          "frame_sha256": "7457fab1a555668cdf902f94128c483a9b121d2b1cfd0dded56aad6a6992b5b8"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Tutorial 2",
+      "video_id": "W550ilil_mc",
+      "url": "https://www.youtube.com/watch?v=W550ilil_mc",
+      "playlist_position": 19,
+      "duration_seconds": 1407,
+      "caption_status": "acquired",
+      "caption_cues": 175,
+      "caption_type": "publisher-delivered; authorship not established",
+      "caption_sha256": "d43d4582cca5f111de2248bde6c9c7718c80437a99fcb1e4a93e98c8abdf790b",
+      "last_cue_start_seconds": 1406.84,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 10,
+        "video_id": "W550ilil_mc",
+        "normalized_text_sha256": "2f041d1fd694ba9d9751e6ce25a18291f28643cc1403a03f487f0a0147f2d3e7",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 11,
+      "title": "Demo of Scilab: Plotting the diffusion profile",
+      "video_id": "-UCtJNHgLHY",
+      "url": "https://www.youtube.com/watch?v=-UCtJNHgLHY",
+      "playlist_position": 26,
+      "duration_seconds": 1674,
+      "caption_status": "acquired",
+      "caption_cues": 1072,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "31bd5db33671d5b3ffff0a508c11a7e029b33bfc2f527e0c98fd2f1995b7b348",
+      "last_cue_start_seconds": 1663.72,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 11,
+        "video_id": "-UCtJNHgLHY",
+        "normalized_text_sha256": "47907dfa0bc3e7fbc784ae20d755c9370c5dcb280549cbe81804847742cbd098",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "root",
+          "lecture": 11,
+          "seconds": [
+            925,
+            1320
+          ],
+          "scope": "Scilab Arrhenius/unit settings and absorbing-slab versus closed-homogenization slide mismatch."
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 11,
+          "seconds": [
+            925
+          ],
+          "scope": "Homogenization/degassing tutorial constants and source-model mismatch.",
+          "frame_sha256": "0f2217d50927ac6e5d43c59dcdee9516616890e350f6873fe33e81062923e1cd"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 11,
+          "seconds": [
+            925
+          ],
+          "scope": "ScilabQ200000J/mol, D0=1e-5m²/s,R8.314, Celsius and days conversions.",
+          "frame_sha256": "0f2217d50927ac6e5d43c59dcdee9516616890e350f6873fe33e81062923e1cd"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 11,
+          "seconds": [
+            1320
+          ],
+          "scope": "Homogenization/degassing tutorial constants and source-model mismatch.",
+          "frame_sha256": "3408dc94f381b407bafe6d6b0f3a148a146edbce790135842b93924515221686"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 11,
+          "seconds": [
+            1320
+          ],
+          "scope": "Homogenization-labeled slide displays absorbing odd sine series.",
+          "frame_sha256": "3408dc94f381b407bafe6d6b0f3a148a146edbce790135842b93924515221686"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Revisiting structure and defects in crystalline solids - 1",
+      "video_id": "2sKqNwVUoHo",
+      "url": "https://www.youtube.com/watch?v=2sKqNwVUoHo",
+      "playlist_position": 25,
+      "duration_seconds": 1534,
+      "caption_status": "acquired",
+      "caption_cues": 970,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "d050f0713f0563ea6543858352aa346e720a878cd6ec9f9311354b9baf1a29c4",
+      "last_cue_start_seconds": 1526.039,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 12,
+        "video_id": "2sKqNwVUoHo",
+        "normalized_text_sha256": "b94a0b4cc1feb832722cc325a51095127ce9ae9df1c370fc6bc9ae146ea895bf",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 13,
+      "title": "Revisiting structure and defects in crystalline solids - 2",
+      "video_id": "6yfsXo_h-Vk",
+      "url": "https://www.youtube.com/watch?v=6yfsXo_h-Vk",
+      "playlist_position": 24,
+      "duration_seconds": 1728,
+      "caption_status": "acquired",
+      "caption_cues": 1138,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "cf5b292686a342ddc10de97f7831ee23aedd22777b1a00f688e3aa155bfaf9bd",
+      "last_cue_start_seconds": 1717.72,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 13,
+        "video_id": "6yfsXo_h-Vk",
+        "normalized_text_sha256": "b3adaf8103fc7c48aea9865e33a1801fa71b6d67e3419f51c8e15e1afdfb9d7b",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 14,
+      "title": "Random walk and atomic jumps",
+      "video_id": "gRKMf94dhrg",
+      "url": "https://www.youtube.com/watch?v=gRKMf94dhrg",
+      "playlist_position": 23,
+      "duration_seconds": 2100,
+      "caption_status": "acquired",
+      "caption_cues": 1284,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "4d052bbe28612754192607ed866100cdb5dc40c37ebe504495a1fc2574fa2430",
+      "last_cue_start_seconds": 2089.04,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 14,
+        "video_id": "gRKMf94dhrg",
+        "normalized_text_sha256": "1e1dc94866f3a9f7bf4cae6cf1061506d5fef716ec06b3e65c7c62cc73ddd0be",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 15,
+      "title": "Tutorial 3",
+      "video_id": "pJuYh17uGyo",
+      "url": "https://www.youtube.com/watch?v=pJuYh17uGyo",
+      "playlist_position": 22,
+      "duration_seconds": 1714,
+      "caption_status": "acquired",
+      "caption_cues": 1074,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "b0562722b5025164ea440067871fd677eeaa0bf0b5e8b54cef509767118f8608",
+      "last_cue_start_seconds": 1703.559,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 15,
+        "video_id": "pJuYh17uGyo",
+        "normalized_text_sha256": "c2bcc4e80da58e6b43c77fe1e0c5798e9f14ae9d0980e90ee5e2700ac2f9d7a6",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 16,
+      "title": "Atomic mechanisms of diffusion",
+      "video_id": "NhiTJ-3kZug",
+      "url": "https://www.youtube.com/watch?v=NhiTJ-3kZug",
+      "playlist_position": 29,
+      "duration_seconds": 2340,
+      "caption_status": "acquired",
+      "caption_cues": 1562,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "eaaaed5258bee9c317422bf6ac6bc0fbfa26cee5e4b159b0fcd6e05a9e531656",
+      "last_cue_start_seconds": 2330.599,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 16,
+        "video_id": "NhiTJ-3kZug",
+        "normalized_text_sha256": "9e55cc5d9c07dcdc6166802fd4de2af054d108d49efa2a9fabcebc1b2bc9870f",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 17,
+      "title": "Correlation factors - 1",
+      "video_id": "kQLxeBuDZdk",
+      "url": "https://www.youtube.com/watch?v=kQLxeBuDZdk",
+      "playlist_position": 27,
+      "duration_seconds": 1208,
+      "caption_status": "acquired",
+      "caption_cues": 782,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "1946d9502a12737571d1070ea690a61cacecb777aa7763bad741b9c63cdfc3be",
+      "last_cue_start_seconds": 1200.12,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 17,
+        "video_id": "kQLxeBuDZdk",
+        "normalized_text_sha256": "2ba2f4f7d5b7bd8caaa255695b003957208b270c745d0dde44a2922b76dd3bb5",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 18,
+      "title": "Correlation factors - 2",
+      "video_id": "IixHk-LKWlg",
+      "url": "https://www.youtube.com/watch?v=IixHk-LKWlg",
+      "playlist_position": 28,
+      "duration_seconds": 1619,
+      "caption_status": "acquired",
+      "caption_cues": 966,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "aa05fd56a5f0b5d0f51f23d4204089afc31201e06a24c60fba416ed719c429b7",
+      "last_cue_start_seconds": 1618.96,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 18,
+        "video_id": "IixHk-LKWlg",
+        "normalized_text_sha256": "24643874fa5ef95a58a5252c10b20f9953ed03fd8aff19258d15ed05022881f1",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 18,
+          "seconds": [
+            1445
+          ],
+          "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+          "frame_sha256": "d90bba0c2fefbe6fbdfbdee6b6218a6eb71a0c8284ddb86bf8ca225e4202878e"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 18,
+          "seconds": [
+            1445,
+            1500,
+            1560
+          ],
+          "scope": "Five-frequency source derivation and coefficient inconsistency; selected source slides."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 18,
+          "seconds": [
+            1445
+          ],
+          "scope": "Five-frequency shell event counts1,4,7 and immediate reversal probability.",
+          "frame_sha256": "d90bba0c2fefbe6fbdfbdee6b6218a6eb71a0c8284ddb86bf8ca225e4202878e"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 18,
+          "seconds": [
+            1500
+          ],
+          "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+          "frame_sha256": "260abe902ff2849c053feddc90bd311571da1d4e89ee6238565453fc98ebf697"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 18,
+          "seconds": [
+            1500
+          ],
+          "scope": "Displayed approximate/exact FCC expressions have inconsistent rotation coefficients; selected primary formula checked separately.",
+          "frame_sha256": "260abe902ff2849c053feddc90bd311571da1d4e89ee6238565453fc98ebf697"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 18,
+          "seconds": [
+            1560
+          ],
+          "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+          "frame_sha256": "c8842ee694855fe7d8fb0391bcac1816fc4cedc0967e167b5ac1489eec75636d"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 18,
+          "seconds": [
+            1560
+          ],
+          "scope": "Restricted BCC expression and absence of within-first-shell nearest-neighbor rotation.",
+          "frame_sha256": "c8842ee694855fe7d8fb0391bcac1816fc4cedc0967e167b5ac1489eec75636d"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Temperature and pressure dependence of diffusion",
+      "video_id": "2IKZV2uxKjg",
+      "url": "https://www.youtube.com/watch?v=2IKZV2uxKjg",
+      "playlist_position": 35,
+      "duration_seconds": 1412,
+      "caption_status": "acquired",
+      "caption_cues": 880,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "c73c3ef11b30077d10e36eb1e2e410288044c059e189f3f9ff4d63aa247d9fef",
+      "last_cue_start_seconds": 1404.32,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 19,
+        "video_id": "2IKZV2uxKjg",
+        "normalized_text_sha256": "ed537bd7be08245283573d35f65f9219514c47d4c519aced5c7f995208cb600d",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 20,
+      "title": "Tutorial 4",
+      "video_id": "exnv-RTlqTY",
+      "url": "https://www.youtube.com/watch?v=exnv-RTlqTY",
+      "playlist_position": 34,
+      "duration_seconds": 1889,
+      "caption_status": "acquired",
+      "caption_cues": 1154,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "b6c77db183ea0b93125ecb492d9481937cea8ee83cbcc525d6c689c16b05605e",
+      "last_cue_start_seconds": 1880.84,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 20,
+        "video_id": "exnv-RTlqTY",
+        "normalized_text_sha256": "a10e29e7d8c6cec0c432766e37e50ea90475994a0b15c12d250c348be4318b0e",
+        "read_full": true,
+        "reading_context": "source_review_a",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 20,
+          "seconds": [
+            280
+          ],
+          "scope": "Divacancy schematic only; this frame does not verify the separate solute-binding input.",
+          "frame_sha256": "d26286d660b48066bd1e5499e50a57117f4888e2035816132b6926807f439574"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 20,
+          "seconds": [
+            280
+          ],
+          "scope": "Q2 generic divacancy-dominance statement/schematic; not subsequent solute-decimal question.",
+          "frame_sha256": "d26286d660b48066bd1e5499e50a57117f4888e2035816132b6926807f439574"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 20,
+          "seconds": [
+            1690
+          ],
+          "scope": "Q14 temperature/pressure datasets and pressure-fit convention; actual inputs and units checked.",
+          "frame_sha256": "8fa081970617a988d05a457f09ef5f6b05693501a7c7bfbea7a1d8975b6af492"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 20,
+          "seconds": [
+            1690,
+            1810
+          ],
+          "scope": "Tutorial Arrhenius temperature/diffusivity and pressure/diffusivity tables; units and exponent verification."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 20,
+          "seconds": [
+            1690
+          ],
+          "scope": "Q14 full temperature/pressure exercise table; Celsius and10^5Pa labels; fixed800K pressure experiment.",
+          "frame_sha256": "8fa081970617a988d05a457f09ef5f6b05693501a7c7bfbea7a1d8975b6af492"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 20,
+          "seconds": [
+            1810
+          ],
+          "scope": "Q14 temperature/pressure datasets and pressure-fit convention; actual inputs and units checked.",
+          "frame_sha256": "9b18ad9fd259a82b238284544b27e896a22f3a29d6600c685e54aa77c3b6d050"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 20,
+          "seconds": [
+            1810
+          ],
+          "scope": "Pressure regression slope and handwritten dimensional slip in logarithmic slope units.",
+          "frame_sha256": "9b18ad9fd259a82b238284544b27e896a22f3a29d6600c685e54aa77c3b6d050"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "title": "Revisiting G-X curves and phase diagrams",
+      "video_id": "YZ6QeWFWHYU",
+      "url": "https://www.youtube.com/watch?v=YZ6QeWFWHYU",
+      "playlist_position": 32,
+      "duration_seconds": 1882,
+      "caption_status": "acquired",
+      "caption_cues": 1296,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "c670d294362d71f13aea5ae486c0a2a31287ec9da8c29ddfeac361501237bcb9",
+      "last_cue_start_seconds": 1870.159,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 21,
+        "video_id": "YZ6QeWFWHYU",
+        "normalized_text_sha256": "a62c153fd7bae85712162aed30bc34778342094ca80ba8d16752b21b05342dc9",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 22,
+      "title": "Basics of Interdiffusion",
+      "video_id": "88RitgMkDfQ",
+      "url": "https://www.youtube.com/watch?v=88RitgMkDfQ",
+      "playlist_position": 21,
+      "duration_seconds": 1303,
+      "caption_status": "acquired",
+      "caption_cues": 880,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "7b67d246caf9cdd5bf4f207cf58f027964fda9945354ff654ae5715193aa60d6",
+      "last_cue_start_seconds": 1295.36,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 22,
+        "video_id": "88RitgMkDfQ",
+        "normalized_text_sha256": "9d9e1a77f4d7076f72b83a7f3ffb3a962e60eb2816edba92f3ff31d4b343ee69",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 23,
+      "title": "Phase Formation in Interdiffusion Zone",
+      "video_id": "_jAsVLjZSdA",
+      "url": "https://www.youtube.com/watch?v=_jAsVLjZSdA",
+      "playlist_position": 31,
+      "duration_seconds": 1350,
+      "caption_status": "acquired",
+      "caption_cues": 914,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "fdbd4b8cf2a39b66909b5bc0d306e263930d09c3a1540fc658485ba387a69285",
+      "last_cue_start_seconds": 1341.44,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 23,
+        "video_id": "_jAsVLjZSdA",
+        "normalized_text_sha256": "01686f011031f790f2bcdcbb71f9e1f16b12feb22f33cd137a47cc5cbaa71ef0",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 24,
+      "title": "Composition profiles in interdiffusion zone-1",
+      "video_id": "fYeBNIUGseA",
+      "url": "https://www.youtube.com/watch?v=fYeBNIUGseA",
+      "playlist_position": 30,
+      "duration_seconds": 1729,
+      "caption_status": "acquired",
+      "caption_cues": 1162,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "6164e0bc6ee5b05a9eb7dacb401934a3f0d19813535bcc6c7eccf29872e4dcda",
+      "last_cue_start_seconds": 1720.24,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 24,
+        "video_id": "fYeBNIUGseA",
+        "normalized_text_sha256": "ff3f162158a3ded49b7fe5bda44f3241e5cc6f92da9edb5363648dbdc6714968",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 25,
+      "title": "Tutorial 5",
+      "video_id": "RpPErQDiZgk",
+      "url": "https://www.youtube.com/watch?v=RpPErQDiZgk",
+      "playlist_position": 33,
+      "duration_seconds": 1588,
+      "caption_status": "acquired",
+      "caption_cues": 1064,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "c6d7e6eae63f0a66ce6ff987e6c01fdd9e01832cdc36afb8e9b2daf08970c472",
+      "last_cue_start_seconds": 1580.039,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 25,
+        "video_id": "RpPErQDiZgk",
+        "normalized_text_sha256": "dbb449750e5c886db3ef1eacfd8e3d25920b01479aa3cdd9aa19373827787100",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 26,
+      "title": "Composition profiles in interdiffusion - Zone-2",
+      "video_id": "bm51jlpsVNE",
+      "url": "https://www.youtube.com/watch?v=bm51jlpsVNE",
+      "playlist_position": 40,
+      "duration_seconds": 1760,
+      "caption_status": "acquired",
+      "caption_cues": 1160,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "67f7738179247e0a1221bf8778d76324e901ef8243e28be0864d232ff53d3540",
+      "last_cue_start_seconds": 1750.64,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 26,
+        "video_id": "bm51jlpsVNE",
+        "normalized_text_sha256": "dadb4b9e261b7f5acac0928d6bdf33bf2dfc562dfb90ff1943c97fc8470e7ff1",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 27,
+      "title": "Boltzmann-Matano Analysis",
+      "video_id": "Qxd2Bz6FFLw",
+      "url": "https://www.youtube.com/watch?v=Qxd2Bz6FFLw",
+      "playlist_position": 39,
+      "duration_seconds": 1508,
+      "caption_status": "acquired",
+      "caption_cues": 920,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "388f2dc846812a62a940808af65e9b90552e69222784987423863445135244cf",
+      "last_cue_start_seconds": 1497.08,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 27,
+        "video_id": "Qxd2Bz6FFLw",
+        "normalized_text_sha256": "bc70570cd37c0c5e9948477ecae11f43c1fc3f8ddce7adc8478a06dcd0fdcff7",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 28,
+      "title": "Kirkendall Effect",
+      "video_id": "P-pgaoFpB1U",
+      "url": "https://www.youtube.com/watch?v=P-pgaoFpB1U",
+      "playlist_position": 38,
+      "duration_seconds": 1312,
+      "caption_status": "acquired",
+      "caption_cues": 878,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "0c00630952a363d3ef2fa32a628062fb499b177c301b9844aeae96d5acf862ac",
+      "last_cue_start_seconds": 1303,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 28,
+        "video_id": "P-pgaoFpB1U",
+        "normalized_text_sha256": "8680a1206bade2639b7c59e11b73efdc4d57ce0d56c7438d121f07b021ba4562",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 29,
+      "title": "Intrinsic diffusion and Darkens analysis",
+      "video_id": "qULLZMkdpkY",
+      "url": "https://www.youtube.com/watch?v=qULLZMkdpkY",
+      "playlist_position": 37,
+      "duration_seconds": 1726,
+      "caption_status": "acquired",
+      "caption_cues": 1040,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "2d61ad91bf4c6fc08fd637bd2b7d7f514bed254ea9ebb003283db62c00d55ab3",
+      "last_cue_start_seconds": 1718.32,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 29,
+        "video_id": "qULLZMkdpkY",
+        "normalized_text_sha256": "59523959284959a9eef703cd5454b469b5c8efa0bc2e685bc32d638384896248",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 30,
+      "title": "Tutorial 6",
+      "video_id": "US9_unvfNyY",
+      "url": "https://www.youtube.com/watch?v=US9_unvfNyY",
+      "playlist_position": 36,
+      "duration_seconds": 1535,
+      "caption_status": "acquired",
+      "caption_cues": 926,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "28fb149bea8187139f1991eb19c8533b0204cfc712e6dbff74fb526ef4e5f3ac",
+      "last_cue_start_seconds": 1526.44,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 30,
+        "video_id": "US9_unvfNyY",
+        "normalized_text_sha256": "9830f6c2603de69438d4ca31b436ef8af662d885964db3c9686dda5b876e88f2",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 30,
+          "seconds": [
+            1129
+          ],
+          "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+          "frame_sha256": "1cf1a11e6666ad7756334780aaafd88064dfcd251734c928570ea22b3d9a2bb3"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 30,
+          "seconds": [
+            1129,
+            1376,
+            1439
+          ],
+          "scope": "Darken tutorial composition.38,gradient250/m,marker velocity4.5e-12m/s,interdiffusion3.25e-14m2/s and weighting."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 30,
+          "seconds": [
+            1129
+          ],
+          "scope": "Tutorial inputs show composition, marker velocity and profile-gradient inverse setup.",
+          "frame_sha256": "1cf1a11e6666ad7756334780aaafd88064dfcd251734c928570ea22b3d9a2bb3"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 30,
+          "seconds": [
+            1376
+          ],
+          "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+          "frame_sha256": "1f1534ea34b8730caed68715149ace1c4dd53490089be891336aef8a84b78d33"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 30,
+          "seconds": [
+            1376
+          ],
+          "scope": "Displayed interdiffusion coefficient and crossed intrinsic-weighting setup support tutorial inverse.",
+          "frame_sha256": "1f1534ea34b8730caed68715149ace1c4dd53490089be891336aef8a84b78d33"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 30,
+          "seconds": [
+            1439
+          ],
+          "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+          "frame_sha256": "3482720e82ad44a2badb865f49f0993c1f7fe468d8597ee4fcbb3b2bf7dca8b5"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 30,
+          "seconds": [
+            1439
+          ],
+          "scope": "Displayed intrinsic-coefficient difference/sum setup; source numerical inference checked.",
+          "frame_sha256": "3482720e82ad44a2badb865f49f0993c1f7fe468d8597ee4fcbb3b2bf7dca8b5"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "title": "Introduction to CALPHAD",
+      "video_id": "WGYUW5W16Q8",
+      "url": "https://www.youtube.com/watch?v=WGYUW5W16Q8",
+      "playlist_position": 45,
+      "duration_seconds": 1654,
+      "caption_status": "acquired",
+      "caption_cues": 1134,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "5929864e9e6208c76560f05452d7ec6a59d10d8e3e8af14ef95822ae76f87d26",
+      "last_cue_start_seconds": 1644.08,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 31,
+        "video_id": "WGYUW5W16Q8",
+        "normalized_text_sha256": "e3b84c371f877ea06d93dc352ae0f30fa7b3dbcffca9de3e500b22531de0b52c",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 32,
+      "title": "CALPHAD implementation software and diffusion module",
+      "video_id": "aQpSb6wZBCo",
+      "url": "https://www.youtube.com/watch?v=aQpSb6wZBCo",
+      "playlist_position": 43,
+      "duration_seconds": 1400,
+      "caption_status": "acquired",
+      "caption_cues": 934,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "80c6b3d8e46b0959c00a65e9051786a8d33e96b7c7ec2778a1ebafccf455f72d",
+      "last_cue_start_seconds": 1390.12,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 32,
+        "video_id": "aQpSb6wZBCo",
+        "normalized_text_sha256": "8479c93dd47345c980b2fd4a817599859c2f1fbf018e8862da911ae9a6b8f39d",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 33,
+      "title": "Thermodynamic and kinetic databases",
+      "video_id": "j2TXRVyp09k",
+      "url": "https://www.youtube.com/watch?v=j2TXRVyp09k",
+      "playlist_position": 44,
+      "duration_seconds": 1774,
+      "caption_status": "acquired",
+      "caption_cues": 1204,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "632bb483a919a4c3081dd3c62d773f3a17cdf5c13480bbc3ec31edb912412603",
+      "last_cue_start_seconds": 1765.08,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 33,
+        "video_id": "j2TXRVyp09k",
+        "normalized_text_sha256": "4324aa1eb65a96b2261158354aef36bac514b13bb179e6f6b09db81ac12874e2",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 34,
+      "title": "Moving boundary and multiphase diffusion simulations",
+      "video_id": "-tW2HyemTGw",
+      "url": "https://www.youtube.com/watch?v=-tW2HyemTGw",
+      "playlist_position": 41,
+      "duration_seconds": 1610,
+      "caption_status": "acquired",
+      "caption_cues": 1052,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "75ef966d4fb9bc84b36b02e99d51ff283e09d87c5b78d42a445745130c5ba927",
+      "last_cue_start_seconds": 1600.279,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 34,
+        "video_id": "-tW2HyemTGw",
+        "normalized_text_sha256": "12078050c947fd227cc7de966a3ad697a762dc3e70fd3a6bbe92cb6be6163720",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            203
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "c86328d175b97223581848a1d06aeeb02cb39cbd2e3bb3ff4f6d80543a1baf16"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 34,
+          "seconds": [
+            203,
+            450,
+            573,
+            636,
+            759,
+            885,
+            1009,
+            1196,
+            1258,
+            1319,
+            1380,
+            1503
+          ],
+          "scope": "Selected DICTRA tutorial setup, axes, output times and phase-fraction settings. Supports bounded screenshot description, not complete project acquisition or local execution."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            203
+          ],
+          "scope": "Slide states initially homogeneous Fe-0.15 mass percent C moving-boundary demonstration.",
+          "frame_sha256": "c86328d175b97223581848a1d06aeeb02cb39cbd2e3bb3ff4f6d80543a1baf16"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            450
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "6493d80ead73dd128521cb8ed84948e9afbda832850944300b12278b9a9841d0"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            450
+          ],
+          "scope": "Ferrite BCC_A2 seed width0.001micrometers with10linear points.",
+          "frame_sha256": "6493d80ead73dd128521cb8ed84948e9afbda832850944300b12278b9a9841d0"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            573
+          ],
+          "scope": "1050K/0.15masspercentC equilibrium context; BCC carbon about1e-4massfraction=0.01masspercent.",
+          "frame_sha256": "4dd2a2889e23edd822549af3a018db91f1a3aedcf760e137a7fcb7a45635bd83"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            636
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "326aa670c9969af37817c2398bd65037020d128434c6b340473adf32ad62274c"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            636
+          ],
+          "scope": "Same equilibrium composition slide confirms phase-specific BCC carbon context.",
+          "frame_sha256": "326aa670c9969af37817c2398bd65037020d128434c6b340473adf32ad62274c"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            759
+          ],
+          "scope": "Repeated equilibrium context slide; does not itself display the interface trajectory.",
+          "frame_sha256": "a39df3eb02bb883d68478b80226604b655cc58a1dc777d53a41b1c609b0e7736"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            885
+          ],
+          "scope": "Source interface trajectory plotted over0-30hours; no independent late-time equilibrium proof.",
+          "frame_sha256": "1f3bfc1299e84c22b890037a3a963af9c281940cb74150016b764034f7d85ed4"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            1009
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "6f194e797bab1daa8ed558ed7fb3fb44ecaf364d0f4acb7775d1d93e674ab8bc"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1009
+          ],
+          "scope": "Carbon profile output settings0,1e-4,300hours and0-2000micrometer distance range.",
+          "frame_sha256": "6f194e797bab1daa8ed558ed7fb3fb44ecaf364d0f4acb7775d1d93e674ab8bc"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            1196
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "1695be9e027a2369b640ebfcba645614a164c95b43896cca8008333f79dd47ac"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1196
+          ],
+          "scope": "Planar0.003mregion;100geometric points ratio1.02; FCC_A1,M3C2,M7C3 labels.",
+          "frame_sha256": "1695be9e027a2369b640ebfcba645614a164c95b43896cca8008333f79dd47ac"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            1258
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "c3019fd8a43a3879447c3d40468c5932ab3834005952fa8df6bd3db23f183ff9"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1258
+          ],
+          "scope": "General upper Hashin-Shtrikman bound selected in homogenization options.",
+          "frame_sha256": "c3019fd8a43a3879447c3d40468c5932ab3834005952fa8df6bd3db23f183ff9"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1319
+          ],
+          "scope": "Generic boundary-condition screen shows closed-system selections; not later activity value.",
+          "frame_sha256": "6aed4d7931d44c04fd470cca2c75ab55d6704434229d32acd59deb5a4969269c"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            1380
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "de85d34bd01e733ccc09440563c649afef9e1d7cf8ac31e3cab52c4bb45bb2da"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1380
+          ],
+          "scope": "Carbon component reference explicitly set to GRAPHITE.",
+          "frame_sha256": "de85d34bd01e733ccc09440563c649afef9e1d7cf8ac31e3cab52c4bb45bb2da"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 34,
+          "seconds": [
+            1503
+          ],
+          "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+          "frame_sha256": "8e1224098e1ba6b3be9040aaf46e2f5af8ef8a3deb624e8284b822c7199123db"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 34,
+          "seconds": [
+            1503
+          ],
+          "scope": "Source phase fraction plot places M3C2near surface and M7C3farther in.",
+          "frame_sha256": "8e1224098e1ba6b3be9040aaf46e2f5af8ef8a3deb624e8284b822c7199123db"
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "title": "Tutorial 7",
+      "video_id": "AJRE-lFZpXc",
+      "url": "https://www.youtube.com/watch?v=AJRE-lFZpXc",
+      "playlist_position": 42,
+      "duration_seconds": 1335,
+      "caption_status": "acquired",
+      "caption_cues": 886,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "e1e81439facf9536c9b441099a7636d497d62662f4a99a683a315a4158e46157",
+      "last_cue_start_seconds": 1326.32,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 35,
+        "video_id": "AJRE-lFZpXc",
+        "normalized_text_sha256": "7f84d758b58aba891b295bedf933c70c5e77d81101a222cc7c754737b441891b",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 36,
+      "title": "Techniques to measure diffusion coefficients, Radiotracer diffusion,Deviations from Gaussian profile",
+      "video_id": "I47t1ktrINY",
+      "url": "https://www.youtube.com/watch?v=I47t1ktrINY",
+      "playlist_position": 50,
+      "duration_seconds": 2481,
+      "caption_status": "acquired",
+      "caption_cues": 1728,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "69e5eba4c6c0559e7dbf3fc1414c7fd05d1002c32c2263dd975990bb1a6c7433",
+      "last_cue_start_seconds": 2473.2,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 36,
+        "video_id": "I47t1ktrINY",
+        "normalized_text_sha256": "24e093574a691b57d3cbe9bc6b6205c75530e9218f8b2b67e124695009eaee47",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 37,
+      "title": "SIMS AND EPMA",
+      "video_id": "YIx0sj4ctLw",
+      "url": "https://www.youtube.com/watch?v=YIx0sj4ctLw",
+      "playlist_position": 46,
+      "duration_seconds": 2221,
+      "caption_status": "acquired",
+      "caption_cues": 1496,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "62f579643acb50c496f9b3c8fcfa023bb71a754bb60b911840f84c4ff18a3678",
+      "last_cue_start_seconds": 2209.92,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 37,
+        "video_id": "YIx0sj4ctLw",
+        "normalized_text_sha256": "7f269dd7be6d03651fa4bbfa117fd2280cfae15ef9bfb7d8c375c876d611eb1e",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 38,
+      "title": "Mechanical spectroscopy & Electrical Methods",
+      "video_id": "7EUhh_fEUy8",
+      "url": "https://www.youtube.com/watch?v=7EUhh_fEUy8",
+      "playlist_position": 49,
+      "duration_seconds": 1945,
+      "caption_status": "acquired",
+      "caption_cues": 1258,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "dc7f9115c211aa15622866bad4d4cc42c9787f97d2b0ab8865ae0dfedcdccc4d",
+      "last_cue_start_seconds": 1936.32,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 38,
+        "video_id": "7EUhh_fEUy8",
+        "normalized_text_sha256": "f760c0701a580f15a7d4994ceb18428fcd5e20177159b058c46dca474a22d7bb",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 39,
+      "title": "Nuclear methods - 1",
+      "video_id": "1N7zVBUdJpo",
+      "url": "https://www.youtube.com/watch?v=1N7zVBUdJpo",
+      "playlist_position": 47,
+      "duration_seconds": 1904,
+      "caption_status": "acquired",
+      "caption_cues": 1188,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "5ee4dc099624e2d23f191969c87e6d6c1a6e007bc47fd8ece7f3020aad240da6",
+      "last_cue_start_seconds": 1894.519,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 39,
+        "video_id": "1N7zVBUdJpo",
+        "normalized_text_sha256": "cf00124cc5a3752d29f7f8d2dec5cd230ec4bf6af46a27ba45807132f261664b",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 40,
+      "title": "Tutorial 8",
+      "video_id": "BYsrUKCe578",
+      "url": "https://www.youtube.com/watch?v=BYsrUKCe578",
+      "playlist_position": 48,
+      "duration_seconds": 1417,
+      "caption_status": "acquired",
+      "caption_cues": 938,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "ba4a0cc02fb98060fb1d806ef91b2b5c4733a8fab3c32a0869b8761b5bab3cbc",
+      "last_cue_start_seconds": 1409.159,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 40,
+        "video_id": "BYsrUKCe578",
+        "normalized_text_sha256": "7cb6618f0cab508c7b18e1634fefd2d0ad6aa6a92e1ee4351970134c55c03f71",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1007
+          ],
+          "scope": "Relaxation tutorial parameters and source numerical conventions.",
+          "frame_sha256": "8387b8ae367f05b95016f5dc639a408cf123eca415358faabea633468199999a"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 40,
+          "seconds": [
+            1007,
+            1068,
+            1128,
+            1189
+          ],
+          "scope": "Snoek/Gorsky numerical inputs and source model; sample-ratio orientation checked."
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1068
+          ],
+          "scope": "Relaxation tutorial parameters and source numerical conventions.",
+          "frame_sha256": "bb69d7bbfbdb8f2db59ffaf522d9988e69600ef9484f2ab6a76ae3a722be0fcb"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1128
+          ],
+          "scope": "Relaxation tutorial parameters and source numerical conventions.",
+          "frame_sha256": "d889aec742ceae4424b75a55eafd4b0092cc7f0659ba29d28644dc90a788b7c9"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1189
+          ],
+          "scope": "Relaxation tutorial parameters and source numerical conventions.",
+          "frame_sha256": "6e1127b66abf57a471fb3ed832e50b47eaa76c34a026b7370bdc459c7d26fccb"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1249
+          ],
+          "scope": "Tracer tutorial table of nine values and fit presentation.",
+          "frame_sha256": "8009e7bb0fbf5a46c9f783852ade613b640d588bc2c0d331e1d14cd99c1512be"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 40,
+          "seconds": [
+            1249,
+            1311
+          ],
+          "scope": "Nine-point radiotracer depth/activity table and displayed fit; log base, anneal time and slope checked."
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 40,
+          "seconds": [
+            1311
+          ],
+          "scope": "Tracer tutorial table of nine values and fit presentation.",
+          "frame_sha256": "872bd6eba56d516a5bebd31c408f725d13417ac45a907025dc8aea6a7d49a7c1"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "title": "Nuclear Methods - 2",
+      "video_id": "DNWW6Uvasqc",
+      "url": "https://www.youtube.com/watch?v=DNWW6Uvasqc",
+      "playlist_position": 51,
+      "duration_seconds": 2315,
+      "caption_status": "acquired",
+      "caption_cues": 1470,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "dd8c55c8bcdf241476d503ed65030aed66411489bb1cb0a942875b0a4478c6c3",
+      "last_cue_start_seconds": 2306.28,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 41,
+        "video_id": "DNWW6Uvasqc",
+        "normalized_text_sha256": "46644fe2f7f2b7ebfeb2407b33c5e5c761f434452e2da63eb71cac3efd33cbfc",
+        "read_full": true,
+        "reading_context": "source_review_b",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 42,
+      "title": "Grain boundary structure and fisher model",
+      "video_id": "apxDdDMi8_o",
+      "url": "https://www.youtube.com/watch?v=apxDdDMi8_o",
+      "playlist_position": 55,
+      "duration_seconds": 1822,
+      "caption_status": "acquired",
+      "caption_cues": 1186,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "63cacda46dba1b7f73f9260b0274f32ad38f78d0e3c3e4a9a8f4ba9e30f3fdbd",
+      "last_cue_start_seconds": 1813.519,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 42,
+        "video_id": "apxDdDMi8_o",
+        "normalized_text_sha256": "87990fad7ef65d139ecedd397893698e340e2163a9d089c799a1b0898ef769df",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 43,
+      "title": "Kinetic regime of grain boundary diffusion",
+      "video_id": "aJ4abZ9uf3A",
+      "url": "https://www.youtube.com/watch?v=aJ4abZ9uf3A",
+      "playlist_position": 54,
+      "duration_seconds": 1608,
+      "caption_status": "acquired",
+      "caption_cues": 1036,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "95874e4d65c9d58067daa307538a03491efe680d7136ce617c6212892f3384e2",
+      "last_cue_start_seconds": 1598.72,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 43,
+        "video_id": "aJ4abZ9uf3A",
+        "normalized_text_sha256": "7d924133750183d9b5c4e0fe27c4a9baefd68aae3df0fe42525c51592fb2b7a6",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_c",
+          "lecture": 43,
+          "seconds": [
+            1014
+          ],
+          "scope": "B-regime introductory bullet only; no product formula yet.",
+          "frame_sha256": "9805d561e21d7fdabe010c1a3cc08dc9b62645a46848268239b17fb678583a84"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 43,
+          "seconds": [
+            1075
+          ],
+          "scope": "Instantaneous-source1.308 product formula displayed; slope appears to omit logarithm, resolved by primary Eq3.",
+          "frame_sha256": "541a9886b129b87d05b96c4ae8ecec4405c632a022ac06739591bf290c56c035"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 43,
+          "seconds": [
+            1323
+          ],
+          "scope": "Segregation-factor section title only; no numerical relation verified.",
+          "frame_sha256": "f0266ae1484ee81a371378d1b028f6fdb869fa5ed3d58a93d9b268075802338c"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "title": "Disloaction pipe diffusion",
+      "video_id": "tV6WhbhwrdU",
+      "url": "https://www.youtube.com/watch?v=tV6WhbhwrdU",
+      "playlist_position": 53,
+      "duration_seconds": 1591,
+      "caption_status": "acquired",
+      "caption_cues": 201,
+      "caption_type": "publisher-delivered; authorship not established",
+      "caption_sha256": "386bc521c2b38188a965f73325e5f253b548fcb1f0af6b08b317f23663034698",
+      "last_cue_start_seconds": 1588.24,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 44,
+        "video_id": "tV6WhbhwrdU",
+        "normalized_text_sha256": "f596bac4908872995165f73d1d4e141cfc9f55b62b72ac7f96cf9027a83cd9c5",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 45,
+      "title": "Tutorial 9",
+      "video_id": "b6qmtMTL-hc",
+      "url": "https://www.youtube.com/watch?v=b6qmtMTL-hc",
+      "playlist_position": 52,
+      "duration_seconds": 1431,
+      "caption_status": "acquired",
+      "caption_cues": 902,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "fc200965392f1d6d304c7b1f0d25e0060a621dfadb21c02afbb473fdd5ecaeb8",
+      "last_cue_start_seconds": 1420.919,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 45,
+        "video_id": "b6qmtMTL-hc",
+        "normalized_text_sha256": "87e6d28e4209c0c16862f4e4a2d16b2ba1aebde38aa97e6a3ca347e736842797",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 46,
+      "title": "Diffusion in Intermetallics",
+      "video_id": "i53aFp4ZLpc",
+      "url": "https://www.youtube.com/watch?v=i53aFp4ZLpc",
+      "playlist_position": 57,
+      "duration_seconds": 1812,
+      "caption_status": "acquired",
+      "caption_cues": 1226,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "9abe54a3a09482674212b123b9589fa5c8a57deb2759437cc83b296289d9a06d",
+      "last_cue_start_seconds": 1801.799,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 46,
+        "video_id": "i53aFp4ZLpc",
+        "normalized_text_sha256": "231272d1245656aebaebe0f6e6542e9820f763281200d657ae3a68c222c1b7a1",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_c",
+          "lecture": 46,
+          "seconds": [
+            702
+          ],
+          "scope": "Six-jump-cycle title and net110 displacement; sequence not yet visible.",
+          "frame_sha256": "963e8aa383335ffe8bb9d284bcf2f7797cf172671fc4094818df151bfc23875b"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 46,
+          "seconds": [
+            948,
+            1695
+          ],
+          "scope": "Ordered-alloy six-jump schematic and nearest-neighbor tutorial; source minority-neighbor error checked against coordinates."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 46,
+          "seconds": [
+            948
+          ],
+          "scope": "Complete displayed six-jump configuration sequence with restored order and110 displacement.",
+          "frame_sha256": "f9719764d6f7b9ffea263a4d7f6b49a87073479c4da6fae624340dca3ac9744d"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 46,
+          "seconds": [
+            1262
+          ],
+          "scope": "Six-jump model-specific diffusivity-ratio discussion withq approximately2.",
+          "frame_sha256": "bfedb2f9004845a16455b239a4656b785307bf2ff5a81a7b784aae3710dcb4f3"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 46,
+          "seconds": [
+            1447
+          ],
+          "scope": "Partial triple-defect translation sequence; no complete trajectory inferred.",
+          "frame_sha256": "e2956cd0b67271f73d1efc13899bb64c68da24e218bc7b86f349828034a7499f"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 46,
+          "seconds": [
+            1695
+          ],
+          "scope": "Actual L1_2 slide states erroneous minority coordination4; geometric correction to12 independently checked.",
+          "frame_sha256": "15c65ce370749add4552b65a5c929e238146c52e38b942158bec9762b30821b0"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 46,
+          "seconds": [
+            1695
+          ],
+          "scope": "Actual L12 slide incorrectly gives minority atom only4 majority neighbors; ideal geometry requires12.",
+          "frame_sha256": "15c65ce370749add4552b65a5c929e238146c52e38b942158bec9762b30821b0"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "title": "Diffusion in nanocrystalline materials",
+      "video_id": "tdQqWFbJEiw",
+      "url": "https://www.youtube.com/watch?v=tdQqWFbJEiw",
+      "playlist_position": 60,
+      "duration_seconds": 1482,
+      "caption_status": "acquired",
+      "caption_cues": 1000,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "09e6f11c0ed974b65b3949e3a816e364f40906e15a0ce5860aef51186cd2ffac",
+      "last_cue_start_seconds": 1474,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 47,
+        "video_id": "tdQqWFbJEiw",
+        "normalized_text_sha256": "d85cd6031dbca2766bc5d07c96c7f29824a409ae08a0332c6beb08236f4286cd",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_c",
+          "lecture": 47,
+          "seconds": [
+            1374
+          ],
+          "scope": "Effective-diffusivities title only; Maxwell typography not verified.",
+          "frame_sha256": "e0d7fa7c218da6acdacd79109349393f8f6233739f2bd0e725852e599eb0fd51"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "title": "Diffusion in quasicrystalline alloys",
+      "video_id": "dzTGoCkh4bE",
+      "url": "https://www.youtube.com/watch?v=dzTGoCkh4bE",
+      "playlist_position": 59,
+      "duration_seconds": 1204,
+      "caption_status": "acquired",
+      "caption_cues": 822,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "1f92e8239b0e8dc2714a36c8744da4ad0f9a1f0e4123b7503d8114866ad9d271",
+      "last_cue_start_seconds": 1194.96,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 48,
+        "video_id": "dzTGoCkh4bE",
+        "normalized_text_sha256": "74b72dfdf13471e4f2f5966710b54504bc843f25f1c75f28cdf28a9664ac3fb9",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 49,
+      "title": "Diffusion in metallic alloys-1",
+      "video_id": "ikXjZ1dt1TA",
+      "url": "https://www.youtube.com/watch?v=ikXjZ1dt1TA",
+      "playlist_position": 58,
+      "duration_seconds": 1772,
+      "caption_status": "acquired",
+      "caption_cues": 1174,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "82d3d65ace3a338939e41704b8e3b3256003df94f1c01d8036d557f5749ec95f",
+      "last_cue_start_seconds": 1762.399,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 49,
+        "video_id": "ikXjZ1dt1TA",
+        "normalized_text_sha256": "d092b4b454eeeaa7d7fc187db93f4a044aa73085a5fd5acf7f01ac913c1e2d35",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 50,
+      "title": "Tutorial 10",
+      "video_id": "k_JrPzdmwFg",
+      "url": "https://www.youtube.com/watch?v=k_JrPzdmwFg",
+      "playlist_position": 56,
+      "duration_seconds": 1512,
+      "caption_status": "acquired",
+      "caption_cues": 1018,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "12cbfcef3d62091365d8f0a5ff6ec42db1dca2336a9cb06f245d39ecc4b0ff69",
+      "last_cue_start_seconds": 1504.279,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 50,
+        "video_id": "k_JrPzdmwFg",
+        "normalized_text_sha256": "54a87dbfd82e0e4e1635b0435765c6d810081cf4642b3922e43ce3e38daa05be",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 51,
+      "title": "Diffusion in metallic alloys-2",
+      "video_id": "MxbiaYVFzWU",
+      "url": "https://www.youtube.com/watch?v=MxbiaYVFzWU",
+      "playlist_position": 10,
+      "duration_seconds": 1673,
+      "caption_status": "acquired",
+      "caption_cues": 1146,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "253006592ecc35d1fd2aef10e4a67e8ef7e2595dcc360edc49a9cdf3e4580d38",
+      "last_cue_start_seconds": 1663.96,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 51,
+        "video_id": "MxbiaYVFzWU",
+        "normalized_text_sha256": "8cdf7dd5514ab284b437e15bb07a5e88c9d3dcf90b9f0d9e48532578982bfd0d",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 52,
+      "title": "Diffusion in high entropy alloys",
+      "video_id": "e5BypfrC9I4",
+      "url": "https://www.youtube.com/watch?v=e5BypfrC9I4",
+      "playlist_position": 9,
+      "duration_seconds": 1581,
+      "caption_status": "acquired",
+      "caption_cues": 1048,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "9dc824cafc7b3ed43a4e243a4e9c9b526e1d96fd777bc1034a5b5954381588d9",
+      "last_cue_start_seconds": 1572.72,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 52,
+        "video_id": "e5BypfrC9I4",
+        "normalized_text_sha256": "d14c0a2936ac8a579c35be9317cbf8ad0504ac7af37466e0bbf202d1812a92e9",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 53,
+      "title": "Diffusion in semiconductors-1",
+      "video_id": "d-yfzwLQgNk",
+      "url": "https://www.youtube.com/watch?v=d-yfzwLQgNk",
+      "playlist_position": 8,
+      "duration_seconds": 1656,
+      "caption_status": "acquired",
+      "caption_cues": 1138,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "15d401032aa377d3b1f0e3214c5009a86ec6d65005fe9d345e913d1d49906899",
+      "last_cue_start_seconds": 1647.919,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 53,
+        "video_id": "d-yfzwLQgNk",
+        "normalized_text_sha256": "4cbc3053e49b903a4ef2a8a2e039de2ad32e93fd817bcbe557d86b0423cea808",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 54,
+      "title": "Diffusion in semiconductors-2",
+      "video_id": "_eiGdO1P6wk",
+      "url": "https://www.youtube.com/watch?v=_eiGdO1P6wk",
+      "playlist_position": 7,
+      "duration_seconds": 1684,
+      "caption_status": "acquired",
+      "caption_cues": 1100,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "2a11d128562f35dae5c826c220907915d43ed250f09b6671cbd7ad2614ae8583",
+      "last_cue_start_seconds": 1675.039,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 54,
+        "video_id": "_eiGdO1P6wk",
+        "normalized_text_sha256": "ad2af7c91d74f09bd0d44681032d065afa44b967100f23917cb331cb5c8494c9",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 55,
+      "title": "Tutorial 11",
+      "video_id": "STf7sO9v70E",
+      "url": "https://www.youtube.com/watch?v=STf7sO9v70E",
+      "playlist_position": 6,
+      "duration_seconds": 1491,
+      "caption_status": "acquired",
+      "caption_cues": 994,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "67fb3c7e1b347f9937585283d8f2db6449d57a0cf7ced85027fbd42eae05171e",
+      "last_cue_start_seconds": 1481.08,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 55,
+        "video_id": "STf7sO9v70E",
+        "normalized_text_sha256": "f8e234f35b6b528731805e095e5f531dc5611814cb8bd02d5426543e36bf41c8",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 55,
+          "seconds": [
+            1248
+          ],
+          "scope": "Six oxygen diffusivity/temperature entries verified; extremely small solubility values are indeed labeledm^-3 and remain unvalidated as physical densities.",
+          "frame_sha256": "b976e69d290dbc39862cea0a279718988cf78532404b068073f92ee8408c5332"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 55,
+          "seconds": [
+            1248,
+            1370
+          ],
+          "scope": "Oxygen diffusivity/solubility tutorial tables; retained correct diffusivity values while rejecting physically unsupported negative solubility exponent interpretation."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 55,
+          "seconds": [
+            1248
+          ],
+          "scope": "Oxygen tutorial D table transcribed; solubility negative exponents withm^-3 label remain physically unvalidated.",
+          "frame_sha256": "b976e69d290dbc39862cea0a279718988cf78532404b068073f92ee8408c5332"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 55,
+          "seconds": [
+            1370
+          ],
+          "scope": "Oxygen solubility fitted result retains problematic printed number-density convention; not adopted as validated empirical data.",
+          "frame_sha256": "3e34c80367620fa5e21ca115427ce4b5e321cd40ac1d18a2a9a359e6a734e3a7"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "title": "Diffusion in glasses",
+      "video_id": "tOIIGx-Nals",
+      "url": "https://www.youtube.com/watch?v=tOIIGx-Nals",
+      "playlist_position": 5,
+      "duration_seconds": 1516,
+      "caption_status": "acquired",
+      "caption_cues": 1092,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "40c9b7fddc4bc679aa5ae9ababd2004589009212e94d29e4ef38f1aa28b185d8",
+      "last_cue_start_seconds": 1505.279,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 56,
+        "video_id": "tOIIGx-Nals",
+        "normalized_text_sha256": "6bc6254a42410364dc7b9dc45b81d4237e5854a88e31eeeb8ccac5dc5e67b18a",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 57,
+      "title": "Diffusion in ionic solids-1",
+      "video_id": "0tpJUEqEVkI",
+      "url": "https://www.youtube.com/watch?v=0tpJUEqEVkI",
+      "playlist_position": 4,
+      "duration_seconds": 1532,
+      "caption_status": "acquired",
+      "caption_cues": 1026,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "9fb9502f70a7360e9e57fd18480c55b1d49dc4905c7e5dcfa4128d94d403a367",
+      "last_cue_start_seconds": 1524.679,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 57,
+        "video_id": "0tpJUEqEVkI",
+        "normalized_text_sha256": "bcd7915415e2dd5a211a258b6f8f18df48337d6524b19bc3915d21487fde27e8",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    },
+    {
+      "number": 58,
+      "title": "Diffusion in ionic solids-2",
+      "video_id": "eJcS-JG3V0I",
+      "url": "https://www.youtube.com/watch?v=eJcS-JG3V0I",
+      "playlist_position": 3,
+      "duration_seconds": 1666,
+      "caption_status": "acquired",
+      "caption_cues": 1128,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "15988d7bbd2fe6c7f5a71e3ac08af28cf2e01c1e56bf0b949632ce9c6ffc7794",
+      "last_cue_start_seconds": 1658.24,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 58,
+        "video_id": "eJcS-JG3V0I",
+        "normalized_text_sha256": "a12521925f91f9c395e7803ac1386819690879b1ea80d1f10f49c4fe7fdf51a3",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_c",
+          "lecture": 58,
+          "seconds": [
+            1191
+          ],
+          "scope": "Impurity-vacancy frequency expression and tight-binding correlation limit displayed.",
+          "frame_sha256": "56a7ef9a6e9cba544bfc5114d433e67c7abf4bf0390919c5c14dfde66515ec37"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 58,
+          "seconds": [
+            1313
+          ],
+          "scope": "Association p/(1+p) equation and inconsistent p=1 saturation statement verified.",
+          "frame_sha256": "b0c5c9a2c417ab051ff93adf80a0efec1e96593e5d5be0bc2d9443bf7e2e2eb2"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 58,
+          "seconds": [
+            1313,
+            1373
+          ],
+          "scope": "Association fraction versus odds and p/(1+p) formula with inconsistent p=1 limit."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 58,
+          "seconds": [
+            1313
+          ],
+          "scope": "Association fraction terminology paired withp/(1+p) formula.",
+          "frame_sha256": "b0c5c9a2c417ab051ff93adf80a0efec1e96593e5d5be0bc2d9443bf7e2e2eb2"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 58,
+          "seconds": [
+            1373
+          ],
+          "scope": "Association p/(1+p) equation and inconsistent p=1 saturation statement verified.",
+          "frame_sha256": "cdd3134e175f9f0def6f39b9a460d63159d8099c63ea3d9d1f920d62d8b1bd18"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 58,
+          "seconds": [
+            1373
+          ],
+          "scope": "Inconsistentp=1 saturation limit on actual source slide.",
+          "frame_sha256": "cdd3134e175f9f0def6f39b9a460d63159d8099c63ea3d9d1f920d62d8b1bd18"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "title": "Tutorial 12",
+      "video_id": "w5GwmjuJzZI",
+      "url": "https://www.youtube.com/watch?v=w5GwmjuJzZI",
+      "playlist_position": 2,
+      "duration_seconds": 1424,
+      "caption_status": "acquired",
+      "caption_cues": 1002,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "2510e79c33d59f4ee707beb771f914b3f76b0beab22f6a99afe0089c7e4316b3",
+      "last_cue_start_seconds": 1414.919,
+      "transcript_read": true,
+      "visual_review": "selected frames inspected",
+      "reading_record": {
+        "lecture": 59,
+        "video_id": "w5GwmjuJzZI",
+        "normalized_text_sha256": "fd6217f3499dc4e9c3065963fa4f9068517446d2eb70fb919568105dd65a4459",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": [
+        {
+          "reviewer": "source_review_a",
+          "lecture": 59,
+          "seconds": [
+            510
+          ],
+          "scope": "Glass polynomial input and handwritten2.67e-13m²/h answer verified.",
+          "frame_sha256": "ac738eddb716e726148d7987062d9c936ff9e7dee1b482e3b53087bb3d3bda45"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 59,
+          "seconds": [
+            510,
+            573
+          ],
+          "scope": "Metallic-glass time-dependent diffusivity polynomial,48h input and handwritten average266.4e-15m2/h."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 59,
+          "seconds": [
+            510
+          ],
+          "scope": "Glass polynomial(300−t/3−t²/30)×10^-15m²/h and48h input verified.",
+          "frame_sha256": "ac738eddb716e726148d7987062d9c936ff9e7dee1b482e3b53087bb3d3bda45"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 59,
+          "seconds": [
+            573
+          ],
+          "scope": "Glass polynomial input and handwritten2.67e-13m²/h answer verified.",
+          "frame_sha256": "5c722ad61ff85ab7a04f85b123b6fdf325e62fde563c7d7234486c1c8a0e64ff"
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 59,
+          "seconds": [
+            573
+          ],
+          "scope": "Handwritten mean266.4×10^-15=2.67×10^-13m²/h is correct; caption exponent corruption resolved.",
+          "frame_sha256": "5c722ad61ff85ab7a04f85b123b6fdf325e62fde563c7d7234486c1c8a0e64ff"
+        },
+        {
+          "reviewer": "source_review_a",
+          "lecture": 59,
+          "seconds": [
+            1004
+          ],
+          "scope": "Q12 interstitialcy assertion only; does not show the separate vacancy-charge question.",
+          "frame_sha256": "acf8b16af3de7daa55f2f9c0c05ec0c888d336386439e0aea1f4951cc2427b42"
+        },
+        {
+          "reviewer": "source_review_b",
+          "lecture": 59,
+          "seconds": [
+            1004
+          ],
+          "scope": "Interstitialcy assertion/reason tutorial slide. This frame does not show the subsequent effective-vacancy-charge question."
+        },
+        {
+          "reviewer": "source_review_c",
+          "lecture": 59,
+          "seconds": [
+            1004
+          ],
+          "scope": "Q12 Ag interstitialcy assertion; notQ13 vacancy-charge question.",
+          "frame_sha256": "acf8b16af3de7daa55f2f9c0c05ec0c888d336386439e0aea1f4951cc2427b42"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "title": "Revision of important concepts",
+      "video_id": "VNDyig0Y--c",
+      "url": "https://www.youtube.com/watch?v=VNDyig0Y--c",
+      "playlist_position": 1,
+      "duration_seconds": 2301,
+      "caption_status": "acquired",
+      "caption_cues": 1618,
+      "caption_type": "automatic-or-unavailable",
+      "caption_sha256": "0b96b20fe7e8d5bc8b3dcd4086f531655c1750745819d158c51fd6f2e6fecaab",
+      "last_cue_start_seconds": 2292.56,
+      "transcript_read": true,
+      "visual_review": "not visually reviewed",
+      "reading_record": {
+        "lecture": 60,
+        "video_id": "VNDyig0Y--c",
+        "normalized_text_sha256": "f699c924fc6fda392aa7439189315fa2e4bffdf20e79559f270acdff827b23c5",
+        "read_full": true,
+        "reading_context": "source_review_c",
+        "method": "complete sequential reading of exact-overlap-normalized captions"
+      },
+      "selected_visual_checks": []
+    }
+  ],
+  "supplementary_entries": [
+    {
+      "video_id": "9GLFujPX2w4",
+      "playlist_position": 61,
+      "title": "Diffusion in Solids | Intro video",
+      "url": "https://www.youtube.com/watch?v=9GLFujPX2w4",
+      "caption_read": true,
+      "reading_context": "root",
+      "role": "course introduction and module map; supplementary, read in full"
+    }
+  ],
+  "limitations": "Caption acquisition is distinct from reading and visual verification; raw sources are private.",
+  "sources": [
+    {
+      "id": "L01",
+      "input": "https://www.youtube.com/watch?v=hbh3DvU2cM4",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L02",
+      "input": "https://www.youtube.com/watch?v=0epFtle16cE",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L03",
+      "input": "https://www.youtube.com/watch?v=TADNJc_jZLg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L04",
+      "input": "https://www.youtube.com/watch?v=NEplnnhpGno",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L05",
+      "input": "https://www.youtube.com/watch?v=yqFbiDsvJ2c",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L06",
+      "input": "https://www.youtube.com/watch?v=pnpuZTLnfbg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L07",
+      "input": "https://www.youtube.com/watch?v=r84i9_02kx0",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L08",
+      "input": "https://www.youtube.com/watch?v=yefh0CvSAU8",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L09",
+      "input": "https://www.youtube.com/watch?v=KtM4Oz1whN4",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L10",
+      "input": "https://www.youtube.com/watch?v=W550ilil_mc",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L11",
+      "input": "https://www.youtube.com/watch?v=-UCtJNHgLHY",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L12",
+      "input": "https://www.youtube.com/watch?v=2sKqNwVUoHo",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L13",
+      "input": "https://www.youtube.com/watch?v=6yfsXo_h-Vk",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L14",
+      "input": "https://www.youtube.com/watch?v=gRKMf94dhrg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L15",
+      "input": "https://www.youtube.com/watch?v=pJuYh17uGyo",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L16",
+      "input": "https://www.youtube.com/watch?v=NhiTJ-3kZug",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L17",
+      "input": "https://www.youtube.com/watch?v=kQLxeBuDZdk",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L18",
+      "input": "https://www.youtube.com/watch?v=IixHk-LKWlg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L19",
+      "input": "https://www.youtube.com/watch?v=2IKZV2uxKjg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L20",
+      "input": "https://www.youtube.com/watch?v=exnv-RTlqTY",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L21",
+      "input": "https://www.youtube.com/watch?v=YZ6QeWFWHYU",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L22",
+      "input": "https://www.youtube.com/watch?v=88RitgMkDfQ",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L23",
+      "input": "https://www.youtube.com/watch?v=_jAsVLjZSdA",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L24",
+      "input": "https://www.youtube.com/watch?v=fYeBNIUGseA",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L25",
+      "input": "https://www.youtube.com/watch?v=RpPErQDiZgk",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L26",
+      "input": "https://www.youtube.com/watch?v=bm51jlpsVNE",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L27",
+      "input": "https://www.youtube.com/watch?v=Qxd2Bz6FFLw",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L28",
+      "input": "https://www.youtube.com/watch?v=P-pgaoFpB1U",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L29",
+      "input": "https://www.youtube.com/watch?v=qULLZMkdpkY",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L30",
+      "input": "https://www.youtube.com/watch?v=US9_unvfNyY",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L31",
+      "input": "https://www.youtube.com/watch?v=WGYUW5W16Q8",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L32",
+      "input": "https://www.youtube.com/watch?v=aQpSb6wZBCo",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L33",
+      "input": "https://www.youtube.com/watch?v=j2TXRVyp09k",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L34",
+      "input": "https://www.youtube.com/watch?v=-tW2HyemTGw",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L35",
+      "input": "https://www.youtube.com/watch?v=AJRE-lFZpXc",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L36",
+      "input": "https://www.youtube.com/watch?v=I47t1ktrINY",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L37",
+      "input": "https://www.youtube.com/watch?v=YIx0sj4ctLw",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L38",
+      "input": "https://www.youtube.com/watch?v=7EUhh_fEUy8",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L39",
+      "input": "https://www.youtube.com/watch?v=1N7zVBUdJpo",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L40",
+      "input": "https://www.youtube.com/watch?v=BYsrUKCe578",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L41",
+      "input": "https://www.youtube.com/watch?v=DNWW6Uvasqc",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L42",
+      "input": "https://www.youtube.com/watch?v=apxDdDMi8_o",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L43",
+      "input": "https://www.youtube.com/watch?v=aJ4abZ9uf3A",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L44",
+      "input": "https://www.youtube.com/watch?v=tV6WhbhwrdU",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L45",
+      "input": "https://www.youtube.com/watch?v=b6qmtMTL-hc",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L46",
+      "input": "https://www.youtube.com/watch?v=i53aFp4ZLpc",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L47",
+      "input": "https://www.youtube.com/watch?v=tdQqWFbJEiw",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L48",
+      "input": "https://www.youtube.com/watch?v=dzTGoCkh4bE",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L49",
+      "input": "https://www.youtube.com/watch?v=ikXjZ1dt1TA",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L50",
+      "input": "https://www.youtube.com/watch?v=k_JrPzdmwFg",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L51",
+      "input": "https://www.youtube.com/watch?v=MxbiaYVFzWU",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L52",
+      "input": "https://www.youtube.com/watch?v=e5BypfrC9I4",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L53",
+      "input": "https://www.youtube.com/watch?v=d-yfzwLQgNk",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L54",
+      "input": "https://www.youtube.com/watch?v=_eiGdO1P6wk",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L55",
+      "input": "https://www.youtube.com/watch?v=STf7sO9v70E",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L56",
+      "input": "https://www.youtube.com/watch?v=tOIIGx-Nals",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L57",
+      "input": "https://www.youtube.com/watch?v=0tpJUEqEVkI",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L58",
+      "input": "https://www.youtube.com/watch?v=eJcS-JG3V0I",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L59",
+      "input": "https://www.youtube.com/watch?v=w5GwmjuJzZI",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    },
+    {
+      "id": "L60",
+      "input": "https://www.youtube.com/watch?v=VNDyig0Y--c",
+      "status": "caption acquired and read",
+      "coverage": "Complete available English caption text; selected visuals separately recorded"
+    }
+  ]
+}

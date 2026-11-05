@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 28,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "742740d8ef6a60fea39b5f387a42e2eae8f97eded8db4a35d3ed2cf9d3a21201",
+      "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+      "assets": {
+        "assets/ch28-identifiability.svg": "cb5b8bb2b1b8f0c7a0a0bef14d90564a01419651ec43bf380a8fe211305ac8a9"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Synthetic construction only; not material parameter inference",
+        "A calibrated population signal only resolves the chosen model ambiguity, not all possible microscopic alternatives",
+        "Full reader/browser/print/release checks separate"
+      ],
+      "private_review_record_sha256": "bf7394f2d89f8c118ecc7fd5f8af200edda5261fb5f72d57305100a55ec48bac"
+    },
+    {
+      "chapter": 28,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "742740d8ef6a60fea39b5f387a42e2eae8f97eded8db4a35d3ed2cf9d3a21201",
+      "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+      "assets": {
+        "assets/ch28-identifiability.svg": "cb5b8bb2b1b8f0c7a0a0bef14d90564a01419651ec43bf380a8fe211305ac8a9"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No uninspected lecture bibliography or source-frame numerical values are reconstructed. No experimental defect calibration is claimed.",
+        "This is scientific/numerical acceptance; browser, routing, publication and full-media checks are separate."
+      ],
+      "private_review_record_sha256": "cb2fd81fc11b990635396b663d2efac60545ac2401a889a7606374a497e9a083"
+    }
+  ]
+}

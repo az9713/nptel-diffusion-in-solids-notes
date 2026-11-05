@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 8,
+      "round": 1,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "16f5212017b7825177b24326ecde4fac1f9f5ada4a0a037f42f0d92426472463",
+      "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+      "assets": {
+        "assets/ch08-correlation.svg": "b5a11a3cc0b8ae82edad70244863e260d2006d9c56c61aca27788f5480e9b88d"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The laboratory does not solve an FCC exterior-lattice integral and correctly labels F=.8 as supplied synthetic input. No unverified source correlation-table number is needed.",
+        "This review accepts scientific manuscript/code/asset models. Browser, print, responsive layout, and full source-video verification remain separate."
+      ],
+      "private_review_record_sha256": "3ea6f59060af261105c72b598541111fa76804b257f9e37ca400bc4e09f5a3c2"
+    },
+    {
+      "chapter": 8,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "16f5212017b7825177b24326ecde4fac1f9f5ada4a0a037f42f0d92426472463",
+      "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+      "assets": {
+        "assets/ch08-correlation.svg": "b5a11a3cc0b8ae82edad70244863e260d2006d9c56c61aca27788f5480e9b88d"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map read; no full direct caption/audio reread",
+        "Actual selectedL18frames1445/1500/1560 inspected",
+        "Primary intro andPDFp11section3.3 inspected; not full-paper numerical reproduction",
+        "Scientific SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "96715b258215aa0d39a926c4a241a830c59560937df6d4f146f9cc7415f34b8b"
+    }
+  ]
+}

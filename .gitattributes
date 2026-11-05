@@ -1,0 +1,6 @@
+# Review and publication evidence bind exact file bytes across platforms.
+* -text whitespace=cr-at-eol
+# Matplotlib writes spaces in SVG path data; retain deterministic output.
+*.svg whitespace=-blank-at-eol,cr-at-eol
+# Preserve the supplied playlist input verbatim.
+README.txt whitespace=-blank-at-eof,cr-at-eol

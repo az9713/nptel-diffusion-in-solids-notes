@@ -1,0 +1,20 @@
+{
+  "synthetic": true,
+  "temperature_K": 1000.0,
+  "omega_J_mol": 24943.387854459717,
+  "coexistence_mole_fractions": [
+    0.07072018167987036,
+    0.9292798183201296
+  ],
+  "spinodal_mole_fractions": [
+    0.21132486540518708,
+    0.7886751345948129
+  ],
+  "bulk_mole_fraction": 0.3,
+  "B_rich_mole_fraction": 0.2670517090896028,
+  "homogeneous_energy_J_mol": 159.10304523685863,
+  "two_phase_energy_J_mol": -485.07696902346856,
+  "mu_A_J_mol": -720.6555813091196,
+  "mu_B_J_mol": 2211.873173844141,
+  "ideal_equimolar_energy_J_mol": -5763.14632164398
+}

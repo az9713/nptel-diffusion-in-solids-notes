@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>CALPHAD thermodynamics and kinetic databases — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a aria-current=page href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>CALPHAD thermodynamics and kinetic databases</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#assessment">14.1 An assessed database contains models, not just a phase diagram L31 00:21</a></li><li><a href="#solution-models">14.2 Reference, ideal, and excess contributions L31 18:53</a></li><li><a href="#sublattices">14.3 Ordered phases require site fractions L33 16:46</a></li><li><a href="#workflow">14.4 A reproducible software calculation has explicit inputs L32 00:20</a></li><li><a href="#validation">14.5 Database scope and kinetic sensitivity L33 00:20</a></li><li><a href="#exercises">14.6 Exercises with complete solutions</a></li><li><a href="#sources">14.7 Sources and boundaries</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A simulation can reproduce the correct final phase fractions and still predict the wrong annealing time. Its Gibbs-energy model selects equilibrium, while its mobility model supplies a kinetic clock. Treating a database as one undifferentiated collection of “material properties” conceals that distinction.</p>
+<p class="source-note">Lectures 31–33 introduce CALPHAD, phase models, database construction, and graphical demonstrations. The software workflow is described at the level supported by the inspected owning guide. The accompanying Python calculation is an original reduced model and does not execute DICTRA or reproduce a licensed database.</p>
+
+<section id="assessment"><h2>14.1 An assessed database contains models, not just a phase diagram <a class="timestamp" href="https://www.youtube.com/watch?v=WGYUW5W16Q8&amp;t=21s">L31 00:21</a></h2>
+<p><dfn>CALPHAD</dfn>, calculation of phase diagrams, is a framework for representing Gibbs energies of phases with parameterized functions and assessing their parameters against thermodynamic and phase-equilibrium evidence. A database encodes those functions, reference states, constituent models, and parameters. A phase diagram is then an output of equilibrium minimization rather than a replacement for the underlying free-energy description.</p>
+<p>At fixed temperature <span class="math">\(T\)</span> and pressure <span class="math">\(p\)</span>, let candidate phases be indexed by <span class="math">\(\alpha\)</span>. Each phase has amount <span class="math">\(n^\alpha\geq0\)</span> in moles, component fractions <span class="math">\(N_i^\alpha\)</span>, and molar Gibbs energy <span class="math">\(g^\alpha\)</span> in J/mol. Given total amounts <span class="math">\(b_i\)</span>, the ideal bulk equilibrium problem is</p>
+\[
+\min_{n^\alpha,N_i^\alpha}\sum_\alpha n^\alpha g^\alpha(T,p,\boldsymbol N^\alpha),
+\qquad \sum_\alpha n^\alpha N_i^\alpha=b_i,
+\quad \sum_iN_i^\alpha=1. \tag{14.1}
+\]
+<p>Nonnegative phase amounts allow phases to disappear. Lagrange multipliers enforcing elemental balances become equilibrium component chemical potentials. Equality of those potentials between present phases recovers the common-tangent construction in a binary system. The minimization extends the same principle to many components and constituent variables. It does not include a nucleation barrier merely because a previously absent phase is allowed to acquire a positive amount.</p>
+<p>Assessment combines phase boundaries, calorimetric enthalpies and heat capacities, chemical activities, and other compatible evidence. First-principles energies can constrain poorly measured states, especially metastable end members. Measurements have uncertainties and correlated errors; a parameter fit must therefore distinguish data selection, optimization, and independent validation. Reproducing the points used to fit a model does not establish its extrapolative accuracy.</p>
+<p>A phase omitted from the candidate set cannot emerge from minimization. Likewise, deliberately suspending a stable phase computes a constrained metastable equilibrium rather than the unrestricted one. That can be useful when rapid processing suppresses a transformation, but the constraint must be recorded. A numerical minimum of the selected model is not automatically the physical equilibrium if model scope or candidate phases are incomplete.</p>
+</section>
+
+<section id="solution-models"><h2>14.2 Reference, ideal, and excess contributions <a class="timestamp" href="https://www.youtube.com/watch?v=WGYUW5W16Q8&amp;t=1133s">L31 18:53</a></h2>
+<p>For a disordered binary substitutional phase, let <span class="math">\(z=N_B\)</span>. A common model separates pure reference functions, random mixing entropy, and an excess term:</p>
+\[
+g=(1-z)g_A^0(T,p)+zg_B^0(T,p)
++RT[(1-z)\ln(1-z)+z\ln z]+g^{\rm ex}(T,p,z). \tag{14.2}
+\]
+<p>The reference functions carry elemental heat capacities, entropies, and phase differences. The ideal term is a specific configurational model, not a claim that real interactions vanish. A regular solution sets <span class="math">\(g^{\rm ex}=L_0z(1-z)\)</span>. A Redlich–Kister representation adds composition asymmetry through <span class="math">\(g^{\rm ex}=z(1-z)\sum_{k=0}^K L_k(T)(1-2z)^k\)</span>, where each <span class="math">\(L_k\)</span> has units J/mol. The sign convention in the odd powers depends on the chosen component ordering and must match the database.</p>
+<p>These are functions, so their derivatives matter. A fit close in <span class="math">\(g\)</span> can differ in chemical potential, curvature, or heat capacity. Parameterization must therefore be assessed against derivative-sensitive evidence as well as energies. Thermodynamic consistency connects quantities: entropy is <span class="math">\(-\partial_Tg\)</span>, enthalpy is <span class="math">\(g-T\partial_Tg\)</span>, and heat capacity is <span class="math">\(-T\partial_{TT}g\)</span> at fixed pressure and composition. Fitting each independently without compatibility can produce an incoherent material model.</p>
+<p>Multicomponent extensions combine binary and higher-order interactions. If pair terms are written as a sum over <span class="math">\(i&lt;j\)</span>, each pair is counted once; summing over all unequal ordered pairs would require compensating factors. Having all binary subsystems assessed is valuable but does not fix every ternary or higher-order interaction. Eight elements generate 28 binary pairs and 56 ternary triples, as the laboratory computes. The combinatorial count describes possible subsystems, not independent proof that all are adequately measured.</p>
+<p>Other contributions may include magnetic ordering, gas pressure, vacancies, or electronic effects. A magnetic transition can have real thermodynamic consequences even if a simplified structural phase diagram does not draw it as a separate structural phase field. A compressed caption formula is not enough to specify a magnetic model's normalization, critical temperature, and composition dependence, so no universal magnetic expression is inferred here.</p>
+</section>
+
+<section id="sublattices"><h2>14.3 Ordered phases require site fractions <a class="timestamp" href="https://www.youtube.com/watch?v=j2TXRVyp09k&amp;t=1006s">L33 16:46</a></h2>
+<p>A disordered solution assigns all substitutional atoms to equivalent sites. An ordered phase distinguishes sublattices: sets of sites that have different occupation probabilities in the ordered structure. For an illustrative B2 model with two equal sublattices, let <span class="math">\(y_i^{(s)}\)</span> be the fraction of sublattice <span class="math">\(s=1,2\)</span> occupied by species <span class="math">\(i=A,B\)</span>. Each sublattice satisfies <span class="math">\(y_A^{(s)}+y_B^{(s)}=1\)</span>. The overall A fraction is <span class="math">\(N_A=[y_A^{(1)}+y_A^{(2)}]/2\)</span>.</p>
+<p>In a simple compound-energy description normalized per mole of atomic sites, the molar energy has end-member contributions weighted by site fractions, configurational mixing on each sublattice, and possible excess terms:</p>
+\[
+g=\sum_{i,j}y_i^{(1)}y_j^{(2)}g_{i:j}^0
++\frac{RT}{2}\sum_{s=1}^2\sum_i y_i^{(s)}\ln y_i^{(s)}+g^{\rm ex}. \tag{14.3}
+\]
+<p>The notation <span class="math">\(i:j\)</span> identifies a fully occupied end member with species i on the first sublattice and j on the second. Some end members are metastable hypothetical reference states; that does not mean they are experimentally observed phases. Sublattice ratios other than one-to-one change the entropy weights and the composition constraint. Real ordered-phase models can include vacancies, several sublattices, and interaction terms beyond this illustrative expression.</p>
+<p>At equiatomic composition, parameterize ordering by <span class="math">\(\eta\in[0,1]\)</span> with <span class="math">\(y_A^{(1)}=(1+\eta)/2\)</span> and <span class="math">\(y_A^{(2)}=(1-\eta)/2\)</span>. The state <span class="math">\(\eta=0\)</span> is disordered; <span class="math">\(\eta=1\)</span> has complete A/B sublattice separation. Writing <span class="math">\(y=(1+\eta)/2\)</span>, the configurational entropy is <span class="math">\(s_{\rm conf}=-R[y\ln y+(1-y)\ln(1-y)]\)</span>. It is positive at partial order and zero only at the perfectly ordered limit of this model.</p>
+<p>The laboratory constructs <span class="math">\(g(\eta)=-W\eta^2/2-Ts_{\rm conf}(\eta)\)</span>, using synthetic <span class="math">\(T=1000\)</span> K and <span class="math">\(W=1.5RT\)</span> for the free-energy curve in Figure 14.1. Differentiation gives <span class="math">\(\partial_\eta g=-W\eta+RT\operatorname{atanh}\eta\)</span>. Its nonzero minimum solves <span class="math">\(\operatorname{atanh}\eta=1.5\eta\)</span>, yielding <span class="math">\(\eta=0.858560\)</span>. The sublattice A fractions are 0.929280 and 0.070720, and the entropy remains 2.12433 J/(mol·K), compared with the disordered 5.76315 J/(mol·K). Calling a phase B2 therefore does not justify deleting configurational entropy at finite partial order.</p>
+<p>Figure 14.1 exposes this balance between ordering energy and configurational entropy. Its free-energy curve is an original mean-field model; it is not a database assessment for a particular B2 alloy. The same representation illustrates what a phase model must specify before an equilibrium solver can minimize over its internal occupations.</p>
+</section>
+
+<section id="workflow"><h2>14.4 A reproducible software calculation has explicit inputs <a class="timestamp" href="https://www.youtube.com/watch?v=aQpSb6wZBCo&amp;t=20s">L32 00:20</a></h2>
+<p>An equilibrium workflow first selects components, a thermodynamic database and version, candidate phases, composition variables and units, pressure, and temperature or an explicitly defined calculation axis. It then solves the constrained equilibrium problem and plots selected quantities. A Fe–C diagram plotted in mass percent is not directly comparable with one plotted in mole fraction without conversion. A plotting module does not repair inconsistent calculation conditions.</p>
+<p>The source demonstrates graphical system definition, equilibrium calculation, and rendering, and names several CALPHAD software families. The transferable workflow is more durable than individual menu positions or license claims. This chapter makes no unsupported current comparison of commercial pricing, free editions, or package coverage. The scientific record should retain the model and input choices rather than only a screenshot of the user interface.</p>
+<p>A transient diffusion calculation needs a second category of input. The <a href="https://thermocalc.com/support/getting-started-guides/diffusion-module-dictra-guide/">Thermo-Calc owning DICTRA guide</a>, in its sections on database selection, geometry, regions, boundary conditions, and thermal profiles, requires both thermodynamic and mobility databases. Geometry can be planar, cylindrical, or spherical in a single spatial coordinate. Regions carry phase selections, sizes, composition profiles, and meshes. Boundary conditions and thermal history complete the initial-boundary-value problem; the guide describes zero-flux closed boundaries as the default, which still must be checked for the chosen case.</p>
+<p>The thermodynamic functions determine chemical potentials, phase stability, and local equilibrium relations. A mobility database supplies kinetic response functions needed to turn forces into fluxes. Selecting a thermodynamic database alone cannot determine diffusion time. A Fe–Ni homogenization demonstration therefore has both an equilibrium model and a kinetic model, as well as spatial initial data. A single nominal average composition does not specify its transient state.</p>
+<p>A complete reproducibility record includes software version, database names and versions, component and phase lists, dependent-component conventions, geometry, region dimensions, initial profiles, boundaries, mesh policy, temperature schedule, and requested outputs. Compare predicted profiles and phase fractions with independent measurements and assess grid sensitivity. An attractive phase diagram or smooth profile certifies none of those choices automatically.</p>
+</section>
+
+<section id="validation"><h2>14.5 Database scope and kinetic sensitivity <a class="timestamp" href="https://www.youtube.com/watch?v=j2TXRVyp09k&amp;t=20s">L33 00:20</a></h2>
+<p>A database's element list is only a first screening criterion. Check which phases, binary and ternary subsystems, properties, composition intervals, and temperature ranges were assessed. An interpolation within a measured binary system and an extrapolation into an unmeasured many-component alloy have different evidential support even if the software accepts both inputs. Version changes may revise phase descriptions or interaction parameters; a later diagram need not match an older demonstration exactly.</p>
+<p>The source's thermodynamic-database file discussion distinguishes comments, element references, functions, phase definitions, constituent lists, and parameters. A parameter record is interpreted within the phase's constituent model and reference functions; its numerical coefficient is not a standalone experimental datum. Metastable end-member functions can be necessary bookkeeping. Copying isolated coefficients into another normalization can change the model silently. Database syntax, version, and dependency references are therefore part of scientific provenance.</p>
+<p>Reassessment can alter a phase diagram when new evidence contradicts earlier assignments, as the source's Co–Sn discussion illustrates. This is a reason to preserve uncertainty and evidence lineage, rather than treating an assessed diagram as permanently exact. A machine-learning surrogate can accelerate evaluation or suggest parameters, but it must preserve mass constraints, consistent derivatives, valid constituent domains, and meaningful uncertainty outside its training support. Fast interpolation is not new thermodynamic evidence.</p>
+<p>The kinetic distinction can be demonstrated without proprietary software. On a closed interval of length <span class="math">\(L\)</span>, a constant-coefficient concentration perturbation proportional to <span class="math">\(\cos(\pi x/L)\)</span> satisfies no-flux boundaries. Substitution into <span class="math">\(c_t=Dc_{xx}\)</span> gives amplitude <span class="math">\(A(t)=A(0)e^{-\pi^2Dt/L^2}\)</span>. Every positive D gives the same uniform equilibrium, but a different approach time.</p>
+<p>For synthetic <span class="math">\(L=10^{-4}\)</span> m and <span class="math">\(t=10^5\)</span> s, coefficients <span class="math">\(10^{-14}\)</span> and <span class="math">\(4\times10^{-14}\)</span> m²/s leave amplitude fractions 0.372708 and 0.0192963. Both models conserve mean composition and eventually reach the same uniform state. Equilibrium validation alone cannot discriminate those clocks. Figure 14.1 pairs this result with the ordering-energy example because both expose information that a phase diagram alone does not supply.</p>
+<figure><img src="assets/figures/ch14-models.svg" alt="Left: a synthetic ordered-sublattice Gibbs energy has a minimum at partial order near 0.859. Right: two diffusivities produce different exponential decay rates toward the same uniform equilibrium."><figcaption>Figure 14.1. Two independent roles of assessed models. Sublattice occupation changes thermodynamic energy; mobility changes a transient time scale even when the equilibrium is unchanged. Both panels are original synthetic calculations, not DICTRA outputs.</figcaption></figure>
+<p>The <a href="code/ch14.py">companion</a> computes sublattice entropy, solves the order-parameter stationary equation, checks its positive entropy, and evaluates exact diffusion-mode decay. It saves <a href="code/ch14-output.json">numerical output</a> and the figure. It reads no licensed thermodynamic or mobility database. Its meaningful checks concern the declared analytic models; software/database validation remains an additional task for a real calculation.</p>
+</section>
+
+<section id="exercises"><h2>14.6 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Recover chemical-potential equality</h3><p>Explain how minimizing (14.1) leads to equality of component chemical potentials between present phases.</p><details><summary>Worked solution</summary><p>Introduce a multiplier <span class="math">\(\lambda_i\)</span> for each elemental balance and minimize <span class="math">\(G-\sum_i\lambda_i(\sum_\alpha n_i^\alpha-b_i)\)</span>. An allowed infinitesimal component addition to a present phase changes this expression by <span class="math">\((\mu_i^\alpha-\lambda_i)dn_i^\alpha\)</span>. At an interior equilibrium this derivative vanishes, so <span class="math">\(\mu_i^\alpha=\lambda_i\)</span> for each phase in which that variation is allowed. The multiplier is common across phases, giving equality. Absent phases instead obey stability inequalities; one cannot demand equality for every phase in the database.</p></details></div>
+<div class="exercise"><h3>2. Ordered does not mean zero entropy</h3><p>For the equiatomic two-sublattice model, show that partial order has positive configurational entropy and identify the zero-entropy limit.</p><details><summary>Worked solution</summary><p>For <span class="math">\(0\leq\eta&lt;1\)</span>, both <span class="math">\(y=(1+\eta)/2\)</span> and <span class="math">\(1-y\)</span> lie strictly between zero and one. Their logarithms are negative, so <span class="math">\(-R[y\ln y+(1-y)\ln(1-y)]&gt;0\)</span>. At <span class="math">\(\eta=1\)</span>, the nonzero occupancy is one and the other is zero; with <span class="math">\(0\ln0=0\)</span>, the entropy vanishes. The computed partially ordered minimum at 0.858560 has entropy 2.12433 J/(mol·K). The phase name alone does not select the limiting occupancy.</p></details></div>
+<div class="exercise"><h3>3. Find the ordering threshold</h3><p>Expand the synthetic ordering model near <span class="math">\(\eta=0\)</span>. Under what condition does that state become locally unstable?</p><details><summary>Worked solution</summary><p>The derivative is <span class="math">\(-W\eta+RT\operatorname{atanh}\eta\)</span>. Since <span class="math">\(\operatorname{atanh}\eta=\eta+\eta^3/3+\cdots\)</span>, integration gives <span class="math">\(g=g(0)+(RT-W)\eta^2/2+RT\eta^4/12+\cdots\)</span>. The disordered state's curvature becomes negative when <span class="math">\(W&gt;RT\)</span>. This is a local mean-field threshold for the synthetic model. Real phase assessments can include asymmetry and coupling terms that alter its character.</p></details></div>
+<div class="exercise"><h3>4. Same equilibrium, different time</h3><p>Derive the no-flux mode decay and explain why matching its final state does not validate D.</p><details><summary>Worked solution</summary><p>For <span class="math">\(c=\bar c+A(t)\cos(\pi x/L)\)</span>, the spatial derivative vanishes at zero and L. The PDE gives <span class="math">\(A'=-D\pi^2A/L^2\)</span>, so <span class="math">\(A=A_0e^{-D\pi^2t/L^2}\)</span>. Every positive coefficient drives the perturbation to zero while preserving the mean. Only transient observations constrain the decay rate. The laboratory's fourfold change in D changes the remaining amplitude from 0.372708 to 0.0192963 at the selected time without changing the limit.</p></details></div>
+<div class="exercise"><h3>5. Audit a database claim</h3><p>An eight-element database contains all 28 binaries. Does that establish accurate eight-component diffusion?</p><details><summary>Worked solution</summary><p>No. Binary coverage does not determine all ternary and higher-order thermodynamic interactions, and element coverage does not establish phase-model validity at the target composition and temperature. The system has 56 possible ternary triples. Diffusion additionally requires kinetic mobilities and appropriate coupling/frame treatment. A defensible claim needs assessed scope, independent validation near the target state, version information, and uncertainty for extrapolation. Counting subsystems is an inventory check, not a predictive validation.</p></details></div>
+<div class="exercise"><h3>6. Turn a screenshot into a reproducible model</h3><p>A report shows a transient concentration plot and names only a thermodynamic database. List the missing scientific inputs most consequential for reproduction.</p><details><summary>Worked solution</summary><p>The mobility database and version supply the kinetic model. The geometry, region dimensions, phases, complete initial profiles, boundary conditions, mesh, and thermal schedule specify the initial-boundary-value problem. Component units and dependent-component conventions are needed to interpret composition. Software version and selected outputs support numerical reproduction. If a phase was suspended or a seed imposed, those constraints must also be stated. A plot alone cannot identify which missing choice caused a discrepancy.</p></details></div>
+</section>
+
+<section id="sources"><h2>14.7 Sources and boundaries</h2><p><a href="https://www.youtube.com/watch?v=WGYUW5W16Q8">L31</a>, <a href="https://www.youtube.com/watch?v=aQpSb6wZBCo">L32</a>, and <a href="https://www.youtube.com/watch?v=j2TXRVyp09k">L33</a> establish the CALPHAD and database sequence. The owning DICTRA guide supports the stated workflow at the inspected input-setting sections. No local DICTRA run, licensed database assessment, current commercial license comparison, or unread magnetic model is claimed.</p><p>The next chapter uses a deliberately reduced moving-boundary model. Its purpose is to expose conservation, interface assumptions, and parabolic growth before a multiphase simulation embeds them in a larger numerical system.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch14.py"><code>code/ch14.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic sublattice thermodynamics and independent kinetic clocks.&quot;&quot;&quot;
+
+import json
+import math
+from pathlib import Path
+
+import matplotlib
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import brentq
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch14&quot;
+
+BASE = Path(__file__).resolve().parents[1]
+R, temperature = 8.31446261815324, 1000.0
+eta = np.linspace(0, 1, 501)
+y = (1 + eta) / 2
+
+
+def xlogx(v):
+    a = np.asarray(v)
+    return np.where(a &gt; 0, a * np.log(np.maximum(a, 1e-300)), 0)
+
+
+entropy = -R * (xlogx(y) + xlogx(1 - y))
+coupling = 1.5 * R * temperature
+g = -coupling * eta**2 / 2 - temperature * entropy
+ordered = brentq(lambda q: np.arctanh(q) - 1.5 * q, 0.1, 0.99999)
+ordered_y = (1 + ordered) / 2
+ordered_s = float(-R * (xlogx(ordered_y) + xlogx(1 - ordered_y)))
+assert ordered_s &gt; 0
+assert entropy[-1] == 0
+time = np.linspace(0, 4e5, 401)
+length = 1e-4
+diffusivities = [1e-14, 4e-14]
+amplitudes = [
+    float(np.exp(-(np.pi**2) * d * 1e5 / length**2)) for d in diffusivities
+]
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+ax[0].plot(eta, g / 1000)
+ax[0].set(xlabel=&quot;Order parameter&quot;, ylabel=&quot;Synthetic g (kJ/mol)&quot;)
+for d in diffusivities:
+    ax[1].plot(
+        time / 1e5,
+        np.exp(-(np.pi**2) * d * time / length**2),
+        label=f&quot;D = {d:g} m²/s&quot;,
+    )
+ax[1].set(xlabel=&quot;Time / 100000 s&quot;, ylabel=&quot;Mode amplitude / initial&quot;)
+ax[1].legend(fontsize=8)
+fig.tight_layout()
+fig.savefig(BASE / &quot;assets/figures/ch14-models.svg&quot;, metadata={&quot;Date&quot;: None})
+out = {
+    &quot;synthetic&quot;: True,
+    &quot;temperature_K&quot;: temperature,
+    &quot;ordered_eta&quot;: float(ordered),
+    &quot;ordered_sublattice_A_fractions&quot;: [ordered_y, 1 - ordered_y],
+    &quot;ordered_configurational_entropy_J_mol_K&quot;: ordered_s,
+    &quot;disordered_entropy_J_mol_K&quot;: float(R * np.log(2)),
+    &quot;perfect_order_entropy_J_mol_K&quot;: float(entropy[-1]),
+    &quot;mode_amplitudes_at_100000_s&quot;: amplitudes,
+    &quot;eight_element_binary_count&quot;: math.comb(8, 2),
+    &quot;eight_element_ternary_count&quot;: math.comb(8, 3),
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch14-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;temperature_K&quot;: 1000.0,
+  &quot;ordered_eta&quot;: 0.8585596366401104,
+  &quot;ordered_sublattice_A_fractions&quot;: [
+    0.9292798183200552,
+    0.07072018167994476
+  ],
+  &quot;ordered_configurational_entropy_J_mol_K&quot;: 2.124327424202985,
+  &quot;disordered_entropy_J_mol_K&quot;: 5.763146321643979,
+  &quot;perfect_order_entropy_J_mol_K&quot;: -0.0,
+  &quot;mode_amplitudes_at_100000_s&quot;: [
+    0.37270783885343794,
+    0.01929630291101678
+  ],
+  &quot;eight_element_binary_count&quot;: 28,
+  &quot;eight_element_ternary_count&quot;: 56
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-13.html">← Previous</a><a href="chapter-15.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

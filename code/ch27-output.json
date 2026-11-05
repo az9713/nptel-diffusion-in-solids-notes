@@ -1,0 +1,34 @@
+{
+  "status": "synthetic ideal dilute defect chemistry",
+  "Frenkel": {
+    "K": 1e-12,
+    "intrinsic_v": 1e-06,
+    "minimum_d": 9.9e-06,
+    "minimum_v": 1e-05,
+    "minimum_i": 1e-07,
+    "minimum_sigma_scaled": 2e-05,
+    "intrinsic_sigma_scaled": 0.000101,
+    "max_mass_action_error": 2.0194839173657902e-28
+  },
+  "association": {
+    "total_dopant": 0.0001,
+    "K": 1000000.0,
+    "free_vacancy": 9.512492197250393e-06,
+    "bound_fraction": 0.9048750780274961
+  },
+  "correlations": {
+    "f": 0.6,
+    "f_I": 0.8,
+    "Haven_ratio": 0.7499999999999999,
+    "sigma_S_m": 0.003098747963862852,
+    "D_tracer_m2_s": 7.499999999999998e-13
+  },
+  "Schottky_crossover_K": 1305.8405030141166,
+  "association_odds_example": {
+    "p1": 0.5,
+    "p2": 1.0,
+    "fraction1": 0.3333333333333333,
+    "fraction2": 0.5,
+    "ratio": 0.6666666666666666
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "reviewer": "source_review_a",
+  "independent_context": true,
+  "passed": true,
+  "scope": "Static reader structure and usability audit with targeted checks after template repairs; separate from scientific reviews and browser runtime checks",
+  "counts": {
+    "html_pages": 34,
+    "chapters": 28,
+    "authored_section_headings": 189,
+    "generated_toc_entries": 217,
+    "timestamped_heading_mappings": 138,
+    "official_recordings": 60,
+    "worked_solutions": 168,
+    "laboratories": 28,
+    "search_entries": 28
+  },
+  "checks": {
+    "local_links_and_asset_targets": "passed",
+    "fragment_targets_and_unique_ids": "passed",
+    "authored_headings_to_tocs": "passed",
+    "source_map_heading_and_timestamp_urls": "passed",
+    "official_lecture_order_and_supplementary_intro": "passed",
+    "previous_next_sequences": "passed",
+    "current_manuscript_paragraphs_in_assembly": "passed",
+    "current_python_and_saved_output_embeds": "passed",
+    "search_current_paragraph_content": "passed",
+    "nonempty_worked_solution_blocks": "passed",
+    "static_offline_dependency_reachability": "passed",
+    "source_and_reproduction_scope_disclosures": "passed",
+    "laboratory_install_and_launcher_guidance": "passed after targeted repair",
+    "companion_python_toc_entries": "passed all28 after targeted repair"
+  },
+  "open_blockers": [],
+  "limitations": [
+    "No new full responsive browser, print, reduced-motion or offline-network runtime test in this audit",
+    "External recordings and research references require internet access",
+    "This report does not assert deployment, final release completion or human expert certification"
+  ]
+}

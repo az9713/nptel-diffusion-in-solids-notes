@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "closed_specimen_final_mole_fraction": 0.4000000000000001,
+  "interface_velocity_m_s": 1.9999999999999996e-12,
+  "spectator_endpoint": 0.25,
+  "spectator_interior_maximum": 0.27,
+  "spectator_interior_minimum": 0.23,
+  "spectator_normalized_excess_integral": 1.734723475976807e-18,
+  "tutorial_mixing_energy_J_mol": -5.0,
+  "tutorial_temperature_K": 1000.0,
+  "half_mole_mixture_endpoints": 0.5
+}

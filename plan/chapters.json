@@ -1,0 +1,649 @@
+{
+  "status": "Scoped architecture reviews and targeted repairs completed; manuscript acceptance is recorded separately in completion.json",
+  "version": 2,
+  "source_map_numbering": "source_map_group refers to initial 24-group private evidence maps; it is not final reader numbering",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Conservation, gradients, and Fick's laws",
+      "lectures": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "question": "What must a diffusion model conserve?",
+      "sections": [
+        "Materials processes and the conserved amount",
+        "Derivatives, gradients, and local flux",
+        "From a balance to Fick's second law",
+        "Steady transport and resistance",
+        "Cylinders, spheres, and geometric conservation",
+        "Directional diffusion and the tensor model"
+      ],
+      "result": "For fixed geometry with no reaction, partial_t c = -partial_x J; with J=-D partial_x c, partial_t c=partial_x(D partial_x c).",
+      "check": "finite-volume conservation, layered-slab resistance, radial profiles, and rotated tensors",
+      "depends_on": [],
+      "source_map_group": 1
+    },
+    {
+      "number": 2,
+      "title": "Laplace transforms and diffusion initial data",
+      "lectures": [
+        4,
+        5,
+        6
+      ],
+      "question": "How do initial and boundary conditions select a solution?",
+      "sections": [
+        "Transform definition and convergence",
+        "Elementary transforms and derivative identities",
+        "Initial-value problems and inverse transforms",
+        "Differentiation under the integral sign",
+        "Transforming Fick’s second law"
+      ],
+      "result": "Under stated regularity and convergence assumptions, D C_xx-s C=-c(x,0), where C is the one-sided time transform.",
+      "check": "ODE residuals, initial data, inverse-transform coefficients, and transformed PDE units",
+      "depends_on": [
+        1
+      ],
+      "source_map_group": 2
+    },
+    {
+      "number": 3,
+      "title": "Gaussian and error-function diffusion solutions",
+      "lectures": [
+        7,
+        8,
+        10
+      ],
+      "question": "How does source geometry change the profile?",
+      "sections": [
+        "Instantaneous plane source and normalization",
+        "Infinite diffusion couples",
+        "Maintained surface concentration",
+        "Boundary fluxes and superposition",
+        "Tutorial: inverse profiles without uncontrolled approximations"
+      ],
+      "result": "An instantaneous infinite-domain plane source of areal amount M has c=M exp(-x²/(4Dt))/sqrt(4 pi Dt).",
+      "check": "normalization, second moment, error-function boundary limits, uptake and inverse-profile recovery",
+      "depends_on": [
+        2
+      ],
+      "source_map_group": 3
+    },
+    {
+      "number": 4,
+      "title": "Finite domains and reproducible diffusion computation",
+      "lectures": [
+        9,
+        10,
+        11
+      ],
+      "question": "How can analytic and numerical profiles check each other?",
+      "sections": [
+        "Absorbing finite slabs and eigenmodes",
+        "Closed and periodic homogenization",
+        "Separation of variables versus transforms",
+        "Source Scilab demonstrations and Python counterparts",
+        "Conservative explicit diffusion and refinement"
+      ],
+      "result": "For the source-free constant-D uniform-grid explicit interior update, 0<=D dt/dx²<=1/2 makes each new cell value a convex average; positivity of the whole scheme also requires positivity-preserving boundary updates.",
+      "check": "positivity, mass conservation, refinement against an exact solution",
+      "depends_on": [
+        3
+      ],
+      "source_map_group": 4
+    },
+    {
+      "number": 5,
+      "title": "Crystal geometry, sublattices, and defect bookkeeping",
+      "lectures": [
+        12,
+        13,
+        15
+      ],
+      "question": "Where can an atom move inside a crystal?",
+      "sections": [
+        "Lattices, bases, coordination and packing",
+        "Interstitial sites and crystal directions",
+        "Dislocations and Burgers vectors",
+        "Grain boundaries, misorientation and low-angle dislocation arrays",
+        "Ordered compounds, antisites and triple defects",
+        "Frenkel and Schottky defect combinations"
+      ],
+      "result": "A crystal defect count requires a specified sublattice and site multiplicity; equal defect numbers need not imply equal site fractions.",
+      "check": "site counting, charge/stoichiometric balance, and geometry",
+      "depends_on": [
+        4
+      ],
+      "source_map_group": 5,
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 6,
+      "title": "Vacancy populations, binding, and defect measurements",
+      "lectures": [
+        12,
+        13,
+        15,
+        16,
+        20
+      ],
+      "question": "How can equilibrium defect populations and binding be inferred from measurements?",
+      "sections": [
+        "Vacancy formation free energy and entropy",
+        "Monovacancies and divacancy binding",
+        "Solute–vacancy association",
+        "Differential dilatometry",
+        "Positron trapping and inference limits"
+      ],
+      "result": "Independent vacancy sites give x_v/(1-x_v)=exp(-g_f/(k_B T)); dilute favorable pair binding gives x_2v=(z/2)exp(g_b/(k_B T))x_1v² with explicit counting conventions.",
+      "check": "free-energy minimum, missing-site balance, differential dilatometry and trapping-model identifiability",
+      "depends_on": [
+        5
+      ],
+      "source_map_group": 6,
+      "source_map_groups": [
+        5,
+        6
+      ],
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 7,
+      "title": "Random walks and atomistic diffusion mechanisms",
+      "lectures": [
+        14,
+        15,
+        16,
+        20
+      ],
+      "question": "How do discrete jumps produce a continuum coefficient?",
+      "sections": [
+        "Unbiased displacement and independent increments",
+        "Mean-square displacement and jump-rate conventions",
+        "Continuum limit of a master equation",
+        "Interstitial and vacancy-mediated mechanisms",
+        "Tutorial: infer jumps from measured spreading"
+      ],
+      "result": "Independent isotropic jumps of length ell and total rate Gamma in d dimensions give D=Gamma ell²/(2d).",
+      "check": "exact walk moments and seeded ensemble simulation",
+      "depends_on": [
+        6
+      ],
+      "source_map_group": 6,
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 8,
+      "title": "Correlation factors and tracer memory",
+      "lectures": [
+        17,
+        18,
+        20
+      ],
+      "question": "Why is counting jumps insufficient?",
+      "sections": [
+        "Vacancy-return memory and the finite-step correlation sum",
+        "Soluble persistent-walk model and conditional assumptions",
+        "Crystal self-diffusion factors and their limits",
+        "FCC solute five-frequency model",
+        "Binding, escape probability and parameter identification"
+      ],
+      "result": "For stationary zero-mean fixed-length jump increments with absolutely summable correlations, f=1+2 sum_{k>=1} E(step_0 dot step_k)/ell²; the finite-step factor includes weights 1-k/n.",
+      "check": "one-dimensional persistent-walk exact moments",
+      "depends_on": [
+        7
+      ],
+      "source_map_group": 7,
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 9,
+      "title": "Temperature, pressure, and activation parameters",
+      "lectures": [
+        19,
+        20
+      ],
+      "question": "What does an Arrhenius slope actually measure?",
+      "sections": [
+        "Formation, migration and correlation factors",
+        "Single-path Arrhenius slopes",
+        "Competing pathways and apparent enthalpy",
+        "Pressure derivatives and activation volume",
+        "Tutorial: material-volume conventions and consistency checks"
+      ],
+      "result": "For a single Arrhenius mechanism with temperature-independent prefactor, d ln D/d(1/T)=-Q/R.",
+      "check": "synthetic parameter recovery and two-path curvature",
+      "depends_on": [
+        8
+      ],
+      "source_map_group": 8
+    },
+    {
+      "number": 10,
+      "title": "Free energy, interdiffusion, and phase formation",
+      "lectures": [
+        21,
+        22,
+        23
+      ],
+      "question": "Which thermodynamic force drives composition change?",
+      "sections": [
+        "Molar free energy and chemical potentials",
+        "Common tangents and phase coexistence",
+        "Diffusion down chemical potential",
+        "New phases in a diffusion zone"
+      ],
+      "result": "For binary molar free energy g(N_B), mu_B-mu_A=dg/dN_B; a common tangent equates both component chemical potentials.",
+      "check": "regular-solution curvature and tangent conditions",
+      "depends_on": [
+        9
+      ],
+      "source_map_group": 9
+    },
+    {
+      "number": 11,
+      "title": "Reading composition profiles and diffusion paths",
+      "lectures": [
+        24,
+        25,
+        26
+      ],
+      "question": "What can a diffusion-zone profile reveal?",
+      "sections": [
+        "Single-phase and multiphase profiles",
+        "Local equilibrium at interfaces",
+        "Diffusion paths and phase-diagram constraints",
+        "Tutorial: distinguish profile evidence from kinetics"
+      ],
+      "result": "A sharp locally equilibrated interface permits a concentration jump; conservation requires v(c_right-c_left)=J_right-J_left.",
+      "check": "interface mass balance and scaling",
+      "depends_on": [
+        10
+      ],
+      "source_map_group": 10
+    },
+    {
+      "number": 12,
+      "title": "Boltzmann–Matano analysis as an inverse problem",
+      "lectures": [
+        27
+      ],
+      "question": "Can one profile determine composition-dependent diffusivity?",
+      "sections": [
+        "Similarity and the Boltzmann variable",
+        "Finding the Matano plane",
+        "Deriving the inverse formula",
+        "Noise, endpoints, and identifiability"
+      ],
+      "result": "For an isothermal single-phase semi-infinite step with constant molar volume, no reaction or short-circuit heterogeneity and a strictly monotone smooth similarity profile, D(c*)=-[1/(2t c_x)] integral_{c_left}^{c*}(x-x_M)dc at interior nonzero-slope points; x_M is fixed by the mass-balance area condition.",
+      "check": "recover a constant diffusivity and quantify noise sensitivity",
+      "depends_on": [
+        11
+      ],
+      "source_map_group": 11
+    },
+    {
+      "number": 13,
+      "title": "Kirkendall markers, intrinsic fluxes, and Darken relations",
+      "lectures": [
+        28,
+        29,
+        30
+      ],
+      "question": "Why can the crystal lattice move while a couple interdiffuses?",
+      "sections": [
+        "Frames and inert markers",
+        "Intrinsic flux imbalance",
+        "Darken's constant-volume binary relation",
+        "Tracer mobility and thermodynamic factors"
+      ],
+      "result": "For constant V_m and binary intrinsic diffusivities, D-tilde=N_A D_B+N_B D_A; marker velocity v_K=V_m(D_B-D_A) partial_x c_B.",
+      "check": "independent frame-transformation calculation",
+      "depends_on": [
+        12
+      ],
+      "source_map_group": 12
+    },
+    {
+      "number": 14,
+      "title": "CALPHAD thermodynamics and kinetic databases",
+      "lectures": [
+        31,
+        32,
+        33
+      ],
+      "question": "What information does a diffusion simulation need beyond a phase diagram?",
+      "sections": [
+        "Gibbs-energy assessment and phase selection",
+        "Solution and ordered-sublattice models",
+        "CALPHAD software workflow",
+        "Thermodynamic versus mobility databases",
+        "Kinetic sensitivity and reproducibility"
+      ],
+      "result": "Thermodynamic functions determine driving forces; mobilities determine rates, so equilibrium data alone do not identify diffusion time scales.",
+      "check": "same equilibrium with distinct kinetic trajectories",
+      "depends_on": [
+        13
+      ],
+      "source_map_group": 13
+    },
+    {
+      "number": 15,
+      "title": "Moving boundaries and multiphase simulation",
+      "lectures": [
+        34,
+        35
+      ],
+      "question": "How is interface motion coupled to diffusion?",
+      "sections": [
+        "The moving-boundary balance",
+        "Diffusion-limited parabolic growth",
+        "A reduced Python Stefan problem",
+        "Interpreting DICTRA demonstrations"
+      ],
+      "result": "For a quasi-steady layer with fixed concentration drop and partition jump, thickness squared grows linearly with time under stated sign and geometry conventions.",
+      "check": "mass balance and an independent interface trajectory",
+      "depends_on": [
+        14
+      ],
+      "source_map_group": 14
+    },
+    {
+      "number": 16,
+      "title": "Tracer profiles, SIMS, and electron-probe measurements",
+      "lectures": [
+        36,
+        37,
+        40
+      ],
+      "question": "What does a measured depth profile identify?",
+      "sections": [
+        "Radiotracer preparation and serial sectioning",
+        "Gaussian profiles and deviations",
+        "SIMS depth calibration and matrix effects",
+        "EPMA resolution and inverse convolution"
+      ],
+      "result": "On the infinite line, a normalized Gaussian initial profile under constant-D diffusion has variance sigma_0²+2Dt; convolution with an independent centered Gaussian response adds its variance. A half-space surface source uses a different centered-variance convention.",
+      "check": "recover D with and without instrumental broadening",
+      "depends_on": [
+        15
+      ],
+      "source_map_group": 15,
+      "tutorial_allocation": "L40 radiotracer table/fit and depth-profile inverse examples; L40 mechanical/nuclear examples go to Ch17/18."
+    },
+    {
+      "number": 17,
+      "title": "Mechanical relaxation and electrical diffusion probes",
+      "lectures": [
+        38,
+        40
+      ],
+      "question": "Which time and length scales does each probe observe?",
+      "sections": [
+        "Relaxation from atomic reorientation",
+        "Debye loss and peak temperatures",
+        "Gorsky relaxation and specimen dimensions",
+        "Electrical conductivity and active carriers",
+        "Tutorial: time ratios and parameter inference"
+      ],
+      "result": "For a single Debye relaxation, the loss peak occurs at omega tau=1; its activation fit uses ln omega versus 1/T_peak.",
+      "check": "loss-peak sweep and independent Gorsky time ratios",
+      "depends_on": [
+        16
+      ],
+      "source_map_group": 16
+    },
+    {
+      "number": 18,
+      "title": "NMR diffusion measurements and local jump times",
+      "lectures": [
+        39,
+        40,
+        41
+      ],
+      "question": "Which time and length scales does each probe observe?",
+      "sections": [
+        "Nuclear spin, resonance and relaxation conventions",
+        "Field-gradient spin echoes",
+        "Stejskal–Tanner attenuation",
+        "Indirect T1 and T2 jump-time inference",
+        "Probe windows and nonuniqueness"
+      ],
+      "result": "For the stated free-diffusion pulsed-gradient sequence, echo attenuation is exp[-gamma² g² delta² D(Delta-delta/3)].",
+      "check": "synthetic attenuation fit and timing/units sensitivity",
+      "depends_on": [
+        17
+      ],
+      "source_map_group": 16,
+      "source_allocation": "L39 provides main NMR discussion; L40 relaxation tutorial; L41 opening recap provides NMR context only. Mössbauer and QENS are canonical Ch19."
+    },
+    {
+      "number": 19,
+      "title": "Mössbauer and neutron scattering probes",
+      "lectures": [
+        41
+      ],
+      "question": "Which time and length scales does each probe observe?",
+      "sections": [
+        "Recoil-free resonance and evaluated lifetimes",
+        "Doppler energy shifts and linewidth conventions",
+        "Self-correlation and quasielastic neutron scattering",
+        "Jump models and the low-q limit",
+        "Resolution convolution and mechanism inference"
+      ],
+      "result": "Exponential free-diffusion self-correlation gives angular-frequency HWHM D q²; energy HWHM is hbar D q².",
+      "check": "Fourier-transform linewidth and q-dependent jump model",
+      "depends_on": [
+        18
+      ],
+      "source_map_group": 16
+    },
+    {
+      "number": 20,
+      "title": "Grain-boundary diffusion and kinetic regimes",
+      "lectures": [
+        42,
+        43
+      ],
+      "question": "When does a fast boundary dominate a measured profile?",
+      "sections": [
+        "Boundary structure, segregation and transport area",
+        "Fisher boundary-plus-lattice equations",
+        "Harrison A, B and C regimes",
+        "B-tail product P=s_b delta D_b",
+        "Cross-regime inference and validity conditions"
+      ],
+      "result": "Boundary transport depends on both fast along-boundary diffusion and leakage into adjoining grains; the relevant bulk penetration scale is sqrt(Dt).",
+      "check": "regime length-scale comparison and two-region conservation",
+      "depends_on": [
+        19
+      ],
+      "source_map_group": 17
+    },
+    {
+      "number": 21,
+      "title": "Dislocation pipe diffusion and pathway competition",
+      "lectures": [
+        44,
+        45
+      ],
+      "question": "Can a tiny fast-path fraction control transport?",
+      "sections": [
+        "Dislocation cores as transport pathways",
+        "Parallel conductance and exchange limits",
+        "Tutorial: compare lattice, boundary, and pipe routes",
+        "Designing an experiment to separate pathways"
+      ],
+      "result": "For parallel connected pathways sharing a gradient and local equilibrium, D_eff=sum_i phi_i D_i; this arithmetic average fails when exchange or connectivity is limiting.",
+      "check": "path-volume sensitivity and series/parallel counterexample",
+      "depends_on": [
+        20
+      ],
+      "source_map_group": 18
+    },
+    {
+      "number": 22,
+      "title": "Ordered, nanocrystalline, and quasicrystalline materials",
+      "lectures": [
+        46,
+        47,
+        48
+      ],
+      "question": "How does structural order alter allowed transport mechanisms?",
+      "sections": [
+        "Ordered sublattices and constrained jumps",
+        "Antisites, vacancies and order preservation",
+        "Nanocrystals, interfaces and connectivity",
+        "Quasicrystal order and atomic/phason motion",
+        "Distinguishing structural evidence from rate claims"
+      ],
+      "result": "A larger interfacial volume fraction increases a simple parallel-path coefficient only if interfacial diffusivity, connectivity, and exchange assumptions remain fixed.",
+      "check": "grain-size geometry and model sensitivity",
+      "depends_on": [
+        21
+      ],
+      "source_map_group": 19
+    },
+    {
+      "number": 23,
+      "title": "Diffusion mechanisms in metallic alloys",
+      "lectures": [
+        49,
+        50,
+        51
+      ],
+      "question": "How should diffusion rates across alloys be compared?",
+      "sections": [
+        "Self diffusion, crystal classes and melting-point comparisons",
+        "Monovacancies, divacancies, anisotropy and phase transitions",
+        "Interstitial transport, hydrogen and trapping",
+        "Solubility and Hume–Rothery heuristics",
+        "Dilute solute binding and five-frequency transport",
+        "Hybrid mechanisms and composition expansions",
+        "Historical electrostatic models and their failures"
+      ],
+      "result": "A measured diffusivity reflects pathway populations, jump mobilities, correlations and reference conditions; no single material label determines its ordering.",
+      "check": "trap-limited transport, defect-population competition and controlled rate comparisons",
+      "depends_on": [
+        22
+      ],
+      "source_map_group": 20
+    },
+    {
+      "number": 24,
+      "title": "High-entropy alloys and the evidence for diffusion claims",
+      "lectures": [
+        52,
+        55
+      ],
+      "question": "How should diffusion rates across alloys be compared?",
+      "sections": [
+        "Composition, mixing entropy and phase identity",
+        "Tracer versus interdiffusion comparisons",
+        "Temperature and melting-point baselines",
+        "Grain-boundary segregation and crossover",
+        "Design a falsifiable sluggish-diffusion comparison"
+      ],
+      "result": "A diffusion ranking requires named species, phase, coefficient, temperature convention and comparable microstructure; high configurational entropy alone proves no universal kinetic ordering.",
+      "check": "same-absolute versus homologous-temperature ranking and primary-data audit",
+      "depends_on": [
+        23
+      ],
+      "source_map_group": 20,
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 25,
+      "title": "Defect-mediated diffusion in semiconductors",
+      "lectures": [
+        53,
+        54,
+        55
+      ],
+      "question": "Why can electronic state change atomic transport?",
+      "sections": [
+        "Semiconductor structure and defect-mediated transport",
+        "Charged defects and Fermi-level populations",
+        "Dopant–defect pairs, dissociative and kick-out reactions",
+        "Retrograde solubility, oxygen and intrinsic gettering",
+        "Nonequilibrium sources/sinks and tutorial measurements"
+      ],
+      "result": "The semiconductor diffusion coefficient depends on the populations and mobilities of participating defects; a single constant-D profile is a restricted process model.",
+      "check": "charged-defect population and mobility sensitivity, source/sink nonequilibrium, and explicit tutorial measurement limits",
+      "depends_on": [
+        24
+      ],
+      "source_map_group": 21
+    },
+    {
+      "number": 26,
+      "title": "Diffusion and structural relaxation in metallic glasses",
+      "lectures": [
+        56,
+        59
+      ],
+      "question": "When does a fixed diffusivity cease to describe an evolving structure?",
+      "sections": [
+        "Metallic-glass formation and short-range order",
+        "Tracer transport, viscosity and empirical comparisons",
+        "Collective motion and activation-volume inference",
+        "Sub-Tg relaxation, aging and nonstationarity",
+        "Accumulated diffusion time as a reduced model"
+      ],
+      "result": "For spatially uniform D(t), the diffusion equation reduces to constant-coefficient form under accumulated diffusion time tau=int_0^t D(s) ds.",
+      "check": "equal final profiles from distinct time histories",
+      "depends_on": [
+        25
+      ],
+      "source_map_group": 22,
+      "shared_tutorial_note": "Includes later tutorial examples explicitly used in the chapter; lecture allocation is shared."
+    },
+    {
+      "number": 27,
+      "title": "Ionic solids, defect chemistry, and coupled charge transport",
+      "lectures": [
+        57,
+        58,
+        59
+      ],
+      "question": "How does charge neutrality constrain mass transport?",
+      "sections": [
+        "Effective charge, site multiplicity and neutrality",
+        "Mass action versus electroneutrality",
+        "Silver-halide Frenkel doping and conductivity minima",
+        "Alkali-halide Schottky intrinsic and extrinsic regimes",
+        "Nernst–Einstein, tracer and collective correlations",
+        "Association, dissociation and tutorial synthesis"
+      ],
+      "result": "For independent dilute carriers of charge q and number concentration n, conductivity=n q² D/(k_B T); tracer-to-charge correlation and multiple carriers require qualification.",
+      "check": "neutrality and mass-action solutions, conductivity-minimum location, intrinsic/extrinsic crossover, and tracer-versus-charge correlation",
+      "depends_on": [
+        26
+      ],
+      "source_map_group": 23
+    },
+    {
+      "number": 28,
+      "title": "Synthesis: from a transport question to defensible evidence",
+      "lectures": [
+        60
+      ],
+      "question": "How can the complete chain from mechanism to measurement be audited?",
+      "sections": [
+        "Choose the conserved quantity and frame",
+        "Connect mechanisms, thermodynamics, and boundary data",
+        "Select an experiment and solve the inverse problem",
+        "A cumulative diffusion-study design"
+      ],
+      "result": "Identical concentration profiles can arise from different microscopic mechanisms; mechanism inference requires additional observables or constraints.",
+      "check": "construct an explicit nonidentifiability example and experimental remedy",
+      "depends_on": [
+        27
+      ],
+      "source_map_group": 24
+    }
+  ]
+}

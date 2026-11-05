@@ -1,0 +1,17 @@
+phase: ready_for_publication
+course: Diffusion in Solids
+instructor: Mayur Vaidya
+institution: IIT Hyderabad
+source_course_id: '113106635'
+authorization: full course, parallel drafting, commit, GitHub push; current user request
+gates:
+  specification: completed
+  results_and_notation: completed and locally checked
+  architecture: scoped independent reviews and targeted closures completed
+  outline: completed; 199 located source-topic nodes
+  chapter_reviews: all 28 accepted after two independent full reviews each
+  book_passes: scientific consistency and reader structure passed
+  final_integrity: release gate passed; source-free labs and byte identity passed
+current_chapter: null
+completed_sections: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+next_action: commit, push, and verify GitHub publication

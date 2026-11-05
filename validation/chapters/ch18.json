@@ -1,0 +1,45 @@
+{
+  "reviews": [
+    {
+      "chapter": 18,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7b2070bbecbffe35d4448063a343fc71529ca598fb6a3a98bdc20560d4716523",
+      "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+      "assets": {
+        "assets/figures/ch18-nmr.svg": "7af18a3b655e3440fde5731b1620f0a3a20c9b401f8c8889c4c706a2d4c2dd96"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new complete raw-caption/audiovisual reading",
+        "No empirical NMR dataset or restricted-diffusion solver verified",
+        "Reader/release checks separate"
+      ],
+      "private_review_record_sha256": "cc6f0ba1436dceb9df44a127ab297cd3fdc2e798f39e2c5bb122523acebb29f1"
+    },
+    {
+      "chapter": 18,
+      "round": 2,
+      "reviewer": "probe_review_18_19",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7b2070bbecbffe35d4448063a343fc71529ca598fb6a3a98bdc20560d4716523",
+      "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+      "assets": {
+        "assets/figures/ch18-nmr.svg": "7af18a3b655e3440fde5731b1620f0a3a20c9b401f8c8889c4c706a2d4c2dd96",
+        "code/ch18-output.json": "2fdf7b407b2b0241ab73a68adeaced30a05026fac66f6d446fe2a0187f43e4d0"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Full manuscript, six exercises and solutions, complete code, saved JSON and actual SVG inspected. The unchanged scripts were executed from work/probe-review-r2-run; output JSON and SVG are byte-identical to published assets.",
+        "Stejskal\u2013Tanner original printed pp289\u2013290 inspected (p289 text extraction, p290 retained image). Complete normalized L39 captions read and relevant L40 NMR diagnostic interval821\u20131006s read separately. No complete audiovisual review.",
+        "Scientific review excludes final reader/export/publication verification."
+      ],
+      "private_review_record_sha256": "deb4d98cdce0b615e5cfe555445307fa40ac5acf3b515a2ea6d1de8ad3fa9f91"
+    }
+  ]
+}

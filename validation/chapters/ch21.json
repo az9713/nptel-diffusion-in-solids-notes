@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 21,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b089cbc3174dec35fdfa16bdb7a862ddf58a51c92bd69a8d9a488c96de9df5e7",
+      "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+      "assets": {
+        "assets/ch21-pathways.svg": "eef89d01779dbd95404b60fb031fecf86efb6bdaa7219ec1396d22af1b112d2c"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full raw-caption/audiovisual review in this context",
+        "Exact cylindrical Bessel kernel and empirical network not reproduced",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "50ebe21151bf8d80d9ed3e3f258c9d35cd8d3893446bdb0f6d0f56e899761ebd"
+    },
+    {
+      "chapter": 21,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b089cbc3174dec35fdfa16bdb7a862ddf58a51c92bd69a8d9a488c96de9df5e7",
+      "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+      "assets": {
+        "assets/ch21-pathways.svg": "eef89d01779dbd95404b60fb031fecf86efb6bdaa7219ec1396d22af1b112d2c"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The exact cylindrical Bessel kernel and unverified source polynomial/Arrhenius-table coefficients are not reproduced; the text states that boundary.",
+        "The simple exchange calculation is not a solution of the full cylindrical leakage problem. Scientific acceptance does not include browser/print/accessibility or complete source-frame verification."
+      ],
+      "private_review_record_sha256": "6271187ddbfa72d5ce536510a2ba17130b995587f8447c6e2b8bef6ef072b452"
+    }
+  ]
+}

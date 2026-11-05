@@ -1,0 +1,1496 @@
+{
+  "complete": true,
+  "editorial_complete": true,
+  "planned_chapters": 28,
+  "drafted_chapters": 28,
+  "accepted_chapters": 28,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Conservation, gradients, and Fick's laws",
+      "body_sha256": "246e446dc00cc714eb9413de493a278d689c601e9985397a68f541d4811d5833",
+      "words_approx": 3950,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 1,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "246e446dc00cc714eb9413de493a278d689c601e9985397a68f541d4811d5833",
+            "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+            "assets": {
+              "assets/diffusion.js": "11d999bd668f4d56901642e86df708813cbf69a893c228dc53172c66844e84d6"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No audio or source video frame review",
+              "No independent DOI metadata verification in this round",
+              "No full reader rendering, print or accessibility acceptance by this reviewer",
+              "Scientific/current-content editorial acceptance is separate from source coverage, browser acceptance and full-course release"
+            ],
+            "private_review_record_sha256": "cb204b6184ebcb816dd2ce6e5a72ea1398c28eaad0a8bd63e7fbdae3cb86346e"
+          },
+          {
+            "chapter": 1,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "246e446dc00cc714eb9413de493a278d689c601e9985397a68f541d4811d5833",
+            "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+            "assets": {
+              "assets/diffusion.js": "11d999bd668f4d56901642e86df708813cbf69a893c228dc53172c66844e84d6"
+            },
+            "open_blockers": 0,
+            "limitations": [],
+            "private_review_record_sha256": "20bab105bac216a2a63acf64ccef3669e1298611a5d0b0e829f33d01ded19502"
+          }
+        ]
+      },
+      "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+      "output_sha256": "a7b8fd188e66aa8c38b4f5c9921e7af7210017f77ac3bb583ad8e6b32a1bed06"
+    },
+    {
+      "number": 2,
+      "title": "Laplace transforms and diffusion initial data",
+      "body_sha256": "1270955effc8e65be08504475e4cabf58c6355fca1d7f46519dbba7df0733df7",
+      "words_approx": 2697,
+      "solved_exercises": 7,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 2,
+            "round": 1,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "1270955effc8e65be08504475e4cabf58c6355fca1d7f46519dbba7df0733df7",
+            "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+            "assets": {},
+            "open_blockers": 0,
+            "limitations": [],
+            "private_review_record_sha256": "90736228706a2710668aac43cf1464f54c58afe0e83c3aef83e181dc9867ba78"
+          },
+          {
+            "chapter": 2,
+            "round": 2,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "1270955effc8e65be08504475e4cabf58c6355fca1d7f46519dbba7df0733df7",
+            "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+            "assets": {},
+            "open_blockers": 0,
+            "limitations": [
+              "One selected source frame inspected at L4 1628s; no comprehensive audiovisual review",
+              "No full reader MathJax/browser/print/accessibility/export acceptance by this reviewer",
+              "Scientific current-content acceptance is separate from source and release acceptance"
+            ],
+            "private_review_record_sha256": "feed9645808b59011c4724ed4665798d1ca6a8e49fcf94b04da9d87659dc0ff2"
+          }
+        ]
+      },
+      "code_sha256": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+      "output_sha256": "8deb884e0161e48f79ce713015ebde7ca82c83f62b70688311a188e3b1885c09"
+    },
+    {
+      "number": 3,
+      "title": "Gaussian and error-function diffusion solutions",
+      "body_sha256": "7d34882216a27fbe6eb9924b5793d6c3fcb332a95289b95460ee8c6d681da6b5",
+      "words_approx": 3015,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 3,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7d34882216a27fbe6eb9924b5793d6c3fcb332a95289b95460ee8c6d681da6b5",
+            "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+            "assets": {
+              "figures/ch03-profile-families.svg": "ac6f59c231d28f784719770c8ef4428b4edfea5e6ac648f5be5fe27ac6697e82"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new source-frame or comprehensive audiovisual review",
+              "Full reader/browser/accessibility/print/export release checks separate"
+            ],
+            "private_review_record_sha256": "d261c42d96f47ac0df52fa13fd6bd00ed0be7df38c7f53d22ba25564219ba982"
+          },
+          {
+            "chapter": 3,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7d34882216a27fbe6eb9924b5793d6c3fcb332a95289b95460ee8c6d681da6b5",
+            "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+            "assets": {
+              "figures/ch03-profile-families.svg": "ac6f59c231d28f784719770c8ef4428b4edfea5e6ac648f5be5fe27ac6697e82"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "L7/8 checked through complete source map; not full captions reread",
+              "L10 full normalized captions read directly; no source frames/audio",
+              "Scientific SVG rendered/inspected; no full browser/print audit"
+            ],
+            "private_review_record_sha256": "6bc0a792cdd56cb75b862a74e36c3c71771e245d9c11077bdd18a3a4776a6777"
+          }
+        ]
+      },
+      "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+      "output_sha256": "f60c3cea529a656a2737ec555fee55a2ab987adb23cd62f1235fb5040641bfdd"
+    },
+    {
+      "number": 4,
+      "title": "Finite domains and reproducible diffusion computation",
+      "body_sha256": "d1ffec5df30a01a94cc0ad73d43eaa29b4800c1942b3589b289f1cd6b501089a",
+      "words_approx": 3075,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 4,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "d1ffec5df30a01a94cc0ad73d43eaa29b4800c1942b3589b289f1cd6b501089a",
+            "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+            "assets": {
+              "figures/ch04-boundary-models.svg": "65105be4dd8ed02ce1dae55c328fa36fe2f1bf5f07b46007134cf7f27c5a8831"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Selected frames only; no complete audiovisual review",
+              "Source-coverage closure and full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "36dc98136aeac140c1c8df4e81304f5921fcd6a9c0ad5a8117a52719bf90be2f"
+          },
+          {
+            "chapter": 4,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "d1ffec5df30a01a94cc0ad73d43eaa29b4800c1942b3589b289f1cd6b501089a",
+            "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+            "assets": {
+              "figures/ch04-boundary-models.svg": "65105be4dd8ed02ce1dae55c328fa36fe2f1bf5f07b46007134cf7f27c5a8831"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "L9/L11 checked through complete source map and three selected source frames; no full direct caption or audio reread",
+              "L10 full captions directly read in same context",
+              "Scientific figure rendered and inspected; full reader/print check separate"
+            ],
+            "private_review_record_sha256": "cb8177d8774fb57860a916a5b527684b8342665cd42286ad4a143cc18314371d"
+          }
+        ]
+      },
+      "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+      "output_sha256": "610a4a096f050938d6cd2417029d8a83c69891fb8ddea6aab6a2cf7b924edceb"
+    },
+    {
+      "number": 5,
+      "title": "Crystal geometry, sublattices, and defect bookkeeping",
+      "body_sha256": "7287b0ac15117e39f18c5a5eb59ce13c33e1526f6a106b60842306b5a60757f7",
+      "words_approx": 3285,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 5,
+            "round": 1,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7287b0ac15117e39f18c5a5eb59ce13c33e1526f6a106b60842306b5a60757f7",
+            "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+            "assets": {
+              "assets/ch05-boundary-spacing.svg": "d98ba95b05a465bee197f1232bae37dfbf4caf8ef8835ce9e5ce3ea9c14115f1"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No comprehensive source-video/slide verification is claimed. Material-specific structure examples are appropriately avoided when captions are ambiguous.",
+              "No browser, responsive layout, print, or accessibility acceptance is granted by this scientific review; those remain separate root checks."
+            ],
+            "private_review_record_sha256": "5185e9756dce1473a7ea0f8c65ac555d840c5de04f39a215f4fbc885b0c8fe83"
+          },
+          {
+            "chapter": 5,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7287b0ac15117e39f18c5a5eb59ce13c33e1526f6a106b60842306b5a60757f7",
+            "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+            "assets": {
+              "assets/ch05-boundary-spacing.svg": "d98ba95b05a465bee197f1232bae37dfbf4caf8ef8835ce9e5ce3ea9c14115f1"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map read; no direct full caption/audio/source-frame reread",
+              "Current scientific SVG rendered and inspected; full reader/print checks separate"
+            ],
+            "private_review_record_sha256": "0c3be282469405b6a456d0eac7f6f88750e17216378ecba9d13ef80e98701e6d"
+          }
+        ]
+      },
+      "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+      "output_sha256": "6859d9d6cde3f692d437a55d57baba1699fd1ee430b00d6a0815f488a3f5ec9d"
+    },
+    {
+      "number": 6,
+      "title": "Vacancy populations, binding, and defect measurements",
+      "body_sha256": "d3e21e0593d6f15b707204a6bcfc34bd0ab2114bc72305bbd9bb0a37dbdf8b01",
+      "words_approx": 2431,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 6,
+            "round": 1,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "d3e21e0593d6f15b707204a6bcfc34bd0ab2114bc72305bbd9bb0a37dbdf8b01",
+            "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+            "assets": {
+              "assets/ch06-trapping.svg": "940076a1d857750d20fc56abb4ae80e2132b7ec8449c5fa1a56d7d23dea8825f"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full empirical positron spectrum or source software dataset was available or claimed reproduced.",
+              "Browser/print/accessibility and comprehensive source-frame verification remain separate checks."
+            ],
+            "private_review_record_sha256": "7d5dfc6de6acf53c6582ffd179da6a732a013071d561b728ea33848dd7a55105"
+          },
+          {
+            "chapter": 6,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "d3e21e0593d6f15b707204a6bcfc34bd0ab2114bc72305bbd9bb0a37dbdf8b01",
+            "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+            "assets": {
+              "assets/ch06-trapping.svg": "940076a1d857750d20fc56abb4ae80e2132b7ec8449c5fa1a56d7d23dea8825f"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source maps read plus targeted L15/L20 captions; not complete direct caption/audio reread",
+              "SelectedL20@280 frame shows pair question, not solute decimal; no decimal visual certification",
+              "Current scientific SVG rendered and inspected; full reader/print checks separate"
+            ],
+            "private_review_record_sha256": "068cbf65ccf6568f2511f3dc4f1e5791c31ec340eb25fd29a995f3b081418713"
+          }
+        ]
+      },
+      "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+      "output_sha256": "d920ef9d432e88a91b82f7db1074b150e0d940f348c94db7958e1cdf148b01b9"
+    },
+    {
+      "number": 7,
+      "title": "Random walks and atomistic diffusion mechanisms",
+      "body_sha256": "a3a89aa34cc1c5cd89ff797e5e75175ca3fd36cfb41dae63310efd93ecaa355d",
+      "words_approx": 2561,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 7,
+            "round": 1,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "a3a89aa34cc1c5cd89ff797e5e75175ca3fd36cfb41dae63310efd93ecaa355d",
+            "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+            "assets": {
+              "assets/ch07-walk-moments.svg": "01f59067f3efd8d182e36d27a1d10cc040703367836941f810b24792dcb30580"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The selected source carbon-frequency example is not reconstructed from its ambiguous lattice parameter/coefficient caption; no specific source number is falsely reproduced.",
+              "This is scientific manuscript/code/asset-model acceptance. Browser appearance, responsive layout, print, accessibility, and comprehensive slide verification remain separate."
+            ],
+            "private_review_record_sha256": "a594b74be43ac783df468e2e47cc4a8c28c9684eee17dca1a7895ba5f2302a36"
+          },
+          {
+            "chapter": 7,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "a3a89aa34cc1c5cd89ff797e5e75175ca3fd36cfb41dae63310efd93ecaa355d",
+            "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+            "assets": {
+              "assets/ch07-walk-moments.svg": "01f59067f3efd8d182e36d27a1d10cc040703367836941f810b24792dcb30580"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source maps checked; no new full direct caption/audio/source-frame review",
+              "Current scientific SVG rendered and inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "1dc1733cfb3fbeeae8892d73f7234f0593acbb5b3c8ec0c812ba64f0ba53d7c5"
+          }
+        ]
+      },
+      "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+      "output_sha256": "17965da41bf20d32e1689b994eb2fe6e7e530018ba71ca15c7129e8f9d62cba0"
+    },
+    {
+      "number": 8,
+      "title": "Correlation factors and tracer memory",
+      "body_sha256": "16f5212017b7825177b24326ecde4fac1f9f5ada4a0a037f42f0d92426472463",
+      "words_approx": 2835,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 8,
+            "round": 1,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "16f5212017b7825177b24326ecde4fac1f9f5ada4a0a037f42f0d92426472463",
+            "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+            "assets": {
+              "assets/ch08-correlation.svg": "b5a11a3cc0b8ae82edad70244863e260d2006d9c56c61aca27788f5480e9b88d"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The laboratory does not solve an FCC exterior-lattice integral and correctly labels F=.8 as supplied synthetic input. No unverified source correlation-table number is needed.",
+              "This review accepts scientific manuscript/code/asset models. Browser, print, responsive layout, and full source-video verification remain separate."
+            ],
+            "private_review_record_sha256": "3ea6f59060af261105c72b598541111fa76804b257f9e37ca400bc4e09f5a3c2"
+          },
+          {
+            "chapter": 8,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "16f5212017b7825177b24326ecde4fac1f9f5ada4a0a037f42f0d92426472463",
+            "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+            "assets": {
+              "assets/ch08-correlation.svg": "b5a11a3cc0b8ae82edad70244863e260d2006d9c56c61aca27788f5480e9b88d"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map read; no full direct caption/audio reread",
+              "Actual selectedL18frames1445/1500/1560 inspected",
+              "Primary intro andPDFp11section3.3 inspected; not full-paper numerical reproduction",
+              "Scientific SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "96715b258215aa0d39a926c4a241a830c59560937df6d4f146f9cc7415f34b8b"
+          }
+        ]
+      },
+      "code_sha256": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+      "output_sha256": "8c1c035918bf200292f4754dd2f92d3828a25e729b845fe8e27f6621eca3e72b"
+    },
+    {
+      "number": 9,
+      "title": "Temperature, pressure, and activation parameters",
+      "body_sha256": "a27a64761e85c997404b99bbb78006f9bf374d675c4109790a8cbd8182569563",
+      "words_approx": 2886,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 9,
+            "round": 1,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "a27a64761e85c997404b99bbb78006f9bf374d675c4109790a8cbd8182569563",
+            "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+            "assets": {
+              "assets/ch09-arrhenius.svg": "320f94f8839f112f49adc8fd58d1411cb3d1deed2a1615e0fc48fa14e6cf5b08"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Source material identity, original experimental uncertainties and protocol are not established by the tutorial table and are not claimed verified.",
+              "No browser, print, accessibility or comprehensive source-video acceptance is granted; scientific argument/code/asset-model acceptance is separate."
+            ],
+            "private_review_record_sha256": "3f9441fa5016a6d81668b9408ea9557e05769735bec89edb9049ac36d205a1fc"
+          },
+          {
+            "chapter": 9,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "a27a64761e85c997404b99bbb78006f9bf374d675c4109790a8cbd8182569563",
+            "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+            "assets": {
+              "assets/ch09-arrhenius.svg": "320f94f8839f112f49adc8fd58d1411cb3d1deed2a1615e0fc48fa14e6cf5b08"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map checked and selectedL20frames1690/1810; not full direct audiovisual review",
+              "Unknown source-table experimental provenance and measurement uncertainty remain unknown",
+              "Current SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "41f87c88ece5df2dfd47d09675c88f20e522f516181cf34a36bfa53195c32ce6"
+          }
+        ]
+      },
+      "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+      "output_sha256": "92e437b96d2714ef7facfcb36f30ca8fe83b2316e348661ea7d65fcf0230b8e9"
+    },
+    {
+      "number": 10,
+      "title": "Free energy, interdiffusion, and phase formation",
+      "body_sha256": "69848ea5c04939565305230d26218f518597addd6c5222eeaa9f0f37299cf178",
+      "words_approx": 2900,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 10,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "69848ea5c04939565305230d26218f518597addd6c5222eeaa9f0f37299cf178",
+            "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+            "assets": {
+              "assets/figures/ch10-free-energy.svg": "edd7e5797fe0a6968991f73c235c7a667c640abd0b471441deb64d059c7a424c"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No comprehensive source video review",
+              "Full source fidelity/planning maps independently completed elsewhere; my later-source raw reading scope is explicitly bounded",
+              "Browser/release checks separate"
+            ],
+            "private_review_record_sha256": "1312ea4a8a88a4fafc5e135f3c25cdf72157d943ff97d81c456ba1cc95461582"
+          },
+          {
+            "chapter": 10,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "69848ea5c04939565305230d26218f518597addd6c5222eeaa9f0f37299cf178",
+            "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+            "assets": {
+              "assets/figures/ch10-free-energy.svg": "edd7e5797fe0a6968991f73c235c7a667c640abd0b471441deb64d059c7a424c"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map read; no new full direct L21-23caption/audio/source-frame review",
+              "Synthetic thermodynamics only; no empirical Cu-Ni assessment verified",
+              "Current scientific SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "09caabe4abe54254aac916cb6626986c8bd9d0545f9ac415da2fa952be04ce4e"
+          }
+        ]
+      },
+      "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+      "output_sha256": "0f959a3a87ca059ddde33521867c05164c14f1007b611cea3ff2819378b69d8f"
+    },
+    {
+      "number": 11,
+      "title": "Reading composition profiles and diffusion paths",
+      "body_sha256": "03221823b83eb357ad8f7761e15698cb069ce7e450853330c9b1e4f24992bbf6",
+      "words_approx": 2936,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 11,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "03221823b83eb357ad8f7761e15698cb069ce7e450853330c9b1e4f24992bbf6",
+            "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+            "assets": {
+              "assets/figures/ch11-profiles.svg": "936841833d29798ce0b5bbfc8eea4be5d7ca78c735300cb64fff01fcf3333e17"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full raw-caption reading L24–26 by this reviewer",
+              "Spectator profile conserves baseline inventory but is not a solved kinetic history",
+              "No source micrograph audit",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "6bf53bddd20bff5b135584e7936746be56cb8ab17691d68d71801c8143f45d62"
+          },
+          {
+            "chapter": 11,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "03221823b83eb357ad8f7761e15698cb069ce7e450853330c9b1e4f24992bbf6",
+            "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+            "assets": {
+              "assets/figures/ch11-profiles.svg": "936841833d29798ce0b5bbfc8eea4be5d7ca78c735300cb64fff01fcf3333e17"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map checked; no full direct audiovisual review",
+              "Current scientific SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "9cccb126f38751f80dd47cb03d6f6bdf99d9fc3a0ee1cb44c3a9038f0dbb73bc"
+          }
+        ]
+      },
+      "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+      "output_sha256": "5cddb4220ba8f330e1c1010f442b684b810280fbac097ba7d565d3926f512044"
+    },
+    {
+      "number": 12,
+      "title": "Boltzmann–Matano analysis as an inverse problem",
+      "body_sha256": "b4188fd195c7b0726f6b753a85606b7dd99fb76008b6219fbe7da83dac417700",
+      "words_approx": 2207,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 12,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b4188fd195c7b0726f6b753a85606b7dd99fb76008b6219fbe7da83dac417700",
+            "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+            "assets": {
+              "assets/figures/ch12-inversion.svg": "4d7ee9ecc15a8c5cf3832712c0bee5f9a9c14fadb51ba4e444dacaff61342064"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full raw L27 or audiovisual review by this reviewer",
+              "Scientific laboratory uses declared synthetic inputs, not general production API",
+              "Reader/release checks separate"
+            ],
+            "private_review_record_sha256": "df9fc768ec30a4795c086b2a4b395a07b27b7498bc147c7801e2b4e3e5ae6a06"
+          },
+          {
+            "chapter": 12,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b4188fd195c7b0726f6b753a85606b7dd99fb76008b6219fbe7da83dac417700",
+            "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+            "assets": {
+              "assets/figures/ch12-inversion.svg": "4d7ee9ecc15a8c5cf3832712c0bee5f9a9c14fadb51ba4e444dacaff61342064"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map checked; no complete direct audiovisual reread",
+              "Primary PDFpp1-2/4-6 inspected; NIST andSauer-Freise abstract-only",
+              "Current scientific SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "9653af0fa5d8c4ed289cea6508cdcf6982ef97089732722b825b0a279be6330b"
+          }
+        ]
+      },
+      "code_sha256": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+      "output_sha256": "f601a42dee25bfeea97ece15c49bd9e25ab03d8ddbeb6022c329178f3390448c"
+    },
+    {
+      "number": 13,
+      "title": "Kirkendall markers, intrinsic fluxes, and Darken relations",
+      "body_sha256": "da8ac74b14d0275af0048426a261780cc222396df4fe1840d8375c10f2115551",
+      "words_approx": 2068,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 13,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "da8ac74b14d0275af0048426a261780cc222396df4fe1840d8375c10f2115551",
+            "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+            "assets": {
+              "assets/figures/ch13-marker.svg": "a4ebeedfad5a7200ee1f66004b7b276085d3828857baea978b6792adaa9219f0"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new full raw-caption or complete audiovisual audit",
+              "No full Manning wind-factor proof inspected",
+              "Reader/release checks separate"
+            ],
+            "private_review_record_sha256": "daf712c77ff26f89e0f2d472d02b5031b7a8500fdb51a9020462ff314da0915e"
+          },
+          {
+            "chapter": 13,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "da8ac74b14d0275af0048426a261780cc222396df4fe1840d8375c10f2115551",
+            "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+            "assets": {
+              "assets/figures/ch13-marker.svg": "a4ebeedfad5a7200ee1f66004b7b276085d3828857baea978b6792adaa9219f0"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Complete source map and three selectedL30frames checked; not complete direct audiovisual reread",
+              "Darken printedp188/p192 inspected; Manning1965 abstract-only",
+              "Current scientific SVG inspected; full reader/print separate"
+            ],
+            "private_review_record_sha256": "1b3cff2fd492e2097e2bca27fbfec8db0ddf791afcc3a9cbd811d14642c7ed16"
+          }
+        ]
+      },
+      "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+      "output_sha256": "59aed479d56a6584baf37dd92ef5d7d5808b560597c20d75e51ae814f7375f84"
+    },
+    {
+      "number": 14,
+      "title": "CALPHAD thermodynamics and kinetic databases",
+      "body_sha256": "86f4c29d82a446ecba462aad18262aa2afb789f876a05de522bdb4d2de3dafe9",
+      "words_approx": 2411,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 14,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "86f4c29d82a446ecba462aad18262aa2afb789f876a05de522bdb4d2de3dafe9",
+            "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+            "assets": {
+              "assets/figures/ch14-models.svg": "890994642026ccba63190e3368287d3ab9615e3fc7d76f41d376130a0dd2e2c5"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new full raw-caption or audiovisual review",
+              "No DICTRA/license/database execution claimed",
+              "Reader/release checks separate"
+            ],
+            "private_review_record_sha256": "8014118d01b7ac8b8db2fc3cf73466bce254bcf0de6d238f773b8a8de141ba32"
+          },
+          {
+            "chapter": 14,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "86f4c29d82a446ecba462aad18262aa2afb789f876a05de522bdb4d2de3dafe9",
+            "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+            "assets": {
+              "assets/figures/ch14-models.svg": "890994642026ccba63190e3368287d3ab9615e3fc7d76f41d376130a0dd2e2c5"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Source map fully read; no full direct lecture reread",
+              "Owning DICTRA input guide sections inspected; no proprietary run/database validation",
+              "Scientific SVG inspected; reader/print validation separate"
+            ],
+            "private_review_record_sha256": "dc1f404fc9d34ba3e23391fb518dde9c06f295c64cbaa3774bb1f41dd67ed89d"
+          }
+        ]
+      },
+      "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+      "output_sha256": "9546d557db8bbc208fe424680a7fac70ea4f49ce64490a4c508e7bc4a5613dca"
+    },
+    {
+      "number": 15,
+      "title": "Moving boundaries and multiphase simulation",
+      "body_sha256": "f18c2978bbc498b5f7e13bd4c7c44c461ff9694c6fa1b0d4c40639c44093d6bd",
+      "words_approx": 2222,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 15,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "f18c2978bbc498b5f7e13bd4c7c44c461ff9694c6fa1b0d4c40639c44093d6bd",
+            "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+            "assets": {
+              "assets/figures/ch15-stefan.svg": "f19e48b80f2a557984c4a89d960fd0e0073ad9a56c0c9e5dc2350e49f3bcbcae"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new full raw-caption/audiovisual review",
+              "No local DICTRA run or general PDE front-tracker execution",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "067d9772002ee6d954c8c2bcedfc92bf2c370fb44613e2f1730a013fbddd6a32"
+          },
+          {
+            "chapter": 15,
+            "round": 2,
+            "reviewer": "source_review_c",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "f18c2978bbc498b5f7e13bd4c7c44c461ff9694c6fa1b0d4c40639c44093d6bd",
+            "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+            "assets": {
+              "assets/figures/ch15-stefan.svg": "f19e48b80f2a557984c4a89d960fd0e0073ad9a56c0c9e5dc2350e49f3bcbcae"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Source map fully read; selected12 L34 frames inspected; no full direct audiovisual reread",
+              "Owning DICTRA setup guide inspected; training curriculum request timed out",
+              "No proprietary software run or assessed database validation",
+              "Current SVG inspected; reader/print validation separate"
+            ],
+            "private_review_record_sha256": "aac00e7001c64a14051860060dcb4e6b7ac8c3d7b2f73a94b46ffb025a4d2509"
+          }
+        ]
+      },
+      "code_sha256": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+      "output_sha256": "58f34d46446af3d1a1c6131677e6e0c9cf8d13330eca1d9c608d0ee441c7454b"
+    },
+    {
+      "number": 16,
+      "title": "Tracer profiles, SIMS, and electron-probe measurements",
+      "body_sha256": "799e98ac1a5ef4f3bb61e267fa557ef8c9cc8cf4950e88a91f1f4f888dbcbf26",
+      "words_approx": 2717,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 16,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "799e98ac1a5ef4f3bb61e267fa557ef8c9cc8cf4950e88a91f1f4f888dbcbf26",
+            "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+            "assets": {
+              "assets/figures/ch16-tracer-fit.svg": "6aebc3eb491def4727651d3063a4b89fd2884864667a8336001962e4481a4258"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full raw-caption or audiovisual review this round",
+              "No calibrated experimental uncertainty supplied",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "78ff4441038a7dc6e687d56bfd94e273d15d616b4cc5713c04245c00f555cc0b"
+          },
+          {
+            "chapter": 16,
+            "round": 2,
+            "reviewer": "probe_review_16_17",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "799e98ac1a5ef4f3bb61e267fa557ef8c9cc8cf4950e88a91f1f4f888dbcbf26",
+            "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+            "assets": {
+              "assets/figures/ch16-tracer-fit.svg": "6aebc3eb491def4727651d3063a4b89fd2884864667a8336001962e4481a4258",
+              "code/ch16-output.json": "a02e573acc40762011ebb912839e5713faa0da18857ba36749cb27821a12cbac"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Independent scientific review of the complete chapter body, all six exercises and solutions, full laboratory code, saved output, and its actual referenced SVG; not a browser/export/release or full audiovisual/source-coverage audit.",
+              "No experimental spectra, raw counts, count uncertainties, calibration standards, or slice boundaries were available; nominal calculations cannot establish metrological accuracy."
+            ],
+            "private_review_record_sha256": "3d1a1786af3afc90bf240ac1cf7ef4e5eb08ea619f9458fdd4c9637edf49ba78"
+          }
+        ]
+      },
+      "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+      "output_sha256": "a02e573acc40762011ebb912839e5713faa0da18857ba36749cb27821a12cbac"
+    },
+    {
+      "number": 17,
+      "title": "Mechanical relaxation and electrical diffusion probes",
+      "body_sha256": "56e0f932b515a65ba46802a9f5088180bc417cd4e62e99d22f22a9aaa9edfd80",
+      "words_approx": 2185,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 17,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "56e0f932b515a65ba46802a9f5088180bc417cd4e62e99d22f22a9aaa9edfd80",
+            "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+            "assets": {
+              "assets/figures/ch17-relaxation.svg": "e9da88d14f0faee58bc87026a7c473ee0b0f24fd4ea95ce28392d32ce1d9b1a1"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new complete raw-caption/audiovisual review",
+              "No empirical loss-spectrum or impedance fit reproduced",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "98eb5f450978db6c609f114e3a5fef1d470f03dc27d5c4629a3d2d97938c6977"
+          },
+          {
+            "chapter": 17,
+            "round": 2,
+            "reviewer": "probe_review_16_17",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "56e0f932b515a65ba46802a9f5088180bc417cd4e62e99d22f22a9aaa9edfd80",
+            "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+            "assets": {
+              "assets/figures/ch17-relaxation.svg": "e9da88d14f0faee58bc87026a7c473ee0b0f24fd4ea95ce28392d32ce1d9b1a1",
+              "code/ch17-output.json": "d9e58bf9ff55d7c1cdb50907f6bd70d8426a797110cf858e20f1d60c0362798a"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Independent scientific review of the complete chapter body, all six exercises and solutions, full laboratory code, saved output, and its actual referenced SVG; not a browser/export/release or full audiovisual/source-coverage audit.",
+              "Only selected L40 tutorial frames were independently visually checked; no experimental loss or impedance spectra were supplied.",
+              "Gorsky results are conditional on using host self-diffusion constants as a solute-mobility proxy and common thermodynamic factor, as the chapter states."
+            ],
+            "private_review_record_sha256": "b8afcdbc2fde9c46021a3ba36d11cc1663f213f015011b6e966d82ca88f4db21"
+          }
+        ]
+      },
+      "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+      "output_sha256": "d9e58bf9ff55d7c1cdb50907f6bd70d8426a797110cf858e20f1d60c0362798a"
+    },
+    {
+      "number": 18,
+      "title": "NMR diffusion measurements and local jump times",
+      "body_sha256": "7b2070bbecbffe35d4448063a343fc71529ca598fb6a3a98bdc20560d4716523",
+      "words_approx": 2088,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 18,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7b2070bbecbffe35d4448063a343fc71529ca598fb6a3a98bdc20560d4716523",
+            "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+            "assets": {
+              "assets/figures/ch18-nmr.svg": "7af18a3b655e3440fde5731b1620f0a3a20c9b401f8c8889c4c706a2d4c2dd96"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new complete raw-caption/audiovisual reading",
+              "No empirical NMR dataset or restricted-diffusion solver verified",
+              "Reader/release checks separate"
+            ],
+            "private_review_record_sha256": "cc6f0ba1436dceb9df44a127ab297cd3fdc2e798f39e2c5bb122523acebb29f1"
+          },
+          {
+            "chapter": 18,
+            "round": 2,
+            "reviewer": "probe_review_18_19",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7b2070bbecbffe35d4448063a343fc71529ca598fb6a3a98bdc20560d4716523",
+            "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+            "assets": {
+              "assets/figures/ch18-nmr.svg": "7af18a3b655e3440fde5731b1620f0a3a20c9b401f8c8889c4c706a2d4c2dd96",
+              "code/ch18-output.json": "2fdf7b407b2b0241ab73a68adeaced30a05026fac66f6d446fe2a0187f43e4d0"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Full manuscript, six exercises and solutions, complete code, saved JSON and actual SVG inspected. The unchanged scripts were executed from work/probe-review-r2-run; output JSON and SVG are byte-identical to published assets.",
+              "Stejskal–Tanner original printed pp289–290 inspected (p289 text extraction, p290 retained image). Complete normalized L39 captions read and relevant L40 NMR diagnostic interval821–1006s read separately. No complete audiovisual review.",
+              "Scientific review excludes final reader/export/publication verification."
+            ],
+            "private_review_record_sha256": "deb4d98cdce0b615e5cfe555445307fa40ac5acf3b515a2ea6d1de8ad3fa9f91"
+          }
+        ]
+      },
+      "code_sha256": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+      "output_sha256": "2fdf7b407b2b0241ab73a68adeaced30a05026fac66f6d446fe2a0187f43e4d0"
+    },
+    {
+      "number": 19,
+      "title": "Mössbauer and neutron scattering probes",
+      "body_sha256": "b2172d1e0ea57d1aa5f9b2d13c1212b3aaec3e3a796d80a86d6251621dff5d0d",
+      "words_approx": 2284,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 19,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b2172d1e0ea57d1aa5f9b2d13c1212b3aaec3e3a796d80a86d6251621dff5d0d",
+            "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+            "assets": {
+              "assets/figures/ch19-scattering.svg": "2a1d18fa6bf79a8d08e32adfe3abcfd68b11e7599dc58b1a82603e30b23c3d38"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new full raw-caption/audiovisual review",
+              "No empirical spectrum or instrument calibration reproduced",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "adcf9b3112175e9260ec1d9092fe683d1a1c7b06e78870dad160a327b070028a"
+          },
+          {
+            "chapter": 19,
+            "round": 2,
+            "reviewer": "probe_review_18_19",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b2172d1e0ea57d1aa5f9b2d13c1212b3aaec3e3a796d80a86d6251621dff5d0d",
+            "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+            "assets": {
+              "assets/figures/ch19-scattering.svg": "2a1d18fa6bf79a8d08e32adfe3abcfd68b11e7599dc58b1a82603e30b23c3d38",
+              "code/ch19-output.json": "8469e35906a493ab04d899cd2675d8ad7d6bd448c8f329b25e69991ad3d94ad6"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Full manuscript, all six exercises and solutions, complete code, saved JSON and actual SVG inspected. Isolated executable rerun generates byte-identical output JSON and SVG.",
+              "BIPM DDEP Co57 retained Table2/3 page image inspected. Official Mantid6.1 ConvFit owning documentation opened. Chudley–Elliott DOI fetch denied by robots; original article not inspected. Manuscript expressly limits its attribution to historical abstract scope and supplies independent derivations.",
+              "Complete normalized L41 caption text read sequentially in two chunks after the combined read was truncated. Relevant L40 NMR diagnostic interval821–1006s read separately. No full audiovisual review; formal source coverage accounting remains separate.",
+              "Classical Gaussian/Poisson correlations are explicit idealizations; this review does not validate a quantum detailed-balance model, empirical nuclear/neutron spectra, an instrument or publication."
+            ],
+            "private_review_record_sha256": "80d85b89e60ddd138e97c8dc8efcbacb92a7efc2b378151fb65e0f9e19880be4"
+          }
+        ]
+      },
+      "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+      "output_sha256": "8469e35906a493ab04d899cd2675d8ad7d6bd448c8f329b25e69991ad3d94ad6"
+    },
+    {
+      "number": 20,
+      "title": "Grain-boundary diffusion and kinetic regimes",
+      "body_sha256": "5df9fbd7f7674cb578055aa32c09dceedc457ea721ed93912b3b591cbf078dc3",
+      "words_approx": 2300,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 20,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "5df9fbd7f7674cb578055aa32c09dceedc457ea721ed93912b3b591cbf078dc3",
+            "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+            "assets": {
+              "assets/ch20-profiles.svg": "c6f48cce2674c9d863f4d29542962853e090b968868a434fb641da0f7b1bbfd3"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No new full raw-caption/audiovisual review",
+              "Continuum convergence not claimed for numerical demonstration",
+              "Harrison full original not accessed",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "cb89739846ae9b26973023af21ec1959590f1cc90775e25601e91f55727f939d"
+          },
+          {
+            "chapter": 20,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "5df9fbd7f7674cb578055aa32c09dceedc457ea721ed93912b3b591cbf078dc3",
+            "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+            "assets": {
+              "assets/ch20-profiles.svg": "c6f48cce2674c9d863f4d29542962853e090b968868a434fb641da0f7b1bbfd3"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The synthetic grid check establishes conservation and positivity, not continuum refinement; the manuscript states this limit and explains fixed-width refinement.",
+              "No instrument-specific detection validation or comprehensive source-frame audit is granted. Browser/print/accessibility checks are separate."
+            ],
+            "private_review_record_sha256": "095d8b203a954b66926eaea29daa9833b3cc8300f038f6fab273f075a3eb0225"
+          }
+        ]
+      },
+      "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+      "output_sha256": "14c8291ff5532e35e2efaf9ddf06961780f31a1fba08856a0e78a0d720302480"
+    },
+    {
+      "number": 21,
+      "title": "Dislocation pipe diffusion and pathway competition",
+      "body_sha256": "b089cbc3174dec35fdfa16bdb7a862ddf58a51c92bd69a8d9a488c96de9df5e7",
+      "words_approx": 1923,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 21,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b089cbc3174dec35fdfa16bdb7a862ddf58a51c92bd69a8d9a488c96de9df5e7",
+            "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+            "assets": {
+              "assets/ch21-pathways.svg": "eef89d01779dbd95404b60fb031fecf86efb6bdaa7219ec1396d22af1b112d2c"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full raw-caption/audiovisual review in this context",
+              "Exact cylindrical Bessel kernel and empirical network not reproduced",
+              "Full reader/release checks separate"
+            ],
+            "private_review_record_sha256": "50ebe21151bf8d80d9ed3e3f258c9d35cd8d3893446bdb0f6d0f56e899761ebd"
+          },
+          {
+            "chapter": 21,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "b089cbc3174dec35fdfa16bdb7a862ddf58a51c92bd69a8d9a488c96de9df5e7",
+            "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+            "assets": {
+              "assets/ch21-pathways.svg": "eef89d01779dbd95404b60fb031fecf86efb6bdaa7219ec1396d22af1b112d2c"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The exact cylindrical Bessel kernel and unverified source polynomial/Arrhenius-table coefficients are not reproduced; the text states that boundary.",
+              "The simple exchange calculation is not a solution of the full cylindrical leakage problem. Scientific acceptance does not include browser/print/accessibility or complete source-frame verification."
+            ],
+            "private_review_record_sha256": "6271187ddbfa72d5ce536510a2ba17130b995587f8447c6e2b8bef6ef072b452"
+          }
+        ]
+      },
+      "code_sha256": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+      "output_sha256": "749a11ff4eebeb3c7a4384b19fa8d49b2b4a4a7368de19f66bf8ca8aa4cad0e7"
+    },
+    {
+      "number": 22,
+      "title": "Ordered, nanocrystalline, and quasicrystalline materials",
+      "body_sha256": "210c6b1cf584921299a4436b2050f2e7e2c0989fada6b2177f32adfe3ad908fd",
+      "words_approx": 2592,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 22,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "210c6b1cf584921299a4436b2050f2e7e2c0989fada6b2177f32adfe3ad908fd",
+            "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+            "assets": {
+              "assets/ch22-geometry.svg": "25e0b8cfd7978523562ff6c8717d252ece22fb6ea2a67654b8170846f49ed301"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No full reader/browser/print acceptance in this science report",
+              "No empirical quasicrystal tables or detailed network-transition formulas retained or verified"
+            ],
+            "private_review_record_sha256": "59ea7fe5ec402dec6d0fc02011d7937f800433453ca62ca20f0c0dfb2cd50374"
+          },
+          {
+            "chapter": 22,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "210c6b1cf584921299a4436b2050f2e7e2c0989fada6b2177f32adfe3ad908fd",
+            "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+            "assets": {
+              "assets/ch22-geometry.svg": "25e0b8cfd7978523562ff6c8717d252ece22fb6ea2a67654b8170846f49ed301"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Detailed regime transition prefactors, empirical quasicrystal tables and mechanism-specific tracer ratios are not reconstructed from uncertain captions.",
+              "The code counts configurations and geometric coefficients; it does not calculate cycle barriers or frequencies. Browser/print/accessibility and full source-video verification are separate."
+            ],
+            "private_review_record_sha256": "32a84010c23ba1eeb42b0e8f23e344c6ed66249b8621f1a2a056a6f01e903fa2"
+          }
+        ]
+      },
+      "code_sha256": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+      "output_sha256": "ad4e2ba71c2406f59507ab70a2491114d931e7202780f3c20e1a7cdf92ca01ae"
+    },
+    {
+      "number": 23,
+      "title": "Diffusion mechanisms in metallic alloys",
+      "body_sha256": "7ee362ad0de37103f492000f18e37b216da900ae677e58c9d84baaa82a277bb1",
+      "words_approx": 2066,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 23,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7ee362ad0de37103f492000f18e37b216da900ae677e58c9d84baaa82a277bb1",
+            "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+            "assets": {
+              "assets/ch23-pathways.svg": "3b61faaba3baaf090f4764e0c29c51308eb00445313ae54560f505eaee705bab"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No source empirical tables retained or verified",
+              "No full reader/browser/print acceptance claimed"
+            ],
+            "private_review_record_sha256": "395eb9070f57214af7ddd7232b76bde2d91dfaa5ada07e3bc4080ea943bc17bd"
+          },
+          {
+            "chapter": 23,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "7ee362ad0de37103f492000f18e37b216da900ae677e58c9d84baaa82a277bb1",
+            "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+            "assets": {
+              "assets/ch23-pathways.svg": "3b61faaba3baaf090f4764e0c29c51308eb00445313ae54560f505eaee705bab"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Exact source melting-table exponents and historical model accuracy tables remain unverified and are not invented.",
+              "The laboratory validates the declared synthetic reductions, not a real metal mechanism. Browser/print/accessibility and complete source audiovisual coverage are separate."
+            ],
+            "private_review_record_sha256": "61204ee49c661ff1c5ced6d81a46c3e46c00cddef6e8278ca787f0079eb05d56"
+          }
+        ]
+      },
+      "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+      "output_sha256": "8a14e46ea7108bda337da0afdc4039a7f03e26814f6d615519befa6e9decccac"
+    },
+    {
+      "number": 24,
+      "title": "High-entropy alloys and the evidence for diffusion claims",
+      "body_sha256": "daccfb14520c13b5a0cfee11a5cedaa4bf78c47d451250453a4741607efe054a",
+      "words_approx": 1825,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 24,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "daccfb14520c13b5a0cfee11a5cedaa4bf78c47d451250453a4741607efe054a",
+            "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+            "assets": {
+              "assets/ch24-crossover.svg": "424dad03d468c42bd74445c6087078df6bdeec1978a312d92c687473e99329c3"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No empirical curve digitization or uncertainty estimation from unavailable raw data",
+              "Full reader/browser/print acceptance separate"
+            ],
+            "private_review_record_sha256": "df39f4f5c7436ec601a2c274d9f6364ec4f2d00b05b0c720044544a861a413e6"
+          },
+          {
+            "chapter": 24,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "daccfb14520c13b5a0cfee11a5cedaa4bf78c47d451250453a4741607efe054a",
+            "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+            "assets": {
+              "assets/ch24-crossover.svg": "424dad03d468c42bd74445c6087078df6bdeec1978a312d92c687473e99329c3"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The primary paper supplies the experimental counterexample; the companion does not digitize or fit missing raw empirical data.",
+              "The local HTML closure finding is separate from the root reader/browser/print/accessibility evidence. No broader audiovisual acceptance is implied."
+            ],
+            "private_review_record_sha256": "ca30b05d17b6cf629a738bc7967ef7552acb70d5718ce0c62f30c573b0628ab8"
+          }
+        ]
+      },
+      "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+      "output_sha256": "9cddc0f4e5183e09034cbfd659f545ed1f1cba0bbe7f84a83d828e4009112a2d"
+    },
+    {
+      "number": 25,
+      "title": "Defect-mediated diffusion in semiconductors",
+      "body_sha256": "44f61e29b59529dfe420086995dad4694e29339eedc793270728fe6f98cb0878",
+      "words_approx": 2376,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 25,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "44f61e29b59529dfe420086995dad4694e29339eedc793270728fe6f98cb0878",
+            "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+            "assets": {
+              "assets/ch25-defects.svg": "1ac258359252de34d40879af1eb3e24ef01d285c9db0cfe14045fd529259f600"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Primary full article not accessed; no numerical barrier attributed to it",
+              "Source solubility values not accepted as physical number densities",
+              "No complete reader/browser/print acceptance"
+            ],
+            "private_review_record_sha256": "714588ba3bd8680d0d5bfba07013bb7a610902f54a1bf3b251bb6c9c06848742"
+          },
+          {
+            "chapter": 25,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "44f61e29b59529dfe420086995dad4694e29339eedc793270728fe6f98cb0878",
+            "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+            "assets": {
+              "assets/ch25-defects.svg": "1ac258359252de34d40879af1eb3e24ef01d285c9db0cfe14045fd529259f600"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "The semiconductor source data provide an exercise extrapolation, not empirical validation at1000C or a calibrated wafer process.",
+              "The Nichols article is checked at abstract scope only. Scientific acceptance does not include fabrication advice, complete audiovisual audit, browser/print/accessibility or device validation."
+            ],
+            "private_review_record_sha256": "4292f923de0aa9ea8d0621eed35b51e8f5df5362fb92d6c781d59e22d0737e3d"
+          }
+        ]
+      },
+      "code_sha256": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+      "output_sha256": "49e20b52f6c4d00253e7a43b7bd5c17b3de0eb3bce4d589673caa5fc3771d93f"
+    },
+    {
+      "number": 26,
+      "title": "Diffusion and structural relaxation in metallic glasses",
+      "body_sha256": "75438c39e958ee19f278299234009657d02b384d8ead2edf1739329f9dd1b7f1",
+      "words_approx": 1982,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 26,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "75438c39e958ee19f278299234009657d02b384d8ead2edf1739329f9dd1b7f1",
+            "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+            "assets": {
+              "assets/ch26-histories.svg": "99a61cb850e0ccc2ecedd8c0a8bee6ccdab1c437979fa8489e8a4950a5eda060"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Nature direct page redirected to authentication; Liu check is publisher-indexed content, not full downloaded article",
+              "No Vitreloy4 empirical table/kink-temperature reconstruction",
+              "Whole reader/browser/print acceptance remains separate"
+            ],
+            "private_review_record_sha256": "117978e915bfc6d646168e4264c1e009c5ce48607958c4ad51eb19110a49d8d6"
+          },
+          {
+            "chapter": 26,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "75438c39e958ee19f278299234009657d02b384d8ead2edf1739329f9dd1b7f1",
+            "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+            "assets": {
+              "assets/ch26-histories.svg": "99a61cb850e0ccc2ecedd8c0a8bee6ccdab1c437979fa8489e8a4950a5eda060"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No browser layout or interactive acceptance is granted. No local atomistic-glass simulation or unprovided Vitreloy4 dataset was used.",
+              "The manuscript Gaussian density needs only the local domain repair above; numerical examples use positive accumulated time and are unchanged."
+            ],
+            "private_review_record_sha256": "c1a88b435e7496648842041633efb8fe9fb43eb6f57cc21796dc4e6ea07d37ea"
+          }
+        ]
+      },
+      "code_sha256": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+      "output_sha256": "ace8082fce44117a3bbaa7272cd3f0579c626888692330db5852f5933f4e9ab7"
+    },
+    {
+      "number": 27,
+      "title": "Ionic solids, defect chemistry, and coupled charge transport",
+      "body_sha256": "5889a7051d57455f74a19b192575aeb249248e4dd5b422162c4b9848d9fbe33f",
+      "words_approx": 2244,
+      "solved_exercises": 6,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 27,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "5889a7051d57455f74a19b192575aeb249248e4dd5b422162c4b9848d9fbe33f",
+            "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+            "assets": {
+              "assets/ch27-minimum.svg": "3bf4501cda548ff953f4c49ebfd3e2c5ec4fbfb95171554ab86684b174632744"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Morgan garnet factors are not transferred to halides",
+              "No material-specific formation/binding energies or measured concentration curves verified",
+              "No whole-reader/browser/print acceptance"
+            ],
+            "private_review_record_sha256": "785860d8c14c551bc1ab5bc5a8741c00cca4034a228298a1a85eaaba918069c9"
+          },
+          {
+            "chapter": 27,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "5889a7051d57455f74a19b192575aeb249248e4dd5b422162c4b9848d9fbe33f",
+            "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+            "assets": {
+              "assets/ch27-minimum.svg": "3bf4501cda548ff953f4c49ebfd3e2c5ec4fbfb95171554ab86684b174632744"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Source numerical formation/binding energies and coordination examples are not imported as material calibration. The chapter does not claim to execute the cited garnet simulation or transfer its geometry factors to halides.",
+              "Browser layout/reader assembly and full media review remain separate evidence."
+            ],
+            "private_review_record_sha256": "0ecacc62ee73c5a6524ffb76cecfca42995bf35be530df4c1360b2dd153f81f1"
+          }
+        ]
+      },
+      "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+      "output_sha256": "29f15a2ec73ed2da97b6b4ab53d30ff2be6a04f7486f7bf6b81b3c1f5a2fe558"
+    },
+    {
+      "number": 28,
+      "title": "Synthesis: from a transport question to defensible evidence",
+      "body_sha256": "742740d8ef6a60fea39b5f387a42e2eae8f97eded8db4a35d3ed2cf9d3a21201",
+      "words_approx": 2188,
+      "solved_exercises": 5,
+      "review": {
+        "accepted": true,
+        "rounds": [
+          {
+            "chapter": 28,
+            "round": 1,
+            "reviewer": "source_review_a",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "742740d8ef6a60fea39b5f387a42e2eae8f97eded8db4a35d3ed2cf9d3a21201",
+            "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+            "assets": {
+              "assets/ch28-identifiability.svg": "cb5b8bb2b1b8f0c7a0a0bef14d90564a01419651ec43bf380a8fe211305ac8a9"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "Synthetic construction only; not material parameter inference",
+              "A calibrated population signal only resolves the chosen model ambiguity, not all possible microscopic alternatives",
+              "Full reader/browser/print/release checks separate"
+            ],
+            "private_review_record_sha256": "bf7394f2d89f8c118ecc7fd5f8af200edda5261fb5f72d57305100a55ec48bac"
+          },
+          {
+            "chapter": 28,
+            "round": 2,
+            "reviewer": "source_review_b",
+            "independent_context": true,
+            "full_review": true,
+            "verdict": "accepted",
+            "body_sha256": "742740d8ef6a60fea39b5f387a42e2eae8f97eded8db4a35d3ed2cf9d3a21201",
+            "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+            "assets": {
+              "assets/ch28-identifiability.svg": "cb5b8bb2b1b8f0c7a0a0bef14d90564a01419651ec43bf380a8fe211305ac8a9"
+            },
+            "open_blockers": 0,
+            "limitations": [
+              "No uninspected lecture bibliography or source-frame numerical values are reconstructed. No experimental defect calibration is claimed.",
+              "This is scientific/numerical acceptance; browser, routing, publication and full-media checks are separate."
+            ],
+            "private_review_record_sha256": "cb2fd81fc11b990635396b663d2efac60545ac2401a889a7606374a497e9a083"
+          }
+        ]
+      },
+      "code_sha256": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+      "output_sha256": "eb67ed98da35a5dc7b1d73078f48fc6e83ed1879d42a898d5263fbb71fcf980c"
+    }
+  ]
+}

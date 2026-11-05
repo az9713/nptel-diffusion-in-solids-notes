@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Vacancy populations, binding, and defect measurements — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a aria-current=page href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Vacancy populations, binding, and defect measurements</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#formation">6.1 Vacancy equilibrium balances formation cost and configurational entropy L12 16:52</a></li><li><a href="#pairs">6.2 A divacancy counts as one pair and two missing sites L16 03:27</a></li><li><a href="#solute">6.3 Solutes change the local vacancy environment L16 06:29</a></li><li><a href="#strain">6.4 Differential dilatometry compares two volume changes L16 10:33</a></li><li><a href="#positron">6.5 A positron lifetime measures trapping through a model L16 16:42</a></li><li><a href="#exercises">6.6 Exercises with worked solutions</a></li><li><a href="#sources">6.7 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A vacancy can enable a jump, but an observed transport rate does not tell us how many vacancies existed. A larger rate could reflect more defects, faster motion of each defect, or weaker backtracking. We first need a population model and a measurement model, and then must identify which combination of their parameters the observations constrain.</p>
+<p class="source-note">Source spine: vacancy thermodynamics in L12, self-interstitial context in L13, and binding, defect measurements and mechanisms in L16; vacancy-count exercises in L15 and L20. Formation energies used numerically are source exercise inputs or explicitly synthetic constants, not newly measured material properties. Positron and dilatometry equations below are reduced teaching models with stated limits.</p>
+<section id="formation"><h2>6.1 Vacancy equilibrium balances formation cost and configurational entropy <a class="timestamp" href="https://www.youtube.com/watch?v=2sKqNwVUoHo&amp;t=1012s">L12 16:52</a></h2>
+<p>Consider a specified set of \(N_s\) regular lattice sites in contact with an atom reservoir. Let \(n_v\) sites be empty and \(x_v=n_v/N_s\) the vacancy site fraction. The reservoir is essential bookkeeping: the removed atom has not ceased to exist. Define \(g_f\) as the free-energy cost per vacancy including the reservoir contribution and local relaxation, but excluding the configurational entropy of arranging vacancies among these sites.</p>
+<p>Assume equivalent sites, independent occupancy and no vacancy interactions. There are \(W=N_s!/[n_v!(N_s-n_v)!]\) ways to choose the empty sites. Boltzmann's entropy formula is \(S_{\rm conf}=k_B\ln W\), where \(k_B\) is the Boltzmann constant. For large counts, Stirling's approximation \(\ln n!\simeq n\ln n-n\) gives the free-energy change per site</p>
+\[g(x_v)=x_vg_f+k_BT[x_v\ln x_v+(1-x_v)\ln(1-x_v)].\tag{6.1}\]
+<p>The mixing term is negative between zero and one. It rewards the many arrangements available to a dilute population, while the first term penalizes creating defects when \(g_f&gt;0\). Here \(T\) is absolute temperature and all per-defect energies use the same units as \(k_BT\). If molar formation energies are used instead, the corresponding expression uses the molar gas constant \(R\).</p>
+<p>Differentiate (6.1) at fixed temperature and fixed formation free energy. Setting \(g'=g_f+k_BT\ln[x_v/(1-x_v)]=0\) gives</p>
+\[\frac{x_v}{1-x_v}=e^{-g_f/(k_BT)},\qquad x_v=\frac{1}{1+e^{g_f/(k_BT)}}.\tag{6.2}\]
+<p>The second derivative is \(k_BT[1/x_v+1/(1-x_v)]&gt;0\), proving a strict interior minimum of this independent-site free energy. When \(x_v\ll1\), equation (6.2) reduces to \(x_v\simeq e^{-g_f/(k_BT)}\). The exact logistic form belongs to this simple occupancy model; it does not establish physical accuracy at large vacancy fractions, where interactions and structural instability can invalidate the model.</p>
+<p>Writing \(g_f=h_f-Ts_f\) separates formation enthalpy \(h_f\) and nonconfigurational formation entropy \(s_f\). In the dilute limit, \(x_v\simeq e^{s_f/k_B}e^{-h_f/(k_BT)}\). The configurational entropy has already been included in (6.1), so it must not be added again inside \(s_f\). Temperature-dependent formation parameters require their own derivative terms; Chapter 9 treats the interpretation of slopes.</p>
+<p>For a hypothetical temperature-independent \(g_f=1.2\) eV, the computed fractions are \(6.93245818\times10^{-21}\) at 300 K and \(9.12468439\times10^{-6}\) at 1200 K. These results use the SI ratio \(k_B/e=8.617333262145179\times10^{-5}\) eV/K. They show sensitivity within the specified model, rather than a universal vacancy fraction at melting. A quenched or irradiated specimen can retain populations that have not equilibrated with the reservoir and sinks.</p>
+</section>
+<section id="pairs"><h2>6.2 A divacancy counts as one pair and two missing sites <a class="timestamp" href="https://www.youtube.com/watch?v=NhiTJ-3kZug&amp;t=207s">L16 03:27</a></h2>
+<p>A <dfn>divacancy</dfn> consists of two neighboring vacancies. Let \(x_1\) be the number of isolated monovacancies per site and \(x_2\) the number of bound pairs per site. Their contribution to the missing-site fraction is \(x_1+2x_2\), not \(x_1+x_2\). A measurement sensitive to empty sites and a measurement sensitive to pair clusters can therefore report different quantities without disagreeing.</p>
+<p>Define a positive binding free energy \(g_b=2g_1-g_2\), where \(g_1\) is the isolated-vacancy formation free energy and \(g_2\) the pair formation free energy. Favorable binding lowers the pair cost. If each site has \(z\) equivalent nearest neighbors, the number of undirected nearest-neighbor bonds is \(zN_s/2\), because counting from both ends would count each bond twice. In the dilute, nonoverlapping-pair approximation, the statistical weight per candidate bond is \(e^{-g_2/(k_BT)}\). Using \(x_1\simeq e^{-g_1/(k_BT)}\) gives</p>
+\[x_2\simeq\frac z2e^{g_b/(k_BT)}x_1^2,\qquad \frac{x_2}{x_1}\simeq\frac z2e^{g_b/(k_BT)}x_1.\tag{6.3}\]
+<p>The square of a small monovacancy population competes with the enhancement from binding. This competition prevents the universal claim that divacancies must outnumber monovacancies at high temperature. Their relative importance depends on formation and binding free energies, multiplicities, and the temperature range in which the crystal and dilute model remain meaningful.</p>
+<p>For synthetic \(z=12\), \(g_1=0.9\) eV and \(g_b=0.15\) eV, the pair-to-monovacancy ratios at 800, 1200 and 1600 K are approximately 0.00011307, 0.00424903 and 0.02604685. The ratio rises across this example yet remains below one. At the highest temperature, the computed pair fraction is \(3.80960543\times10^{-5}\); its missing-site contribution is twice that. These are model parameters, not an extrapolation of a particular real metal above or below its melting point.</p>
+</section>
+<section id="solute"><h2>6.3 Solutes change the local vacancy environment <a class="timestamp" href="https://www.youtube.com/watch?v=NhiTJ-3kZug&amp;t=389s">L16 06:29</a></h2>
+<p>A dilute substitutional solute creates local environments that differ from the solvent. Let \(N_B\) be its site fraction and suppose each solute has \(z\) neighboring sites whose vacancy formation free energy is \(g_B\), compared with \(g_A\) far away. Here a B-associated vacancy means a vacancy neighboring a solute; it does not mean that a vacant site permanently remembers which species was removed.</p>
+<p>For \(zN_B\ll1\), neglect overlap between solute neighbor shells. Their site fraction is approximately \(zN_B\), leaving \(1-zN_B\) bulk-like sites. A first-order independent-environment model then gives</p>
+\[x_v\simeq(1-zN_B)e^{-g_A/(k_BT)}+zN_Be^{-g_B/(k_BT)}
+=e^{-g_A/(k_BT)}[1-zN_B+zN_Be^{g_b/(k_BT)}],\tag{6.4}\]
+<p>where \(g_b=g_A-g_B\) is positive for favorable association under this convention. Binding can increase a local defect population while also trapping defects and changing their mobility. Equation (6.4) alone therefore cannot establish faster long-range transport.</p>
+<p>The tutorial's unpaired-site ratio \(1-zN_B\) is a local-environment approximation. With \(z=12\) and \(N_B=0.005\), it gives 0.94. An independent random-site calculation gives the probability of no solute among the neighbors as \((1-N_B)^z=0.94162281\); its first-order expansion is \(1-zN_B\). Using \(N_B=0.05\) would instead give 0.4 in the linear approximation, with \(zN_B=0.6\) already too large for a well-controlled nonoverlap argument. An inconsistent decimal in a caption must not replace the count model.</p>
+<p>Self-interstitials introduce a different population. Their creation moves a host atom away from its regular site, rather than merely occupying an already available geometric hole with an externally supplied solute. Irradiation can create vacancy/interstitial combinations far from thermal equilibrium. Comparing their roles requires formation rates, recombination and sink removal as well as migration rates. The distinction between a dilute interstitial solute and a thermally generated self-interstitial will matter in Chapter 7.</p>
+</section>
+<section id="strain"><h2>6.4 Differential dilatometry compares two volume changes <a class="timestamp" href="https://www.youtube.com/watch?v=NhiTJ-3kZug&amp;t=633s">L16 10:33</a></h2>
+<p>Heating expands a specimen and changes its lattice parameter. If the lattice simply stretches without changing the number of cells, the macroscopic and microscopic volume ratios agree. Extra empty lattice sites allow the specimen to contain more cells per fixed number of atoms. Differential dilatometry exploits the resulting difference between specimen expansion and lattice expansion, usually measured by diffraction.</p>
+<p>Consider a uniform cubic monatomic specimen with a fixed number of host atoms \(N_a\). Let \(L\) measure its isotropic linear dimension and \(a\) its cubic lattice parameter. The number of sites is proportional to \(L^3/a^3\); the number of sites per cell cancels between temperatures. Define the reference state by subscript 0 and the heated state by T. Then</p>
+\[q\equiv\frac{N_s(T)}{N_s(0)}
+=\left[\frac{L(T)/L(0)}{a(T)/a(0)}\right]^3,
+\qquad
+x_v(T)=1-\frac{1-x_v(0)}{q}.\tag{6.5}\]
+<p>The second equation follows from atom conservation, \(N_a=N_s(0)[1-x_v(0)]=N_s(T)[1-x_v(T)]\). It explicitly retains an initial vacancy population. A quenched or irradiated starting specimen need not be a vacancy-free reference.</p>
+<p>For small strains \(\epsilon_L=[L(T)-L(0)]/L(0)\) and \(\epsilon_a=[a(T)-a(0)]/a(0)\), expand the first equation: \(q\simeq1+3(\epsilon_L-\epsilon_a)\). With negligible initial vacancies and small vacancy fraction,</p>
+\[x_v(T)\simeq3(\epsilon_L-\epsilon_a).\tag{6.6}\]
+<p>The subtraction, rather than either thermal strain separately, carries the vacancy signal. In a synthetic example, \(\epsilon_L=0.0100\) and \(\epsilon_a=0.0099\). Equation (6.5) gives \(x_v=2.97000295\times10^{-4}\), while the linear estimate gives \(3.00000000\times10^{-4}\). The approximation is sensible but its difference from the exact geometric expression is detectable when precision matters.</p>
+<p>The cube is a convenience, not a requirement. In a tetragonal crystal the unit-cell volume changes as \(a^2c\); its linearized fractional change is \(2\epsilon_a+\epsilon_c\). More generally the comparison uses specimen volume divided by unit-cell volume, with the appropriate strain tensor and texture information. Treating one directional strain as an isotropic volume change can create a fictitious vacancy population.</p>
+<p>Interpreting a small expansion difference requires matched temperatures, reliable reference lengths and an account of other structural changes. Grain growth, porosity, dislocations, surfaces and additional defect types can alter specimen dimensions. Atom loss or uptake violates the fixed-atom assumption. Differential dilatometry supplies an inference under a count model; it does not label every measured excess volume as a monovacancy.</p>
+</section>
+<section id="positron"><h2>6.5 A positron lifetime measures trapping through a model <a class="timestamp" href="https://www.youtube.com/watch?v=NhiTJ-3kZug&amp;t=1002s">L16 16:42</a></h2>
+<p>A positron can annihilate in the bulk or become trapped at a vacancy-like region with a different local electron density and annihilation rate. A lifetime spectrum therefore contains information about defects, but the map from lifetime to concentration depends on the capture process and the available trap species. We develop an original minimal model to make that dependence explicit; it is not a fit to a lecture dataset.</p>
+<p>Let \(p_f(t)\) and \(p_t(t)\) be probabilities that an initially free positron is still alive in the free and trapped states. Let \(\lambda_f\) and \(\lambda_t\) be annihilation rates, and \(\kappa\) a trapping rate, all in s⁻¹. Neglect escape from traps, positron diffusion limitations and multiple trap species. With \(p_f(0)=1\), \(p_t(0)=0\), the population equations are</p>
+\[\dot p_f=-(\lambda_f+\kappa)p_f,
+\qquad
+\dot p_t=\kappa p_f-\lambda_t p_t.\tag{6.7}\]
+<p>Survival is \(p_f+p_t\), so the mean lifetime is the integral of that sum over nonnegative time. Integrating the first equation gives \(\int p_f\,dt=1/(\lambda_f+\kappa)\). Integrating the second, whose endpoint populations both vanish, gives \(\int p_t\,dt=\kappa/[\lambda_t(\lambda_f+\kappa)]\). Therefore</p>
+\[\bar\tau=\frac{1+\kappa/\lambda_t}{\lambda_f+\kappa}.\tag{6.8}\]
+<p>Every term has the right units: the numerator is dimensionless and the denominator is a rate. With synthetic bulk lifetime \(1/\lambda_f=100\) ps, trap lifetime \(1/\lambda_t=200\) ps and \(\kappa=10^{10}\) s⁻¹, equation (6.8) gives 150 ps. As \(\kappa\) increases, the mean approaches 200 ps. That plateau is saturation of this trapping model; it is not evidence that an equilibrium vacancy concentration has stopped changing.</p>
+<figure><img src="assets/ch06-trapping.svg" width="700" height="380" alt="Mean positron lifetime rises from about 100 to 200 picoseconds as capture rate increases, then saturates."><figcaption>Figure 6.1. Original synthetic single-trap calculation. A plateau can arise because almost every positron reaches a trap before bulk annihilation. The curve provides no independent measurement of a real vacancy concentration.</figcaption></figure>
+<p>When the rates are known and the mean lies strictly between the two distinct limiting lifetimes, the model can be inverted:</p>
+\[\kappa=\frac{1-\bar\tau\lambda_f}{\bar\tau-1/\lambda_t}.\tag{6.9}\]
+<p>The synthetic 150 ps result recovers \(\kappa=10^{10}\) s⁻¹. Concentration still requires a capture coefficient: if \(\kappa=\mu x_v\), with dimensionless vacancy fraction \(x_v\), then \(\mu\) has units s⁻¹. An unknown \(\mu\) leaves a concentration ambiguity even after the trapping rate is inferred. Near saturation, a small lifetime uncertainty can imply a large uncertainty in \(\kappa\); the inversion denominator tends to zero. Multiple vacancy clusters, dislocations, detrapping and instrumental resolution demand a richer forward model before interpreting an experimental spectrum.</p>
+</section>
+<section id="exercises"><h2>6.6 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. Entropy and the vacancy minimum</h3><p>Derive the equilibrium fraction from equation (6.1), check that its stationary point is a minimum, and explain why adding a second configurational entropy to \(g_f\) would be wrong.</p><details><summary>Worked solution</summary><p>Differentiating per-site free energy gives \(g_f+k_BT\ln[x_v/(1-x_v)]\). Setting it to zero gives equation (6.2). Its second derivative is \(k_BT[1/x_v+1/(1-x_v)]\gt 0\) inside the interval, establishing the unique minimum of this model. The binomial count already supplies the mixing/configurational entropy. The formation entropy inside \(g_f=h_f-Ts_f\) describes local nonconfigurational changes relative to the atom reservoir; including the same binomial contribution there would count it twice.</p></details></div>
+<div class="exercise"><h3>2. Recompute the source-given copper exercise</h3><p>L15 gives 1000 °C, formation free energy 0.9 eV per vacancy, density 8.4 g cm⁻³ and molar mass 63.5 g mol⁻¹. Treat these as exercise inputs, with independent vacancies. Find the equilibrium vacancy fraction and missing-site number per cubic meter, retaining the atom/site distinction.</p><details><summary>Worked solution</summary><p>The temperature is 1273.15 K, density is 8400 kg m⁻³ and molar mass is 0.0635 kg mol⁻¹. Equation (6.2) gives \(x_v=2.73666286\times10^{-4}\). Let \(N_{\rm Av}\) denote the Avogadro constant, in mol⁻¹. The density implies an occupied-atom number density \(n_a=(8400/0.0635)N_{\rm Av}=7.96629644\times10^{28}\) m⁻³. The site density is \(n_s=n_a/(1-x_v)\), so the vacancy number density is \(n_sx_v=2.18070355\times10^{25}\) m⁻³. Replacing site density by atom density is a dilute approximation. These source-given parameters have not been independently established as measured copper data at that temperature.</p></details></div>
+<div class="exercise"><h3>3. Can binding guarantee pair dominance?</h3><p>Using \(z=12\), monovacancy formation free energy 0.9 eV and positive divacancy binding free energy 0.15 eV, compare \(x_2/x_1\) at 800, 1200 and 1600 K. State what fraction counts pairs and what fraction counts missing sites.</p><details><summary>Worked solution</summary><p>Insert \(x_1\simeq\exp[-0.9/(k_BT)]\) into equation (6.3). The ratios are 0.00011307, 0.00424903 and 0.02604685. Pair abundance increases relative to monovacancies in this synthetic parameter set but remains smaller throughout. At 1600 K, \(x_2=3.80960543\times10^{-5}\) counts pairs per site; its missing-site contribution is \(2x_2\), whereas the monovacancy contribution is \(x_1=0.00146259731\). A favorable binding energy and a rising ratio do not establish universal high-temperature pair dominance.</p></details></div>
+<div class="exercise"><h3>4. Audit a local-environment approximation</h3><p>Compare the fraction of sites with no solute neighbor, approximated by \(1-zN_B\), with the independent random-occupation expression \((1-N_B)^z\), for \(N_B=0.005\) and \(z=12\). Why is \(N_B=0.05\) a materially different input?</p><details><summary>Worked solution</summary><p>The linear estimate is 0.94 and the independent-occupation expression is 0.94162281. The former truncates the binomial expansion after its first-order term and neglects overlapping solute neighborhoods in the population split. At 0.05 the linear estimate becomes 0.4 and \(zN_B=0.6\) is not small. A result of 0.94 cannot be paired with 0.05 under that formula. Neither expression includes solute correlations or environment-dependent multi-solute defect energies.</p></details></div>
+<div class="exercise"><h3>5. Recover a strain-based vacancy fraction</h3><p>Derive equation (6.5) for a fixed-atom cubic specimen, then use strains 0.0100 and 0.0099 with negligible initial vacancies. What changes if the reference has a known nonzero fraction \(x_v(0)\)?</p><details><summary>Worked solution</summary><p>Site number scales as specimen volume divided by unit-cell volume. The ratio is \(q=(1.0100/1.0099)^3\). Fixed atom number gives \(x_v=1-q^{-1}=0.000297000295\); the linear result is 0.000300000000. For a nonzero reference, use \(1-(1-x_v(0))/q\). The reference contribution is retained rather than silently discarded. A measured excess expansion alone is insufficient unless other sources of volume change and atom exchange have been controlled.</p></details></div>
+<div class="exercise"><h3>6. Distinguish capture from concentration</h3><p>Derive the mean lifetime in the two-state model without solving the full time traces. Invert a 150 ps mean using 100 ps bulk and 200 ps trap lifetimes. Can the vacancy fraction then be reported without a capture coefficient?</p><details><summary>Worked solution</summary><p>Integrate equation (6.7) from zero to infinity. The integrated free population is \(1/(\lambda_f+\kappa)\), and the trapped integral is \(\kappa/\lambda_t\) times that value. Their sum gives equation (6.8). Equation (6.9) recovers \(10^{10}\) s⁻¹. Only the product \(\mu x_v\) is identified by this inference. Changing \(\mu\) while inversely changing \(x_v\) leaves the mean unchanged. The saturation limit also makes inference ill-conditioned even when \(\mu\) is known.</p></details></div>
+</section>
+<section id="sources"><h2>6.7 Sources and limits</h2><p>The thermodynamic spine is <a href="https://www.youtube.com/watch?v=2sKqNwVUoHo&amp;t=1012s">L12</a>; defect bookkeeping is continued from <a href="https://www.youtube.com/watch?v=6yfsXo_h-Vk">L13</a>. Binding, differential dilatometry and positron probing follow <a href="https://www.youtube.com/watch?v=NhiTJ-3kZug">L16</a>, with tutorial checks from <a href="https://www.youtube.com/watch?v=pJuYh17uGyo">L15</a> and L20. The two-state lifetime model and strain comparison are original explicit teaching models, not reconstructed fits. <a href="code/ch06.py">The Python companion</a> computes all printed numerical examples and Figure 6.1; SI constants come from SciPy's constants module. Equilibrium, geometric measurement and trapping inference are different layers of evidence, each requiring its stated assumptions.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch06.py"><code>code/ch06.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic equilibrium, binding, strain and positron-trapping checks.
+
+Writes assets/ch06-trapping.svg; prints machine-readable results.
+&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+import numpy as np
+from scipy.constants import Boltzmann, elementary_charge, Avogadro
+import matplotlib
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch06&quot;
+import matplotlib.pyplot as plt  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[1]
+KB_EV = Boltzmann / elementary_charge
+
+
+def run():
+    temperature = np.array([300.0, 1200.0])
+    g_ev = 1.2
+    odds = np.exp(-g_ev / (KB_EV * temperature))
+    fractions = odds / (1 + odds)
+    copper_t = 1273.15
+    copper_x = 1 / (1 + np.exp(0.9 / (KB_EV * copper_t)))
+    atom_density = 8400 / 0.0635 * Avogadro
+    site_density = atom_density / (1 - copper_x)
+    copper_vacancies = site_density * copper_x
+    # Pair fractions per lattice site. Positive binding stabilizes a pair.
+    pair_t = np.array([800.0, 1200.0, 1600.0])
+    x1 = np.exp(-0.9 / (KB_EV * pair_t))
+    x2 = 6 * np.exp(0.15 / (KB_EV * pair_t)) * x1**2
+    assert np.all(x2 &lt; x1)
+    xb, z = 0.005, 12
+    unpaired_linear = 1 - z * xb
+    no_solute_neighbor = (1 - xb) ** z
+    linear_strain, lattice_strain = 0.01, 0.0099
+    site_ratio = ((1 + linear_strain) / (1 + lattice_strain)) ** 3
+    strain_x = 1 - 1 / site_ratio
+    linear_x = 3 * (linear_strain - lattice_strain)
+    lf, lt, capture = 1e10, 5e9, 1e10
+    mean = (1 + capture / lt) / (lf + capture)
+    inferred = (1 - mean * lf) / (mean - 1 / lt)
+    assert np.isclose(inferred / capture, 1)
+    kappa = np.logspace(-3, 3, 301) * lf
+    lifetime = (1 + kappa / lt) / (lf + kappa)
+    assert np.all(np.diff(lifetime) &gt; 0)
+    fig, ax = plt.subplots(figsize=(7, 3.8), layout=&quot;constrained&quot;)
+    ax.semilogx(kappa / lf, lifetime / 1e-12, color=&quot;#176e8c&quot;)
+    ax.axhline(
+        200, color=&quot;#8b5d18&quot;, linestyle=&quot;--&quot;, label=&quot;Trap lifetime limit&quot;
+    )
+    ax.set(
+        xlabel=&quot;Capture rate / free annihilation rate&quot;,
+        ylabel=&quot;Mean lifetime (ps)&quot;,
+        title=&quot;Synthetic irreversible single-trap model&quot;,
+    )
+    ax.grid(alpha=0.25)
+    ax.legend()
+    fig.savefig(ROOT / &quot;assets/ch06-trapping.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    return dict(
+        synthetic=True,
+        k_B_eV_per_K=KB_EV,
+        temperatures_K=temperature.tolist(),
+        vacancy_fractions_1_2eV=fractions.tolist(),
+        copper_exercise=dict(
+            temperature_K=copper_t,
+            atomic_density_per_m3=atom_density,
+            vacancy_fraction=copper_x,
+            vacancy_number_per_m3=copper_vacancies,
+        ),
+        pair_temperatures_K=pair_t.tolist(),
+        monovacancy_fractions=x1.tolist(),
+        divacancy_pair_fractions=x2.tolist(),
+        pair_to_mono_ratio=(x2 / x1).tolist(),
+        unpaired_linear=unpaired_linear,
+        independent_no_neighbor=no_solute_neighbor,
+        exact_strain_vacancy_fraction=strain_x,
+        linear_strain_estimate=linear_x,
+        mean_positron_lifetime_ps=mean / 1e-12,
+        recovered_capture_rate_per_s=inferred,
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    print(json.dumps(run(), indent=2))
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;k_B_eV_per_K&quot;: 8.617333262145179e-05,
+  &quot;temperatures_K&quot;: [
+    300.0,
+    1200.0
+  ],
+  &quot;vacancy_fractions_1_2eV&quot;: [
+    6.932458184442733e-21,
+    9.124684391962118e-06
+  ],
+  &quot;copper_exercise&quot;: {
+    &quot;temperature_K&quot;: 1273.15,
+    &quot;atomic_density_per_m3&quot;: 7.966296438425196e+28,
+    &quot;vacancy_fraction&quot;: 0.00027366628621823075,
+    &quot;vacancy_number_per_m3&quot;: 2.1807035462581894e+25
+  },
+  &quot;pair_temperatures_K&quot;: [
+    800.0,
+    1200.0,
+    1600.0
+  ],
+  &quot;monovacancy_fractions&quot;: [
+    2.139190895273758e-06,
+    0.000166022275116285,
+    0.0014625973113860692
+  ],
+  &quot;divacancy_pair_fractions&quot;: [
+    2.418848918437804e-10,
+    7.054337691817889e-07,
+    3.809605427157362e-05
+  ],
+  &quot;pair_to_mono_ratio&quot;: [
+    0.00011307307467425703,
+    0.004249030852562949,
+    0.02604685101975942
+  ],
+  &quot;unpaired_linear&quot;: 0.94,
+  &quot;independent_no_neighbor&quot;: 0.9416228069143757,
+  &quot;exact_strain_vacancy_fraction&quot;: 0.0002970002950595241,
+  &quot;linear_strain_estimate&quot;: 0.0002999999999999982,
+  &quot;mean_positron_lifetime_ps&quot;: 150.0,
+  &quot;recovered_capture_rate_per_s&quot;: 9999999999.999998
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-05.html">← Previous</a><a href="chapter-07.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

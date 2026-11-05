@@ -1,0 +1,13 @@
+{
+  "input_signature": "9ec1fe8c96557b11fbab1db6139473f8a27e6f2ec29412ad722f95d50b2b6827",
+  "laboratories_exit_code": 0,
+  "figures_reproduced_byte_identically": true,
+  "private_inputs_absent": true,
+  "copied_files": 239,
+  "build_exit_code": 0,
+  "checks_exit_code": 0,
+  "html_byte_identical": true,
+  "build_stdout": "{\"drafted\": 28, \"accepted\": 28, \"planned\": 28}\n",
+  "check_stdout": "{\n  \"mode\": \"development\",\n  \"pages\": 34,\n  \"errors\": [],\n  \"warnings\": []\n}\n",
+  "passed": true
+}

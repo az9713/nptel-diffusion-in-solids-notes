@@ -1,0 +1,7 @@
+{
+  "scope": "Staged public files only; excluded raw media/captions/private research/reviews and local paths/credential patterns",
+  "staged_files": 240,
+  "raw_or_private_paths": [],
+  "private_path_or_credential_pattern_hits": [],
+  "passed": true
+}

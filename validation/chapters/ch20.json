@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 20,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "5df9fbd7f7674cb578055aa32c09dceedc457ea721ed93912b3b591cbf078dc3",
+      "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+      "assets": {
+        "assets/ch20-profiles.svg": "c6f48cce2674c9d863f4d29542962853e090b968868a434fb641da0f7b1bbfd3"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new full raw-caption/audiovisual review",
+        "Continuum convergence not claimed for numerical demonstration",
+        "Harrison full original not accessed",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "cb89739846ae9b26973023af21ec1959590f1cc90775e25601e91f55727f939d"
+    },
+    {
+      "chapter": 20,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "5df9fbd7f7674cb578055aa32c09dceedc457ea721ed93912b3b591cbf078dc3",
+      "code_sha256": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+      "assets": {
+        "assets/ch20-profiles.svg": "c6f48cce2674c9d863f4d29542962853e090b968868a434fb641da0f7b1bbfd3"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The synthetic grid check establishes conservation and positivity, not continuum refinement; the manuscript states this limit and explains fixed-width refinement.",
+        "No instrument-specific detection validation or comprehensive source-frame audit is granted. Browser/print/accessibility checks are separate."
+      ],
+      "private_review_record_sha256": "095d8b203a954b66926eaea29daa9833b3cc8300f038f6fab273f075a3eb0225"
+    }
+  ]
+}

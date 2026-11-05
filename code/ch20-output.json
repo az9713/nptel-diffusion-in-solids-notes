@@ -1,0 +1,36 @@
+{
+  "status": "synthetic teaching construction",
+  "bulk": {
+    "mass_initial": 2.0,
+    "mass_final": 2.0000000000000013,
+    "minimum": 2.2094893354651347e-52,
+    "depth_second_moment": 0.06027320538214604,
+    "steps": 277,
+    "strip_fraction": 0.0
+  },
+  "boundary": {
+    "mass_initial": 2.0,
+    "mass_final": 2.0,
+    "minimum": 1.443008025624289e-14,
+    "depth_second_moment": 0.11633867963032675,
+    "steps": 5536,
+    "strip_fraction": 0.04918032786885246
+  },
+  "regime_example": {
+    "sqrt_Dt_m": 6e-08,
+    "alpha": 0.04166666666666667,
+    "beta": 41666.666666666664,
+    "P_m3_per_s": 5e-21,
+    "length_over_grain": 0.005999999999999999
+  },
+  "same_P_pairs": [
+    {
+      "s_delta_m": 5e-09,
+      "D_b_m2_s": 1e-12
+    },
+    {
+      "s_delta_m": 5e-08,
+      "D_b_m2_s": 1e-13
+    }
+  ]
+}

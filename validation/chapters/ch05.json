@@ -1,0 +1,42 @@
+{
+  "reviews": [
+    {
+      "chapter": 5,
+      "round": 1,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7287b0ac15117e39f18c5a5eb59ce13c33e1526f6a106b60842306b5a60757f7",
+      "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+      "assets": {
+        "assets/ch05-boundary-spacing.svg": "d98ba95b05a465bee197f1232bae37dfbf4caf8ef8835ce9e5ce3ea9c14115f1"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No comprehensive source-video/slide verification is claimed. Material-specific structure examples are appropriately avoided when captions are ambiguous.",
+        "No browser, responsive layout, print, or accessibility acceptance is granted by this scientific review; those remain separate root checks."
+      ],
+      "private_review_record_sha256": "5185e9756dce1473a7ea0f8c65ac555d840c5de04f39a215f4fbc885b0c8fe83"
+    },
+    {
+      "chapter": 5,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7287b0ac15117e39f18c5a5eb59ce13c33e1526f6a106b60842306b5a60757f7",
+      "code_sha256": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+      "assets": {
+        "assets/ch05-boundary-spacing.svg": "d98ba95b05a465bee197f1232bae37dfbf4caf8ef8835ce9e5ce3ea9c14115f1"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map read; no direct full caption/audio/source-frame reread",
+        "Current scientific SVG rendered and inspected; full reader/print checks separate"
+      ],
+      "private_review_record_sha256": "0c3be282469405b6a456d0eac7f6f88750e17216378ecba9d13ef80e98701e6d"
+    }
+  ]
+}

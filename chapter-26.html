@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Diffusion and structural relaxation in metallic glasses — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a aria-current=page href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Diffusion and structural relaxation in metallic glasses</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#structure">26.1 A glass lacks periodicity, not all order L56 00:20</a></li><li><a href="#formation">26.2 Formation competes with crystallization kinetics L56 03:22</a></li><li><a href="#relaxation">26.3 Relaxation changes the transport state L56 12:39</a></li><li><a href="#history">26.4 A final profile loses the time history L56 16:45</a></li><li><a href="#mechanism">26.5 A kink or a small activation volume is not a unique mechanism L56 17:47</a></li><li><a href="#exercises">26.6 Laboratory, exercises, and worked solutions</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">Two metallic-glass specimens at the same temperature can retain different structures because they were cooled and annealed differently. A tracer profile can then record an integrated history of mobility rather than one stationary coefficient. The inverse problem is to determine which part of that history the profile actually contains.</p>
+<p class="source-note">Source spine: metallic glasses in L56 and the glass tutorial in L59. The accumulated-time derivation and equal-profile construction are original developments. Metallic glasses are the scope here; the discussion is not a universal transport model for oxide, polymer, or molecular glasses.</p>
+
+<section id="structure"><h2>26.1 A glass lacks periodicity, not all order <a class="timestamp" href="https://www.youtube.com/watch?v=tOIIGx-Nals&amp;t=20s">L56 00:20</a></h2>
+<p>A metallic glass is an amorphous metallic material lacking the long-range translational periodicity of a crystal. Nearest-neighbor coordination, chemical preferences, and short- or medium-range structural correlations can nevertheless be well developed. Broad diffraction features distinguish its average structure from a periodic crystal's sharp Bragg pattern; broadness does not establish that every atom has an uncorrelated random environment.</p>
+<p>Without an ordinary crystal lattice, crystalline dislocations and grain boundaries are not a complete description of its structural defects. The absence of those particular objects does not imply absence of spatial heterogeneity, free-volume-like configurations, or localized rearrangements. Mechanical and magnetic properties depend on composition and history. In particular, high strength does not establish universal tensile ductility, and no single property ranking applies to every metallic glass.</p>
+<p>The relevant state includes more than temperature and composition. Cooling rate, deposition route, prior annealing, and residual stress can change the initial configuration. A diffusion experiment therefore needs a structural preparation protocol and time origin. “The diffusivity of the alloy” is ambiguous if the glass continues relaxing during the measurement. Crystal formation during the anneal introduces another phase and requires a multiphase model rather than a stationary amorphous coefficient.</p>
+<p>Primary X-ray photon correlation work directly examines thermal-history-dependent aging in a particular metallic glass, rather than assuming that only the supercooled liquid evolves: <a href="https://arxiv.org/html/1209.2030v1">Ruta etal., abstract, introduction, and experimental description</a>, published as <a href="https://doi.org/10.1103/PhysRevLett.109.165701">Physical Review Letters109,165701</a>. That experiment concerns Mg–Cu–Y structural dynamics. It supports the relevance of sub-transition aging; it does not provide the lecture's Vitreloy4 tracer coefficients or a universal law for every glass.</p></section>
+
+<section id="formation"><h2>26.2 Formation competes with crystallization kinetics <a class="timestamp" href="https://www.youtube.com/watch?v=tOIIGx-Nals&amp;t=202s">L56 03:22</a></h2>
+<p>Cooling a liquid slowly can permit nucleation and crystal growth. Cooling sufficiently rapidly can avoid detectable crystallization and retain an amorphous configuration. A time–temperature–transformation diagram records a specified detectable transformed fraction after isothermal holding. Its “nose” indicates a temperature range where crystallization reaches that criterion most quickly. At small undercooling, the thermodynamic driving force is weak; at deep undercooling, atomic rearrangement is slow. Their competition can produce the intermediate-temperature minimum in transformation time.</p>
+<p>This explanation is kinetic and thermodynamic together. The driving force is not universally an exact inverse-temperature law, and the transformation time is not just a tracer jump time. Nucleation barriers, growth, heterogeneous sites, and the chosen detectable fraction matter. A cooling path that misses one idealized isothermal nose is a useful design picture, but real continuous-cooling kinetics require their own treatment. Critical cooling rate and the thickness that can vitrify are strongly composition dependent.</p>
+<p>The operational glass-transition temperature <span class="math">\(T_g\)</span> is detected through a change in response, such as heat capacity, over the observation time of a particular heating protocol. It depends on heating rate and prior history. A heat-capacity step does not by itself establish an equilibrium second-order phase transition. A later crystallization exotherm identifies another process, not the same event under a different name.</p>
+<p>The <dfn>fictive temperature</dfn> is a parameter describing the structural state, often obtained by matching an extrapolated liquid-state enthalpy or volume to that of the frozen configuration. It need not equal the measured <span class="math">\(T_g\)</span>, and no universal small offset between them is implied. Two samples can therefore share the same measurement temperature but have different enthalpy, density, and relaxation state. These distinctions explain why a diffusion comparison must specify its preparation and annealing schedule.</p>
+<p>Tracer diffusion and viscosity measure related but distinct motions. Viscosity describes resistance to collective shear flow; tracer diffusion follows individual atomic displacements. A hydrodynamic Stokes–Einstein relation introduces a continuum fluid and effective probe-size model that need not hold unchanged for atoms in an aging glass. A qualitative viscosity trend cannot substitute for a species-specific tracer measurement. We do not infer an unmeasured glass coefficient from an assumed atomic radius.</p></section>
+
+<section id="relaxation"><h2>26.3 Relaxation changes the transport state <a class="timestamp" href="https://www.youtube.com/watch?v=tOIIGx-Nals&amp;t=759s">L56 12:39</a></h2>
+<p><dfn>Structural relaxation</dfn> changes the amorphous configuration without requiring crystallization. It can alter enthalpy, density, viscosity, mechanical response, and atomic mobility. Relaxation occurs below as well as near the operational transition. A small density change accompanied by a large diffusion change is possible because a rate depends exponentially on free-energy barriers; it does not prove that one scalar free-volume parameter uniquely controls every jump.</p>
+<p>For a deliberately reduced model, assume an isothermal specimen whose structural state is spatially uniform but changes with elapsed time. Let <span class="math">\(D(t)\geq0\)</span> be a scalar instantaneous tracer diffusivity, in m²s⁻¹, and <span class="math">\(c(x,t)\)</span> the dilute tracer molar concentration on the infinite line <span class="math">\(-\infty&lt;x&lt;\infty\)</span>. With no reaction, drift, or concentration-dependent mobility,</p>
+\[\partial_tc=D(t)\partial_x^2c,\qquad \tau(t)=\int_0^tD(s)\,ds.\tag{26.1}\]
+<p>The accumulated variable <span class="math">\(\tau\)</span> has units m², not seconds. If <span class="math">\(c(x,t)=u(x,\tau(t))\)</span>, the chain rule gives <span class="math">\(\partial_tc=D(t)\partial_\tau u\)</span>. Wherever <span class="math">\(D&gt;0\)</span>, cancellation yields <span class="math">\(\partial_\tau u=\partial_x^2u\)</span>. On an interval with zero diffusivity, <span class="math">\(\tau\)</span> and the concentration remain fixed, so the same accumulated-time representation extends continuously through that interval. For integrable nonnegative <span class="math">\(D\)</span>, the heat-semigroup construction supplies the corresponding weak solution.</p>
+<p>For an instantaneous plane source of areal molar amount <span class="math">\(M\)</span>, in molm⁻², the ordinary concentration density below applies at times with <span class="math">\(\tau(t)&gt;0\)</span>. If <span class="math">\(\tau(t)=0\)</span>, no spreading has occurred: the tracer remains in its initial plane distribution, rather than having a finite Gaussian density. The second-moment identity extends to that zero-width limit.</p>
+\[c(x,t)=\frac{M}{\sqrt{4\pi\tau(t)}}\exp[-x^2/(4\tau(t))],\qquad \langle x^2\rangle=2\tau(t).\tag{26.2}\]
+<p>The angle brackets denote the normalized tracer second moment; symmetry makes its mean position zero. Integrating the Gaussian conserves <span class="math">\(\int c\,dx=M\)</span>. This is an exact consequence of the reduced model. Spatially varying aging, nonlocal jump memory, stress drift, or coexistence with crystals does not automatically reduce to one accumulated scalar. Time-dependent boundary concentrations must also be transformed through the mapping <span class="math">\(t\mapsto\tau\)</span>, rather than held fixed by assumption.</p></section>
+
+<section id="history"><h2>26.4 A final profile loses the time history <a class="timestamp" href="https://www.youtube.com/watch?v=tOIIGx-Nals&amp;t=1005s">L56 16:45</a></h2>
+<p>Define the time-averaged diffusivity <span class="math">\(\bar D(t)=\tau(t)/t\)</span> for <span class="math">\(t&gt;0\)</span>. Differentiating <span class="math">\(t\bar D(t)=\tau(t)\)</span> gives</p>
+\[D(t)=\bar D(t)+t\frac{d\bar D}{dt}.\tag{26.3}\]
+<p>A single final Gaussian identifies <span class="math">\(\tau(t)\)</span>, hence one average, but not the derivative in (26.3). A time series from identically prepared specimens can constrain the history, subject to uncertainty and numerical differentiation. If preparation differs across anneals, treating their averages as samples of one history is not justified.</p>
+<p>The laboratory constructs two strictly nonnegative histories over <span class="math">\(0\leq t\leq t_f\)</span>. History A has constant <span class="math">\(D_A=D_0\)</span>. History B has <span class="math">\(D_B=D_0[1+a(1-2t/t_f)]\)</span>, with <span class="math">\(0&lt;a&lt;1\)</span>. Integration gives <span class="math">\(\tau_B=D_0[(1+a)t-at^2/t_f]\)</span>. At the final time both histories have <span class="math">\(\tau=D_0t_f\)</span> and exactly the same complete pulse profile. At half-time their accumulated values differ.</p>
+<p>For synthetic <span class="math">\(D_0=10^{-18}\)</span>m²s⁻¹, <span class="math">\(t_f=3600\)</span>s, and <span class="math">\(a=0.8\)</span>, the final accumulated value is <span class="math">\(3.6\times10^{-15}\)</span>m² and root-mean-square width84.8528nm. At half-time, A has <span class="math">\(1.8\times10^{-15}\)</span>m² and B <span class="math">\(2.52\times10^{-15}\)</span>m². A half-time measurement would distinguish them even though an arbitrarily precise final profile would not.</p>
+<figure><img src="assets/ch26-histories.svg" alt="Different accumulated-diffusion-time histories meet at the final time; their final normalized Gaussian profiles coincide." loading="eager" width="864" height="384"><figcaption>Figure26.1. Exact nonidentifiability within the uniform-D(t) model. Intermediate-time profiles supply information that the final profile lacks.</figcaption></figure>
+<p>The source tutorial at <a href="https://www.youtube.com/watch?v=w5GwmjuJzZI&amp;t=510s">L59 08:30</a> specifies <span class="math">\(D(t)=10^{-15}\,\mathrm{m^2h^{-1}}[300-u/3-u^2/30]\)</span>, where <span class="math">\(u=t/(1\,\mathrm h)\)</span>. Integrating the polynomial gives <span class="math">\(\bar D=10^{-15}[300-u/6-u^2/90]\)</span>m²h⁻¹. At48h, <span class="math">\(\bar D=2.664\times10^{-13}\)</span>m²h⁻¹, or <span class="math">\(7.4\times10^{-17}\)</span>m²s⁻¹, whereas instantaneous <span class="math">\(D=2.072\times10^{-13}\)</span>m²h⁻¹. The source slide's handwritten answer agrees; the caption's different exponent is transcription noise. The polynomial reaches zero at90h and must not be extended beyond that into negative diffusivity.</p></section>
+
+<section id="mechanism"><h2>26.5 A kink or a small activation volume is not a unique mechanism <a class="timestamp" href="https://www.youtube.com/watch?v=tOIIGx-Nals&amp;t=1067s">L56 17:47</a></h2>
+<p>The source discusses a Vitreloy4 example with an apparent break between temperature slopes and emphasizes incomplete relaxation as a competing explanation. A kink can reflect different structural histories in the measurements, multiple transport contributions, or a mechanism change. Without controlled equilibration and phase checks, a pair of straight lines does not select among them. Exact compositions and numerical kink temperatures are not inferred from unread data tables here.</p>
+<p>Pressure supplies another derivative. Define apparent molar activation volume <span class="math">\(V_{\mathrm{app}}=-RT(\partial\ln D/\partial p)_T\)</span>, in m³mol⁻¹, where pressure <span class="math">\(p\)</span> is in pascals. A value near zero means that the measured logarithmic rate has weak net pressure sensitivity over the sampled range. It does not prove that no localized configurations participate. Formation and migration contributions can cancel, different channels can compensate, and a crystalline-vacancy decomposition may not be the right description of an amorphous rearrangement.</p>
+<p>A collective event moves several atoms in a correlated manner. For example, a synthetic chain can shift each atom into the space vacated by its neighbor; a labeled atom moves even if the net displacement of the chain's center is small. Distinguishing tracer displacement from collective charge or density displacement requires tracking identities and cross-correlations. Such motion is not exclusive to glasses. Primary work on a different Zr–Cu–Ni–Al glass reports structural correlations and sub-transition local rearrangement, as discussed in <a href="https://www.nature.com/articles/ncomms4238">Liu etal., Results and Figure5 discussion</a>. The inspected publisher-indexed text supports that scoped statement, not numerical parameters for Vitreloy4.</p></section>
+
+<section id="exercises"><h2>26.6 Laboratory, exercises, and worked solutions</h2>
+<p><a href="code/ch26.py">The laboratory</a> writes the two histories, their identical final profile, the source polynomial calculation, and Gaussian quadrature checks to <a href="code/ch26-output.json">saved output</a>. The normalized profile integrates to one within <span class="math">\(2\times10^{-12}\)</span>; its second moment agrees with <span class="math">\(2\tau\)</span> within the finite integration-window error. The continuum equal-profile result is analytic; the zero numerical difference is a check of its implementation.</p>
+<ol class="exercises">
+<li><p><strong>Average versus instantaneous.</strong> If <span class="math">\(D(t)\)</span> decreases monotonically, compare it with <span class="math">\(\bar D(t)\)</span>.</p><details><summary>Solution</summary><p>Every earlier value <span class="math">\(D(s)\)</span>, for <span class="math">\(0\leq s\leq t\)</span>, is at least <span class="math">\(D(t)\)</span>. Integrate and divide by <span class="math">\(t\)</span> to obtain <span class="math">\(\bar D(t)\geq D(t)\)</span>. Equation(26.3) then gives <span class="math">\(d\bar D/dt\leq0\)</span>. Equality throughout requires a constant history, apart from sets of zero measure.</p></details></li>
+<li><p><strong>Source polynomial domain.</strong> Find the nonnegative-time endpoint of the tutorial model.</p><details><summary>Solution</summary><p>Set <span class="math">\(300-u/3-u^2/30=0\)</span>, or <span class="math">\(u^2+10u-9000=0\)</span>. Its roots are90 and−100. Thus the specified polynomial is nonnegative for <span class="math">\(0\leq t\leq90\)</span>h. Beyond that it predicts backward diffusion and is physically inadmissible as a scalar Fickian coefficient. A finite-range polynomial fit must not be extrapolated indefinitely.</p></details></li>
+<li><p><strong>History ambiguity.</strong> Prove that infinitely many histories yield the same final pulse profile.</p><details><summary>Solution</summary><p>Start from any positive history and add an integrable perturbation <span class="math">\(h(t)\)</span> with zero integral over the experiment and sufficiently small amplitude to preserve nonnegativity. Its final <span class="math">\(\tau\)</span> is unchanged, so (26.2) gives the identical full profile. There are infinitely many such zero-integral functions. More accurate final depth measurements cannot identify an unobserved time dependence within this model.</p></details></li>
+<li><p><strong>Boundary transformation.</strong> If surface concentration is prescribed as <span class="math">\(c(0,t)=g(t)\)</span>, what is its accumulated-time form?</p><details><summary>Solution</summary><p>Where the map is invertible, write <span class="math">\(u(0,\tau)=g(t(\tau))\)</span>. A constant surface value stays constant; a time-varying one generally changes its functional form. If <span class="math">\(D=0\)</span> over an interval, an ordinary inverse is not unique, and the boundary compatibility must be addressed separately. The simple pulse result avoids this boundary complication by working on the infinite line.</p></details></li>
+<li><p><strong>Kinetic transition.</strong> Why can two heating rates give different apparent <span class="math">\(T_g\)</span> without changing composition?</p><details><summary>Solution</summary><p>The transition is operationally detected when structural relaxation becomes relevant to the observation time. Changing heating rate changes the time spent in each temperature interval and the structure reached before the signal is measured. Composition alone therefore does not fix the observed onset. A thermal protocol and detection convention belong in the reported value.</p></details></li>
+<li><p><strong>Pressure inference.</strong> Does zero apparent activation volume prove independent single-atom jumps?</p><details><summary>Solution</summary><p>No. It constrains one pressure derivative of the measured rate. Collective and localized models can both have small net derivatives, and contributions with opposite signs can cancel. Additional observables, such as species-dependent displacement correlations, structural dynamics, or controlled history dependence, are needed to discriminate mechanisms. The derivative is useful evidence with limited identifiability.</p></details></li>
+</ol></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch26.py"><code>code/ch26.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Accumulated diffusion time and a frame-verified glass tutorial.&quot;&quot;&quot;
+
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch26&quot;
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main():
+    D0, end, amplitude = 1e-18, 3600.0, 0.8
+    t = np.linspace(0, end, 501)
+    tau_A = D0 * t
+    tau_B = D0 * ((1 + amplitude) * t - amplitude * t * t / end)
+    x = np.linspace(-10 * np.sqrt(D0 * end), 10 * np.sqrt(D0 * end), 2001)
+
+    def profile(tau):
+        return np.exp(-x * x / (4 * tau)) / np.sqrt(4 * np.pi * tau)
+
+    pa, pb = profile(tau_A[-1]), profile(tau_B[-1])
+    assert np.max(np.abs(pa - pb)) == 0
+    norm = float(np.trapezoid(pa, x))
+    moment = float(np.trapezoid(pa * x * x, x))
+    assert abs(norm - 1) &lt; 1e-10
+    assert abs(moment / (2 * D0 * end) - 1) &lt; 1e-8
+    h = 48.0
+    mean = (300 - h / 6 - h * h / 90) * 1e-15
+    instant = (300 - h / 3 - h * h / 30) * 1e-15
+    out = {
+        &quot;status&quot;: &quot;synthetic histories; separate source tutorial calculation&quot;,
+        &quot;history_example&quot;: {
+            &quot;D0_m2_s&quot;: D0,
+            &quot;end_s&quot;: end,
+            &quot;amplitude&quot;: amplitude,
+            &quot;tau_final_m2&quot;: float(tau_A[-1]),
+            &quot;tau_A_half_time_m2&quot;: float(D0 * end / 2),
+            &quot;tau_B_half_time_m2&quot;: float(D0 * end * (0.5 + amplitude / 4)),
+            &quot;final_profile_max_difference&quot;: float(np.max(abs(pa - pb))),
+            &quot;normalization&quot;: norm,
+            &quot;variance_m2&quot;: moment,
+            &quot;rms_width_m&quot;: float(np.sqrt(moment)),
+        },
+        &quot;lecture59_polynomial&quot;: {
+            &quot;time_h&quot;: h,
+            &quot;mean_D_m2_h&quot;: mean,
+            &quot;instant_D_m2_h&quot;: instant,
+            &quot;mean_D_m2_s&quot;: mean / 3600,
+            &quot;positive_time_limit_h&quot;: 90.0,
+        },
+    }
+    fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+    axes[0].plot(t / 3600, tau_A, label=&quot;Constant D&quot;)
+    axes[0].plot(t / 3600, tau_B, label=&quot;Decreasing D&quot;)
+    axes[0].set(xlabel=&quot;Time (h)&quot;, ylabel=&quot;Accumulated diffusion time (m²)&quot;)
+    axes[0].legend()
+    axes[1].plot(x * 1e9, pa * 1e-9, label=&quot;Both final profiles&quot;)
+    axes[1].set(xlabel=&quot;Position (nm)&quot;, ylabel=&quot;Normalized density (nm⁻¹)&quot;)
+    for ax in axes:
+        ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(ROOT / &quot;assets/ch26-histories.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    (ROOT / &quot;code/ch26-output.json&quot;).write_text(
+        json.dumps(out, indent=2) + &quot;\n&quot;
+    )
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;status&quot;: &quot;synthetic histories; separate source tutorial calculation&quot;,
+  &quot;history_example&quot;: {
+    &quot;D0_m2_s&quot;: 1e-18,
+    &quot;end_s&quot;: 3600.0,
+    &quot;amplitude&quot;: 0.8,
+    &quot;tau_final_m2&quot;: 3.6e-15,
+    &quot;tau_A_half_time_m2&quot;: 1.8e-15,
+    &quot;tau_B_half_time_m2&quot;: 2.52e-15,
+    &quot;final_profile_max_difference&quot;: 0.0,
+    &quot;normalization&quot;: 0.9999999999984623,
+    &quot;variance_m2&quot;: 7.199999999424668e-15,
+    &quot;rms_width_m&quot;: 8.485281373899553e-08
+  },
+  &quot;lecture59_polynomial&quot;: {
+    &quot;time_h&quot;: 48.0,
+    &quot;mean_D_m2_h&quot;: 2.664e-13,
+    &quot;instant_D_m2_h&quot;: 2.0720000000000002e-13,
+    &quot;mean_D_m2_s&quot;: 7.400000000000001e-17,
+    &quot;positive_time_limit_h&quot;: 90.0
+  }
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-25.html">← Previous</a><a href="chapter-27.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

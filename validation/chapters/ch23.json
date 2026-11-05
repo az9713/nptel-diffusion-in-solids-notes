@@ -1,0 +1,42 @@
+{
+  "reviews": [
+    {
+      "chapter": 23,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7ee362ad0de37103f492000f18e37b216da900ae677e58c9d84baaa82a277bb1",
+      "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+      "assets": {
+        "assets/ch23-pathways.svg": "3b61faaba3baaf090f4764e0c29c51308eb00445313ae54560f505eaee705bab"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No source empirical tables retained or verified",
+        "No full reader/browser/print acceptance claimed"
+      ],
+      "private_review_record_sha256": "395eb9070f57214af7ddd7232b76bde2d91dfaa5ada07e3bc4080ea943bc17bd"
+    },
+    {
+      "chapter": 23,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7ee362ad0de37103f492000f18e37b216da900ae677e58c9d84baaa82a277bb1",
+      "code_sha256": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+      "assets": {
+        "assets/ch23-pathways.svg": "3b61faaba3baaf090f4764e0c29c51308eb00445313ae54560f505eaee705bab"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Exact source melting-table exponents and historical model accuracy tables remain unverified and are not invented.",
+        "The laboratory validates the declared synthetic reductions, not a real metal mechanism. Browser/print/accessibility and complete source audiovisual coverage are separate."
+      ],
+      "private_review_record_sha256": "61204ee49c661ff1c5ced6d81a46c3e46c00cddef6e8278ca787f0079eb05d56"
+    }
+  ]
+}

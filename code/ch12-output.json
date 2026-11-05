@@ -1,0 +1,30 @@
+{
+  "synthetic": true,
+  "D_true_m2_s": 2e-14,
+  "time_s": 100000.0,
+  "diffusion_scale_m": 4.4721359549995795e-05,
+  "plane_m": -2.806210228090461e-22,
+  "max_relative_error_5_to_95_percent": 4.1652778115519595e-08,
+  "plane_displacement_m": 4.47213595499958e-06,
+  "interior_values": [
+    {
+      "fraction": 0.20004596283268383,
+      "D_m2_s": 2.000000083293756e-14,
+      "wrong_plane_D_m2_s": 2.101038335999162e-14
+    },
+    {
+      "fraction": 0.5,
+      "D_m2_s": 2.0000000833055563e-14,
+      "wrong_plane_D_m2_s": 2.1772454683958354e-14
+    },
+    {
+      "fraction": 0.7999540371673164,
+      "D_m2_s": 2.0000000832937603e-14,
+      "wrong_plane_D_m2_s": 2.404037020684273e-14
+    }
+  ],
+  "ripple_relative_D_range": [
+    0.9575774058566852,
+    1.046340120317837
+  ]
+}

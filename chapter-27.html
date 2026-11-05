@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Ionic solids, defect chemistry, and coupled charge transport — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a aria-current=page href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Ionic solids, defect chemistry, and coupled charge transport</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#bookkeeping">27.1 Effective charge is measured relative to a host site L57 00:20</a></li><li><a href="#equilibrium">27.2 Mass action fixes a product; neutrality fixes a difference L57 06:29</a></li><li><a href="#minimum">27.3 Doping can produce a conductivity minimum L57 20:55</a></li><li><a href="#schottky">27.4 Schottky intrinsic and extrinsic slopes differ L58 00:20</a></li><li><a href="#correlation">27.5 Charge displacement includes cross-correlations L58 10:39</a></li><li><a href="#association">27.6 Association needs free and bound inventories L58 17:46</a></li><li><a href="#exercises">27.7 Laboratory, exercises, and worked solutions L59 11:35</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">Adding divalent ions to a monovalent ionic crystal can increase vacancies while decreasing interstitials. Conductivity can initially fall even though one defect population rises. Understanding that behavior requires two separate constraints—mass action and charge neutrality—and a third distinction between moving matter and moving net charge.</p>
+<p class="source-note">Source spine: ionic defect chemistry and silver halides in L57, alkali halides and correlations in L58, and the ionic tutorial in L59. The explicit population solutions, minimum, and association model below are original derivations. Numerical inputs are synthetic; no garnet correlation value is transferred to a halide.</p>
+
+<section id="bookkeeping"><h2>27.1 Effective charge is measured relative to a host site <a class="timestamp" href="https://www.youtube.com/watch?v=0tpJUEqEVkI&amp;t=20s">L57 00:20</a></h2>
+<p>An ionic crystal has chemically distinct cation and anion site sets. In a monovalent AB crystal, the perfect occupied cation site contributes charge <span class="math">\(+e\)</span> and the anion site <span class="math">\(-e\)</span>, where <span class="math">\(e&gt;0\)</span> is elementary charge in coulombs. A cation vacancy has effective charge <span class="math">\(-e\)</span> relative to an occupied cation site; an anion vacancy has effective charge <span class="math">\(+e\)</span>. These are missing-ion charges relative to the reference crystal, not charges of a material particle placed in the empty site.</p>
+<p>A divalent cation replacing a monovalent cation has effective charge <span class="math">\(+e\)</span>. It can be compensated by one monovalent cation vacancy with effective charge <span class="math">\(-e\)</span>. Thus Ca on an Ag site is effectively+1 and an Ag vacancy−1 in units of <span class="math">\(e\)</span>. A claim that this substitution automatically creates a−2 vacancy confuses the host charge with the dopant's actual valence. A missing divalent host ion would be a different bookkeeping problem.</p>
+<p>In <dfn>Schottky disorder</dfn>, cation and anion vacancies are produced in a charge- and stoichiometry-preserving combination, with the removed formula unit accommodated at a reservoir such as a surface. In cation <dfn>Frenkel disorder</dfn>, a cation leaves its regular site and occupies an interstitial site, producing an oppositely charged vacancy–interstitial pair. Anion Frenkel disorder is defined analogously. Crystal structures differ in coordination and available sites; a particular material's dominant disorder cannot be deduced from charge balance alone.</p>
+<p>Let <span class="math">\(N_s\)</span> be the number of regular cation sites per volume, in m⁻³. We normalize defect number densities by this common reference: <span class="math">\(v=n_V/N_s\)</span>, <span class="math">\(i=n_I/N_s\)</span>, and dopant concentration <span class="math">\(d=n_D/N_s\)</span>. If the interstitial-site density differs from <span class="math">\(N_s\)</span>, <span class="math">\(i\)</span> is not its occupied site fraction. The corresponding multiplicity factor belongs in the activity or equilibrium constant. Equal charged defect numbers need not mean equal occupancy fractions on different site sets.</p></section>
+
+<section id="equilibrium"><h2>27.2 Mass action fixes a product; neutrality fixes a difference <a class="timestamp" href="https://www.youtube.com/watch?v=0tpJUEqEVkI&amp;t=389s">L57 06:29</a></h2>
+<p>For ideal dilute cation Frenkel disorder at fixed temperature, write <span class="math">\(vi=K_F\)</span>, where dimensionless <span class="math">\(K_F&gt;0\)</span> includes the site-normalization convention. This mass-action product follows from a formation free energy. With no other charged species, neutrality gives <span class="math">\(v=i\)</span>, so each concentration is <span class="math">\(\sqrt{K_F}\)</span>. Neutrality alone cannot specify their common magnitude: it permits every equal positive pair.</p>
+<p>Now add fully ionized divalent substitutional dopants at normalized concentration <span class="math">\(d\geq0\)</span>, neglecting association and electronic conduction. Positive interstitial and dopant charges balance negative vacancies, giving <span class="math">\(v-i=d\)</span>. Substituting <span class="math">\(i=K_F/v\)</span> gives <span class="math">\(v^2-dv-K_F=0\)</span>. The physical positive solution is</p>
+\[v=\frac{d+\sqrt{d^2+4K_F}}2,\qquad i=\frac{K_F}{v}.\tag{27.1}\]
+<p>The other quadratic root is negative and cannot be a population. When <span class="math">\(d\ll\sqrt{K_F}\)</span>, both populations remain near the intrinsic value. When <span class="math">\(d\gg\sqrt{K_F}\)</span>, <span class="math">\(v\approx d\)</span> and <span class="math">\(i\approx K_F/d\)</span>. Doping increases vacancies while suppressing interstitials because the equilibrium product stays fixed. If both Schottky and Frenkel disorder or electronic carriers are important, additional mass-action relations and a fuller neutrality sum must be solved together.</p>
+<p>Silver halides motivate the cation-Frenkel picture. An interstitial can jump directly between available sites or move by <dfn>interstitialcy</dfn>: an interstitial atom displaces a regular atom into another position, so the identity carrying the excess occupancy changes. Tracking the defect position alone does not track one labeled Ag atom. Collinear and noncollinear knock-on geometries can produce different tracer correlations. Vacancy and interstitialcy contributions can coexist, and the appropriate coefficients depend on material and conditions.</p></section>
+
+<section id="minimum"><h2>27.3 Doping can produce a conductivity minimum <a class="timestamp" href="https://www.youtube.com/watch?v=0tpJUEqEVkI&amp;t=1255s">L57 20:55</a></h2>
+<p>Let <span class="math">\(\mu_v,\mu_i&gt;0\)</span> be magnitudes of electrical drift mobilities of vacancies and interstitials, in m²V⁻¹s⁻¹. In the independent dilute-carrier approximation, each monovalent population contributes positively to conductivity. With the common normalization above,</p>
+\[\sigma=eN_s(\mu_vv+\mu_ii)=eN_s\left(\mu_vv+\mu_iK_F/v\right).\tag{27.2}\]
+<p>Here <span class="math">\(\sigma\)</span> is in Sm⁻¹. Opposite carrier charges produce opposite drift directions and therefore positive contributions to the same conventional current. At fixed temperature suppose mobilities do not change with dopant concentration. Since <span class="math">\(v\)</span> increases monotonically with <span class="math">\(d\)</span>, differentiate with respect to <span class="math">\(v\)</span>. The minimum satisfies <span class="math">\(\mu_v-\mu_iK_F/v^2=0\)</span>, hence</p>
+\[v_{\min}=\sqrt{\mu_iK_F/\mu_v},\quad i_{\min}=\sqrt{\mu_vK_F/\mu_i},\quad d_{\min}=v_{\min}-i_{\min}.\tag{27.3}\]
+<p>At that point the vacancy and interstitial conductivity contributions are equal. For nonnegative divalent doping the minimum is accessible only if <span class="math">\(\mu_i\geq\mu_v\)</span>; equality places it at zero doping. If interstitials are much faster, initial suppression of that population outweighs the growing vacancy contribution. At larger doping, the vacancy term eventually dominates. Association, changing mobilities, nonideal activities, or electronic conduction can shift or remove this ideal minimum.</p>
+<p>The synthetic laboratory takes <span class="math">\(K_F=10^{-12}\)</span> and mobility ratio100, reporting conductivity in units <span class="math">\(eN_s\mu_v\)</span>. Initially <span class="math">\(v=i=10^{-6}\)</span> and scaled conductivity is <span class="math">\(1.01\times10^{-4}\)</span>. The minimum occurs at <span class="math">\(d=9.9\times10^{-6}\)</span>, with <span class="math">\(v=10^{-5},i=10^{-7}\)</span> and scaled conductivity <span class="math">\(2\times10^{-5}\)</span>. These are algebraic teaching inputs, not measured AgCl concentrations or mobilities.</p>
+<figure><img src="assets/ch27-minimum.svg" alt="Synthetic Frenkel doping raises vacancy concentration and lowers interstitial concentration, giving a minimum in scaled ionic conductivity." loading="eager" width="864" height="384"><figcaption>Figure27.1. Fixed-temperature ideal Frenkel model. The minimum follows from competing population contributions at fixed mobility, not a minimum in each individual jump rate.</figcaption></figure></section>
+
+<section id="schottky"><h2>27.4 Schottky intrinsic and extrinsic slopes differ <a class="timestamp" href="https://www.youtube.com/watch?v=eJcS-JG3V0I&amp;t=20s">L58 00:20</a></h2>
+<p>For a monovalent alkali-halide model with equal cation and anion site densities, let <span class="math">\(v_c,v_a\)</span> be their vacancy fractions. Ideal Schottky mass action gives <span class="math">\(v_cv_a=K_S\)</span>. Without other charges, <span class="math">\(v_c=v_a=\sqrt{K_S}\)</span>. If <span class="math">\(K_S=K_{S0}e^{-H_S/(RT)}\)</span>, where <span class="math">\(H_S\)</span> is molar formation enthalpy of a vacancy pair, each isolated vacancy population contains a factor <span class="math">\(e^{-H_S/(2RT)}\)</span>.</p>
+<p>Suppose a cation tracer channel is proportional to <span class="math">\(v_c e^{-H_m/(RT)}\)</span>, where <span class="math">\(H_m\)</span> is its migration enthalpy and prefactors and correlations are treated as temperature independent. Its intrinsic Arrhenius enthalpy is <span class="math">\(H_S/2+H_m\)</span>. With divalent doping strong enough to fix the free cation vacancy population near <span class="math">\(d\)</span>, the extrinsic slope is approximately <span class="math">\(H_m\)</span>. The anion vacancy population is simultaneously suppressed to <span class="math">\(K_S/d\)</span>; doping one carrier does not leave the counterpart unchanged.</p>
+<p>Association can invalidate the free-vacancy plateau at low temperature. Close to melting, additional mechanisms or vacancy pairs can matter. A neutral pair can be more abundant at higher temperature even though binding itself is favored at lower temperature: free vacancy formation supplies many more potential partners. In a dilute intrinsic estimate, pair concentration scales as <span class="math">\(K_av_cv_a=K_aK_S\)</span>. If <span class="math">\(K_a\propto e^{H_b/(RT)}\)</span> with positive binding enthalpy <span class="math">\(H_b\)</span>, the product contains <span class="math">\(e^{-(H_S-H_b)/(RT)}\)</span>. For <span class="math">\(H_S&gt;H_b\)</span>, absolute pair concentration rises with temperature despite decreasing association strength at fixed free populations.</p>
+<p>An approximate intrinsic–extrinsic crossover occurs when <span class="math">\(\sqrt{K_S}\sim d\)</span>. With synthetic <span class="math">\(K_{S0}=1,H_S=200\)</span>kJmol⁻¹ and <span class="math">\(d=10^{-4}\)</span>, equality gives1305.84K. This estimate neglects association, activity corrections, and phase changes. It is a model design calculation rather than a transition temperature assigned to a named salt.</p></section>
+
+<section id="correlation"><h2>27.5 Charge displacement includes cross-correlations <a class="timestamp" href="https://www.youtube.com/watch?v=eJcS-JG3V0I&amp;t=639s">L58 10:39</a></h2>
+<p>For independent dilute carriers of number density <span class="math">\(n\)</span>, charge <span class="math">\(q\)</span>, and particle diffusion coefficient <span class="math">\(D\)</span>, the Einstein relation between diffusion and electrical drift gives <span class="math">\(\mu=|q|D/(k_BT)\)</span>. Multiplying carrier number, charge magnitude, and drift mobility gives the Nernst–Einstein conductivity <span class="math">\(\sigma=nq^2D/(k_BT)\)</span>. Its units are Sm⁻¹. This result assumes the same independent motion underlies thermal spreading and linear electrical response.</p>
+<p>For a measured partial conductivity <span class="math">\(\sigma_j\)</span> attributed to one specified charge species, define a converted charge diffusivity <span class="math">\(D_j^\sigma=k_BT\sigma_j/(n_jq_j^2)\)</span>. Its ratio to tracer diffusion is the dimensionless Haven ratio <span class="math">\(H_{R,j}=D_j^*/D_j^\sigma\)</span>. Conductivity itself is not a diffusivity. Total ionic conductivity is a sum of partial contributions, but a single arbitrary <span class="math">\(n,q\)</span> cannot convert every multivalent, multispecies total into a uniquely defined species coefficient.</p>
+<p>The difference is visible in the equilibrium Einstein form for an isotropic three-dimensional system of volume <span class="math">\(V\)</span>:</p>
+\[\sigma=\lim_{t\to\infty}\frac{\left\langle\left|\sum_\alpha q_\alpha\Delta\mathbf r_\alpha(t)\right|^2\right\rangle}{6Vk_BTt}.\tag{27.4}\]
+<p>The index <span class="math">\(\alpha\)</span> runs over mobile charged particles, <span class="math">\(\Delta\mathbf r_\alpha\)</span> is their unwrapped displacement, and brackets denote an equilibrium ensemble average. The formula assumes a well-defined stationary linear-response diffusive limit. Expanding the square produces same-particle terms and cross-particle terms. A tracer coefficient depends on a labeled particle's mean-square displacement; conductivity also depends on how different particles move together.</p>
+<p>For a neutral bound pair whose opposite charges translate by the same displacement, their combined charge displacement cancels, even though both atoms move. Its neutral translation contributes to matter transport but not to net electrical current. Dissociation and reassociation can still change conductivity by changing free carriers and correlations. A vacancy representation requires consistent mapping from ionic motion; one must not add vacancy and ion charge displacement as if they were independent carriers describing the same exchanges.</p>
+<p>A modern lattice-gas study makes the distinction explicit using single-particle factor <span class="math">\(f\)</span> and collective factor <span class="math">\(f_I\)</span>: <span class="math">\(D^*=fD_0\)</span>, <span class="math">\(D^\sigma=f_ID_0\)</span>, hence <span class="math">\(H_R=f/f_I\)</span>. See <a href="https://purehost.bath.ac.uk/ws/portalfiles/portal/158402009/D3D3F70D_19A7_42F3_94F7_5320EFED401D.pdf">Morgan, PDF pages3–4, Eqs.(1.1)–(1.6)</a>, published as <a href="https://doi.org/10.1098/rsos.170824">Royal Society Open Science4,170824</a>. The paper studies garnet geometry; its numerical factors are not halide measurements. Synthetic <span class="math">\(f=0.6,f_I=0.8\)</span> give <span class="math">\(H_R=0.75\)</span>. For <span class="math">\(n=10^{27}\)</span>m⁻³, <span class="math">\(T=600\)</span>K, and <span class="math">\(D^\sigma=10^{-12}\)</span>m²s⁻¹, the code computes <span class="math">\(\sigma=0.00309875\)</span>Sm⁻¹ and <span class="math">\(D^*=7.5\times10^{-13}\)</span>m²s⁻¹.</p></section>
+
+<section id="association"><h2>27.6 Association needs free and bound inventories <a class="timestamp" href="https://www.youtube.com/watch?v=eJcS-JG3V0I&amp;t=1066s">L58 17:46</a></h2>
+<p>For an isolated aliovalent-dopant model, let <span class="math">\(d_0\)</span> be total dopant fraction, <span class="math">\(u\)</span> free positive dopants, <span class="math">\(v\)</span> free negative compensating vacancies, and <span class="math">\(b\)</span> neutral bound complexes, all using the same normalization. Neglect intrinsic defects. Neutrality gives <span class="math">\(u=v\)</span>; inventory gives <span class="math">\(d_0=u+b\)</span>; dilute association gives <span class="math">\(b=K_auv\)</span>. Eliminate <span class="math">\(b,v\)</span> to obtain</p>
+\[u=v=\frac{2d_0}{1+\sqrt{1+4K_ad_0}},\qquad p_b=b/d_0=1-u/d_0.\tag{27.5}\]
+<p>The rationalized form avoids subtracting two nearly equal numbers at weak association. Synthetic <span class="math">\(d_0=10^{-4},K_a=10^6\)</span> gives <span class="math">\(v=9.51249\times10^{-6}\)</span> and bound fraction0.904875. Free vacancies, not total vacancy inventory, supply an independent-carrier conductivity model. Bound complexes may migrate or dissociate; their occupancy alone is not a diffusivity.</p>
+<p>Homovalent impurities can bind vacancies through elastic and polarization effects without a valence mismatch. Heterovalent impurities add an electrostatic contribution. A five-frequency model can distinguish exchange, rotation, association, dissociation, and distant-host rates, with vacancy return correlations as in Chapter23. Isotope effects also become contribution weighted when several channels transport a tracer; an observed intermediate isotope response does not uniquely determine the channel fractions without their individual responses.</p>
+<p>The source's association formula illustrates a notation trap. A bounded degree <span class="math">\(p_b=b/(b+u)\)</span> is different from association odds <span class="math">\(r=b/u\)</span>; they obey <span class="math">\(p_b=r/(1+r)\)</span>. If diffusivity is modeled as a full-occupancy value times occupancy, write <span class="math">\(D=D_{\mathrm{sat}}p_b=D_{\mathrm{sat}}r/(1+r)\)</span>. At <span class="math">\(r=1\)</span>, occupancy is one half; saturation requires <span class="math">\(r\to\infty\)</span> or <span class="math">\(p_b\to1\)</span>. The L58 slide uses fraction terminology and the odds-shaped formula with inconsistent limiting language. We retain the distinction rather than copy that limit. For an original check with odds0.5 and1, the ratio <span class="math">\([r/(1+r)]_{0.5}/[r/(1+r)]_1=2/3\)</span>. These declared inputs are not a reconstruction of the tutorial's separate numerical comparison.</p></section>
+
+<section id="exercises"><h2>27.7 Laboratory, exercises, and worked solutions <a class="timestamp" href="https://www.youtube.com/watch?v=w5GwmjuJzZI&amp;t=695s">L59 11:35</a></h2>
+<p><a href="code/ch27.py">The deterministic laboratory</a> evaluates (27.1)–(27.5), checks the mass-action product and association inventory, and writes <a href="code/ch27-output.json">actual output</a>. Its plotted conductivity is scaled and its correlation example is synthetic. Neither is a digitized halide dataset. These checks expose population and unit errors without substituting for material-specific measurements.</p>
+<ol class="exercises">
+<li><p><strong>Charge compensation.</strong> How many monovalent cation vacancies compensate one divalent dopant on a monovalent cation site?</p><details><summary>Solution</summary><p>The substitution adds effective charge+1. A vacancy removes one host+1 ion and therefore contributes effective charge−1. One vacancy compensates one dopant. Assigning−2 to that vacancy would overcompensate and violate the stated reference-site bookkeeping. Other charged defects or electronic carriers can change which compensating species is thermodynamically favored, but not these individual effective charges.</p></details></li>
+<li><p><strong>Population constraints.</strong> Derive the strong-doping Frenkel limit and identify which equation fixes each feature.</p><details><summary>Solution</summary><p>Neutrality requires <span class="math">\(v-i=d\)</span>. For <span class="math">\(d\gg\sqrt{K_F}\)</span>, the positive solution gives <span class="math">\(v\approx d\)</span>. Mass action then fixes <span class="math">\(i=K_F/v\approx K_F/d\)</span>. Neutrality sets the vacancy excess; mass action sets the suppressed minority population. Neither relation alone gives both concentrations.</p></details></li>
+<li><p><strong>Minimum accessibility.</strong> What does the ideal Frenkel model predict when vacancy mobility exceeds interstitial mobility?</p><details><summary>Solution</summary><p>The unconstrained minimum has <span class="math">\(v_{\min}&lt;\sqrt{K_F}\)</span>, hence negative <span class="math">\(d_{\min}\)</span>. Positive divalent doping only accesses <span class="math">\(v\geq\sqrt{K_F}\)</span>. The derivative in that domain is nonnegative, so conductivity rises from the intrinsic point. A minimum is not guaranteed by Frenkel disorder alone; its accessible location depends on mobility contrast.</p></details></li>
+<li><p><strong>Intrinsic/extrinsic slope.</strong> Under the fixed-prefactor assumptions, how can two temperature ranges of one salt have different activation enthalpies without different vacancy migration barriers?</p><details><summary>Solution</summary><p>Intrinsic vacancy concentration contributes formation factor <span class="math">\(e^{-H_S/(2RT)}\)</span>, giving total slope <span class="math">\(H_S/2+H_m\)</span>. In a dopant-controlled free-vacancy plateau, the population is approximately fixed, leaving slope <span class="math">\(H_m\)</span>. The migration barrier can be unchanged. Low-temperature association adds further population dependence and must be separated from a genuine migration change.</p></details></li>
+<li><p><strong>Neutral translation.</strong> Two opposite monovalent ions in a permanently bound pair translate by the same vector. Compare tracer and charge displacements.</p><details><summary>Solution</summary><p>Each labeled ion has nonzero squared displacement. The pair's charge displacement is <span class="math">\(e\Delta\mathbf r-e\Delta\mathbf r=0\)</span>. In (27.4), negative cross terms cancel the positive individual terms. Adding independent-ion Nernst–Einstein contributions would miss that cancellation and overestimate conductivity for the permanently bound translation. Dissociation creates a different dynamical situation.</p></details></li>
+<li><p><strong>Association limits.</strong> Obtain weak- and strong-association limits of (27.5).</p><details><summary>Solution</summary><p>When <span class="math">\(K_ad_0\ll1\)</span>, expanding the square root gives <span class="math">\(u\approx d_0\)</span> and <span class="math">\(b\approx K_ad_0^2\)</span>. When <span class="math">\(K_ad_0\gg1\)</span>, the quadratic balance gives <span class="math">\(u\approx\sqrt{d_0/K_a}\)</span> and <span class="math">\(p_b\approx1-1/\sqrt{K_ad_0}\)</span>. Free carrier concentration falls while most dopants are bound. This says nothing by itself about how fast a complex migrates or dissociates.</p></details></li>
+</ol><p>Neutrality, equilibrium, and transport each supply a different part of the model. Their combination explains how more defects can coexist with less current and how atoms can move while their collective charge displacement cancels.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch27.py"><code>code/ch27.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Ideal Frenkel/Schottky chemistry and correlation teaching checks.&quot;&quot;&quot;
+
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch27&quot;
+ROOT = Path(__file__).resolve().parents[1]
+kB, e = 1.380649e-23, 1.602176634e-19
+
+
+def populations(d, K):
+    v = (d + np.sqrt(d * d + 4 * K)) / 2
+    return v, K / v
+
+
+def main():
+    K, mobility_v, mobility_i = 1e-12, 1.0, 100.0
+    d = np.linspace(0, 3e-5, 301)
+    v, i = populations(d, K)
+    cond = mobility_v * v + mobility_i * i
+    v_min = np.sqrt(mobility_i * K / mobility_v)
+    i_min = K / v_min
+    d_min = v_min - i_min
+    assert abs(v_min * i_min - K) &lt; 1e-25
+    # Association: total donor d0, free donor = free vacancy = x.
+    d0, Kass = 1e-4, 1e6
+    free = 2 * d0 / (1 + np.sqrt(1 + 4 * Kass * d0))
+    bound = d0 - free
+    assert abs(bound - Kass * free**2) &lt; 1e-17
+    T, n, Dsigma, f, fI = 600.0, 1e27, 1e-12, 0.6, 0.8
+    sigma = n * e * e * Dsigma / (kB * T)
+    HR = f / fI
+    # Intrinsic/extrinsic crossover: sqrt(Ks)=d, Ks=exp(-Hs/RT).
+    R, Hs, dopant = 8.31446261815324, 200000.0, 1e-4
+    cross = -Hs / (2 * R * np.log(dopant))
+    out = {
+        &quot;status&quot;: &quot;synthetic ideal dilute defect chemistry&quot;,
+        &quot;Frenkel&quot;: {
+            &quot;K&quot;: K,
+            &quot;intrinsic_v&quot;: float(np.sqrt(K)),
+            &quot;minimum_d&quot;: float(d_min),
+            &quot;minimum_v&quot;: float(v_min),
+            &quot;minimum_i&quot;: float(i_min),
+            &quot;minimum_sigma_scaled&quot;: float(2 * mobility_v * v_min),
+            &quot;intrinsic_sigma_scaled&quot;: float(
+                (mobility_v + mobility_i) * np.sqrt(K)
+            ),
+            &quot;max_mass_action_error&quot;: float(np.max(abs(v * i - K))),
+        },
+        &quot;association&quot;: {
+            &quot;total_dopant&quot;: d0,
+            &quot;K&quot;: Kass,
+            &quot;free_vacancy&quot;: float(free),
+            &quot;bound_fraction&quot;: float(bound / d0),
+        },
+        &quot;correlations&quot;: {
+            &quot;f&quot;: f,
+            &quot;f_I&quot;: fI,
+            &quot;Haven_ratio&quot;: HR,
+            &quot;sigma_S_m&quot;: sigma,
+            &quot;D_tracer_m2_s&quot;: HR * Dsigma,
+        },
+        &quot;Schottky_crossover_K&quot;: float(cross),
+        &quot;association_odds_example&quot;: {
+            &quot;p1&quot;: 0.5,
+            &quot;p2&quot;: 1.0,
+            &quot;fraction1&quot;: 1 / 3,
+            &quot;fraction2&quot;: 0.5,
+            &quot;ratio&quot;: 2 / 3,
+        },
+    }
+    fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+    axes[0].plot(d, v, label=&quot;Vacancies&quot;)
+    axes[0].plot(d, i, label=&quot;Interstitials&quot;)
+    axes[0].set(
+        xlabel=&quot;Donor fraction d&quot;, ylabel=&quot;Normalized defect concentration&quot;
+    )
+    axes[0].legend()
+    axes[1].plot(d, cond)
+    axes[1].axvline(d_min, color=&quot;gray&quot;, linestyle=&quot;:&quot;)
+    axes[1].set(xlabel=&quot;Donor fraction d&quot;, ylabel=&quot;Scaled conductivity&quot;)
+    for ax in axes:
+        ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(ROOT / &quot;assets/ch27-minimum.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    (ROOT / &quot;code/ch27-output.json&quot;).write_text(
+        json.dumps(out, indent=2) + &quot;\n&quot;
+    )
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;status&quot;: &quot;synthetic ideal dilute defect chemistry&quot;,
+  &quot;Frenkel&quot;: {
+    &quot;K&quot;: 1e-12,
+    &quot;intrinsic_v&quot;: 1e-06,
+    &quot;minimum_d&quot;: 9.9e-06,
+    &quot;minimum_v&quot;: 1e-05,
+    &quot;minimum_i&quot;: 1e-07,
+    &quot;minimum_sigma_scaled&quot;: 2e-05,
+    &quot;intrinsic_sigma_scaled&quot;: 0.000101,
+    &quot;max_mass_action_error&quot;: 2.0194839173657902e-28
+  },
+  &quot;association&quot;: {
+    &quot;total_dopant&quot;: 0.0001,
+    &quot;K&quot;: 1000000.0,
+    &quot;free_vacancy&quot;: 9.512492197250393e-06,
+    &quot;bound_fraction&quot;: 0.9048750780274961
+  },
+  &quot;correlations&quot;: {
+    &quot;f&quot;: 0.6,
+    &quot;f_I&quot;: 0.8,
+    &quot;Haven_ratio&quot;: 0.7499999999999999,
+    &quot;sigma_S_m&quot;: 0.003098747963862852,
+    &quot;D_tracer_m2_s&quot;: 7.499999999999998e-13
+  },
+  &quot;Schottky_crossover_K&quot;: 1305.8405030141166,
+  &quot;association_odds_example&quot;: {
+    &quot;p1&quot;: 0.5,
+    &quot;p2&quot;: 1.0,
+    &quot;fraction1&quot;: 0.3333333333333333,
+    &quot;fraction2&quot;: 0.5,
+    &quot;ratio&quot;: 0.6666666666666666
+  }
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-26.html">← Previous</a><a href="chapter-28.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

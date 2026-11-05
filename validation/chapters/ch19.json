@@ -1,0 +1,46 @@
+{
+  "reviews": [
+    {
+      "chapter": 19,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b2172d1e0ea57d1aa5f9b2d13c1212b3aaec3e3a796d80a86d6251621dff5d0d",
+      "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+      "assets": {
+        "assets/figures/ch19-scattering.svg": "2a1d18fa6bf79a8d08e32adfe3abcfd68b11e7599dc58b1a82603e30b23c3d38"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new full raw-caption/audiovisual review",
+        "No empirical spectrum or instrument calibration reproduced",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "adcf9b3112175e9260ec1d9092fe683d1a1c7b06e78870dad160a327b070028a"
+    },
+    {
+      "chapter": 19,
+      "round": 2,
+      "reviewer": "probe_review_18_19",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "b2172d1e0ea57d1aa5f9b2d13c1212b3aaec3e3a796d80a86d6251621dff5d0d",
+      "code_sha256": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+      "assets": {
+        "assets/figures/ch19-scattering.svg": "2a1d18fa6bf79a8d08e32adfe3abcfd68b11e7599dc58b1a82603e30b23c3d38",
+        "code/ch19-output.json": "8469e35906a493ab04d899cd2675d8ad7d6bd448c8f329b25e69991ad3d94ad6"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Full manuscript, all six exercises and solutions, complete code, saved JSON and actual SVG inspected. Isolated executable rerun generates byte-identical output JSON and SVG.",
+        "BIPM DDEP Co57 retained Table2/3 page image inspected. Official Mantid6.1 ConvFit owning documentation opened. Chudley\u2013Elliott DOI fetch denied by robots; original article not inspected. Manuscript expressly limits its attribution to historical abstract scope and supplies independent derivations.",
+        "Complete normalized L41 caption text read sequentially in two chunks after the combined read was truncated. Relevant L40 NMR diagnostic interval821\u20131006s read separately. No full audiovisual review; formal source coverage accounting remains separate.",
+        "Classical Gaussian/Poisson correlations are explicit idealizations; this review does not validate a quantum detailed-balance model, empirical nuclear/neutron spectra, an instrument or publication."
+      ],
+      "private_review_record_sha256": "80d85b89e60ddd138e97c8dc8efcbacb92a7efc2b378151fb65e0f9e19880be4"
+    }
+  ]
+}

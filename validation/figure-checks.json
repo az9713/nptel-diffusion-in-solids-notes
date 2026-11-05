@@ -1,0 +1,383 @@
+{
+  "input_signature": "9ec1fe8c96557b11fbab1db6139473f8a27e6f2ec29412ad722f95d50b2b6827",
+  "figures": [
+    {
+      "images": [],
+      "caption": true,
+      "svg": [
+        {
+          "clipped": false
+        }
+      ],
+      "chapter": 1,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "figures/ch03-profile-families.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 3,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "figures/ch04-boundary-models.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 4,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch05-boundary-spacing.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 5,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch06-trapping.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 6,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch07-walk-moments.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 7,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch08-correlation.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 8,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch09-arrhenius.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 9,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch10-free-energy.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 10,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch11-profiles.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 11,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch12-inversion.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 12,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch13-marker.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 13,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch14-models.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 14,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch15-stefan.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 15,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch16-tracer-fit.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 16,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch17-relaxation.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 17,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch18-nmr.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 18,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/figures/ch19-scattering.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 19,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch20-profiles.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 20,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch21-pathways.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 21,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch22-geometry.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 22,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch23-pathways.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 23,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch24-crossover.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 24,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch25-defects.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 25,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch26-histories.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 26,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch27-minimum.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 27,
+      "figure": 1,
+      "passed": true
+    },
+    {
+      "images": [
+        {
+          "src": "assets/ch28-identifiability.svg",
+          "loaded": true,
+          "alt": true
+        }
+      ],
+      "caption": true,
+      "svg": [],
+      "chapter": 28,
+      "figure": 1,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Mechanical bounds/loading checks plus captured files for separate visual inspection"
+}

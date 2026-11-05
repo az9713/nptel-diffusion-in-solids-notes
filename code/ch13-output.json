@@ -1,0 +1,19 @@
+{
+  "source_inputs_frame_verified": true,
+  "D_A_m2_s": 3.934e-14,
+  "D_B_m2_s": 2.134e-14,
+  "D_A_minus_D_B_m2_s": 1.8e-14,
+  "synthetic_molar_volume_m3_mol": 7e-06,
+  "intrinsic_fluxes_mol_m2_s": [
+    -1.4049999999999999e-06,
+    7.621428571428572e-07
+  ],
+  "volume_fixed_fluxes_mol_m2_s": [
+    -1.1607142857142855e-06,
+    1.1607142857142857e-06
+  ],
+  "synthetic_reference_time_s": 100000.0,
+  "marker_displacement_at_reference_m": 9e-07,
+  "tutorial_Dtilde_over_DB": 1.8,
+  "doubling_time_position_ratio": 1.4142135623730951
+}

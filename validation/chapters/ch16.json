@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 16,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "799e98ac1a5ef4f3bb61e267fa557ef8c9cc8cf4950e88a91f1f4f888dbcbf26",
+      "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+      "assets": {
+        "assets/figures/ch16-tracer-fit.svg": "6aebc3eb491def4727651d3063a4b89fd2884864667a8336001962e4481a4258"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full raw-caption or audiovisual review this round",
+        "No calibrated experimental uncertainty supplied",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "78ff4441038a7dc6e687d56bfd94e273d15d616b4cc5713c04245c00f555cc0b"
+    },
+    {
+      "chapter": 16,
+      "round": 2,
+      "reviewer": "probe_review_16_17",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "799e98ac1a5ef4f3bb61e267fa557ef8c9cc8cf4950e88a91f1f4f888dbcbf26",
+      "code_sha256": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+      "assets": {
+        "assets/figures/ch16-tracer-fit.svg": "6aebc3eb491def4727651d3063a4b89fd2884864667a8336001962e4481a4258",
+        "code/ch16-output.json": "a02e573acc40762011ebb912839e5713faa0da18857ba36749cb27821a12cbac"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Independent scientific review of the complete chapter body, all six exercises and solutions, full laboratory code, saved output, and its actual referenced SVG; not a browser/export/release or full audiovisual/source-coverage audit.",
+        "No experimental spectra, raw counts, count uncertainties, calibration standards, or slice boundaries were available; nominal calculations cannot establish metrological accuracy."
+      ],
+      "private_review_record_sha256": "3d1a1786af3afc90bf240ac1cf7ef4e5eb08ea619f9458fdd4c9637edf49ba78"
+    }
+  ]
+}

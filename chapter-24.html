@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>High-entropy alloys and the evidence for diffusion claims — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a aria-current=page href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>High-entropy alloys and the evidence for diffusion claims</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#entropy">24.1 What high configurational entropy establishes L52 00:20</a></li><li><a href="#observable">24.2 Match the coefficient before matching the materials L52 12:42</a></li><li><a href="#crossover">24.3 An Arrhenius crossover reverses a ranking L52 20:50</a></li><li><a href="#evidence">24.4 Boundary evidence and a falsifiable comparison L52 15:43</a></li><li><a href="#exercises">24.5 Exercises and worked solutions</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">“Sluggish diffusion” is a testable comparison only after the tracer, phase, temperature, and reference material are named. Counting alloying elements does not supply those controls. A multicomponent alloy can have a high mixing entropy and still possess a fast diffusion path, a low melting range, or an Arrhenius crossover that reverses its ranking.</p>
+<p class="source-note">Source spine: L52, with ideal-entropy calculations connected to the L55 tutorial. The entropy proof and Arrhenius examples below are original derivations. The experimental boundary example is separately identified and linked to its primary paper; the plotted laboratory curves are synthetic.</p>
+
+<section id="entropy"><h2>24.1 What high configurational entropy establishes <a class="timestamp" href="https://www.youtube.com/watch?v=e5BypfrC9I4&amp;t=20s">L52 00:20</a></h2>
+<p>A multi-principal-element alloy contains several components in substantial proportions rather than one overwhelmingly dominant solvent. “High-entropy alloy” is used with composition-based or ideal-entropy-based conventions. The label describes a design space, not a theorem that every member is a single-phase random solution. Define <span class="math">\(N_i\geq0\)</span> as component mole fractions satisfying <span class="math">\(\sum_{i=1}^nN_i=1\)</span>, where <span class="math">\(n\)</span> is the number of included species.</p>
+<p>For an ideal substitutional solution with independently occupied equivalent sites, counting arrangements gives molar configurational mixing entropy</p>
+\[\Delta S_{\mathrm{mix}}=-R\sum_{i=1}^nN_i\ln N_i,\qquad 0\ln0:=0.\tag{24.1}\]
+<p>Here <span class="math">\(R\)</span> is the molar gas constant in Jmol⁻¹K⁻¹. The limiting convention follows from <span class="math">\(x\ln x\to0\)</span> as <span class="math">\(x\to0+\)</span>. The independent-site assumption matters: chemical ordering or correlations change the configurational entropy relative to this ideal expression.</p>
+<p>To maximize (24.1) for fixed component count, use a Lagrange multiplier for the sum constraint. Stationarity of <span class="math">\(-\sum_iN_i\ln N_i+\lambda(\sum_iN_i-1)\)</span> gives <span class="math">\(-\ln N_i-1+\lambda=0\)</span>; hence all nonzero interior fractions are equal. The Hessian is diagonal with negative entries <span class="math">\(-1/N_i\)</span>, so the function is strictly concave and the stationary point is the global maximum. Thus</p>
+\[\Delta S_{\max}=R\ln n,\qquad N_i=1/n.\tag{24.2}\]
+<p>The laboratory computes <span class="math">\(R\ln5=13.3816\)</span>Jmol⁻¹K⁻¹. The synthetic fractions0.4,0.15,0.15,0.15,0.15 give12.5115Jmol⁻¹K⁻¹. More equal occupation increases ideal entropy for fixed species count. This calculation says nothing yet about vacancy formation, migration barriers, or the diffusion coefficient.</p>
+<p>Phase stability requires comparing competing molar Gibbs free energies <span class="math">\(G=H-TS\)</span>, where <span class="math">\(H\)</span> is molar enthalpy, <span class="math">\(S\)</span> molar entropy, and <span class="math">\(T\)</span> absolute temperature. A large ideal mixing entropy alone does not prove that a disordered solution beats an ordered compound or a phase-separated state. The lecture discusses four proposed effects: entropy stabilization, local lattice distortion, nonadditive composition-dependent properties often called a cocktail effect, and comparatively slow diffusion. The first concerns competing free energies; distortion concerns local atomic environments; nonadditivity concerns a chosen property; sluggishness requires a specified kinetic comparison. They are hypotheses or observations to test in named systems. Equation(24.2) proves none of them as a universal kinetic law.</p>
+</section>
+
+<section id="observable"><h2>24.2 Match the coefficient before matching the materials <a class="timestamp" href="https://www.youtube.com/watch?v=e5BypfrC9I4&amp;t=762s">L52 12:42</a></h2>
+<p>A tracer experiment follows one named species in a chemically uniform matrix. An interdiffusion experiment follows a composition field containing several interacting species. A grain-boundary B-tail experiment can identify <span class="math">\(P=s_b\delta D_b\)</span> rather than <span class="math">\(D_b\)</span> alone. These measurements can all involve the same alloy while answering different questions. Lower interdiffusion need not mean lower tracer mobility: thermodynamic factors and cross-coupled fluxes can change the relation between them.</p>
+<p>For a multicomponent solution, the flux of species <span class="math">\(i\)</span> can depend on several chemical-potential gradients. One illustrative linear-response form is <span class="math">\(\mathbf J_i=-\sum_jL_{ij}\nabla(\mu_j/T)\)</span> in a specified frame, where <span class="math">\(\mu_j\)</span> is molar chemical potential and <span class="math">\(L_{ij}\)</span> are phenomenological coefficients with units set by the flux and force convention. Independent composition coordinates are required because fractions sum to one. A pseudo-binary couple designed to keep spectator concentrations nearly constant can simplify inference, but measured deviations from that condition must be checked. A pseudo-binary fit does not automatically identify a complete multicomponent mobility matrix.</p>
+<p>Radiotracer sectioning, stable-isotope SIMS, electron-probe composition measurements, atomistic simulations, and phase-field or continuum calculations supply different observables. A simulation can estimate hop statistics or profile evolution only within its Hamiltonian and dynamical assumptions. A composition profile includes instrument resolution and calibration. A tracer experiment samples the species chosen and the paths populated during its anneal. Agreement among methods is strongest when the forward models predict the actual measured quantity rather than compare coefficients that merely share units.</p>
+<p>Barrier distributions add another distinction. A chemically diverse neighborhood can raise some barriers and lower others. Averaging barriers and then exponentiating is generally different from averaging activated rates. For parallel independent channels with common attempt scale, <span class="math">\(\langle e^{-E/(k_BT)}\rangle\geq e^{-\langle E\rangle/(k_BT)}\)</span> by convexity, where <span class="math">\(E\)</span> is a per-event barrier and <span class="math">\(k_B\)</span> Boltzmann's constant. A real connected network can instead be limited by serial bottlenecks and return correlations. This inequality exposes why one average barrier is insufficient; it does not by itself predict the effective diffusivity of a random alloy.</p></section>
+
+<section id="crossover"><h2>24.3 An Arrhenius crossover reverses a ranking <a class="timestamp" href="https://www.youtube.com/watch?v=e5BypfrC9I4&amp;t=1250s">L52 20:50</a></h2>
+<p>Let two tracer coefficients be <span class="math">\(D_A=A_Ae^{-Q_A/(RT)}\)</span> and <span class="math">\(D_B=A_Be^{-Q_B/(RT)}\)</span>, with positive prefactors in m²s⁻¹ and constant molar enthalpies in Jmol⁻¹. Their ratio obeys</p>
+\[\ln(D_A/D_B)=\ln(A_A/A_B)-\frac{Q_A-Q_B}{RT}.\tag{24.3}\]
+<p>Setting the ratio to one gives <span class="math">\(T_c=(Q_A-Q_B)/[R\ln(A_A/A_B)]\)</span> when the denominator is nonzero. A physical positive crossover exists only if numerator and denominator have the same sign. Equal prefactors with unequal enthalpies have no finite crossover; equal enthalpies give a temperature-independent ratio. The formula presumes both phases and mechanisms remain valid at the calculated temperature.</p>
+<p>Choose synthetic A with prefactor <span class="math">\(10^{-6}\)</span>m²s⁻¹ and enthalpy180kJmol⁻¹, and B with <span class="math">\(10^{-8}\)</span>m²s⁻¹ and140kJmol⁻¹. The computed crossover is1044.67K. At800K, A gives <span class="math">\(1.76781\times10^{-18}\)</span>m²s⁻¹ and B <span class="math">\(7.22964\times10^{-18}\)</span>m²s⁻¹. At1200K, A gives <span class="math">\(1.46203\times10^{-14}\)</span>m²s⁻¹ and B <span class="math">\(8.05522\times10^{-15}\)</span>m²s⁻¹. The ranking reverses although each coefficient remains an ordinary Arrhenius law.</p>
+<figure><img src="assets/ch24-crossover.svg" alt="Two synthetic tracer Arrhenius lines intersect, reversing their relative diffusivities on opposite sides of the crossover." loading="eager" width="672" height="384"><figcaption>Figure24.1. Original synthetic comparison. These curves are not fits to the cited high-entropy-alloy data.</figcaption></figure>
+<p>Now assign synthetic melting temperatures1500K to A and2000K to B. At equal homologous temperature0.6, compare A at900K with B at1200K. Their coefficients are <span class="math">\(3.57500\times10^{-17}\)</span> and <span class="math">\(8.05522\times10^{-15}\)</span>m²s⁻¹. This is a different experiment from a shared-temperature anneal. Both comparisons are legitimate when their question and temperature convention are explicit.</p></section>
+
+<section id="evidence"><h2>24.4 Boundary evidence and a falsifiable comparison <a class="timestamp" href="https://www.youtube.com/watch?v=e5BypfrC9I4&amp;t=943s">L52 15:43</a></h2>
+<p>A primary Ni radiotracer study compares CoCrFeNi and CoCrFeMnNi using B- and C-regime grain-boundary measurements. It reports a crossover near800K: the five-component alloy is slower below it and faster above it. The primary locators are <a href="https://arxiv.org/pdf/1707.03919">Vaidya etal., PDF pages5–8, Eq.(3), Table1, and Figures6–8</a>; the published article is <a href="https://doi.org/10.1038/s41598-017-12551-9">Scientific Reports7,12293</a>. This is species- and alloy-specific evidence against a universal monotonic component-count rule, not a rate law for all high-entropy alloys.</p>
+<p>The same experiment illustrates an inference chain. B conditions identify a triple product; C conditions identify a boundary coefficient. Comparing them requires a common boundary-state model and temperature extrapolation. A local atom-probe observation can constrain segregation in the sampled boundaries, with finite sampling and sensitivity limits. Absence of detectable segregation simplifies conversion between a product and a coefficient; it is not a prerequisite for studying boundary diffusion in general. Boundary energies inferred through a diffusion correlation or model are estimates, not direct calorimetric measurements.</p>
+<p>To test a broader sluggishness claim, define a null hypothesis and an observable before selecting a normalization. For example: at each specified absolute temperature, a named Ni tracer coefficient in a single FCC phase is lower in alloy B than in alloy A by more than the combined measurement uncertainty. Keep the source protocol, specimen preparation, grain-size distribution, impurity content, and profile analysis comparable. Verify phase identity before and after annealing. If a boundary quantity is measured, characterize boundary geometry and segregation rather than silently calling the result bulk diffusion.</p>
+<p>A useful experiment spans temperatures on both sides of a possible crossover and includes repeated specimens. Report uncertainties on slopes and intercepts together: they are often correlated, and a crossover obtained far outside the measured range can be poorly constrained. A negative result is scientifically informative when it specifies which universal assertion it rejects. It does not imply that no individual multicomponent alloy ever has slow diffusion or useful kinetic stability.</p>
+<p>The reproducible <a href="code/ch24.py">laboratory</a> calculates ideal entropies, the synthetic crossover, and both temperature comparisons, then checks equality of the two rates at the computed crossover. Its <a href="code/ch24-output.json">output</a> contains all input parameters. It does not digitize published curves or estimate confidence intervals from missing raw data. The primary paper provides the experimental counterexample, while the code isolates the algebra behind a ranking reversal.</p></section>
+
+<section id="exercises"><h2>24.5 Exercises and worked solutions</h2><ol class="exercises">
+<li><p><strong>Entropy deficit.</strong> Express the difference between maximum ideal entropy and that of a general composition as a nonnegative quantity.</p><details><summary>Solution</summary><p>Subtract (24.1) from <span class="math">\(R\ln n\)</span>: <span class="math">\(\Delta S_{\max}-\Delta S=R\sum_iN_i\ln(N_i/(1/n))\)</span>. This is <span class="math">\(R\)</span> times the relative entropy of the composition distribution to the uniform distribution. Its nonnegativity follows from concavity of entropy, already established by the negative Hessian. Equality requires equiatomic composition. The identity quantifies ideal compositional unevenness; it does not quantify diffusion retardation.</p></details></li>
+<li><p><strong>No crossover.</strong> What happens if two Arrhenius coefficients have equal activation enthalpies?</p><details><summary>Solution</summary><p>Equation(24.3) reduces to <span class="math">\(\ln(D_A/D_B)=\ln(A_A/A_B)\)</span>. The ratio is constant. Unequal prefactors yield no crossover; equal prefactors make the coefficients identical throughout the assumed common domain. A numerical routine that divides by a vanishing enthalpy difference without treating this case misrepresents the model.</p></details></li>
+<li><p><strong>Coefficient mismatch.</strong> A smaller B-tail triple product is offered as proof of smaller bulk tracer diffusion. Diagnose the inference.</p><details><summary>Solution</summary><p>The product <span class="math">\(s_b\delta D_b\)</span> measures a boundary pathway with segregation and effective width. Bulk tracer diffusion is a different coefficient. A smaller product can arise from smaller boundary mobility, segregation capacity, or width without any specified change in bulk mobility. Measure the bulk branch or an independent bulk tracer specimen and compare like quantities.</p></details></li>
+<li><p><strong>Barrier averaging.</strong> Explain why the convexity inequality in Section24.2 does not prove disorder always accelerates diffusion.</p><details><summary>Solution</summary><p>The inequality averages independent rates with a shared prefactor and parallel interpretation. Long-range diffusion also requires connected paths and includes bottlenecks, occupancy probabilities, and correlated returns. A low barrier into a deep trap can be followed by a rare escape and poor net displacement. A barrier distribution alone omits state energies and network topology. Those missing objects determine whether a rate average represents transport.</p></details></li>
+<li><p><strong>Test scope.</strong> What universal statement can the primary Ni boundary crossover reject, and what statement does it leave open?</p><details><summary>Solution</summary><p>It rejects a claim that simply adding a principal component must always lower the same boundary transport coefficient at every temperature. It leaves open whether a particular species in another phase or alloy has low diffusion over a specified temperature interval. It also leaves open bulk or interdiffusion comparisons until their own observables and data are examined. The conclusion should have the same scope as the measurement.</p></details></li>
+<li><p><strong>Experimental design.</strong> Propose an observable that would distinguish reduced tracer mobility from a reduced thermodynamic driving force in an interdiffusion comparison.</p><details><summary>Solution</summary><p>Measure species tracer diffusion in uniform compositions spanning the couple, and obtain independently assessed chemical-potential derivatives for the same phase and temperature. Compare these with composition-profile evolution in an explicit multicomponent transport model. The tracer experiment constrains motion without the chemical-composition gradient; thermodynamic data constrain the force. Additional cross-correlation information may still be required to identify the full kinetic matrix. One scalar profile cannot generally supply every matrix entry.</p></details></li>
+</ol><p>A defensible comparison names its observable and controls before assigning a material-class explanation. Mixing entropy is a well-defined thermodynamic quantity; a diffusion ranking is a conditional experimental result.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch24.py"><code>code/ch24.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Ideal mixing entropy and explicitly synthetic diffusion comparisons.&quot;&quot;&quot;
+
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch24&quot;
+ROOT = Path(__file__).resolve().parents[1]
+R = 8.31446261815324
+
+
+def entropy(fractions):
+    x = np.asarray(fractions, dtype=float)
+    if np.any(x &lt; 0) or not np.isclose(x.sum(), 1):
+        raise ValueError(&quot;Mole fractions must be nonnegative and sum to one&quot;)
+    return float(-R * np.sum(x[x &gt; 0] * np.log(x[x &gt; 0])))
+
+
+def main():
+    # Synthetic materials A/B: SI prefactors; Q in J/mol; Tm in K.
+    A = {&quot;prefactor&quot;: 1e-6, &quot;Q&quot;: 180000.0, &quot;Tm&quot;: 1500.0}
+    B = {&quot;prefactor&quot;: 1e-8, &quot;Q&quot;: 140000.0, &quot;Tm&quot;: 2000.0}
+
+    def rate(material, T):
+        return material[&quot;prefactor&quot;] * np.exp(-material[&quot;Q&quot;] / (R * T))
+
+    cross = (A[&quot;Q&quot;] - B[&quot;Q&quot;]) / (R * np.log(A[&quot;prefactor&quot;] / B[&quot;prefactor&quot;]))
+    tests = {}
+    for T in [800.0, 1200.0]:
+        tests[str(T)] = {&quot;A&quot;: float(rate(A, T)), &quot;B&quot;: float(rate(B, T))}
+    homologous = {
+        &quot;T_over_Tm&quot;: 0.6,
+        &quot;A_T_K&quot;: 900.0,
+        &quot;B_T_K&quot;: 1200.0,
+        &quot;A&quot;: float(rate(A, 900.0)),
+        &quot;B&quot;: float(rate(B, 1200.0)),
+    }
+    assert abs(rate(A, cross) / rate(B, cross) - 1) &lt; 1e-13
+    fractions = [0.4, 0.15, 0.15, 0.15, 0.15]
+    out = {
+        &quot;status&quot;: &quot;synthetic rate comparison; no empirical HEA fit&quot;,
+        &quot;entropy_equiatomic_5_J_mol_K&quot;: entropy([0.2] * 5),
+        &quot;entropy_nonequiatomic_J_mol_K&quot;: entropy(fractions),
+        &quot;crossover_K&quot;: float(cross),
+        &quot;absolute_comparisons&quot;: tests,
+        &quot;homologous_comparison&quot;: homologous,
+        &quot;materials&quot;: {&quot;A&quot;: A, &quot;B&quot;: B},
+    }
+    T = np.linspace(650, 1400, 200)
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.semilogy(1000 / T, rate(A, T), label=&quot;Synthetic A&quot;)
+    ax.semilogy(1000 / T, rate(B, T), label=&quot;Synthetic B&quot;)
+    ax.axvline(1000 / cross, color=&quot;gray&quot;, linestyle=&quot;:&quot;)
+    ax.set(xlabel=&quot;1000 / T (K⁻¹ ×1000)&quot;, ylabel=&quot;Tracer diffusivity (m² s⁻¹)&quot;)
+    ax.legend()
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(ROOT / &quot;assets/ch24-crossover.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    (ROOT / &quot;code/ch24-output.json&quot;).write_text(
+        json.dumps(out, indent=2) + &quot;\n&quot;
+    )
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;status&quot;: &quot;synthetic rate comparison; no empirical HEA fit&quot;,
+  &quot;entropy_equiatomic_5_J_mol_K&quot;: 13.381611359171915,
+  &quot;entropy_nonequiatomic_J_mol_K&quot;: 12.511505932902232,
+  &quot;crossover_K&quot;: 1044.6724024112932,
+  &quot;absolute_comparisons&quot;: {
+    &quot;800.0&quot;: {
+      &quot;A&quot;: 1.7678095384920048e-18,
+      &quot;B&quot;: 7.229636783270254e-18
+    },
+    &quot;1200.0&quot;: {
+      &quot;A&quot;: 1.462032348885485e-14,
+      &quot;B&quot;: 8.055224571251813e-15
+    }
+  },
+  &quot;homologous_comparison&quot;: {
+    &quot;T_over_Tm&quot;: 0.6,
+    &quot;A_T_K&quot;: 900.0,
+    &quot;B_T_K&quot;: 1200.0,
+    &quot;A&quot;: 3.5749994217199207e-17,
+    &quot;B&quot;: 8.055224571251813e-15
+  },
+  &quot;materials&quot;: {
+    &quot;A&quot;: {
+      &quot;prefactor&quot;: 1e-06,
+      &quot;Q&quot;: 180000.0,
+      &quot;Tm&quot;: 1500.0
+    },
+    &quot;B&quot;: {
+      &quot;prefactor&quot;: 1e-08,
+      &quot;Q&quot;: 140000.0,
+      &quot;Tm&quot;: 2000.0
+    }
+  }
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-23.html">← Previous</a><a href="chapter-25.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

@@ -1,0 +1,112 @@
+{
+  "pages": [
+    {
+      "math": 0,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "index.html",
+      "width": 1280,
+      "javascript_errors": [],
+      "html_sha256": "a563477d371dcb580bf989dd52e906f7c99d6cdd4928fa5b8ffd2482a9dfc0de"
+    },
+    {
+      "math": 103,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-17.html",
+      "width": 1280,
+      "javascript_errors": [],
+      "html_sha256": "d91947febb8faef47104228c673964ab85e71b4e7faf9bc6a6588cdfa0c7d9e5"
+    },
+    {
+      "math": 87,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-18.html",
+      "width": 1280,
+      "javascript_errors": [],
+      "html_sha256": "c96dab4e71cda04c4a78b3eeb03d9ef380e6f3b1f6b88848e4a776b77f2d379e"
+    },
+    {
+      "math": 0,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "index.html",
+      "width": 650,
+      "javascript_errors": [],
+      "html_sha256": "a563477d371dcb580bf989dd52e906f7c99d6cdd4928fa5b8ffd2482a9dfc0de"
+    },
+    {
+      "math": 103,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-17.html",
+      "width": 650,
+      "javascript_errors": [],
+      "html_sha256": "d91947febb8faef47104228c673964ab85e71b4e7faf9bc6a6588cdfa0c7d9e5"
+    },
+    {
+      "math": 87,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-18.html",
+      "width": 650,
+      "javascript_errors": [],
+      "html_sha256": "c96dab4e71cda04c4a78b3eeb03d9ef380e6f3b1f6b88848e4a776b77f2d379e"
+    },
+    {
+      "math": 0,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "index.html",
+      "width": 390,
+      "javascript_errors": [],
+      "html_sha256": "a563477d371dcb580bf989dd52e906f7c99d6cdd4928fa5b8ffd2482a9dfc0de"
+    },
+    {
+      "math": 103,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-17.html",
+      "width": 390,
+      "javascript_errors": [],
+      "html_sha256": "d91947febb8faef47104228c673964ab85e71b4e7faf9bc6a6588cdfa0c7d9e5"
+    },
+    {
+      "math": 87,
+      "mathErrors": 0,
+      "overflow": false,
+      "headings": 1,
+      "dark": true,
+      "page": "chapter-18.html",
+      "width": 390,
+      "javascript_errors": [],
+      "html_sha256": "c96dab4e71cda04c4a78b3eeb03d9ef380e6f3b1f6b88848e4a776b77f2d379e"
+    }
+  ],
+  "shared_assets": {
+    "book.css": "d801c94d032b5cb07e7d74dd63b09641aa602e0e2d4827343efb9d203eec3ef6",
+    "book.js": "cb3d7fc3b8fd754906cf8e6215cbc004cc1a36beda062a9f8b611b00bd3fa607",
+    "math-config.js": "3fd820b81fb59af16621b952ce86097424e9b0299ae7f921c896e3f1640e292a",
+    "mathjax-tex-svg.js": "d4295dc33744836935c1399feece5159577b34c5c8ffb9f1c6324cd82e03a882",
+    "diffusion.js": "11d999bd668f4d56901642e86df708813cbf69a893c228dc53172c66844e84d6"
+  },
+  "motion": "deterministic states, distinct times, play/pause/reset checked",
+  "errors": []
+}

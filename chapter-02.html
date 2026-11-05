@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Laplace transforms and diffusion initial data — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a aria-current=page href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Laplace transforms and diffusion initial data</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#transform">2.1 A transform changes the time variable L4 04:25</a></li><li><a href="#identities">2.2 Derivatives retain the initial data L4 14:49</a></li><li><a href="#initial-value">2.3 Initial-value problems and inverse transforms L4 18:53</a></li><li><a href="#parameter">2.4 Differentiation under the integral sign L6 03:23</a></li><li><a href="#diffusion-transform">2.5 Transforming Fick&#x27;s second law L6 09:36</a></li><li><a href="#exercises">2.6 Exercises with worked solutions</a></li><li><a href="#sources">2.7 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A coating equation without an initial state cannot predict a heat treatment. A specimen that already contains solute differs from an initially empty one, even if the same surface concentration is imposed afterward. A time transform makes that initial state appear explicitly in the equation to be solved.</p>
+<p class="source-note">Source spine: L4 develops elementary Laplace transforms and initial-value problems; L6 justifies parameter differentiation and transforms Fick's second law; the transform and integration exercises in L5 are integrated here. The boundary-value calculations are original developments. Maintained-surface error-function inversion is derived in Chapter 3.</p>
+
+<section id="transform"><h2>2.1 A transform changes the time variable <a class="timestamp" href="https://www.youtube.com/watch?v=NEplnnhpGno&amp;t=265s">L4 04:25</a></h2>
+<p>An <dfn>integral transform</dfn> maps a function to weighted integrals of its values. Its kernel, integration interval, and convergence conditions define the particular transform. The one-sided <dfn>Laplace transform</dfn> is suited to a process specified from time zero onward. For a time-dependent function <span class="math">\(f(t)\)</span>, define</p>
+\[
+F(s)=\mathcal L[f](s)=\int_0^\infty e^{-st}f(t)\,dt. \tag{2.1}
+\]
+<p>The transform variable <span class="math">\(s\)</span> has units s⁻¹ when <span class="math">\(t\)</span> is dimensional time, so the exponent is dimensionless. The value <span class="math">\(F\)</span> has the units of <span class="math">\(f\)</span> multiplied by time. We first use real positive <span class="math">\(s\)</span>; complex inversion extends it to a right half-plane, but the elementary inversions below can be checked directly without contour integration.</p>
+<p>The improper integral means <span class="math">\(\lim_{T\to\infty}\int_0^T e^{-st}f(t)dt\)</span>. A sufficient existence condition is local piecewise continuity and exponential order: there are constants <span class="math">\(K,a,T_0\)</span> with <span class="math">\(|f(t)|\leq Ke^{at}\)</span> for <span class="math">\(t\geq T_0\)</span>. For real <span class="math">\(s&gt;a\)</span>, the tail is bounded by <span class="math">\(K\int_{T_0}^\infty e^{-(s-a)t}dt\)</span>, which converges. Values on a finite interval remain integrable under the stated local condition.</p>
+<p>A finite jump is allowed by piecewise continuity; an infinite one-sided limit is not. The tutorial function that equals <span class="math">\(1/(t-1)\)</span> just to the right of <span class="math">\(t=1\)</span> is not locally integrable there. Multiplication by the finite nonzero factor <span class="math">\(e^{-s}\)</span> does not repair its logarithmically divergent integral. Thus convergence is a mathematical condition, not an optional formality suppressed by writing infinity as an integration endpoint.</p>
+<p>For the constant function <span class="math">\(f=1\)</span>, direct integration gives <span class="math">\(F=1/s\)</span> for <span class="math">\(s&gt;0\)</span>. For <span class="math">\(f=e^{at}\)</span>, the integrand becomes <span class="math">\(e^{-(s-a)t}\)</span>, so <span class="math">\(F=1/(s-a)\)</span> for <span class="math">\(s&gt;a\)</span>. The sign of the exponent determines whether the discarded endpoint term actually vanishes. The same expression written outside its convergence domain is not the integral in (2.1).</p>
+<p>Linearity follows from linearity of integration: <span class="math">\(\mathcal L[\alpha f+\beta g]=\alpha\mathcal L[f]+\beta\mathcal L[g]\)</span> on a common convergence domain. The constants <span class="math">\(\alpha,\beta\)</span> must not depend on time. Linearity will permit individual modes and forcing terms to be transformed separately. It does not make a nonlinear concentration-dependent diffusivity disappear.</p>
+</section>
+
+<section id="identities"><h2>2.2 Derivatives retain the initial data <a class="timestamp" href="https://www.youtube.com/watch?v=NEplnnhpGno&amp;t=889s">L4 14:49</a></h2>
+<p>Assume <span class="math">\(f\)</span> is locally absolutely continuous: on each finite interval it equals its initial value plus the integral of an integrable derivative. Assume also that <span class="math">\(f'\)</span> has a convergent transform in the domain used and <span class="math">\(e^{-sT}f(T)\to0\)</span>. Integration by parts on a finite interval gives <span class="math">\(\int_0^T e^{-st}f'(t)dt=[e^{-st}f(t)]_0^T+s\int_0^T e^{-st}f(t)dt\)</span>. Taking the limit produces</p>
+\[
+\mathcal L[f']=sF-f(0),\qquad
+\mathcal L[f'']=s^2F-sf(0)-f'(0). \tag{2.2}
+\]
+<p>The second identity applies the first to <span class="math">\(f'\)</span> and requires corresponding regularity and decay. The initial values are boundary terms at the lower integration limit. Dropping them changes an initial-value problem into a different problem. The dimensional check also fixes their position: <span class="math">\(sF\)</span> and <span class="math">\(f(0)\)</span> both have the units of <span class="math">\(f\)</span>.</p>
+<p>The trigonometric transforms can be derived as a pair. For real frequency <span class="math">\(\omega&gt;0\)</span>, let <span class="math">\(S=\mathcal L[\sin\omega t]\)</span> and <span class="math">\(C=\mathcal L[\cos\omega t]\)</span>. Differentiation identities give <span class="math">\(sS=\omega C\)</span> and <span class="math">\(sC-1=-\omega S\)</span>. Eliminating either unknown gives</p>
+\[
+\mathcal L[\sin\omega t]=\frac{\omega}{s^2+\omega^2},\qquad
+\mathcal L[\cos\omega t]=\frac{s}{s^2+\omega^2},\quad s&gt;0. \tag{2.3}
+\]
+<p>The numerator in the sine transform matters. The inverse of <span class="math">\(1/(s^2+\omega^2)\)</span> is <span class="math">\(\sin(\omega t)/\omega\)</span>, not <span class="math">\(\sin(\omega t)\)</span>. This factor must be retained when checking a verbal or captioned inverse-transform expression. Units expose it: integrating a dimensionless sine over time must produce a quantity with units of time.</p>
+<p>For nonnegative integer <span class="math">\(n\)</span>, repeated integration by parts gives another useful relation. The base case is <span class="math">\(\mathcal L[1]=1/s\)</span>. For <span class="math">\(n\geq1\)</span>, the endpoint at zero of <span class="math">\(t^n\)</span> vanishes, and exponential decay removes the endpoint at infinity. Thus <span class="math">\(\mathcal L[t^n]=(n/s)\mathcal L[t^{n-1}]\)</span>, so</p>
+\[
+\mathcal L[t^n]=\frac{n!}{s^{n+1}},\quad s&gt;0. \tag{2.4}
+\]
+<p>The factorial counts the successive differentiation factors. The laboratory checks this identity by numerical quadrature for several powers rather than only consulting a symbolic transform table. Such finite checks can detect implementation mistakes; the integration-by-parts recurrence supplies the general result.</p>
+</section>
+
+<section id="initial-value"><h2>2.3 Initial-value problems and inverse transforms <a class="timestamp" href="https://www.youtube.com/watch?v=NEplnnhpGno&amp;t=1133s">L4 18:53</a></h2>
+<p>The <dfn>inverse transform</dfn> recovers a time function with the given transform, within an appropriate uniqueness class. For the elementary examples here, partial fractions reduce the expression to transforms already derived. The proposed inverse is then checked against both the differential equation and all initial data. In this section and its ODE exercises, time and transform variables are nondimensional after choosing a reference time; numerical coefficients are not material rate constants.</p>
+<p>First consider <span class="math">\(y''-y'-2y=0\)</span> with <span class="math">\(y(0)=1\)</span> and <span class="math">\(y'(0)=0\)</span>. A prime denotes a derivative with respect to this time variable. Let <span class="math">\(Y=\mathcal L[y]\)</span>. Substituting (2.2) gives <span class="math">\((s^2Y-s)-(sY-1)-2Y=0\)</span>. Therefore</p>
+\[
+Y=\frac{s-1}{(s-2)(s+1)}
+=\frac{1}{3(s-2)}+\frac{2}{3(s+1)},\qquad
+y(t)=\frac13e^{2t}+\frac23e^{-t}. \tag{2.5}
+\]
+<p>At zero, the two contributions sum to one; their derivative contributions are <span class="math">\(2/3\)</span> and <span class="math">\(-2/3\)</span>, giving zero. Each exponential independently solves the homogeneous equation. The growing term means the transform requires <span class="math">\(s&gt;2\)</span>. An algebraic rational expression alone does not record this convergence condition unless we carry it with the solution.</p>
+<p>The forced example is more sensitive to inverse-transform normalization. Solve <span class="math">\(y''+y=\sin2t\)</span> with <span class="math">\(y(0)=2\)</span> and <span class="math">\(y'(0)=1\)</span>. Transforming gives <span class="math">\((s^2+1)Y-2s-1=2/(s^2+4)\)</span>. Separation into elementary pieces yields</p>
+\[
+Y=\frac{2s}{s^2+1}+\frac{5/3}{s^2+1}-\frac{2/3}{s^2+4},
+\qquad y=2\cos t+\frac53\sin t-\frac13\sin2t. \tag{2.6}
+\]
+<p>The last coefficient is <span class="math">\(-1/3\)</span> because the inverse of <span class="math">\(1/(s^2+4)\)</span> contains a further factor <span class="math">\(1/2\)</span>. Direct differentiation gives <span class="math">\(y'(0)=5/3-2/3=1\)</span>. The homogeneous terms cancel in <span class="math">\(y''+y\)</span>, while the last term contributes <span class="math">\((-1/3)(-4+1)\sin2t=\sin2t\)</span>. Using <span class="math">\(-2/3\)</span> for that coefficient fails both checks. The displayed source slide at <a href="https://www.youtube.com/watch?v=NEplnnhpGno&amp;t=1628s">L4 27:08</a> has the correct <span class="math">\(-1/3\)</span> coefficient; the final captioned verbal correction is inconsistent with that slide.</p>
+<p>A shifted quadratic denominator is handled by completing the square. Tutorial 1 asks for <span class="math">\(y''-3y'+4y=0\)</span> with <span class="math">\(y(0)=1\)</span> and <span class="math">\(y'(0)=5\)</span>. Its transformed numerator is <span class="math">\(s+2\)</span>, and the denominator is <span class="math">\((s-3/2)^2+7/4\)</span>. Split the numerator into <span class="math">\((s-3/2)+7/2\)</span>. Multiplying a time function by <span class="math">\(e^{at}\)</span> shifts its transform from <span class="math">\(F(s)\)</span> to <span class="math">\(F(s-a)\)</span>, directly from (2.1). Hence</p>
+\[
+y(t)=e^{3t/2}\left[\cos\!\left(\frac{\sqrt7}{2}t\right)
++\sqrt7\sin\!\left(\frac{\sqrt7}{2}t\right)\right]. \tag{2.7}
+\]
+<p>At zero, the bracket is one; its derivative is <span class="math">\(7/2\)</span>. The exponential adds <span class="math">\(3/2\)</span>, giving the required derivative five. The denominator has no real linear factors, but it has complex factors. Completing the square keeps the solution real and identifies its growth rate and oscillation frequency without claiming that factorization is impossible.</p>
+<p>The laboratory uses exact symbolic differentiation to check the three ODE residuals and initial values. It also transforms the proposed inverse of a tutorial rational function back into the original expression. These checks target different failure modes: initial data can be satisfied by a function that has the wrong forcing, and a differential residual can vanish while the initial constants are wrong.</p>
+</section>
+
+<section id="parameter"><h2>2.4 Differentiation under the integral sign <a class="timestamp" href="https://www.youtube.com/watch?v=pnpuZTLnfbg&amp;t=203s">L6 03:23</a></h2>
+<p>The concentration transform still depends on position. To transform a spatial derivative, we must know when differentiation and integration can be interchanged. Fixed integration limits remove endpoint-motion terms, but they do not remove the need for a convergence bound. A sufficient local condition is that the integrand is integrable at one base parameter in the neighborhood, has the relevant parameter derivative, and that this derivative is bounded throughout the neighborhood by an integrable function independent of that parameter. Base-parameter integrability is essential: a parameter-independent nonintegrable function has zero derivative but no finite integral to differentiate.</p>
+<p>The reason is visible in the difference quotient. For a parameter <span class="math">\(\eta\)</span> and integrand <span class="math">\(h(\eta,u)\)</span>, the mean-value theorem bounds <span class="math">\([h(\eta+\epsilon,u)-h(\eta,u)]/\epsilon\)</span> by a nearby parameter derivative. An integrable common bound permits dominated convergence to pass the limit through the integral. Thus <span class="math">\(d\int hdu/d\eta=\int\partial_\eta hdu\)</span> under these hypotheses. An improper integral without such control can invalidate the interchange.</p>
+<p>The lecture's auxiliary example makes this operation concrete. Let <span class="math">\(u\in(0,1)\)</span> and dimensionless parameter <span class="math">\(\eta&gt;-1\)</span>. Define</p>
+\[
+G(\eta)=\int_0^1\frac{u^\eta-1}{\ln u}\,du. \tag{2.8}
+\]
+<p>At <span class="math">\(u=1\)</span>, numerator and denominator both vanish, but their ratio tends to <span class="math">\(\eta\)</span>; this singularity is removable. Near zero, the stated range of <span class="math">\(\eta\)</span> ensures integrability. Differentiating the integrand with respect to <span class="math">\(\eta\)</span> gives <span class="math">\(u^\eta\)</span>, since the factor <span class="math">\(\ln u\)</span> cancels. On any compact parameter interval with lower endpoint <span class="math">\(a&gt;-1\)</span>, its magnitude is bounded by <span class="math">\(u^a\)</span>, whose integral is finite.</p>
+<p>The justified interchange therefore gives <span class="math">\(G'(\eta)=\int_0^1u^\eta du=1/(\eta+1)\)</span>. Since <span class="math">\(G(0)=0\)</span>, integration with respect to the parameter yields <span class="math">\(G(\eta)=\ln(1+\eta)\)</span>. In particular, <span class="math">\(G(3)=\ln4\approx1.38629436112\)</span>. Independent numerical quadrature in the laboratory gives the same value within its integration error estimate.</p>
+<p>This parameter is an auxiliary mathematical device, not the physical position in the coating. The distinction prevents a misleading unit assignment to <span class="math">\(u^\eta\)</span>. The calculation also shows why changing variables is sometimes less useful than introducing a parameter whose derivative simplifies the integrand. In the diffusion problem the desired interchange has the opposite purpose: it moves the spatial derivative outside the time integral.</p>
+</section>
+
+<section id="diffusion-transform"><h2>2.5 Transforming Fick's second law <a class="timestamp" href="https://www.youtube.com/watch?v=pnpuZTLnfbg&amp;t=576s">L6 09:36</a></h2>
+<p>Return to dimensional position <span class="math">\(x\)</span> in meters and time <span class="math">\(t\)</span> in seconds. Let the nonreacting concentration satisfy <span class="math">\(\partial_t c=D\partial_{xx}c\)</span> with constant <span class="math">\(D&gt;0\)</span>, in m²/s. Write the initial concentration as <span class="math">\(c_0(x)=c(x,0)\)</span> and define its one-sided time transform <span class="math">\(C(x,s)=\int_0^\infty e^{-st}c(x,t)dt\)</span>, in mol·s/m³.</p>
+<p>Assume the required time boundary terms decay and weighted spatial derivatives admit integrable common bounds on each position neighborhood. Equation (2.2) transforms the time derivative into <span class="math">\(sC-c_0(x)\)</span>. The parameter-interchange argument transforms <span class="math">\(\partial_{xx}c\)</span> into <span class="math">\(\partial_{xx}C\)</span>. Therefore</p>
+\[
+D\,\partial_{xx}C-sC=-c_0(x),\qquad
+\partial_{xx}C-\frac{s}{D}C+\frac{c_0(x)}{D}=0. \tag{2.9}
+\]
+<p>This is an ordinary differential equation in position for each selected transform parameter. The initial spatial distribution becomes a forcing term. Its coefficient <span class="math">\(1/D\)</span> in the divided form is essential: every term then has units mol·s/m⁵. The recorded derivation corrects this factor near L6 16:51. Keeping the undivided form alongside it provides a direct dimensional check.</p>
+<p>If <span class="math">\(c_0=0\)</span>, the homogeneous solutions are <span class="math">\(e^{\pm kx}\)</span>, where <span class="math">\(k=\sqrt{s/D}\)</span> has units m⁻¹. On a half-line <span class="math">\(x\geq0\)</span> with bounded concentration as <span class="math">\(x\to\infty\)</span>, the growing exponential is excluded. If the surface is suddenly maintained at concentration <span class="math">\(c_s\)</span>, its transform is <span class="math">\(c_s/s\)</span>, yielding</p>
+\[
+C(x,s)=\frac{c_s}{s}\exp\!\left(-x\sqrt{\frac{s}{D}}\right). \tag{2.10}
+\]
+<p>The boundary value applies for positive time; an initially empty interior can coexist with an abrupt boundary change at time zero in the usual limiting interpretation. The transform already displays a penetration length <span class="math">\(\sqrt{D/s}\)</span>. Chapter 3 derives its inverse and the associated <span class="math">\(\sqrt{Dt}\)</span> spreading scale. No arbitrary constant remains after imposing boundedness and the surface condition.</p>
+<p>A nonzero initial state requires a particular solution. For a uniform initially loaded half-line with concentration <span class="math">\(c_b\)</span>, <span class="math">\(C_p=c_b/s\)</span> satisfies the inhomogeneous equation. A maintained surface <span class="math">\(c_s\)</span> then gives <span class="math">\(C=c_b/s+(c_s-c_b)e^{-kx}/s\)</span>. Reusing the zero-initial-state homogeneous solution without this term would incorrectly erase the initial solute. The far-field transform must tend to <span class="math">\(c_b/s\)</span>, not zero.</p>
+<p>A finite domain is also compatible with Laplace transformation. It has two spatial boundary conditions and generally retains both independent spatial solutions before those conditions are imposed. Eigenfunction expansions may expose long-time decay more transparently, but finite geometry does not make transforms inapplicable. What determines the physical solution is the domain, initial state, and boundary data together. The method must preserve all three.</p>
+</section>
+
+<section id="exercises"><h2>2.6 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. Convergence is part of the transform</h3><p>Find the real convergence domain of the transform of <span class="math">\(e^{at}\)</span>, with real constant <span class="math">\(a\)</span>. Explain why a finite jump is compatible with existence but a positive <span class="math">\(1/(t-1)\)</span> singularity to the right of one is not repaired by exponential weighting.</p><details><summary>Worked solution</summary><p>The tail integral is <span class="math">\(\int_0^\infty e^{-(s-a)t}dt\)</span>. It equals <span class="math">\(1/(s-a)\)</span> when <span class="math">\(s&gt;a\)</span>. At equality it integrates one forever; below equality it grows, so neither case converges. A bounded jump affects a finite integral on a finite interval. Near <span class="math">\(t=1\)</span>, however, the factor <span class="math">\(e^{-st}\)</span> remains bounded above and below by positive constants. The singular part behaves as <span class="math">\(\int_1^{1+\epsilon}dt/(t-1)\)</span>, which diverges. A time-tail convergence factor does not remove a finite-time nonintegrable singularity.</p></details></div>
+<div class="exercise"><h3>2. Detect the missing frequency factor</h3><p>For the forced initial-value problem (2.6), someone proposes <span class="math">\(2\cos t+(5/3)\sin t-(2/3)\sin2t\)</span>. Test its initial derivative and forcing. Give the corrected function and identify the exact transform-table mistake.</p><details><summary>Worked solution</summary><p>The proposed derivative at zero is <span class="math">\(5/3-4/3=1/3\)</span>, not one. Its second derivative plus itself is <span class="math">\((-2/3)(-4+1)\sin2t=2\sin2t\)</span>, twice the specified forcing. The transform coefficient <span class="math">\(-2/3\)</span> multiplying <span class="math">\(1/(s^2+4)\)</span> must be divided by the frequency two upon inversion. The corrected sine coefficient is <span class="math">\(-1/3\)</span>. It gives derivative one and forcing <span class="math">\(\sin2t\)</span>. Checking only <span class="math">\(y(0)=2\)</span> would miss the error because both sine terms vanish there.</p></details></div>
+<div class="exercise"><h3>3. Recover the tutorial rational function</h3><p>Invert <span class="math">\(F(s)=(8s^2-4s+12)/[s(s^2+4)]\)</span>. Show the coefficient comparison and verify the answer by taking its transform.</p><details><summary>Worked solution</summary><p>Write <span class="math">\(F=A/s+(Bs+C)/(s^2+4)\)</span>. Multiplying by the denominator gives <span class="math">\(8s^2-4s+12=(A+B)s^2+Cs+4A\)</span>. Thus <span class="math">\(A=3\)</span>, <span class="math">\(B=5\)</span>, and <span class="math">\(C=-4\)</span>. Inversion gives <span class="math">\(f(t)=3+5\cos2t-2\sin2t\)</span>. Its transform is <span class="math">\(3/s+5s/(s^2+4)-4/(s^2+4)\)</span>, exactly the original numerator over the common denominator. The code verifies this identity symbolically. No numerical coefficient from the inconsistent caption expression is accepted without the algebraic check.</p></details></div>
+<div class="exercise"><h3>4. A shifted quadratic and its initial data</h3><p>Starting from <span class="math">\(Y=(s+2)/(s^2-3s+4)\)</span>, derive (2.7). Why is writing a numerator proportional only to <span class="math">\(s-3/2\)</span> insufficient?</p><details><summary>Worked solution</summary><p>The denominator is <span class="math">\((s-3/2)^2+(\sqrt7/2)^2\)</span>. The numerator is <span class="math">\((s-3/2)+7/2\)</span>. The first part is a shifted cosine transform; the second is a shifted sine transform with coefficient <span class="math">\((7/2)/(\sqrt7/2)=\sqrt7\)</span>. This yields (2.7). Omitting the constant part would leave only <span class="math">\(e^{3t/2}\cos(\sqrt7t/2)\)</span>, whose derivative at zero is <span class="math">\(3/2\)</span> instead of five. Completing the square locates the frequency, but matching the whole numerator supplies the initial derivative.</p></details></div>
+<div class="exercise"><h3>5. A parameter integral and an invalid interchange</h3><p>Derive <span class="math">\(G(\eta)=\ln(1+\eta)\)</span> from (2.8), naming a dominating function for the parameter derivative. What fails at <span class="math">\(\eta=-1\)</span>?</p><details><summary>Worked solution</summary><p>On a compact parameter interval <span class="math">\([a,b]\subset(-1,\infty)\)</span>, <span class="math">\(\partial_\eta[(u^\eta-1)/\ln u]=u^\eta\leq u^a\)</span> for <span class="math">\(0&lt;u&lt;1\)</span>. The integral of this bound is <span class="math">\(1/(a+1)\)</span>. Differentiation is justified and gives <span class="math">\(G'=1/(1+\eta)\)</span>. Integrating in the parameter and using <span class="math">\(G(0)=0\)</span> gives the result. At minus one the bound would be <span class="math">\(1/u\)</span>, which is not integrable. The original integrand itself has a nonintegrable zero-endpoint behavior; the logarithm of <span class="math">\(1+\eta\)</span> also diverges as this boundary is approached from above.</p></details></div>
+<div class="exercise"><h3>6. Preserve a nonzero initial state</h3><p>A half-line initially has uniform concentration <span class="math">\(c_b\)</span>; its surface is maintained at <span class="math">\(c_s\)</span>. Derive the transformed solution and show that its far-field value has the correct units and initial-state interpretation. What happens when the two concentrations are equal?</p><details><summary>Worked solution</summary><p>The transformed equation is <span class="math">\(DC_{xx}-sC=-c_b\)</span>. The constant particular solution is <span class="math">\(c_b/s\)</span>. Boundedness removes the growing exponential, giving <span class="math">\(C=c_b/s+B e^{-x\sqrt{s/D}}\)</span>. At the surface, <span class="math">\(C=c_s/s\)</span>, so <span class="math">\(B=(c_s-c_b)/s\)</span>. The far field tends to <span class="math">\(c_b/s\)</span>, the transform of unchanged concentration <span class="math">\(c_b\)</span>, with concentration-times-time units. Equal concentrations remove the exponential term entirely; no gradient or transient is created. An initially empty formula would instead predict a spurious redistribution.</p></details></div>
+<div class="exercise"><h3>7. Substitution before integration by parts</h3><p>Evaluate the tutorial integral <span class="math">\(\int t^7\sin(2t^4)dt\)</span>. Verify the result by differentiation rather than relying only on the integration steps.</p><details><summary>Worked solution</summary><p>Set <span class="math">\(u=t^4\)</span>, so <span class="math">\(du=4t^3dt\)</span> and <span class="math">\(t^7dt=u\,du/4\)</span>. One integration by parts gives <span class="math">\(\tfrac14\int u\sin2u\,du=-u\cos2u/8+\sin2u/16+C\)</span>. Substitute back to obtain <span class="math">\(-t^4\cos(2t^4)/8+\sin(2t^4)/16+C\)</span>. Differentiation produces two opposite <span class="math">\(t^3\cos(2t^4)/2\)</span> terms that cancel; the remaining term is <span class="math">\(t^7\sin(2t^4)\)</span>. The laboratory checks this cancellation exactly.</p></details></div>
+</section>
+
+<section id="sources"><h2>2.7 Sources and limits</h2><p><a href="https://www.youtube.com/watch?v=NEplnnhpGno">L4</a>, <a href="https://www.youtube.com/watch?v=yqFbiDsvJ2c">L5</a>, and <a href="https://www.youtube.com/watch?v=pnpuZTLnfbg">L6</a> supply the transform, ODE, and parameter-integral source spine. The original concentration boundary examples and explicit convergence/units checks are teaching developments. The mathematics is derived here and checked in <a href="code/ch02.py">the executable companion</a>; no experimental diffusion coefficient is inferred in this chapter.</p><p>A transform is a solution method, not a physical closure. It preserves a specified linear diffusion model and its initial data. It does not select a microscopic mechanism, recover an unknown diffusivity from insufficient observations, justify an inconsistent boundary condition, or turn a nonlinear constitutive equation into a linear one automatically. Inverse formulas also require a suitable solution class; the direct checks here establish the stated elementary solutions under their explicit assumptions.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch02.py"><code>code/ch02.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Exact symbolic and independent quadrature checks for transform examples.&quot;&quot;&quot;
+
+import json
+import numpy as np
+import sympy as sp
+from scipy.integrate import quad
+
+
+def run():
+    t, s = sp.symbols(&quot;t s&quot;, positive=True)
+    examples = [
+        (sp.exp(2 * t) / 3 + 2 * sp.exp(-t) / 3, -1, -2, sp.Integer(0), 1, 0),
+        (
+            2 * sp.cos(t) + sp.Rational(5, 3) * sp.sin(t) - sp.sin(2 * t) / 3,
+            0,
+            1,
+            sp.sin(2 * t),
+            2,
+            1,
+        ),
+        (
+            sp.exp(3 * t / 2)
+            * (
+                sp.cos(sp.sqrt(7) * t / 2)
+                + sp.sqrt(7) * sp.sin(sp.sqrt(7) * t / 2)
+            ),
+            -3,
+            4,
+            sp.Integer(0),
+            1,
+            5,
+        ),
+    ]
+    checks = []
+    for y, a, b, forcing, initial, initial_derivative in examples:
+        residual = sp.simplify(
+            sp.diff(y, t, 2) + a * sp.diff(y, t) + b * y - forcing
+        )
+        assert residual == 0
+        assert sp.simplify(y.subs(t, 0)) == initial
+        assert sp.simplify(sp.diff(y, t).subs(t, 0)) == initial_derivative
+        checks.append(
+            dict(
+                residual=str(residual),
+                initial_value=initial,
+                initial_derivative=initial_derivative,
+            )
+        )
+    rational = (8 * s**2 - 4 * s + 12) / (s * (s**2 + 4))
+    recovered = 3 + 5 * sp.cos(2 * t) - 2 * sp.sin(2 * t)
+    assert (
+        sp.simplify(
+            sp.laplace_transform(recovered, t, s, noconds=True) - rational
+        )
+        == 0
+    )
+    primitive = -(t**4) * sp.cos(2 * t**4) / 8 + sp.sin(2 * t**4) / 16
+    assert sp.simplify(sp.diff(primitive, t) - t**7 * sp.sin(2 * t**4)) == 0
+    eta = 3.0
+
+    def integrand(u):
+        if u == 1:
+            return eta
+        return np.expm1(eta * np.log(u)) / np.log(u)
+
+    integral, error = quad(integrand, 0, 1, epsabs=1e-11)
+    assert abs(integral - np.log1p(eta)) &lt; 1e-10
+    # Test transform of t^n by quadrature rather than the symbolic table.
+    power_checks = []
+    import math
+
+    for n in range(5):
+        rate = 2.5
+        observed, _ = quad(
+            lambda time: time**n * np.exp(-rate * time), 0, np.inf
+        )
+        expected = math.factorial(n) / rate ** (n + 1)
+        assert np.isclose(observed, expected, rtol=1e-10, atol=1e-12)
+        power_checks.append(dict(n=n, transform_at_s_2_5=observed))
+    return dict(
+        synthetic_checks=True,
+        ode_checks=checks,
+        tutorial_inverse=&quot;3 + 5*cos(2*t) - 2*sin(2*t)&quot;,
+        parameter_integral=integral,
+        log_4=float(np.log(4)),
+        quadrature_error_estimate=error,
+        power_transforms=power_checks,
+        antiderivative_verified=True,
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    print(json.dumps(run(), indent=2))
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic_checks&quot;: true,
+  &quot;ode_checks&quot;: [
+    {
+      &quot;residual&quot;: &quot;0&quot;,
+      &quot;initial_value&quot;: 1,
+      &quot;initial_derivative&quot;: 0
+    },
+    {
+      &quot;residual&quot;: &quot;0&quot;,
+      &quot;initial_value&quot;: 2,
+      &quot;initial_derivative&quot;: 1
+    },
+    {
+      &quot;residual&quot;: &quot;0&quot;,
+      &quot;initial_value&quot;: 1,
+      &quot;initial_derivative&quot;: 5
+    }
+  ],
+  &quot;tutorial_inverse&quot;: &quot;3 + 5*cos(2*t) - 2*sin(2*t)&quot;,
+  &quot;parameter_integral&quot;: 1.3862943611200687,
+  &quot;log_4&quot;: 1.3862943611198906,
+  &quot;quadrature_error_estimate&quot;: 5.465421448747065e-10,
+  &quot;power_transforms&quot;: [
+    {
+      &quot;n&quot;: 0,
+      &quot;transform_at_s_2_5&quot;: 0.4
+    },
+    {
+      &quot;n&quot;: 1,
+      &quot;transform_at_s_2_5&quot;: 0.16000000000000003
+    },
+    {
+      &quot;n&quot;: 2,
+      &quot;transform_at_s_2_5&quot;: 0.1280000000000001
+    },
+    {
+      &quot;n&quot;: 3,
+      &quot;transform_at_s_2_5&quot;: 0.15359999999999924
+    },
+    {
+      &quot;n&quot;: 4,
+      &quot;transform_at_s_2_5&quot;: 0.24575999999997789
+    }
+  ],
+  &quot;antiderivative_verified&quot;: true
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-01.html">← Previous</a><a href="chapter-03.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

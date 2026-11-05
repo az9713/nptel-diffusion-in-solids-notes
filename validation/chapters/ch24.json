@@ -1,0 +1,42 @@
+{
+  "reviews": [
+    {
+      "chapter": 24,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "daccfb14520c13b5a0cfee11a5cedaa4bf78c47d451250453a4741607efe054a",
+      "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+      "assets": {
+        "assets/ch24-crossover.svg": "424dad03d468c42bd74445c6087078df6bdeec1978a312d92c687473e99329c3"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No empirical curve digitization or uncertainty estimation from unavailable raw data",
+        "Full reader/browser/print acceptance separate"
+      ],
+      "private_review_record_sha256": "df39f4f5c7436ec601a2c274d9f6364ec4f2d00b05b0c720044544a861a413e6"
+    },
+    {
+      "chapter": 24,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "daccfb14520c13b5a0cfee11a5cedaa4bf78c47d451250453a4741607efe054a",
+      "code_sha256": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+      "assets": {
+        "assets/ch24-crossover.svg": "424dad03d468c42bd74445c6087078df6bdeec1978a312d92c687473e99329c3"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The primary paper supplies the experimental counterexample; the companion does not digitize or fit missing raw empirical data.",
+        "The local HTML closure finding is separate from the root reader/browser/print/accessibility evidence. No broader audiovisual acceptance is implied."
+      ],
+      "private_review_record_sha256": "ca30b05d17b6cf629a738bc7967ef7552acb70d5718ce0c62f30c573b0628ab8"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "status": "synthetic histories; separate source tutorial calculation",
+  "history_example": {
+    "D0_m2_s": 1e-18,
+    "end_s": 3600.0,
+    "amplitude": 0.8,
+    "tau_final_m2": 3.6e-15,
+    "tau_A_half_time_m2": 1.8e-15,
+    "tau_B_half_time_m2": 2.52e-15,
+    "final_profile_max_difference": 0.0,
+    "normalization": 0.9999999999984623,
+    "variance_m2": 7.199999999424668e-15,
+    "rms_width_m": 8.485281373899553e-08
+  },
+  "lecture59_polynomial": {
+    "time_h": 48.0,
+    "mean_D_m2_h": 2.664e-13,
+    "instant_D_m2_h": 2.0720000000000002e-13,
+    "mean_D_m2_s": 7.400000000000001e-17,
+    "positive_time_limit_h": 90.0
+  }
+}

@@ -1,0 +1,12 @@
+sources:
+  - id: nptel-course
+    title: Diffusion in Solids
+    author: Mayur Vaidya
+    institution: IIT Hyderabad
+    official_url: https://nptel.ac.in/courses/113106635
+    playlist: https://www.youtube.com/playlist?list=PLyqSpQzTE6M9XsKFqxvlh5_sxnYhwcDKQ
+    role: topic sequence and lecture examples
+    inventory: source-manifest.json
+    raw_archive: private and ignored
+    limitations: caption authorship and visual fidelity require separate checks
+verification_sources: []

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Dislocation pipe diffusion and pathway competition — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a aria-current=page href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Dislocation pipe diffusion and pathway competition</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#geometry">21.1 From a dislocation line to a transport fraction L44 00:18</a></li><li><a href="#leakage">21.2 Cylindrical leakage follows geometry L44 04:36</a></li><li><a href="#competition">21.3 Dominance requires geometry and exchange L44 18:20</a></li><li><a href="#tails">21.4 Profiles distinguish regimes only under a model L44 21:30</a></li><li><a href="#tutorial">21.5 Tutorial calculations and reproducibility L45 08:36</a></li><li><a href="#exercises">21.6 Exercises and worked solutions</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A specimen can contain very little dislocation-core material and still transport most of a tracer through it. That possibility follows from conductance, but only if the cores connect the source to the destination and exchange solute with the lattice. A small geometric fraction is therefore neither evidence for irrelevance nor proof of dominance.</p>
+<p class="source-note">Source spine: L44 develops cylindrical pipe diffusion and its kinetic regimes; L45 supplies pathway, regime, and probe tutorials. The geometric balances, synthetic conductance comparison, and exchange calculation are developed here. The nuclear-probe questions connect to Chapters18–19 rather than establish new universal linewidth laws.</p>
+
+<section id="geometry"><h2>21.1 From a dislocation line to a transport fraction <a class="timestamp" href="https://www.youtube.com/watch?v=tV6WhbhwrdU&amp;t=18s">L44 00:18</a></h2>
+<p>A <dfn>dislocation</dfn> is a line defect characterized by a Burgers vector, the closure failure of a lattice circuit around the line. Its core is the region where a smooth elastic description no longer adequately represents the local atomic arrangement. Core structure and stress can change the formation and migration of atomic defects. A <dfn>pipe model</dfn> represents this region as a cylinder of radius <span class="math">\(a\)</span> with axial diffusivity <span class="math">\(D_p\)</span>, embedded in a lattice of scalar diffusivity <span class="math">\(D\)</span>. Both coefficients have units m²s⁻¹; <span class="math">\(a\)</span> is in meters.</p>
+<p>Dislocation density <span class="math">\(\rho_d\)</span> is total line length divided by specimen volume, with units m⁻². For straight, parallel, nonoverlapping pipes spanning the specimen, multiply length density by the circular core area to obtain</p>
+\[\phi_p=\pi a^2\rho_d,\qquad L_d\sim\rho_d^{-1/2}.\tag{21.1}\]
+<p>The first quantity is a volume fraction; <span class="math">\(L_d\)</span> is an approximate spacing. The spacing estimate suppresses arrangement-dependent numerical factors. The fraction formula assumes distinct cylindrical cores and loses meaning as overlap becomes significant. For curved or tangled dislocations, line density alone does not specify axial connectivity or orientation. A disconnected loop can provide local redistribution without carrying a through-thickness flux.</p>
+<p>We use dilute tracer concentration <span class="math">\(c_p\)</span> in the pipe and <span class="math">\(c\)</span> in the lattice, both in mol m⁻³, with fluxes measured in the stationary lattice frame. Unless explicitly stated, there is no segregation at the interface. An effective core radius such as a fraction of a nanometer is a modeling convention; it should not be silently treated as a universal material constant. Since the inferred fraction scales as its square, radius uncertainty has direct consequences for inferred pipe diffusivity.</p></section>
+
+<section id="leakage"><h2>21.2 Cylindrical leakage follows geometry <a class="timestamp" href="https://www.youtube.com/watch?v=tV6WhbhwrdU&amp;t=276s">L44 04:36</a></h2>
+<p>Take <span class="math">\(z\)</span> along a straight pipe and <span class="math">\(r\geq a\)</span> as radial distance from its axis. Assume rotational symmetry, constant coefficients, and no reaction. A cylindrical shell has volume proportional to <span class="math">\(r\,dr\)</span>, while its radial face area is proportional to <span class="math">\(r\)</span>. Conservation therefore gives the axisymmetric lattice equation</p>
+\[\partial_tc=D\left[\frac1r\partial_r(r\partial_rc)+\partial_z^2c\right].\tag{21.2}\]
+<p>The radial term contains both <span class="math">\(\partial_r^2c\)</span> and <span class="math">\(r^{-1}\partial_rc\)</span>. Replacing it by a Cartesian second derivative discards the changing area through which the flux passes. A cylindrical model must keep that geometry even when the atomic core itself is represented only by an effective radius.</p>
+<p>Assume the core equilibrates across its radius sufficiently rapidly that <span class="math">\(c_p(z,t)\)</span> is uniform over its cross section. Let <span class="math">\(j_r=-D\partial_rc|_{a+}\)</span> be outward molar flux from core to lattice. A segment of length <span class="math">\(dz\)</span> stores <span class="math">\(\pi a^2c_pdz\)</span>, conducts through its two circular ends, and loses <span class="math">\(2\pi a j_rdz\)</span> through its circumference. Division by its volume yields</p>
+\[\partial_tc_p=D_p\partial_z^2c_p-\frac{2}{a}j_r.\tag{21.3}\]
+<p>The exchange coefficient <span class="math">\(2/a\)</span> is circumference divided by area. It has units m⁻¹, so multiplication by flux gives mol m⁻³s⁻¹. For an enriched core, concentration decreases outward and <span class="math">\(j_r&gt;0\)</span>; leakage lowers its stored concentration. The lattice receives the same amount. With no interfacial segregation, <span class="math">\(c(a,z,t)=c_p(z,t)\)</span>. A partition factor would change this boundary relation and the relative storage, just as for grain boundaries.</p>
+<p>A useful reduced exchange model ignores spatial gradients temporarily and tracks two well-mixed regions. Let <span class="math">\(\lambda&gt;0\)</span>, in s⁻¹, be the rate at which their concentration difference relaxes. Set <span class="math">\(\dot c_p=-(1-\phi_p)\lambda(c_p-c_l)\)</span> and <span class="math">\(\dot c_l=\phi_p\lambda(c_p-c_l)\)</span>, where <span class="math">\(c_l\)</span> is lattice concentration. Multiplying by the volume fractions proves conservation. Subtraction gives <span class="math">\(d(c_p-c_l)/dt=-\lambda(c_p-c_l)\)</span>, so the difference decays exponentially. This original construction separates a local exchange time from an axial diffusion time; it is not the exact cylindrical leakage kernel.</p></section>
+
+<section id="competition"><h2>21.3 Dominance requires geometry and exchange <a class="timestamp" href="https://www.youtube.com/watch?v=tV6WhbhwrdU&amp;t=1100s">L44 18:20</a></h2>
+<p>For aligned connected pipes, rapid exchange, equal local concentration, and a shared axial gradient, add fluxes per total area. The result is <span class="math">\(\bar J_z=-[(1-\phi_p)D+\phi_pD_p]\partial_zc\)</span>. With constant volume fractions, the effective coefficient is</p>
+\[D_{\parallel}=(1-\phi_p)D+\phi_pD_p.\tag{21.4}\]
+<p>The relative pipe contribution is <span class="math">\(\phi_pD_p/[(1-\phi_p)D]\)</span>. Thus the small parameter is not the fraction alone: it is the fraction multiplied by the diffusivity contrast. This derivation is a parallel-conductance result. It does not apply unchanged to a network that exchanges slowly, terminates within the specimen, or is oriented perpendicular to the imposed gradient.</p>
+<p>For comparison, arrange two materials in series with length fractions <span class="math">\(1-\phi_p\)</span> and <span class="math">\(\phi_p\)</span>. Steady conservation requires a common flux, while their concentration drops add. Dividing total length times flux by total drop gives</p>
+\[D_{\mathrm{series}}=\left[(1-\phi_p)/D+\phi_p/D_p\right]^{-1}.\tag{21.5}\]
+<p>The same constituent coefficients and fractions can therefore have radically different effective transport. This series construction is a counterexample to inference from fraction alone; it is not a realistic drawing of one straight pipe. A dislocation network requires an orientation distribution and connectivity model before either idealization becomes appropriate.</p>
+<p>The synthetic laboratory takes <span class="math">\(a=5\times10^{-10}\)</span>m, <span class="math">\(\rho_d=10^{14}\)</span>m⁻², <span class="math">\(D=10^{-20}\)</span>m²s⁻¹, and <span class="math">\(D_p=10^{-12}\)</span>m²s⁻¹. It computes <span class="math">\(\phi_p=7.85398\times10^{-5}\)</span> and spacing approximately <span class="math">\(10^{-7}\)</span>m. Equation(21.4) gives <span class="math">\(7.85498\times10^{-17}\)</span>m²s⁻¹, whereas the series construction gives <span class="math">\(1.00008\times10^{-20}\)</span>m²s⁻¹. The connected pipe contribution exceeds the lattice contribution by approximately7854.60 even though the pipe fraction is tiny.</p>
+<figure><img src="assets/ch21-pathways.svg" alt="Synthetic parallel-path effective diffusivity grows with dislocation density, above a fixed lattice-diffusivity baseline." loading="eager" width="672" height="384"><figcaption>Figure21.1. Density sensitivity at fixed radius and fixed constituent diffusivities. The curve assumes connected parallel paths and rapid exchange; it does not predict how annealing changes a real dislocation network.</figcaption></figure></section>
+
+<section id="tails"><h2>21.4 Profiles distinguish regimes only under a model <a class="timestamp" href="https://www.youtube.com/watch?v=tV6WhbhwrdU&amp;t=1290s">L44 21:30</a></h2>
+<p>Compare the lattice penetration length <span class="math">\(\sqrt{Dt}\)</span> with pipe spacing and radius. Overlapping leakage fields favor an A-regime effective-medium description. Isolated leakage fields permit a B-regime pipe tail. Negligible leakage permits C-regime transport along the core. These are scale classifications, not fixed temperature labels. The relevant time changes with the anneal, and dislocation recovery can change spacing while diffusion proceeds.</p>
+<p>Within the appropriate isolated-path asymptotics, a pipe-induced B tail is approximately exponential in depth, so <span class="math">\(\ln\bar c\)</span> is approximately linear in <span class="math">\(z\)</span>. The boundary B tail instead uses <span class="math">\(z^{6/5}\)</span>. In C conditions, an instantaneous core source yields the one-dimensional Gaussian exponent <span class="math">\(-z^2/(4D_pt)\)</span>. These distinct transforms provide diagnostics, but fitting one exponent over a narrow signal range is not proof of a pathway. Instrumental averaging, background subtraction, mixed pathways, and evolving structure can imitate a local slope.</p>
+<p>Serial sectioning measures the cross-sectional mean, not the concentration in one core. For an instantaneous initial tracer layer, write the complete mean as a lattice-only reference plus a pipe-induced perturbation. The perturbation can be negative near the source: fast paths remove tracer there and place it deeper. It is the <em>sum</em> that must remain nonnegative. A negative difference between two positive profiles is consistent with conservation. A maintained concentration source need not have the same redistribution signature, because it supplies additional tracer over time.</p>
+<p>A defensible discrimination experiment varies both time and microstructure. Measure the lattice coefficient independently, characterize line density and boundary density, and maintain comparable source preparation. Then compare profile changes across anneals with predictions for each candidate geometry. An independent spatial map locating enrichment at lines or planes provides stronger pathway evidence than a fitted exponent alone. The exact Bessel-function kernel for isolated cylindrical leakage is not reconstructed from caption fragments here; the governing balances define what a fuller model would have to solve.</p></section>
+
+<section id="tutorial"><h2>21.5 Tutorial calculations and reproducibility <a class="timestamp" href="https://www.youtube.com/watch?v=b6qmtMTL-hc&amp;t=516s">L45 08:36</a></h2>
+<p>The source tutorial supplies an Arrhenius lattice coefficient with prefactor <span class="math">\(D_0=1.2\times10^{-4}\)</span>m²s⁻¹, molar activation enthalpy <span class="math">\(Q=303000\)</span>Jmol⁻¹, temperature673K, and anneal time two weeks. Using <span class="math">\(D=D_0e^{-Q/(RT)}\)</span> gives <span class="math">\(D=3.65099\times10^{-28}\)</span>m²s⁻¹. The time is1209600s and the lattice length is <span class="math">\(2.10148\times10^{-11}\)</span>m. With the separate boundary convention <span class="math">\(s_b=1,\delta=0.5\)</span>nm, the parameter <span class="math">\(\alpha=\delta/(2\sqrt{Dt})\)</span> equals11.8964. This fails the B-condition small-alpha test and supports negligible lattice leakage for that boundary model. It is not a universal pipe-regime threshold.</p>
+<p>The tutorial also connects the transport problem to scattering. For equal incident wavelengths and elastic scattering, wavevector magnitude is <span class="math">\(q=(4\pi/\lambda_n)\sin(\theta/2)\)</span>, where <span class="math">\(\lambda_n\)</span> is neutron wavelength and <span class="math">\(\theta\)</span> the full scattering angle. Angles <span class="math">\(\pi/6\)</span> and <span class="math">\(\pi/4\)</span> therefore give ratio <span class="math">\(\sin(\pi/12)/\sin(\pi/8)=0.676327\)</span>. The sine uses half the scattering angle. Converting this geometric quantity into a diffusivity requires the dynamic scattering model and linewidth convention developed in Chapter19.</p>
+<p>The executable <a href="code/ch21.py">ch21.py</a> writes these quantities, the parallel/series comparison, and a closed two-compartment exchange check to <a href="code/ch21-output.json">the saved output</a>. In the exchange check the conserved mean differs from its initial value by at most <span class="math">\(1.12\times10^{-16}\)</span>. Inputs are fixed; no random sampling or empirical fitting is hidden in the figure. Source polynomial and Arrhenius-table values whose exact slide coefficients have not been verified are not reproduced. Unit checks remain mandatory:0.1µm is100nm, and a natural-log intercept of−41 implies a prefactor <span class="math">\(e^{-41}=1.56288\times10^{-18}\)</span> in the stated reference units.</p></section>
+
+<section id="exercises"><h2>21.6 Exercises and worked solutions</h2><ol class="exercises">
+<li><p><strong>Radius sensitivity.</strong> The line density rises100-fold and core diameter rises by a factor <span class="math">\(\sqrt2\)</span>. How does the pipe term change?</p><details><summary>Solution</summary><p>Radius changes by the same factor as diameter. Therefore <span class="math">\(a^2\rho_d\)</span> changes by <span class="math">\(2\times100=200\)</span>. At fixed <span class="math">\(D_p\)</span>, the term <span class="math">\(\phi_pD_p\)</span> rises200-fold. The total effective coefficient does not generally rise by exactly200 because the lattice contribution remains and the fraction affects it as well. Changes in connectivity or core chemistry would invalidate the fixed-parameter scaling.</p></details></li>
+<li><p><strong>Leakage geometry.</strong> Derive the coefficient in front of outward flux in the thin-pipe balance.</p><details><summary>Solution</summary><p>For length <span class="math">\(dz\)</span>, divide lateral loss <span class="math">\(2\pi a j_rdz\)</span> by volume <span class="math">\(\pi a^2dz\)</span>. The result is <span class="math">\(2j_r/a\)</span>. A planar boundary has two faces per width and therefore a different geometry factor. Equal apparent thickness does not make the two leakage problems identical.</p></details></li>
+<li><p><strong>Exchange solution.</strong> Solve the well-mixed model for conserved mean <span class="math">\(c_0\)</span> and initial difference <span class="math">\(\Delta_0\)</span>.</p><details><summary>Solution</summary><p>The difference is <span class="math">\(\Delta=\Delta_0e^{-\lambda t}\)</span>. Conservation gives <span class="math">\(\phi_pc_p+(1-\phi_p)c_l=c_0\)</span>. Solving the two linear equations yields <span class="math">\(c_p=c_0+(1-\phi_p)\Delta\)</span> and <span class="math">\(c_l=c_0-\phi_p\Delta\)</span>. Nonnegative initial values remain nonnegative because both approach their positive weighted mean monotonically.</p></details></li>
+<li><p><strong>Connectivity counterexample.</strong> Explain why identical line densities need not give identical through-thickness fluxes.</p><details><summary>Solution</summary><p>One specimen may contain straight lines bridging the two surfaces, another closed loops. Both can have the same line length per volume. The first offers an uninterrupted axial route; the second requires lattice exchange between loops. Equation(21.4) assumes the former geometry. Line density constrains the amount of core material, not the complete transport network.</p></details></li>
+<li><p><strong>Negative perturbation.</strong> Does a pipe correction below zero near the initial source violate positivity?</p><details><summary>Solution</summary><p>No. Define the correction as <span class="math">\(\Delta c=\bar c_{\mathrm{pipe}}-\bar c_{\mathrm{lattice}}\)</span>. It is negative wherever the pipe-bearing specimen has been depleted more strongly. Each complete concentration can remain positive. In a closed pulse experiment their integrated amounts agree, so negative and positive parts of the difference compensate. Checking the correction's sign alone tests the wrong physical quantity.</p></details></li>
+<li><p><strong>Discriminating a tail.</strong> Two linear fits work equally well for <span class="math">\(\ln\bar c\)</span> against <span class="math">\(z\)</span> and <span class="math">\(z^{6/5}\)</span> over a narrow interval. Design a useful next measurement.</p><details><summary>Solution</summary><p>Extend the measurable depth and concentration range, repeat at a different time, and independently characterize boundary and line densities. Jointly test the time-dependent profiles against pipe and boundary models with the same source and response function. A spatially resolved enrichment map is particularly valuable because it tests path geometry directly. More significant figures in the original short-range fit cannot resolve structural nonidentifiability.</p></details></li>
+</ol><p>A fast-path model becomes useful when its geometry, exchange law, and measured averaging operation are all specified. The coefficient obtained after those choices is evidence about that model, with a stated domain of validity.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch21.py"><code>code/ch21.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic pipe-path and leakage checks; SI units unless stated.&quot;&quot;&quot;
+
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib
+
+import matplotlib.pyplot as plt
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch21&quot;
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main():
+    a, rho, D, Dp = 5e-10, 1e14, 1e-20, 1e-12
+    phi = np.pi * a * a * rho
+    parallel = (1 - phi) * D + phi * Dp
+    series = 1 / ((1 - phi) / D + phi / Dp)
+    rho_grid = np.logspace(10, 16, 200)
+    fraction = np.pi * a * a * rho_grid
+    eff = (1 - fraction) * D + fraction * Dp
+    R = 8.31446261815324
+    Dl = 1.2e-4 * np.exp(-303000 / (R * 673))
+    length = np.sqrt(Dl * (14 * 24 * 3600))
+    # Two-compartment exchange: capacities phi and 1-phi.
+    k = 0.2
+    tau = np.linspace(0, 5, 101)
+    cp = 1 + (1 - phi) * np.exp(-k * tau)
+    cl = 1 - phi * np.exp(-k * tau)
+    mass = phi * cp + (1 - phi) * cl
+    assert np.max(np.abs(mass - 1)) &lt; 1e-14
+    out = {
+        &quot;status&quot;: &quot;synthetic; lecture tutorial inputs recomputed separately&quot;,
+        &quot;pipe_fraction&quot;: float(phi),
+        &quot;spacing_m&quot;: float(rho**-0.5),
+        &quot;parallel_m2_s&quot;: float(parallel),
+        &quot;series_m2_s&quot;: float(series),
+        &quot;pipe_to_lattice_contribution&quot;: float(phi * Dp / ((1 - phi) * D)),
+        &quot;density_diameter_multiplier&quot;: 200.0,
+        &quot;tutorial&quot;: {
+            &quot;D_673K_m2_s&quot;: float(Dl),
+            &quot;sqrt_Dt_m&quot;: float(length),
+            &quot;alpha_delta_half_nm&quot;: float(5e-10 / (2 * length)),
+            &quot;q_ratio&quot;: float(np.sin(np.pi / 12) / np.sin(np.pi / 8)),
+            &quot;exp_minus_41_m3_s&quot;: float(np.exp(-41)),
+        },
+        &quot;exchange_mass_max_error&quot;: float(np.max(np.abs(mass - 1))),
+    }
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.loglog(rho_grid, eff, label=&quot;Parallel connected pipes&quot;)
+    ax.axhline(D, color=&quot;gray&quot;, linestyle=&quot;--&quot;, label=&quot;Lattice alone&quot;)
+    ax.set(
+        xlabel=&quot;Dislocation line density (m⁻²)&quot;,
+        ylabel=&quot;Effective diffusivity (m² s⁻¹)&quot;,
+    )
+    ax.grid(alpha=0.25)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(ROOT / &quot;assets/ch21-pathways.svg&quot;, metadata={&quot;Date&quot;: None})
+    plt.close(fig)
+    (ROOT / &quot;code/ch21-output.json&quot;).write_text(
+        json.dumps(out, indent=2) + &quot;\n&quot;
+    )
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;status&quot;: &quot;synthetic; lecture tutorial inputs recomputed separately&quot;,
+  &quot;pipe_fraction&quot;: 7.853981633974484e-05,
+  &quot;spacing_m&quot;: 1e-07,
+  &quot;parallel_m2_s&quot;: 7.854981555434667e-17,
+  &quot;series_m2_s&quot;: 1.0000785459845414e-20,
+  &quot;pipe_to_lattice_contribution&quot;: 7854.598532700665,
+  &quot;density_diameter_multiplier&quot;: 200.0,
+  &quot;tutorial&quot;: {
+    &quot;D_673K_m2_s&quot;: 3.65098649033168e-28,
+    &quot;sqrt_Dt_m&quot;: 2.1014835851619686e-11,
+    &quot;alpha_delta_half_nm&quot;: 11.896357495494387,
+    &quot;q_ratio&quot;: 0.6763267578712442,
+    &quot;exp_minus_41_m3_s&quot;: 1.5628821893349888e-18
+  },
+  &quot;exchange_mass_max_error&quot;: 1.1102230246251565e-16
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-20.html">← Previous</a><a href="chapter-22.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

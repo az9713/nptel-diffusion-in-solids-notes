@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Kirkendall markers, intrinsic fluxes, and Darken relations — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a aria-current=page href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Kirkendall markers, intrinsic fluxes, and Darken relations</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#marker">13.1 What an inert marker follows L28 00:19</a></li><li><a href="#darken">13.2 Derive the frame change and the Darken weighting L29 00:20</a></li><li><a href="#mobility">13.3 Separate kinetics from the thermodynamic factor L29 14:50</a></li><li><a href="#inference">13.4 Two observations identify two intrinsic coefficients locally L30 18:49</a></li><li><a href="#exercises">13.5 Exercises with complete solutions</a></li><li><a href="#sources">13.6 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A diffusion profile reveals how the alloy composition changes, but it does not say how far the lattice itself has moved. Inert particles initially placed at the junction supply that missing reference. Their displacement makes unequal intrinsic component transport measurable and forces every flux to carry a frame.</p>
+<p class="source-note">Lectures 28–30 supply Kirkendall markers, Darken relations, mobility, and tutorial inference. The final L30 numerical inputs were checked directly in the high-resolution frames at 18:49, 22:56, and 23:59. The molar volume and illustrative marker clock used in the laboratory are separately labeled synthetic.</p>
+
+<section id="marker"><h2>13.1 What an inert marker follows <a class="timestamp" href="https://www.youtube.com/watch?v=P-pgaoFpB1U&amp;t=19s">L28 00:19</a></h2>
+<p>In a substitutional alloy, atoms exchange with vacancies while the lattice can translate or deform relative to a laboratory reference. A marker particle that remains attached to its local lattice environment measures that motion. The <dfn>Kirkendall effect</dfn> is the displacement of such inert markers during interdiffusion, demonstrating unequal intrinsic transport of the components. The historical brass/copper experiment used embedded inert wires to reveal movement that a concentration scan alone could not identify.</p>
+<p>A suitable marker must remain chemically inert, sufficiently small and sparse to avoid altering transport, visible after annealing, and attached to the intended lattice environment. Dissolution, reaction, migration along grain boundaries, or mechanical dragging can compromise interpretation. A line of particles is an experimental proxy for a material reference, not an infallible geometrical object. The original contact, the final marker position, and the composition-balance plane should be registered separately.</p>
+<p>Let <span class="math">\(J_i\)</span> denote the <dfn>intrinsic molar flux</dfn> of component <span class="math">\(i\)</span> relative to the lattice, in mol/(m²·s). Let <span class="math">\(J_i^V\)</span> be its flux in a volume-fixed frame, and <span class="math">\(v_K\)</span> the lattice/marker velocity relative to that frame, in m/s. With concentration <span class="math">\(c_i\)</span> in mol/m³, a translating reference carries an advective amount <span class="math">\(c_iv_K\)</span>, giving</p>
+\[
+J_i^V=J_i+c_iv_K. \tag{13.1}
+\]
+<p>This is a kinematic transformation, not an added diffusion mechanism. The intrinsic flux can be nonzero even when a species has zero volume-fixed flux, because lattice translation compensates it. Conversely, a laboratory flux can include bulk motion. The frame must be established before comparing a constitutive coefficient or balancing a moving interface.</p>
+<p>Tracer, self, intrinsic, and interdiffusion coefficients describe different experiments or closures. A <dfn>tracer diffusivity</dfn> <span class="math">\(D_i^*\)</span> describes spreading of a dilute label in a chemically uniform host. Self diffusion is physical tagged-atom transport in a chemically homogeneous substance and includes jump correlations. If <span class="math">\(D_{\rm jump}\)</span> is an explicitly uncorrelated random-walk rate coefficient, a correlation factor <span class="math">\(f\)</span> gives <span class="math">\(D^*=fD_{\rm jump}\)</span>. One must not redefine physical self diffusion to remove its correlations. Stable and radioactive isotopes can both serve as labels; isotope mass effects and tracer dilution need consideration.</p>
+</section>
+
+<section id="darken"><h2>13.2 Derive the frame change and the Darken weighting <a class="timestamp" href="https://www.youtube.com/watch?v=qULLZMkdpkY&amp;t=20s">L29 00:20</a></h2>
+<p>Use a binary substitutional model with constant equal partial molar volumes <span class="math">\(V_m\)</span>, in m³/mol. Then <span class="math">\(c_A+c_B=1/V_m\)</span>, <span class="math">\(N_i=V_mc_i\)</span>, and <span class="math">\(\partial_xc_A=-\partial_xc_B\)</span>. More generally, the volume identity is <span class="math">\(\bar V_Ac_A+\bar V_Bc_B=1\)</span>, where bars denote partial molar volumes. The simple derivation below does not silently replace composition-dependent partial volumes by constants.</p>
+<p>By definition the volume-fixed frame has zero net volume flux. Multiplying (13.1) by the partial volumes and summing gives <span class="math">\(v_K=-\sum_i\bar V_iJ_i\)</span>. In the equal constant-volume model, adopt intrinsic Fick laws <span class="math">\(J_A=-D_A\partial_xc_A\)</span> and <span class="math">\(J_B=-D_B\partial_xc_B\)</span>. The coefficients <span class="math">\(D_A,D_B\)</span> are local intrinsic coefficients of the specified homogeneous phase. They are not tracer coefficients merely because their units agree.</p>
+<p>Substitution gives the signed lattice velocity <span class="math">\(v_K=(D_B-D_A)\partial_xN_B=(D_A-D_B)\partial_xN_A\)</span>. Then transform the B flux:</p>
+\[
+\begin{aligned}
+J_B^V&=-D_B\partial_xc_B+c_BV_m(D_B-D_A)\partial_xc_B\\
+&=-[N_AD_B+N_BD_A]\partial_xc_B.
+\end{aligned}
+\tag{13.2}
+\]
+<p>Thus the binary interdiffusion coefficient is</p>
+\[
+\widetilde D=N_AD_B+N_BD_A,\qquad
+v_K=(D_A-D_B)\partial_xN_A. \tag{13.3}
+\]
+<p>The weighting is crossed: the A mole fraction weights the B intrinsic coefficient. It comes from eliminating lattice drift under zero volume flux. The result recovers <span class="math">\(\widetilde D=D_B\)</span> as B becomes dilute in A, within this constitutive model. If the intrinsic coefficients are equal, the marker velocity vanishes even when both component fluxes are nonzero.</p>
+<p><a href="https://home.agh.edu.pl/~dabrowa/files/Darken---1948full.pdf">Darken's original 1948 paper, printed p. 188, Eqs. 7–9</a>, derives these relations under constant gram-atomic volume and a marker-relative transport convention. The linked file begins with a separate later commentary; the original printed pagination identifies the intended source. The derivation here states its modern molar units and frame explicitly rather than treating the historical formula as frame-independent.</p>
+<p>For a similarity trajectory <span class="math">\(x_K-x_M=k\sqrt t\)</span> with constant <span class="math">\(k\)</span> and fixed balance plane, differentiation gives <span class="math">\(v_K=(x_K-x_M)/(2t)\)</span>. Dividing displacement by time instead gives twice the instantaneous velocity. Figure 13.1 uses a synthetic clock to show this distinction. It is not a measured marker trajectory for the source couple.</p>
+<figure><img src="assets/figures/ch13-marker.svg" alt="A synthetic Kirkendall marker position increases as square root of time while the Matano plane remains at zero."><figcaption>Figure 13.1. Lattice-following marker position and a fixed mass-balance plane in a prescribed square-root-time model. The instantaneous slope equals half the displacement divided by elapsed time. The reference displacement is 0.9 micrometers at 100000 s; this clock is synthetic.</figcaption></figure>
+</section>
+
+<section id="mobility"><h2>13.3 Separate kinetics from the thermodynamic factor <a class="timestamp" href="https://www.youtube.com/watch?v=qULLZMkdpkY&amp;t=890s">L29 14:50</a></h2>
+<p>A chemical-potential formulation distinguishes an atom's kinetic response from the energetic cost of a composition fluctuation. Define molar chemical potential <span class="math">\(\mu_A=\mu_A^0+RT\ln a_A\)</span>, with dimensionless activity <span class="math">\(a_A=\gamma_AN_A\)</span>. Under a diagonal mobility approximation, write <span class="math">\(J_A=-c_AB_A\partial_x\mu_A\)</span>. The mobility <span class="math">\(B_A\)</span> has units mol·m²/(J·s), so the Onsager coefficient multiplying the gradient is <span class="math">\(L_{AA}=c_AB_A\)</span>, in mol²/(J·m·s).</p>
+<p>At fixed temperature, differentiate the activity relation. Define the dimensionless <dfn>thermodynamic factor</dfn> <span class="math">\(\Phi_A=d\ln a_A/d\ln N_A=1+d\ln\gamma_A/d\ln N_A\)</span>. With constant volume, <span class="math">\(\partial_x\mu_A=RT\Phi_A\partial_xc_A/c_A\)</span>. Comparison with the intrinsic Fick law gives <span class="math">\(D_A=RTB_A\Phi_A\)</span>. A tracer Einstein approximation <span class="math">\(RTB_A=D_A^*\)</span> then yields <span class="math">\(D_A=D_A^*\Phi_A\)</span>. The concentration factor belongs in <span class="math">\(L_{AA}\)</span>; it must not disappear when naming the mobility.</p>
+<p>For a binary at fixed temperature and pressure, Gibbs–Duhem gives <span class="math">\(N_A d\mu_A+N_Bd\mu_B=0\)</span>. Since <span class="math">\(dN_B=-dN_A\)</span>, substituting the activity derivatives implies a common <span class="math">\(\Phi_A=\Phi_B=\Phi\)</span> in the homogeneous phase. Equation (13.3) becomes, within the same diagonal approximation,</p>
+\[
+\widetilde D=(N_AD_B^*+N_BD_A^*)\Phi. \tag{13.4}
+\]
+<p>The tracer-weighted relation therefore needs more than constant volume: it adds a kinetic approximation relating tracer motion to force-driven response. <a href="https://home.agh.edu.pl/~dabrowa/files/Darken---1948full.pdf">Darken, printed p. 192, Eq. 18</a>, makes the activity/mobility connection with stated isotope assumptions. The thermodynamic factor equals one for ideal mixing, but a thermodynamically ideal solution can still have unequal component mobilities. Conversely, a large interdiffusion coefficient may reflect a large restoring thermodynamic factor rather than unusually fast tagged-particle motion.</p>
+<p>Vacancy-mediated motion can introduce off-diagonal kinetic correlations. A vacancy exchange changes the local environment and influences subsequent jumps. The resulting <dfn>vacancy-wind correction</dfn> modifies the relation between tracer coefficients and collective interdiffusion. It is conceptually different from a macroscopic excess vacancy population. An average vacancy concentration close to equilibrium does not erase local jump correlations. <a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.139.A126">Manning's 1965 publisher abstract</a> supports the role of repeated correlated atom–vacancy exchanges; a full numerical wind factor is not derived from that abstract here.</p>
+<p>In a simplified description one may label a correction factor <span class="math">\(S\)</span> in <span class="math">\(\widetilde D=(N_AD_B^*+N_BD_A^*)\Phi S\)</span>, but assigning <span class="math">\(S\)</span> requires a specified lattice and kinetic model. This notation does not turn an unknown correction into a measured constant. Equations (13.1)–(13.3) are the frame transformation; the additional tracer relation and wind correction have separate evidence and assumptions.</p>
+</section>
+
+<section id="inference"><h2>13.4 Two observations identify two intrinsic coefficients locally <a class="timestamp" href="https://www.youtube.com/watch?v=US9_unvfNyY&amp;t=1129s">L30 18:49</a></h2>
+<p>The source tutorial specifies marker velocity <span class="math">\(4.5\times10^{-12}\)</span> m/s toward the A-rich side at <span class="math">\(N_A=0.38\)</span>, gradient <span class="math">\(\partial_xN_A=2.5\times10^2\)</span> m⁻¹, and interdiffusion coefficient <span class="math">\(3.25\times10^{-14}\)</span> m²/s. These values, including the exponents, are readable in the inspected frame at 18:49 and the handwritten setup at 22:56. Choose positive x toward increasing A fraction so both gradient and velocity are positive.</p>
+<p>The velocity supplies the difference <span class="math">\(\Delta D=D_A-D_B=v_K/(\partial_xN_A)=1.8\times10^{-14}\)</span> m²/s. Substitute <span class="math">\(D_A=D_B+\Delta D\)</span> into the crossed weighting to obtain <span class="math">\(\widetilde D=D_B+N_B\Delta D\)</span>. With <span class="math">\(N_B=0.62\)</span>, the two coefficients are</p>
+\[
+D_B=2.134\times10^{-14}\ \mathrm{m^2/s},\qquad
+D_A=3.934\times10^{-14}\ \mathrm{m^2/s}. \tag{13.5}
+\]
+<p>These results are independently computed from the visually verified source inputs; they are not garbled caption exponents. They apply at the marker-plane composition. A single measured marker trajectory does not determine both intrinsic coefficient functions over the entire composition range. The functions can exist throughout the phase while the experiment identifies them only at its sampled composition.</p>
+<p>The <a href="code/ch13.py">laboratory</a> also selects a synthetic molar volume <span class="math">\(7\times10^{-6}\)</span> m³/mol to check actual flux transformations. It obtains intrinsic fluxes <span class="math">\(J_A=-1.4050\times10^{-6}\)</span> and <span class="math">\(J_B=7.62143\times10^{-7}\)</span> mol/(m²·s), but volume-fixed fluxes <span class="math">\(J_A^V=-1.160714\times10^{-6}\)</span> and <span class="math">\(J_B^V=1.160714\times10^{-6}\)</span>. The latter cancel, as the zero-volume-flux condition requires. The source problem does not provide this volume, so those molar fluxes are a separate illustrative construction. <a href="code/ch13-output.json">Saved output</a> records the distinction.</p>
+<p>Unequal intrinsic fluxes also imply a compensating vacancy transport in a site-conserving substitutional model. Vacancies may be created or annihilated at dislocations, grain boundaries, and surfaces. If vacancy supply, removal, stress relaxation, and pore nucleation permit it, an excess can condense into voids. Unequal diffusion does not compel visible porosity in every couple. Hollow and core–shell structures exploit this family of mechanisms, but assigning a particular nanostructure to it needs direct structural and kinetic evidence beyond the presence of a shell.</p>
+<p>The tutorial's line-compound exercise returns to identifiability. A nearly flat composition profile can carry finite potential-driven transport. Substituting an exactly zero gradient into a pointwise Boltzmann–Matano denominator is a failed parameterization, not a measurement of infinite diffusion. Phase-order exercises likewise require chemical stability and the imposed path, while the spatial thickness sequence remains kinetic. A metastable phase must be labeled as such; a garbled formula is not evidence for a new phase identity.</p>
+</section>
+
+<section id="exercises"><h2>13.5 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Derive crossed weighting</h3><p>Starting with intrinsic Fick laws and zero volume-fixed flux, obtain the binary interdiffusion coefficient for equal constant partial molar volumes.</p><details><summary>Worked solution</summary><p>The volume condition applied to <span class="math">\(J_i^V=J_i+c_iv_K\)</span> gives <span class="math">\(v_K=-V_m(J_A+J_B)\)</span>. Since <span class="math">\(c_{A,x}=-c_{B,x}\)</span>, this is <span class="math">\(V_m(D_B-D_A)c_{B,x}\)</span>. Insert it into the B flux to obtain <span class="math">\(J_B^V=-D_Bc_{B,x}+N_B(D_B-D_A)c_{B,x}=-[N_AD_B+N_BD_A]c_{B,x}\)</span>. The crossed weights follow from eliminating convection, not from averaging two arbitrary measurements.</p></details></div>
+<div class="exercise"><h3>2. The source ratio problem</h3><p>If <span class="math">\(N_A=0.2\)</span> and <span class="math">\(D_A=2D_B\)</span>, find <span class="math">\(\widetilde D/D_B\)</span>. Is it the ordinary arithmetic mean?</p><details><summary>Worked solution</summary><p>Using <span class="math">\(N_B=0.8\)</span>, the ratio is <span class="math">\(0.2+0.8(2)=1.8=9/5\)</span>. The arithmetic mean ratio would be 1.5 and has no basis here. The weights are local opposite-component fractions imposed by the frame transformation. The code evaluates this tutorial result independently of the final numerical inference problem.</p></details></div>
+<div class="exercise"><h3>3. Displacement versus velocity</h3><p>A marker follows <span class="math">\(x_K-x_M=k\sqrt t\)</span>. Find its instantaneous velocity and the position ratio after doubling time.</p><details><summary>Worked solution</summary><p>Differentiation gives <span class="math">\(v_K=k/(2\sqrt t)=(x_K-x_M)/(2t)\)</span>. Replacing time by twice its value multiplies displacement by <span class="math">\(\sqrt2\approx1.414214\)</span>, not two. Its velocity decreases by the reciprocal square root. These are contour/marker trajectory facts under the assumed similarity scaling, not evidence that every marker follows that law during thermal transients or finite-size evolution.</p></details></div>
+<div class="exercise"><h3>4. Solve the two-coefficient inverse problem</h3><p>Use the verified source values in Section 13.4 to recover both intrinsic coefficients and check both original equations.</p><details><summary>Worked solution</summary><p>The difference is <span class="math">\(4.5\times10^{-12}/250=1.8\times10^{-14}\)</span>. Then <span class="math">\(D_B=3.25\times10^{-14}-0.62(1.8\times10^{-14})=2.134\times10^{-14}\)</span> and <span class="math">\(D_A=3.934\times10^{-14}\)</span>. Their difference times 250 returns the positive marker velocity. The weighted sum <span class="math">\(0.38D_B+0.62D_A\)</span> returns <span class="math">\(3.25\times10^{-14}\)</span>. A sign reversal of the coordinate must reverse the gradient and velocity together, leaving the inferred coefficients unchanged.</p></details></div>
+<div class="exercise"><h3>5. Mobility dimensions</h3><p>Identify the missing factor in the claim <span class="math">\(L_{AA}=D_A^*/(RT)\)</span> when the flux law is <span class="math">\(J_A=-L_{AA}\mu_{A,x}\)</span>.</p><details><summary>Worked solution</summary><p>The ratio <span class="math">\(D_A^*/RT\)</span> has mobility units mol·m²/(J·s), while the coefficient multiplying a molar-potential gradient in a molar flux needs mol²/(J·m·s). Multiplication by <span class="math">\(c_A\)</span>, in mol/m³, supplies the difference. Under the adopted diagonal Einstein approximation, <span class="math">\(B_A=D_A^*/RT\)</span> and <span class="math">\(L_{AA}=c_AB_A\)</span>. Neither relation establishes that off-diagonal vacancy correlations vanish in a real alloy.</p></details></div>
+<div class="exercise"><h3>6. Markers without pores</h3><p>A couple has clear marker displacement but no resolved pores. Is that inconsistent with vacancy-mediated diffusion?</p><details><summary>Worked solution</summary><p>No. Marker displacement indicates unequal intrinsic transport under the stated frame interpretation. Vacancies can be supplied and annihilated at sinks, and stress can accommodate local volume changes without forming a resolvable cavity. Pore nucleation has its own energetic and kinetic requirements. Conversely, pores alone do not uniquely identify Kirkendall transport because gas, reactions, or preparation damage can also produce cavities. Correlated marker, composition, time, and structural evidence is needed.</p></details></div>
+</section>
+
+<section id="sources"><h2>13.6 Sources and limits</h2><p><a href="https://www.youtube.com/watch?v=P-pgaoFpB1U">L28</a>, <a href="https://www.youtube.com/watch?v=qULLZMkdpkY">L29</a>, and <a href="https://www.youtube.com/watch?v=US9_unvfNyY">L30</a> supply the experimental and tutorial spine. The original Darken scan was inspected at printed pp. 185–193, particularly pp. 188 and 192. Manning's 1965 reference was inspected at publisher-abstract level; no detailed Manning factor is reproduced from unread full text.</p><p>The derived simple weighting assumes equal constant partial molar volumes and a binary homogeneous phase. A variable-volume or multicomponent system requires its full frame and coupling treatment. Tracer relations require further kinetic assumptions. The next chapter separates thermodynamic assessment from mobility assessment so a software calculation cannot conceal these distinctions behind a single database selection.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch13.py"><code>code/ch13.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Darken inference: verified lecture inputs, synthetic volume and clock.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch13&quot;
+
+BASE = Path(__file__).resolve().parents[1]
+na, grad_na, velocity, inter = 0.38, 2.5e2, 4.5e-12, 3.25e-14
+delta = velocity / grad_na
+db = inter - (1 - na) * delta
+da = db + delta
+vm = 7e-6  # Synthetic molar volume, not supplied by the source problem.
+ja, jb = -da * grad_na / vm, db * grad_na / vm
+jav = ja + na / vm * velocity
+jbv = jb + (1 - na) / vm * velocity
+assert np.isclose(na * db + (1 - na) * da, inter, rtol=1e-12, atol=0)
+assert abs(jav + jbv) &lt; 1e-20
+assert np.isclose(jav, -inter * grad_na / vm, rtol=1e-12, atol=0)
+time = np.linspace(0, 4e5, 401)
+reference_time = 1e5
+marker_at_reference = 2 * velocity * reference_time
+k = marker_at_reference / np.sqrt(reference_time)
+fig, ax = plt.subplots(figsize=(6.5, 3.5))
+ax.plot(time / 1e5, k * np.sqrt(time) * 1e6, label=&quot;lattice-following marker&quot;)
+ax.axhline(0, linestyle=&quot;--&quot;, label=&quot;fixed Matano plane&quot;)
+ax.set(xlabel=&quot;Time / 100000 s&quot;, ylabel=&quot;Marker position (micrometers)&quot;)
+ax.legend()
+fig.tight_layout()
+fig.savefig(BASE / &quot;assets/figures/ch13-marker.svg&quot;, metadata={&quot;Date&quot;: None})
+out = {
+    &quot;source_inputs_frame_verified&quot;: True,
+    &quot;D_A_m2_s&quot;: da,
+    &quot;D_B_m2_s&quot;: db,
+    &quot;D_A_minus_D_B_m2_s&quot;: delta,
+    &quot;synthetic_molar_volume_m3_mol&quot;: vm,
+    &quot;intrinsic_fluxes_mol_m2_s&quot;: [ja, jb],
+    &quot;volume_fixed_fluxes_mol_m2_s&quot;: [jav, jbv],
+    &quot;synthetic_reference_time_s&quot;: reference_time,
+    &quot;marker_displacement_at_reference_m&quot;: marker_at_reference,
+    &quot;tutorial_Dtilde_over_DB&quot;: 0.2 + 0.8 * 2,
+    &quot;doubling_time_position_ratio&quot;: float(np.sqrt(2)),
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch13-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;source_inputs_frame_verified&quot;: true,
+  &quot;D_A_m2_s&quot;: 3.934e-14,
+  &quot;D_B_m2_s&quot;: 2.134e-14,
+  &quot;D_A_minus_D_B_m2_s&quot;: 1.8e-14,
+  &quot;synthetic_molar_volume_m3_mol&quot;: 7e-06,
+  &quot;intrinsic_fluxes_mol_m2_s&quot;: [
+    -1.4049999999999999e-06,
+    7.621428571428572e-07
+  ],
+  &quot;volume_fixed_fluxes_mol_m2_s&quot;: [
+    -1.1607142857142855e-06,
+    1.1607142857142857e-06
+  ],
+  &quot;synthetic_reference_time_s&quot;: 100000.0,
+  &quot;marker_displacement_at_reference_m&quot;: 9e-07,
+  &quot;tutorial_Dtilde_over_DB&quot;: 1.8,
+  &quot;doubling_time_position_ratio&quot;: 1.4142135623730951
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-12.html">← Previous</a><a href="chapter-14.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

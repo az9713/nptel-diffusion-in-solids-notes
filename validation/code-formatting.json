@@ -1,0 +1,44 @@
+{
+  "scope": "All28 scientific chapter programs and the public launcher",
+  "command": "python -m pycodestyle --max-line-length=79 code code_lab.py",
+  "passed": true,
+  "pilot_ast_identity_check": {
+    "files": [
+      "code/ch01.py",
+      "code/ch02.py",
+      "code/ch03.py"
+    ],
+    "ast_identical": true
+  },
+  "code_sha256": {
+    "code/ch01.py": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+    "code/ch02.py": "36d366dc349d1e6a02d60e00fd61126e52913010ad7b8e369b7a1b5ae432e1ed",
+    "code/ch03.py": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+    "code/ch04.py": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+    "code/ch05.py": "fafe8114d287e838682d77f396e478e70fe5814c5433d28ba9979d96c37bb71e",
+    "code/ch06.py": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+    "code/ch07.py": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+    "code/ch08.py": "d287e38775ef4dd93f81f16fbe4aaf532013768fceed60f4b7e99b76176d1ec7",
+    "code/ch09.py": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+    "code/ch10.py": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+    "code/ch11.py": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+    "code/ch12.py": "1297374aabdae779b4b94092ddc1c15893c938c37978d90811c47ab86572750c",
+    "code/ch13.py": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+    "code/ch14.py": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+    "code/ch15.py": "31ae6390c8199364e73384a85613166ec0fbb2b33dcac4f39e1bc4cc696053c5",
+    "code/ch16.py": "6bcd267707cd8bd55d85ea8425833e9497350794711d67a913a8980d35aa9cc5",
+    "code/ch17.py": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+    "code/ch18.py": "dc3e6ba1919d18d6fb0eec835602a5b08d86d9d641df91b9207ed0b901c481bd",
+    "code/ch19.py": "16abc381f6220d629c927c6104f09fa3433823317cf2f5e33fba7ce92eb19a4b",
+    "code/ch20.py": "4addca80628de1739717fc452bc561579decf5d57657be5760f7e80e682800c2",
+    "code/ch21.py": "0931b569cd6fdef6f1b8615aa0e3e44bef377d7cec088e95225bb54e6b5580c6",
+    "code/ch22.py": "ddd00d6af8a6ee84fd3cb868c0e024881dd4a953716f6585ccf2cdbf0bf4dd17",
+    "code/ch23.py": "e1aa30ae9ee8473ac97b3c81a0d0f6f0f0a0bed0519f81c436c532fb44fd0e65",
+    "code/ch24.py": "fb3fb6fe3853697af336a2aed743e05354dd80bc95fea7533b22e69b2d441975",
+    "code/ch25.py": "e1c94e127b52ef6aa4540a6110b306d9a527661590a9533a62b35e3c38085824",
+    "code/ch26.py": "a875bdb5faf2ac6886e7bef063209762c40f72c757fd3ec9da3a2c70cb4f9923",
+    "code/ch27.py": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+    "code/ch28.py": "be06d84dbe0ef45b0897137d224cf8a89b5ddf80e889fca7caafd1047b5860cd",
+    "code_lab.py": "4accbb94a40669bc299cc3aa87e659ccd6b9a2b1652614db7b0ddb979e8507d9"
+  }
+}

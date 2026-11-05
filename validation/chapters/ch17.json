@@ -1,0 +1,45 @@
+{
+  "reviews": [
+    {
+      "chapter": 17,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "56e0f932b515a65ba46802a9f5088180bc417cd4e62e99d22f22a9aaa9edfd80",
+      "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+      "assets": {
+        "assets/figures/ch17-relaxation.svg": "e9da88d14f0faee58bc87026a7c473ee0b0f24fd4ea95ce28392d32ce1d9b1a1"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new complete raw-caption/audiovisual review",
+        "No empirical loss-spectrum or impedance fit reproduced",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "98eb5f450978db6c609f114e3a5fef1d470f03dc27d5c4629a3d2d97938c6977"
+    },
+    {
+      "chapter": 17,
+      "round": 2,
+      "reviewer": "probe_review_16_17",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "56e0f932b515a65ba46802a9f5088180bc417cd4e62e99d22f22a9aaa9edfd80",
+      "code_sha256": "b6faa996a1697c3ef9e866f37c13fc6b4216289a253e29aff131e0da58820a04",
+      "assets": {
+        "assets/figures/ch17-relaxation.svg": "e9da88d14f0faee58bc87026a7c473ee0b0f24fd4ea95ce28392d32ce1d9b1a1",
+        "code/ch17-output.json": "d9e58bf9ff55d7c1cdb50907f6bd70d8426a797110cf858e20f1d60c0362798a"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Independent scientific review of the complete chapter body, all six exercises and solutions, full laboratory code, saved output, and its actual referenced SVG; not a browser/export/release or full audiovisual/source-coverage audit.",
+        "Only selected L40 tutorial frames were independently visually checked; no experimental loss or impedance spectra were supplied.",
+        "Gorsky results are conditional on using host self-diffusion constants as a solute-mobility proxy and common thermodynamic factor, as the chapter states."
+      ],
+      "private_review_record_sha256": "b8afcdbc2fde9c46021a3ba36d11cc1663f213f015011b6e966d82ca88f4db21"
+    }
+  ]
+}

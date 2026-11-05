@@ -1,0 +1,23 @@
+{
+  "synthetic_inputs": true,
+  "layer_resistances_s_per_m": [
+    1000000000.0,
+    500000000.0
+  ],
+  "steady_flux_mol_per_m2_s": 1e-09,
+  "interface_concentration_mol_per_m3": 1.0,
+  "global_amount_rate_per_area": 0.20000000000000007,
+  "directional_D_m2_per_s": 2.4999999999999994e-12,
+  "vector_flux_mol_per_m2_s": [
+    -7.071067811865474e-10,
+    -2.82842712474619e-09
+  ],
+  "transverse_flux_mol_per_m2_s": -1.4999999999999998e-09,
+  "tangent_to_2x2_at_1": {
+    "slope": 4,
+    "intercept": -2
+  },
+  "variable_D_resistance_ratio": 0.8109302162163288,
+  "spherical_exact_to_inner_planar_rate_ratio": 1.2,
+  "mode_mean_at_all_sampled_times": 1.0
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Crystal geometry, sublattices, and defect bookkeeping — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a aria-current=page href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Crystal geometry, sublattices, and defect bookkeeping</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#lattice">5.1 A translation lattice needs an atomic basis L12 05:33</a></li><li><a href="#geometry">5.2 Packing and interstitial sites are geometric models L12 09:42</a></li><li><a href="#dislocations">5.3 A Burgers vector measures a closure failure L13 04:25</a></li><li><a href="#boundaries">5.4 Grain boundaries join differently oriented crystals L13 09:35</a></li><li><a href="#ordered">5.5 Chemical order makes site labels consequential L13 16:50</a></li><li><a href="#ionic">5.6 Ionic defects must preserve species and effective charge L13 23:03</a></li><li><a href="#exercises">5.7 Exercises with worked solutions</a></li><li><a href="#sources">5.8 Sources and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A diffusion coefficient does not tell us which neighboring sites an atom can reach. Before assigning a jump length or counting empty sites, we need a structural model. A geometric hole, a missing host atom, and an atom on the wrong sublattice are different objects. Confusing their counts changes both the predicted jump rate and the inferred activation energy.</p>
+<p class="source-note">Source spine: L12–13, with geometric exercises from L15. The ideal lattices, hard-sphere calculations, defect counts, and boundary-spacing example are original teaching constructions following the lecture topics. No radius, defect population, or boundary width below is presented as a measured property of a named material. The vacancy free-energy minimum is developed in Chapter 6.</p>
+<section id="lattice"><h2>5.1 A translation lattice needs an atomic basis <a class="timestamp" href="https://www.youtube.com/watch?v=2sKqNwVUoHo&amp;t=333s">L12 05:33</a></h2>
+<p>Imagine comparing two solids that share the same cube-shaped drawing. In one, every marked position contains the same chemical species. In the other, the corners contain species A and the cube center contains species B. A displacement from a corner to the center preserves the first pattern if all those positions are equivalent; it exchanges A and B in the second. A geometrical drawing alone therefore does not specify the crystal's chemical translation symmetry.</p>
+<p>A <dfn>translation lattice</dfn> is the set of vectors \(n_1\mathbf a_1+n_2\mathbf a_2+n_3\mathbf a_3\), where the three primitive vectors \(\mathbf a_i\) are linearly independent and the \(n_i\) are integers. A <dfn>basis</dfn> or motif specifies the atoms and their positions repeated at each lattice point. A periodic crystal structure combines the lattice and basis. Lattice points are equivalent mathematical positions; they are not necessarily individual atoms. This distinction agrees with the <a href="https://onlinelibrary.wiley.com/iucr/itc/Db/ch2o2v0001/sec2o2o2/">International Tables discussion of the direct lattice, §2.2.2.1</a>.</p>
+<p>A <dfn>primitive cell</dfn> spans one lattice point's share of space. Its volume is \(V_p=|\mathbf a_1\cdot(\mathbf a_2\times\mathbf a_3)|\). A <dfn>conventional cell</dfn> may contain several primitive cells because its shape makes symmetry easier to display. For a face-centered cubic lattice, abbreviated FCC, a conventional cube of side \(a\) has lattice points at its corners and face centers. Sharing corners among eight cubes and faces among two gives \(8/8+6/2=4\) lattice points per cube.</p>
+<p>Primitive FCC vectors can be chosen as \((a/2)(0,1,1)\), \((a/2)(1,0,1)\), and \((a/2)(1,1,0)\). Their determinant has magnitude \(a^3/4\), confirming four primitive cells per conventional cube. The executable companion checks this determinant rather than treating the familiar cubic picture as a primitive cell. A body-centered cubic lattice, BCC, has corners and one body center, giving \(8/8+1=2\) points per conventional cube.</p>
+<p>The seven crystal systems classify lattice metrics and symmetry; the fourteen Bravais lattice types further distinguish translation patterns. Cubic metrics have three equal edge lengths and right angles. Tetragonal metrics have two equal lengths and three right angles; hexagonal axes conventionally have two equal basal lengths with a 120° included angle. Orthorhombic metrics have three independently variable lengths and right angles. Monoclinic and triclinic metrics admit progressively fewer metric restrictions. Trigonal symmetry can be described with a rhombohedral primitive cell or a related hexagonal setting. A choice of coordinates is not an extra Bravais lattice.</p>
+<p>The lecture also contrasts bonding descriptions. Ionic models emphasize electrostatic interactions between charged species; covalent models emphasize directional electronic bonding; metallic bonding involves electronic states extended over many atoms. Molecular solids can additionally be governed by comparatively weak intermolecular interactions. These descriptions help anticipate which distortions a jump creates, but they do not give a universal ranking of bond strength or diffusivity across categories. Diffusion samples an entire path and its saddle configuration, not simply the equilibrium separation or one bond label.</p>
+<p>Likewise, hexagonal close packing is a structure with a basis, rather than an additional Bravais type. Close-packed layers stacked ABAB and ABCABC give different structures even though their ideal equal-sphere packing fractions coincide. Chemical order adds another distinction: the ordered corner-A/center-B structure uses a simple-cubic translation lattice with a two-atom basis. The body-center displacement does not preserve its labeled pattern. Chapter 8 will use such structural distinctions when defining which sites are equivalent in a jump network.</p>
+</section>
+<section id="geometry"><h2>5.2 Packing and interstitial sites are geometric models <a class="timestamp" href="https://www.youtube.com/watch?v=2sKqNwVUoHo&amp;t=582s">L12 09:42</a></h2>
+<p>The <dfn>hard-sphere model</dfn> replaces each host atom by a nonoverlapping sphere of radius \(R\). This is a geometric idealization, not a literal boundary of its electronic charge density. In ideal FCC packing, neighboring spheres touch along a face diagonal. That diagonal has length \(a\sqrt2=4R\), so \(a=2\sqrt2R\). Four spheres' volumes divided by the conventional-cell volume give</p>
+\[\phi_{\rm FCC}=\frac{4(4\pi R^3/3)}{(2\sqrt2R)^3}=\frac{\pi}{3\sqrt2}\simeq0.74048049.\tag{5.1}\]
+<p>Here \(\phi\) is the dimensionless occupied-volume fraction. BCC contact occurs along a body diagonal, \(a\sqrt3=4R\), with two spheres per conventional cell. Consequently \(\phi_{\rm BCC}=\pi\sqrt3/8\simeq0.68017476\). A larger unoccupied fraction does not by itself prove a larger diffusivity. Jumps must pass saddle configurations, and both bond energies and defect populations can dominate a simple geometric comparison.</p>
+<p>An <dfn>interstitial site</dfn> is a position between the regular host sites where an additional atom can be accommodated. An octahedral site has six surrounding host neighbors in its ideal coordination; a tetrahedral site has four. These names describe the surrounding geometry, not a new chemical species. For the central FCC octahedral hole, two opposite face-center host spheres and an inserted sphere of radius \(r_o\) fit along a cube edge length. Thus \(2R+2r_o=a\), and</p>
+\[\frac{r_o}{R}=\sqrt2-1\simeq0.41421356.\tag{5.2}\]
+<p>For a tetrahedral hole, its center is a distance \(\sqrt3a/4\) from the surrounding FCC sites, giving \(R+r_t=\sqrt3a/4\). Therefore \(r_t/R=\sqrt{3/2}-1\simeq0.22474487\). Larger inserted atoms can still occupy sites by distorting their surroundings; the ideal sphere fit is a reference geometry, not an absolute solubility criterion. An empty interstitial site also differs from a vacancy: the former was not a regular occupied host site in the reference structure.</p>
+<p>Counting sites requires the same sharing discipline as counting atoms. FCC has one octahedral hole at the cube center and twelve edge-center holes shared among four cells: \(1+12/4=4\) octahedral sites per conventional cube. There is therefore one such site per host atom in this ideal structure. The tetrahedral positions have fractional coordinates whose entries are independently one-quarter or three-quarters, giving eight sites per cube, or two per host atom.</p>
+<p>Directions and planes provide a coordinate language for jumps. In cubic coordinates a direction \([uvw]\) is parallel to \(u\mathbf e_x+v\mathbf e_y+w\mathbf e_z\); angle brackets denote symmetry-related directions. Plane indices \((hkl)\), called <dfn>Miller indices</dfn>, specify reciprocal intercepts in lattice-coordinate units. A zero index means an infinite intercept. Thus the cubic (110) plane cuts the x and y axes at \(a\) and is parallel to z. In a noncubic metric, identical numerical indices do not imply the same Euclidean angles as in a cube.</p>
+<p>The <dfn>planar number density</dfn> counts atom centers in a plane per area of a repeating planar cell. For BCC (100), the square repeat contains one net corner atom over area \(a^2\), giving \(1/a^2\). A (110) rectangular repeat has area \(\sqrt2a^2\), contains one net corner contribution and a body-center atom, and therefore has density \(\sqrt2/a^2\). A (111) triangular cut has area \(\sqrt3a^2/2\) and one-half atom after vertex sharing, giving \(1/(\sqrt3a^2)\). The densest of these three is (110); that comparison alone does not determine the migration barrier along every possible path.</p>
+</section>
+<section id="dislocations"><h2>5.3 A Burgers vector measures a closure failure <a class="timestamp" href="https://www.youtube.com/watch?v=6yfsXo_h-Vk&amp;t=265s">L13 04:25</a></h2>
+<p>A <dfn>dislocation</dfn> is a line defect around which the local crystalline arrangement cannot be matched to a perfect reference lattice without a closure mismatch. An edge-dislocation picture contains an extra half-plane ending along the defect line. That picture makes the spatial character visible, but a quantitative definition should also work when the line bends or changes character.</p>
+<p>Construct a closed sequence of lattice steps around the defect using the local crystal directions. Compare it with the same step sequence in a perfect reference crystal. The vector needed to close the corresponding circuit, with a specified traversal/sign convention, is the <dfn>Burgers vector</dfn> \(\mathbf b\). It has units of length. It is not a unit vector. Reversing the circuit convention reverses its sign, while the physical dislocation and the magnitude \(b=|\mathbf b|\) remain the same.</p>
+<p>Let \(\mathbf l\) be a unit tangent to the dislocation line. A pure edge segment has \(\mathbf b\cdot\mathbf l=0\); a pure screw segment has parallel \(\mathbf b\) and \(\mathbf l\). A general segment has both characters. Motion of a dislocation can shift one part of a crystal relative to another by its Burgers vector, allowing plastic slip through successive local rearrangements rather than simultaneous rigid displacement of a whole atomic plane. That mechanical role is distinct from the possibility that a dislocation core supplies a fast diffusion path.</p>
+<p>For a monatomic FCC lattice, the shortest full lattice translations have the form \((a/2)\langle110\rangle\), with magnitude \(a/\sqrt2\). In BCC they have the form \((a/2)\langle111\rangle\), with magnitude \(\sqrt3a/2\). These are geometric statements about full translations; partial dislocations and ordered compounds require additional defect bookkeeping. In a synthetic FCC example with \(a=0.36\) nm, the hard-sphere radius is 0.12727922 nm and the shortest full Burgers magnitude is 0.25455844 nm. Both follow from the same cell geometry and are computed in the companion.</p>
+<p>Dislocation density is commonly expressed as total line length divided by specimen volume, with units m⁻². Counting line intersections on a section also produces an inverse-area quantity, but its conversion to length density depends on the distribution of line orientations. Equal units do not make the two measurements identical. A section parallel to a family of straight lines can miss them even when their total length density is substantial. Chapter 21 will treat dislocation transport with an explicitly specified geometry.</p>
+</section>
+<section id="boundaries"><h2>5.4 Grain boundaries join differently oriented crystals <a class="timestamp" href="https://www.youtube.com/watch?v=6yfsXo_h-Vk&amp;t=575s">L13 09:35</a></h2>
+<p>A <dfn>grain</dfn> is a region with a common crystal orientation, allowing local elastic distortion and defects. A <dfn>grain boundary</dfn> separates neighboring grains whose orientations differ. Its structure depends on both the relative orientation and the boundary-plane orientation. A single misorientation angle therefore cannot uniquely identify a boundary, its energy, or its diffusivity.</p>
+<p>A low-angle symmetric tilt boundary supplies a model whose geometry can be derived. The two lattices rotate by equal and opposite angles around an axis lying in the boundary. A regular array of edge dislocations accommodates their mismatch. Let the total misorientation be \(\theta\), and let \(d\) be the spacing between dislocations with Burgers magnitude \(b\). Over a boundary interval \(d\), the mismatch of the two rotated directions has magnitude \(2d\sin(\theta/2)\). Requiring one Burgers displacement per interval gives</p>
+\[d=\frac{b}{2\sin(\theta/2)}\simeq\frac{b}{\theta}\quad(\theta\ll1\text{ in radians}).\tag{5.3}\]
+<p>The small-angle expression is geometric, not a universal high-angle structural model. As dislocation cores become closely spaced, their separate-core interpretation loses validity. Boundaries with rotations around an axis normal to the interface are called twist boundaries and require a different dislocation arrangement. The often used low/high-angle division near fifteen degrees is a classification convention, not a sharp microscopic transition shared by every material and boundary.</p>
+<p>For a synthetic \(b=0.25\) nm, equation (5.3) gives \(d=7.16233606\) nm at 2° and 1.43421416 nm at 10°. The small-angle values are 7.16197244 and 1.43239449 nm. Figure 5.1 shows why increasing misorientation makes the separate-dislocation picture progressively more crowded. Special high-angle boundaries can have relatively favorable structural matching; a monotone extrapolation from the low-angle array would miss them.</p>
+<figure><img src="assets/ch05-boundary-spacing.svg" width="700" height="380" alt="Computed dislocation spacing decreases nonlinearly as misorientation increases for a synthetic quarter-nanometer Burgers magnitude."><figcaption>Figure 5.1. Original geometric calculation for a symmetric edge-dislocation array, with synthetic b = 0.25 nm. The curve is a model prediction, not a measured boundary width or transport coefficient. Its high-angle continuation should not be interpreted as a resolved atomistic boundary structure.</figcaption></figure>
+</section>
+<section id="ordered"><h2>5.5 Chemical order makes site labels consequential <a class="timestamp" href="https://www.youtube.com/watch?v=6yfsXo_h-Vk&amp;t=1010s">L13 16:50</a></h2>
+<p>An <dfn>ordered compound</dfn> preferentially assigns species to distinct families of sites, called sublattices. In the ideal B2 example, A occupies the corners and B the centers of the cubic conventional drawing. In an L1₂ pattern one species occupies cube corners and the other the face centers; in L1₀ the chemical pattern distinguishes alternating layer/site families. These labels encode ordering patterns. Their stability and composition ranges require thermodynamics, rather than geometry alone.</p>
+<p>A vacancy on the A sublattice is an empty A-type site. An <dfn>antisite</dfn> \(A_B\) is an A atom occupying a site assigned to B in the ordered reference. A pair \(A_B+B_A\) exchanges chemical occupations without changing the total atom counts. By contrast, a single antisite changes the composition unless another defect or reservoir transfer compensates it. This is why a nominal alloy composition constrains the allowed defect populations.</p>
+<p>Some defects are <dfn>constitutional</dfn>: they accommodate an overall composition displaced from the ideal stoichiometry. Others are thermally excited populations at the specified composition. The same structural defect type can participate in either role. For example, an excess of one species may be accommodated by antisites or by a different combination involving vacancies, depending on free energies and site constraints. Composition balance identifies the admissible combinations; energy and entropy select their populations. A formation law cannot be assigned without saying which composition and reservoir are held fixed.</p>
+<p>The source introduces a <dfn>triple-defect combination</dfn> in a B2 setting: two A-sublattice vacancies and one \(A_B\) antisite. Its stoichiometry is easiest to inspect by counting. Start with \(N\) A sites and \(N\) B sites, all correctly occupied. After making the combination, A occupies \(N-2\) A sites and one B site, while B occupies \(N-1\) B sites. Both species then have \(N-1\) atoms. The AB ratio remains one-to-one even though two sites are empty and one is occupied by the wrong species.</p>
+<p>For \(N=100\), the companion returns 99 A atoms and 99 B atoms on 200 sites. One A and one B have been transferred to a reservoir such as a surface in this counting construction. A triple-defect model need not mean that all three defects stay bound together in a compact cluster. Their free energies, interactions and mass-action equations determine the equilibrium populations. The present result establishes admissible bookkeeping, not which mechanism is dominant in every ordered alloy.</p>
+</section>
+<section id="ionic"><h2>5.6 Ionic defects must preserve species and effective charge <a class="timestamp" href="https://www.youtube.com/watch?v=6yfsXo_h-Vk&amp;t=1383s">L13 23:03</a></h2>
+<p>An ionic crystal contains positively and negatively charged ionic species. A defect's <dfn>effective charge</dfn> is its charge relative to the correctly occupied reference site, rather than the bare charge of an isolated ion. Removing a monovalent positive ion leaves a vacancy with effective charge minus one elementary-charge unit. Moving that ion to a previously empty interstitial site gives an effective positive interstitial defect. The two changes sum to zero.</p>
+<p>A <dfn>Frenkel combination</dfn> moves an ion from a normal site to an interstitial site, creating one vacancy and one interstitial ion without removing the species from the crystal. Let \(n\) be the number of such pairs, \(N_s\) the number of normal sites and \(N_i\) the number of available interstitial sites. The fractions are \(x_v=n/N_s\) and \(x_i=n/N_i\). Equal defect numbers therefore imply</p>
+\[N_sx_v=N_ix_i,\tag{5.4}\]
+<p>rather than universally \(x_v=x_i\). If a dilute independent-defect equilibrium model supplies the product \(x_vx_i=K_F\), with dimensionless \(K_F\), combining it with (5.4) gives \(x_v=\sqrt{K_FN_i/N_s}\) and \(x_i=\sqrt{K_FN_s/N_i}\). For synthetic \(N_i=3N_s\) and \(K_F=10^{-8}\), the fractions are \(1.73205081\times10^{-4}\) and \(5.77350269\times10^{-5}\). Their numbers agree and their product is the specified equilibrium constant.</p>
+<p>A <dfn>Schottky combination</dfn> transfers a stoichiometric set of ions from normal sites to a reservoir, leaving charge-balanced vacancies. In a one-to-one monovalent crystal this involves one vacancy of each sign. In an ideal \(MX_2\) crystal with divalent M and monovalent negative X, neutrality instead requires two X vacancies for each M vacancy: effective charges \(-2\) and two contributions of \(+1\) sum to zero. If there are twice as many X sites as M sites, the corresponding vacancy site fractions can be equal even though the vacancy numbers differ.</p>
+<p>Charge balance alone does not determine an equilibrium concentration. Electronic carriers, dopants, several charge states and additional defects can all enter the neutrality equation. A Frenkel or Schottky combination is one admissible reaction, not an exhaustive list of all charge compensation. Chapter 27 will combine these balances with mass action and electrical transport. For now, a diffusion calculation should name the site set, counted species, defect numbers and normalization before assigning an activation law.</p>
+</section>
+<section id="exercises"><h2>5.7 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. Primitive and conventional descriptions</h3><p>Use the three FCC primitive vectors in §5.1 to find their cell volume. Why does adding a different species at the center of an A-corner cube prevent using the body-center displacement as a translation symmetry?</p><details><summary>Worked solution</summary><p>The determinant of the integer matrix with rows (0,1,1),(1,0,1),(1,1,0) is two. Multiplying by \((a/2)^3\) gives \(a^3/4\). Four such cells fill the conventional FCC cube. For the chemically ordered corner/center pattern, a body-center translation maps an A site to a B site and changes the species-labeled structure. A geometric mapping that exchanges species is not a translation symmetry of that ordered reference.</p></details></div>
+<div class="exercise"><h3>2. Count a hole before assigning its occupancy</h3><p>Derive the FCC octahedral-hole count per host atom and its maximum undistorted hard-sphere radius. Does an inserted atom larger than that radius prove the structure impossible?</p><details><summary>Worked solution</summary><p>One central hole plus twelve edge holes each shared by four cubes gives four holes per conventional cube. There are four host atoms, giving one octahedral site per host atom. Along the central-hole line, \(2R+2r_o=a=2\sqrt2R\), hence \(r_o/R=\sqrt2-1\). A larger atom requires relaxation of the host geometry; its energetic cost and possible competing structures must be considered. The fit result restricts the rigid equal-sphere model, not every relaxed crystal.</p></details></div>
+<div class="exercise"><h3>3. Length density is not a section count</h3><p>A specimen contains parallel straight dislocations. Explain why a plane parallel to the lines can give a different intersection density from a plane normal to them. Identify what extra information a conversion needs.</p><details><summary>Worked solution</summary><p>A normal plane intersects every traversing line once; a generic parallel plane can intersect none. The total line length per specimen volume remains unchanged. The intersection measurement weights line orientations through their projection on the plane normal. A conversion therefore needs an orientation distribution or a suitable stereological averaging assumption, as well as the sampled area and treatment of lines coinciding with the section.</p></details></div>
+<div class="exercise"><h3>4. Resolve low-angle spacing numerically</h3><p>For the synthetic boundary, calculate exact and small-angle spacing at 2° and 10°. Explain why inserting degrees directly into \(b/\theta\) is wrong. What fails as the array becomes dense?</p><details><summary>Worked solution</summary><p>Convert angles to radians before using the expansion of sine. The exact spacings are 7.16233606 and 1.43421416 nm; \(b/\theta\) gives 7.16197244 and 1.43239449 nm. Degrees are a different numerical angle unit, so using their unconverted values introduces a fixed angular conversion error. At larger misorientation, overlapping/strongly interacting cores defeat the picture of well-separated identical edge dislocations even if the trigonometric expression can still be evaluated.</p></details></div>
+<div class="exercise"><h3>5. Test a triple-defect composition</h3><p>Count A, B and vacancies after forming one \(2V_A+A_B\) combination in the 100-plus-100-site B2 reference. Compare it with one antisite pair.</p><details><summary>Worked solution</summary><p>The triple combination leaves 98 A atoms on A sites and one A on a B site, totaling 99 A. There are 99 B atoms and two vacancies. Both species lose one atom to a reservoir, so their ratio stays one-to-one. An antisite pair instead puts one A on B and one B on A while leaving all 200 sites occupied: both species retain 100 atoms. Equal overall composition does not imply identical vacancy populations or identical chemical order.</p></details></div>
+<div class="exercise"><h3>6. Diagnose an equal-fraction assumption</h3><p>For a Frenkel model with three interstitial sites per normal site and \(K_F=10^{-8}\), solve the two balances. Then state the vacancy-number ratio required by a Schottky combination in the divalent-M/monovalent-X \(MX_2\) model.</p><details><summary>Worked solution</summary><p>Number conservation gives \(x_v=3x_i\), so \(3x_i^2=10^{-8}\). Thus \(x_i=5.77350269\times10^{-5}\) and \(x_v=1.73205081\times10^{-4}\). Setting the fractions equal would violate number conservation under these site multiplicities. For \(MX_2\), neutrality requires \(-2n_{V_M}+n_{V_X}=0\), giving \(n_{V_X}=2n_{V_M}\). With twice as many X sites, those unequal numbers correspond to equal vacancy fractions.</p></details></div>
+</section>
+<section id="sources"><h2>5.8 Sources and limits</h2><p><a href="https://www.youtube.com/watch?v=2sKqNwVUoHo">L12</a>, <a href="https://www.youtube.com/watch?v=6yfsXo_h-Vk">L13</a> and the structural exercises in <a href="https://www.youtube.com/watch?v=pJuYh17uGyo">L15</a> provide the topic spine. The <a href="https://onlinelibrary.wiley.com/iucr/itc/Db/ch2o2v0001/sec2o2o2/">International Tables, §2.2.2.1</a>, supports the direct-lattice convention; the accessible section text was consulted. All geometrical formulas and count balances used here are derived locally. No crystal image or source slide is redistributed. <a href="code/ch05.py">The Python companion</a> computes the printed synthetic examples and regenerates Figure 5.1. Real defect energies, charge states and mobilities are material-dependent inputs, not consequences of packing fraction alone.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch05.py"><code>code/ch05.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic crystal-geometry and defect-count checks; writes one owned SVG.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+import numpy as np
+import matplotlib
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch05&quot;
+import matplotlib.pyplot as plt  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def run():
+    fcc_packing = np.pi / (3 * np.sqrt(2))
+    bcc_packing = np.pi * np.sqrt(3) / 8
+    octahedral_ratio = np.sqrt(2) - 1
+    tetrahedral_ratio = np.sqrt(1.5) - 1
+    a = 0.36e-9
+    primitive = a / 2 * np.array([[0, 1, 1], [1, 0, 1], [1, 1, 0]])
+    assert np.isclose(abs(np.linalg.det(primitive)) / a**3, 0.25)
+    radius = a / (2 * np.sqrt(2))
+    burgers = a / np.sqrt(2)
+    angles = np.array([2.0, 10.0])
+    spacing = 0.25 / (2 * np.sin(np.deg2rad(angles) / 2))
+    small_angle = 0.25 / np.deg2rad(angles)
+    pair_product = 1e-8
+    vacancy_fraction = np.sqrt(3 * pair_product)
+    interstitial_fraction = vacancy_fraction / 3
+    assert np.isclose(vacancy_fraction * interstitial_fraction, pair_product)
+    # A B2 triple combination removes one A and one B to a reservoir.
+    n = 100
+    atoms_a, atoms_b = n - 2 + 1, n - 1
+    assert atoms_a == atoms_b == 99
+    theta = np.linspace(0.25, 15, 301)
+    distance = 0.25 / (2 * np.sin(np.deg2rad(theta) / 2))
+    fig, ax = plt.subplots(figsize=(7, 3.8), layout=&quot;constrained&quot;)
+    ax.plot(
+        theta, distance, color=&quot;#176e8c&quot;, label=&quot;Exact edge-array geometry&quot;
+    )
+    ax.set(
+        xlabel=&quot;Misorientation (degrees)&quot;, ylabel=&quot;Dislocation spacing (nm)&quot;
+    )
+    ax.set_title(&quot;Synthetic tilt boundary: Burgers magnitude 0.25 nm&quot;)
+    ax.grid(alpha=0.25)
+    ax.legend()
+    fig.savefig(
+        ROOT / &quot;assets/ch05-boundary-spacing.svg&quot;, metadata={&quot;Date&quot;: None}
+    )
+    plt.close(fig)
+    return dict(
+        synthetic=True,
+        fcc_packing=fcc_packing,
+        bcc_packing=bcc_packing,
+        fcc_octahedral_radius_ratio=octahedral_ratio,
+        fcc_tetrahedral_radius_ratio=tetrahedral_ratio,
+        fcc_radius_nm=radius / 1e-9,
+        fcc_burgers_nm=burgers / 1e-9,
+        fcc_primitive_to_conventional_volume=0.25,
+        angles_degrees=angles.tolist(),
+        spacing_nm=spacing.tolist(),
+        small_angle_spacing_nm=small_angle.tolist(),
+        frenkel_site_fractions=[vacancy_fraction, interstitial_fraction],
+        triple_defect_atom_counts=[atoms_a, atoms_b],
+    )
+
+
+if __name__ == &quot;__main__&quot;:
+    print(json.dumps(run(), indent=2))
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;fcc_packing&quot;: 0.7404804896930609,
+  &quot;bcc_packing&quot;: 0.6801747615878316,
+  &quot;fcc_octahedral_radius_ratio&quot;: 0.41421356237309515,
+  &quot;fcc_tetrahedral_radius_ratio&quot;: 0.22474487139158894,
+  &quot;fcc_radius_nm&quot;: 0.12727922061357855,
+  &quot;fcc_burgers_nm&quot;: 0.2545584412271571,
+  &quot;fcc_primitive_to_conventional_volume&quot;: 0.25,
+  &quot;angles_degrees&quot;: [
+    2.0,
+    10.0
+  ],
+  &quot;spacing_nm&quot;: [
+    7.162336062318773,
+    1.434214155708732
+  ],
+  &quot;small_angle_spacing_nm&quot;: [
+    7.16197243913529,
+    1.432394487827058
+  ],
+  &quot;frenkel_site_fractions&quot;: [
+    0.00017320508075688773,
+    5.773502691896258e-05
+  ],
+  &quot;triple_defect_atom_counts&quot;: [
+    99,
+    99
+  ]
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-04.html">← Previous</a><a href="chapter-06.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

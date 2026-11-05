@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 13,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "da8ac74b14d0275af0048426a261780cc222396df4fe1840d8375c10f2115551",
+      "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+      "assets": {
+        "assets/figures/ch13-marker.svg": "a4ebeedfad5a7200ee1f66004b7b276085d3828857baea978b6792adaa9219f0"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new full raw-caption or complete audiovisual audit",
+        "No full Manning wind-factor proof inspected",
+        "Reader/release checks separate"
+      ],
+      "private_review_record_sha256": "daf712c77ff26f89e0f2d472d02b5031b7a8500fdb51a9020462ff314da0915e"
+    },
+    {
+      "chapter": 13,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "da8ac74b14d0275af0048426a261780cc222396df4fe1840d8375c10f2115551",
+      "code_sha256": "7004830d743d95d0ae320699974e3f2461c2823857abb2e1730663e3e2c8997e",
+      "assets": {
+        "assets/figures/ch13-marker.svg": "a4ebeedfad5a7200ee1f66004b7b276085d3828857baea978b6792adaa9219f0"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map and three selectedL30frames checked; not complete direct audiovisual reread",
+        "Darken printedp188/p192 inspected; Manning1965 abstract-only",
+        "Current scientific SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "1b3cff2fd492e2097e2bca27fbfec8db0ddf791afcc3a9cbd811d14642c7ed16"
+    }
+  ]
+}

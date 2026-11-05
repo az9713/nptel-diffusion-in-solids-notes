@@ -1,0 +1,22 @@
+{
+  "synthetic": true,
+  "D_m2_s": 1e-14,
+  "time_s": 100000.0,
+  "cases": [
+    {
+      "beta": 0.1,
+      "lambda": 0.22001627274293725,
+      "exact_position_m": 1.3915050883370073e-05,
+      "quasi_steady_position_m": 1.4142135623730951e-05,
+      "quasi_steady_relative_error": 0.016319361119424114
+    },
+    {
+      "beta": 1.0,
+      "lambda": 0.6200626333135955,
+      "exact_position_m": 3.921620426465521e-05,
+      "quasi_steady_position_m": 4.4721359549995795e-05,
+      "quasi_steady_relative_error": 0.1403796055372517
+    }
+  ],
+  "four_component_binary_count": 6
+}

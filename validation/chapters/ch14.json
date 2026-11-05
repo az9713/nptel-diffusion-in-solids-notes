@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 14,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "86f4c29d82a446ecba462aad18262aa2afb789f876a05de522bdb4d2de3dafe9",
+      "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+      "assets": {
+        "assets/figures/ch14-models.svg": "890994642026ccba63190e3368287d3ab9615e3fc7d76f41d376130a0dd2e2c5"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new full raw-caption or audiovisual review",
+        "No DICTRA/license/database execution claimed",
+        "Reader/release checks separate"
+      ],
+      "private_review_record_sha256": "8014118d01b7ac8b8db2fc3cf73466bce254bcf0de6d238f773b8a8de141ba32"
+    },
+    {
+      "chapter": 14,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "86f4c29d82a446ecba462aad18262aa2afb789f876a05de522bdb4d2de3dafe9",
+      "code_sha256": "4d3a234da65644e33d8d49724a815a25049e63e5f8eecb22f934f153b71edbf5",
+      "assets": {
+        "assets/figures/ch14-models.svg": "890994642026ccba63190e3368287d3ab9615e3fc7d76f41d376130a0dd2e2c5"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Source map fully read; no full direct lecture reread",
+        "Owning DICTRA input guide sections inspected; no proprietary run/database validation",
+        "Scientific SVG inspected; reader/print validation separate"
+      ],
+      "private_review_record_sha256": "dc1f404fc9d34ba3e23391fb518dde9c06f295c64cbaa3774bb1f41dd67ed89d"
+    }
+  ]
+}

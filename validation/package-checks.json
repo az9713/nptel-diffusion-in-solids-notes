@@ -1,0 +1,6 @@
+{
+  "scope": "Final rendered public reader projection; canonical fragments resolve links at reader root and are separately validated by the public builder.",
+  "validator": "analyze-sources/validate_package.py --strict",
+  "passed": true,
+  "result": "Checked 34 HTML file(s), 0 error(s), 0 warning(s)."
+}

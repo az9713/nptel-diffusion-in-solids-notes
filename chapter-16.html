@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Tracer profiles, SIMS, and electron-probe measurements — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a aria-current=page href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Tracer profiles, SIMS, and electron-probe measurements</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#measurement">16.1 Select a measurable displacement, not a universal diffusivity range L36 00:22</a></li><li><a href="#radiotracer">16.2 A radiotracer profile is a section-average activity measurement L36 09:44</a></li><li><a href="#table-fit">16.3 Fit all the tutorial values and inspect residuals L40 20:49</a></li><li><a href="#sims">16.4 SIMS separates isotope identity from concentration calibration L37 00:21</a></li><li><a href="#epma">16.5 Electron-probe profiles require spectral and spatial interpretation L37 19:56</a></li><li><a href="#exercises">16.6 Exercises with complete solutions</a></li><li><a href="#sources">16.7 Sources and evidence limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A depth profile has two histories: atoms moved during annealing, then the measurement process converted their distribution into counts, ion intensities, or X-ray signals. Recovering diffusion requires an observation model for that second history as well as a transport model for the first.</p>
+<p class="source-note">Lectures 36–37 supply radiotracer, SIMS, and electron-probe methods. Lecture 40 contributes the method-comparison tutorial and a radiotracer table, directly inspected at 20:49 and 21:51. The table fit is a source-input calculation; the separate Gaussian broadening example is synthetic.</p>
+
+<section id="measurement"><h2>16.1 Select a measurable displacement, not a universal diffusivity range <a class="timestamp" href="https://www.youtube.com/watch?v=I47t1ktrINY&amp;t=22s">L36 00:22</a></h2>
+<p>A tracer labels a dilute subset of atoms while leaving the host's chemical state approximately unchanged. In a homogeneous alloy, its coefficient <span class="math">\(D^*\)</span> measures tagged-particle spreading at that composition; an impurity tracer in a pure host measures a different species–host combination. An unrelated element used as a convenient probe does not automatically measure host self diffusion. A validated kinetic relation is required to convert one into the other.</p>
+<p>Let <span class="math">\(x\)</span> be depth in meters and <span class="math">\(t\)</span> annealing time in seconds. Here and in (16.1), <span class="math">\(c^*(x,t)\)</span> is a stable-label molar concentration or a decay-corrected radioisotope distribution; the same approximation applies when decay during annealing is negligible. In a uniform host with constant scalar coefficient, the dilute-label transport model is <span class="math">\(c_t^*=D^*c_{xx}^*\)</span>. It assumes label dilution, no changing chemical driving force, and a specified surface condition. For a spatially uniform first-order decay constant <span class="math">\(\lambda_d\)</span>, in s⁻¹, the uncorrected radioactive population instead obeys <span class="math">\(c_{{\rm raw},t}=D^*c_{{\rm raw},xx}-\lambda_dc_{\rm raw}\)</span>; multiplication by <span class="math">\(e^{\lambda_dt}\)</span> recovers the diffusion-only equation. Uniform decay changes a single-time profile's amplitude, not its depth-squared logarithmic slope, but sections counted at different times require decay correction. Isotope labels are chemically close to the host but not guaranteed dynamically identical: isotope mass can change vibrational rates.</p>
+<p>A useful diffusion distance is of order <span class="math">\(\sqrt{D^*t}\)</span>. It must exceed depth resolution enough to identify spreading while remaining small enough to avoid unwanted sample boundaries or mixing with other transport paths. Thus a method has a joint time, length, material, and sensitivity window rather than a universal lower or upper D threshold. Lengthening the anneal can make a smaller coefficient measurable, but also increases risks from reactions, evaporation, radioactive decay, or microstructural evolution.</p>
+<p>Direct profile methods estimate where labels or chemical components went. Mechanical, electrical, NMR, and scattering methods instead respond to relaxation, carriers, or correlation functions. These can probe short local jumps without measuring long-range penetration. The next three chapters develop those distinctions; a method name by itself does not establish which diffusion coefficient it returns.</p>
+</section>
+
+<section id="radiotracer"><h2>16.2 A radiotracer profile is a section-average activity measurement <a class="timestamp" href="https://www.youtube.com/watch?v=I47t1ktrINY&amp;t=584s">L36 09:44</a></h2>
+<p>A thin labeled layer can be deposited by an appropriate solution, evaporation, or electrodeposition procedure, then annealed under controlled temperature and atmosphere. The deposit should be thin relative to the resulting diffusion distance and dilute enough not to change the host composition appreciably. Removing an outer rim after annealing can reduce side-surface penetration contributions. That preparation does not remove internal grain-boundary or dislocation transport.</p>
+<p>Mechanical serial sectioning removes successive layers. If removed mass is <span class="math">\(\Delta m\)</span>, density is <span class="math">\(\rho\)</span>, and cross-sectional area is <span class="math">\(A\)</span>, the estimated thickness is <span class="math">\(\Delta x=\Delta m/(\rho A)\)</span> for a uniform slice. Accumulating thicknesses assigns a depth interval to each sample. Count rate, after background, efficiency, dead-time, and decay corrections, is related to tracer amount. <dfn>Specific activity</dfn> normalizes activity by section mass; a becquerel is one decay per second.</p>
+<p>A section reports an interval average, not the exact concentration at one geometrical point. For a slice from a to b, the appropriate model value is <span class="math">\(\bar c^*=(b-a)^{-1}\int_a^b c^*(x,t)dx\)</span> when density is uniform. A midpoint approximation is accurate only when the profile curvature over the slice is sufficiently small. Sputter sectioning accesses shallower intervals but adds its own erosion and mixing response. The instrument and removal method must match the length scale being inferred.</p>
+<p>For an ideal instantaneous plane deposit of areal tracer amount <span class="math">\(M\)</span>, in mol/m², at a reflecting surface of a half-space, the normalized solution is</p>
+\[
+c^*(x,t)=\frac{M}{\sqrt{\pi D^*t}}
+\exp\left(-\frac{x^2}{4D^*t}\right),\qquad x\geq0. \tag{16.1}
+\]
+<p>The integral over nonnegative depth equals M. The surface derivative is zero for positive time, expressing no tracer loss after deposition. Taking a natural logarithm of activity relative to a fixed reference gives a straight line against depth squared, with slope <span class="math">\(m=-1/(4D^*t)\)</span>. The unknown deposited amount and detection scale enter the intercept, provided sensitivity is depth-independent. Thus <span class="math">\(D^*=-1/(4tm)\)</span>. A base-10 fit instead needs <span class="math">\(D^*=-1/[4t\,m_{10}\ln10]\)</span>.</p>
+<p>Matrix evaporation changes the depth coordinate and tracer loss changes the boundary. A simple surface-loss closure would specify outward flux proportional to surface concentration, rather than retain the reflecting condition. Fast grain-boundary or dislocation paths can generate deeper tails. A finite deposit thickness broadens the initial profile. Curvature in a log-activity versus depth-squared plot therefore calls for diagnosis, not automatically a second fitted diffusion coefficient.</p>
+<p>Radioactive work requires the appropriate facility, detector, and contamination controls; destructive sectioning also removes spatial context. Those practical constraints do not prove that only one laboratory can perform the method or that all later microscopy is physically impossible. Correlative characterization depends on approved procedures and specimen preparation. At a fixed harmonic force constant, a simple vibrational frequency scales as mass to the power −1/2, not inverse mass; collective jump mechanisms can further modify an isotope effect.</p>
+</section>
+
+<section id="table-fit"><h2>16.3 Fit all the tutorial values and inspect residuals <a class="timestamp" href="https://www.youtube.com/watch?v=BYsrUKCe578&amp;t=1249s">L40 20:49</a></h2>
+<p>The source tutorial deposits isotope B on alloy AB, anneals at 700 °C for three days, and reports the table below after sectioning. The displayed values and units were read directly from the selected source frame, rather than reconstructed from captions. Their statistical uncertainties and slice boundaries are not supplied, so the calculation treats the tabulated depths as representative point depths and uses an unweighted natural-log fit.</p>
+<table><caption>Source tutorial inputs, L40 20:49</caption><thead><tr><th>Depth (µm)</th><th>Specific activity (Bq/mg)</th></tr></thead><tbody><tr><td>0.2</td><td>1 × 10⁶</td></tr><tr><td>0.5</td><td>5 × 10⁵</td></tr><tr><td>1</td><td>2 × 10⁵</td></tr><tr><td>1.5</td><td>1.2 × 10⁵</td></tr><tr><td>2</td><td>6 × 10⁴</td></tr><tr><td>2.5</td><td>1 × 10⁴</td></tr><tr><td>3</td><td>5.8 × 10³</td></tr><tr><td>4</td><td>5.1 × 10²</td></tr><tr><td>5</td><td>1 × 10²</td></tr></tbody></table>
+<p>Three days is 259200 s. Let <span class="math">\(X_j=x_j^2\)</span> in µm² and <span class="math">\(Y_j=\ln[a_j/(1\ \mathrm{Bq/mg})]\)</span>. Minimizing <span class="math">\(\sum_j(Y_j-b-mX_j)^2\)</span> gives <span class="math">\(m=\sum_j(X_j-\bar X)(Y_j-\bar Y)/\sum_j(X_j-\bar X)^2\)</span> and <span class="math">\(b=\bar Y-m\bar X\)</span>. The laboratory obtains slope −0.35906875 µm⁻², intercept 12.60687, and coefficient of determination 0.935472. The slope is close to the displayed source plot's −0.3591; its displayed intercept 12.603 and fit statistic 0.9356 differ slightly from this direct recomputation of the rounded table.</p>
+<p>Since one inverse square micrometer equals <span class="math">\(10^{12}\)</span> m⁻², the slope in SI is <span class="math">\(-0.35906875\times10^{12}\)</span> m⁻². Equation (16.1) gives a nominal coefficient <span class="math">\(D_B^*=2.68613\times10^{-18}\)</span> m²/s. It is a fitted coefficient conditional on the thin-layer, reflecting, constant-coefficient observation model. A high-looking fit statistic does not establish that every point follows that model.</p>
+<p>Figure 16.1 plots the residuals as well as the line. The first and last points lie above it, while several central points lie below; the deviations are too structured to ignore merely because the trend spans many decades. Omitting the first two points changes the nominal coefficient to <span class="math">\(2.99145\times10^{-18}\)</span> m²/s. This is a sensitivity check, not permission to discard inconvenient observations. Without measurement uncertainties or section bounds, no defensible physical uncertainty interval or unique cause of the deviations follows from the table alone.</p>
+<figure><img src="assets/figures/ch16-tracer-fit.svg" alt="Natural-log activity versus depth squared for nine source tutorial points with a fitted line. Residuals are positive at the shallow and deepest points and negative through much of the middle."><figcaption>Figure 16.1. Independent fit of the visually verified source tutorial table. The residual panel exposes departures hidden by the broad logarithmic trend. The nominal coefficient is 2.68613 × 10⁻¹⁸ m²/s under the stated point-depth model.</figcaption></figure>
+</section>
+
+<section id="sims"><h2>16.4 SIMS separates isotope identity from concentration calibration <a class="timestamp" href="https://www.youtube.com/watch?v=YIx0sj4ctLw&amp;t=21s">L37 00:21</a></h2>
+<p><dfn>Secondary ion mass spectrometry</dfn> (SIMS) bombards a surface with primary ions, ejecting atoms and clusters in a collision cascade. A small fraction of the sputtered material leaves as secondary ions that can be separated by mass-to-charge ratio. The primary beam removes material; the analyzed ions carry information about the specimen. Oxygen or cesium bombardment can change secondary-ion yields, so beam chemistry is part of the measurement response.</p>
+<p>A depth profile measures signal versus sputtering time. Crater profilometry converts the total erosion time into a depth scale; assuming a constant erosion rate then assigns intermediate depths. Composition-dependent sputter yield can invalidate that assumption. Selecting the crater interior reduces edge artifacts, while atomic mixing, surface roughness, and finite information depth broaden the response. Instrumental depth resolution is consequently not just the nominal step in acquisition time.</p>
+<p>Time-of-flight separation gives a useful tutorial check. For an ion of mass <span class="math">\(m_i\)</span>, charge magnitude <span class="math">\(Q_i\)</span>, and acceleration voltage <span class="math">\(V\)</span>, kinetic energy <span class="math">\(m_iv^2/2=Q_iV\)</span> gives flight time <span class="math">\(t_f=L\sqrt{m_i/(2Q_iV)}\)</span> over a field-free distance L. With equal charge and voltage, flight time scales as square root of mass. Magnetic-sector SIMS separates ions by another analyzer architecture; it should not be described as if all SIMS instruments use the same flight-time scheme.</p>
+<p>Ion intensity is not automatically a concentration. Matrix effects change ionization probability, and isotope or molecular interferences can overlap mass channels. <a href="https://www.nist.gov/programs-projects/magnetic-sector-secondary-ion-mass-spectrometry">NIST's owning magnetic-sector SIMS description and current-activity sections</a> emphasize standard-derived relative sensitivity factors for quantification. A calibrated isotope ratio can reveal tracer spreading, but a cross-matrix comparison of raw intensities can mimic a composition jump without one.</p>
+<p>Finite initial width and instrumental broadening can be separated in a restricted model. On the infinite line, a normalized Gaussian initial distribution of variance <span class="math">\(\sigma_0^2\)</span> undergoing constant-D diffusion has variance <span class="math">\(\sigma_0^2+2Dt\)</span>. Convolution with an independent centered Gaussian response of variance <span class="math">\(\sigma_r^2\)</span> adds that variance. This follows because convolution represents the sum of independent displacements, whose centered variances add. Thus</p>
+\[
+\sigma_{\rm measured}^2=\sigma_0^2+2Dt+\sigma_r^2. \tag{16.2}
+\]
+<p>This infinite-line result is not the centered variance of (16.1). The half-Gaussian surface-source profile has mean <span class="math">\(2\sqrt{Dt/\pi}\)</span>, second moment about the surface <span class="math">\(2Dt\)</span>, and centered variance <span class="math">\(2Dt(1-2/\pi)\)</span>. Width convention and boundary condition must be stated before applying variance subtraction. Arbitrary sputter-response kernels also need not be Gaussian.</p>
+<p>For the synthetic infinite-line example, <span class="math">\(D=10^{-18}\)</span> m²/s, <span class="math">\(t=2\times10^5\)</span> s, initial standard deviation 0.1 micrometers, and instrument standard deviation 0.2 micrometers give measured standard deviation 0.670820 micrometers. Ignoring both initial and instrumental width gives <span class="math">\(1.125\times10^{-18}\)</span> m²/s, a 12.5% overestimate. Correct subtraction recovers the declared D. That recovery tests the Gaussian model, not an unknown instrument response.</p>
+</section>
+
+<section id="epma"><h2>16.5 Electron-probe profiles require spectral and spatial interpretation <a class="timestamp" href="https://www.youtube.com/watch?v=YIx0sj4ctLw&amp;t=1196s">L37 19:56</a></h2>
+<p>Electron-probe microanalysis (EPMA) excites characteristic X-rays with an electron beam. Removing an inner-shell electron permits a higher-shell electron to fill the vacancy; the energy difference can leave as an X-ray or through an Auger-electron process. The characteristic spectrum identifies elements. The X-rays originate from an interaction volume, so chemical spatial resolution depends on beam energy, specimen composition, geometry, and X-ray generation, rather than only the electron spot diameter.</p>
+<p>Energy-dispersive spectroscopy (EDS) sorts photon events by energy, while wavelength-dispersive spectroscopy (WDS) uses diffraction by an analyzing crystal. Bragg's condition <span class="math">\(n\lambda=2d\sin\theta\)</span> links wavelength lambda to lattice-plane spacing d and diffraction angle theta for integer order n. Selecting a crystal and angle discriminates nearby wavelengths. WDS can offer better spectral separation for interfering lines, while acquisition geometry and scanning impose time and coverage tradeoffs.</p>
+<p>The Rowland-circle focusing construction relates source, analyzing crystal, and detector positions. In Johann geometry the crystal is bent; Johansson geometry additionally grinds the reflecting surface to the focusing geometry. This is the distinction tested in the tutorial. It is a spectrometer focusing condition, not a statement that both techniques have identical depth resolution or concentration detection limits.</p>
+<p>Quantification compares intensities with standards and corrects matrix effects. The conventional ZAF labels refer to atomic-number effects, absorption, and secondary fluorescence. <a href="https://www.nist.gov/publications/quantitative-electron-probe-microanalysis-fifty-years-developments-application">Armstrong's owning NIST abstract</a> describes the development and uncertainty of quantitative atomic-number and absorption corrections; only that abstract is claimed inspected here. Standards, specimen preparation, and correction models remain part of a quantitative diffusion profile.</p>
+<p>A narrow reaction layer can be blurred into neighboring phases by the interaction volume. Before interpreting its slope with a bulk inverse formula, compare spatial resolution with layer thickness and combine chemical measurements with structural evidence. EPMA generally does not separate isotope labels by characteristic X-ray energy in the manner of mass spectrometry; it measures chemical composition profiles. This distinction makes it useful for interdiffusion but prevents automatically treating every EPMA scan as a tracer measurement.</p>
+<p>The <a href="code/ch16.py">laboratory</a> fits the verified tutorial table, checks natural- versus base-10 slope conversion, plots residuals, and calculates the independent broadening example. It writes <a href="code/ch16-output.json">the actual numerical record</a>. No raw source spectra, detector calibration, count uncertainty, or slice bounds are supplied; the code therefore produces a nominal teaching estimate rather than a metrologically complete diffusion measurement.</p>
+</section>
+
+<section id="exercises"><h2>16.6 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Normalize the half-space source</h3><p>Verify that (16.1) contains total areal amount M and has zero surface flux for positive time.</p><details><summary>Worked solution</summary><p>Set <span class="math">\(u=x/(2\sqrt{Dt})\)</span>, so the integral becomes <span class="math">\(2M\int_0^\infty e^{-u^2}du/\sqrt\pi=M\)</span>. Differentiating the profile produces a factor <span class="math">\(-x/(2Dt)\)</span>, so the surface derivative is zero and the Fick flux vanishes there for positive time. The initial deposit is represented by a limiting surface distribution; it is not a maintained concentration boundary. Using the full-line Gaussian normalization over only positive depths would lose half the stated amount.</p></details></div>
+<div class="exercise"><h3>2. Units and logarithm base in the table fit</h3><p>Convert the fitted slope −0.35906875 µm⁻² into a coefficient for three days. What factor changes if base-10 logarithms are used?</p><details><summary>Worked solution</summary><p>The SI slope is <span class="math">\(-0.35906875\times10^{12}\)</span> m⁻² and time is 259200 s. Thus <span class="math">\(D=-1/(4tm)=2.68613\times10^{-18}\)</span> m²/s. Since <span class="math">\(\ln a=(\ln10)\log_{10}a\)</span>, the base-10 slope is the natural slope divided by ln10. The coefficient formula must therefore divide by the extra ln10 as well. Using the natural-log formula with a base-10 slope overestimates D by ln10.</p></details></div>
+<div class="exercise"><h3>3. The section is an integral</h3><p>For a section from a to b, derive its average tracer concentration under (16.1).</p><details><summary>Worked solution</summary><p>The Gaussian antiderivative is <span class="math">\(\sqrt{\pi Dt}\operatorname{erf}[x/(2\sqrt{Dt})]\)</span>. Therefore the average is <span class="math">\(M\{\operatorname{erf}[b/(2\sqrt{Dt})]-\operatorname{erf}[a/(2\sqrt{Dt})]\}/(b-a)\)</span>. For a sufficiently thin slice it tends to the point concentration. Thick slices sample a curved profile unevenly, so replacing them by midpoint values can bias a log-slope fit. Actual slice boundaries permit fitting this integrated model directly.</p></details></div>
+<div class="exercise"><h3>4. Distinguish width conventions</h3><p>Why does a half-Gaussian surface source not have centered variance 2Dt?</p><details><summary>Worked solution</summary><p>Its second moment about the surface is 2Dt, but its mean is positive: <span class="math">\(2\sqrt{Dt/\pi}\)</span>. Centered variance subtracts the square of that mean, giving <span class="math">\(2Dt-4Dt/\pi=2Dt(1-2/\pi)\)</span>. The factor is approximately 0.363380. The infinite-line Gaussian has zero mean in its symmetric coordinate, so its centered variance and second moment coincide. Confusing these two distributions changes a diffusivity estimate even with exact data.</p></details></div>
+<div class="exercise"><h3>5. What does equal flight time require?</h3><p>Two ions have equal charge and are accelerated through the same voltage. One has four times the mass. Find the flight-time ratio and explain why SIMS intensity still needs calibration.</p><details><summary>Worked solution</summary><p>Energy conservation gives <span class="math">\(t_f\propto\sqrt m\)</span>, so the heavier ion takes twice as long over the same path. That relation sorts mass-to-charge identity, not abundance. Sputtering and ionization probabilities, detector response, and matrix chemistry control detected intensity. Relative sensitivity standards are needed to map counts to concentration. Correct mass separation therefore does not remove matrix effects or establish a calibrated depth scale.</p></details></div>
+<div class="exercise"><h3>6. Design a method comparison</h3><p>A thin reaction layer has a chemical gradient and an isotope label. What complementary questions can EPMA, SIMS, and radiotracer sectioning answer?</p><details><summary>Worked solution</summary><p>EPMA can quantify chemical composition with appropriate standards and matrix corrections, subject to its interaction-volume resolution. SIMS can resolve isotope-dependent depth signals but requires sputter-depth and sensitivity calibration. Radiotracer sectioning measures activity per removed material and can be highly sensitive, but is destructive and subject to slice averaging, decay corrections, and facility constraints. None alone establishes a microscopic mechanism. Compare their length scales with the layer and diffusion width, then combine structural phase evidence and time-dependent profiles to distinguish interdiffusion from tagged-atom spreading.</p></details></div>
+</section>
+
+<section id="sources"><h2>16.7 Sources and evidence limits</h2><p><a href="https://www.youtube.com/watch?v=I47t1ktrINY">L36</a> and <a href="https://www.youtube.com/watch?v=YIx0sj4ctLw">L37</a> supply the method sequence; <a href="https://www.youtube.com/watch?v=BYsrUKCe578">L40</a> supplies comparisons and the fitted table. Only the stated table and displayed fit frames are claimed visually checked here. The NIST SIMS page was directly inspected at its description and current-activity sections; the EPMA publication was inspected at abstract level.</p><p>Instrument broadening, unknown errors, phase mixing, fast paths, and surface loss can remain confounded in one profile. The calculations expose that limitation instead of inferring an unwarranted mechanism from a nominal D. Mechanical relaxation next supplies a different observation: a redistribution time whose connection to long-range mass transport must be established separately.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch16.py"><code>code/ch16.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Fit the visually verified L40 tutorial and synthetic broadening model.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch16&quot;
+BASE = Path(__file__).resolve().parents[1]
+depth_um = np.array([0.2, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5])
+activity = np.array([1e6, 5e5, 2e5, 1.2e5, 6e4, 1e4, 5.8e3, 5.1e2, 1e2])
+time = 3 * 24 * 3600
+xx, yy = depth_um**2, np.log(activity)
+slope, intercept = np.polyfit(xx, yy, 1)
+predicted = intercept + slope * xx
+residual = yy - predicted
+r_squared = 1 - np.sum(residual**2) / np.sum((yy - yy.mean()) ** 2)
+coefficient = -1 / (4 * time * slope * 1e12)
+trim_slope, _ = np.polyfit(xx[2:], yy[2:], 1)
+trim_coefficient = -1 / (4 * time * trim_slope * 1e12)
+log10_slope = np.polyfit(xx, np.log10(activity), 1)[0]
+assert np.isclose(slope, log10_slope * np.log(10), rtol=1e-12)
+d_synthetic, t_synthetic = 1e-18, 2e5
+initial_sigma, instrument_sigma = 0.1e-6, 0.2e-6
+variance = (
+    initial_sigma**2 + 2 * d_synthetic * t_synthetic + instrument_sigma**2
+)
+naive = variance / (2 * t_synthetic)
+assert np.isclose(
+    (variance - initial_sigma**2 - instrument_sigma**2) / (2 * t_synthetic),
+    d_synthetic,
+    rtol=1e-12,
+    atol=0,
+)
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+ax[0].scatter(xx, yy, label=&quot;source tutorial values&quot;)
+ax[0].plot(xx, predicted, label=&quot;unweighted natural-log fit&quot;)
+ax[0].set(
+    xlabel=&quot;Depth squared (micrometers squared)&quot;,
+    ylabel=&quot;ln(activity / 1 Bq per mg)&quot;,
+)
+ax[0].legend(fontsize=8)
+ax[1].axhline(0, color=&quot;gray&quot;, linewidth=1)
+ax[1].scatter(xx, residual)
+ax[1].set(xlabel=&quot;Depth squared (micrometers squared)&quot;, ylabel=&quot;Log residual&quot;)
+fig.tight_layout()
+fig.savefig(
+    BASE / &quot;assets/figures/ch16-tracer-fit.svg&quot;, metadata={&quot;Date&quot;: None}
+)
+out = {
+    &quot;source_table_frame_verified&quot;: True,
+    &quot;depth_um&quot;: depth_um.tolist(),
+    &quot;specific_activity_Bq_mg&quot;: activity.tolist(),
+    &quot;anneal_time_s&quot;: time,
+    &quot;slope_per_um2&quot;: float(slope),
+    &quot;intercept&quot;: float(intercept),
+    &quot;r_squared&quot;: float(r_squared),
+    &quot;D_nominal_m2_s&quot;: float(coefficient),
+    &quot;D_excluding_first_two_m2_s&quot;: float(trim_coefficient),
+    &quot;log_residuals&quot;: residual.tolist(),
+    &quot;synthetic_broadening&quot;: {
+        &quot;D_true_m2_s&quot;: d_synthetic,
+        &quot;time_s&quot;: t_synthetic,
+        &quot;observed_sigma_m&quot;: float(np.sqrt(variance)),
+        &quot;naive_D_m2_s&quot;: naive,
+        &quot;half_gaussian_variance_factor&quot;: 1 - 2 / np.pi,
+    },
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch16-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;source_table_frame_verified&quot;: true,
+  &quot;depth_um&quot;: [
+    0.2,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    4.0,
+    5.0
+  ],
+  &quot;specific_activity_Bq_mg&quot;: [
+    1000000.0,
+    500000.0,
+    200000.0,
+    120000.0,
+    60000.0,
+    10000.0,
+    5800.0,
+    510.0,
+    100.0
+  ],
+  &quot;anneal_time_s&quot;: 259200,
+  &quot;slope_per_um2&quot;: -0.35906874746591877,
+  &quot;intercept&quot;: 12.606869258326144,
+  &quot;r_squared&quot;: 0.9354721663157523,
+  &quot;D_nominal_m2_s&quot;: 2.6861323343966402e-18,
+  &quot;D_excluding_first_two_m2_s&quot;: 2.9914481070621088e-18,
+  &quot;log_residuals&quot;: [
+    1.2230040495367671,
+    0.6052613059446639,
+    -0.04172786533005102,
+    -0.10371755476364264,
+    -0.16849442725823138,
+    -1.152349214687968,
+    -0.7096373345983658,
+    -0.6273585731530726,
+    0.9750196143099163
+  ],
+  &quot;synthetic_broadening&quot;: {
+    &quot;D_true_m2_s&quot;: 1e-18,
+    &quot;time_s&quot;: 200000.0,
+    &quot;observed_sigma_m&quot;: 6.708203932499369e-07,
+    &quot;naive_D_m2_s&quot;: 1.125e-18,
+    &quot;half_gaussian_variance_factor&quot;: 0.3633802276324186
+  }
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-15.html">← Previous</a><a href="chapter-17.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

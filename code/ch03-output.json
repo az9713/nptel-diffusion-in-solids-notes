@@ -1,0 +1,22 @@
+{
+  "synthetic_profile_parameters": {
+    "D": 2e-12,
+    "t": 10000.0,
+    "dose": 3e-05
+  },
+  "integrated_dose": 2.9999999999999994e-05,
+  "second_moment": 3.999999999999994e-08,
+  "synthetic_couple_concentration_at_sqrt_Dt": 0.34385003665608604,
+  "maintained_surface_excess_uptake": 9.574614729634385e-05,
+  "half_source_mean_in_sqrt_Dt_units": 1.1283791670955126,
+  "half_source_centered_variance_in_Dt_units": 0.7267604552648375,
+  "constant_flux_integral_check": 1.0,
+  "finite_initial_layer_amount_check": 0.8,
+  "recovered_D_from_log_slope": 1.9999999999999987e-12,
+  "tutorial_carburizing_hours": 7.047290405526537,
+  "tutorial_carburizing_erf_argument": 0.3923897758210403,
+  "tutorial_couple_exact_D": 3.0529296365524065e-09,
+  "tutorial_couple_approximate_D": 2.777777777777778e-09,
+  "erf_at_0_5": 0.5204998778130465,
+  "erf_at_0_8": 0.7421009647076605
+}

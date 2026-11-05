@@ -1,0 +1,131 @@
+{
+  "scope": "Synthetic examples plus labeled source tutorial data",
+  "source_tutorial": {
+    "source_frame": "L20 at 1690 s, inspected 720p",
+    "temperatures_C": [
+      700.0,
+      800.0,
+      900.0,
+      1000.0,
+      1100.0
+    ],
+    "D_temperature_m2_per_s": [
+      7e-20,
+      5.5e-19,
+      3.4e-18,
+      4.2e-17,
+      2.1e-16
+    ],
+    "Q_kJ_per_mol": 224.8791536491069,
+    "D0_m2_per_s": 5.9464232896103296e-08,
+    "Q_fit_standard_error_kJ_per_mol": 14.521749985679968,
+    "temperature_log_residuals": [
+      0.3250862355031501,
+      -0.20334183146348295,
+      -0.5300596220106755,
+      0.1729869985885344,
+      0.23532821938248105
+    ],
+    "temperature_fit_R_squared": 0.9876444692626589,
+    "pressure_temperature_K": 800,
+    "pressures_in_1e5_Pa": [
+      0.5,
+      500.0,
+      2500.0,
+      4000.0,
+      5500.0
+    ],
+    "D_pressure_m2_per_s": [
+      5e-17,
+      4.6e-17,
+      3e-17,
+      2.5e-17,
+      2e-17
+    ],
+    "pressure_slope_per_1e5_Pa": -0.00016846653566119363,
+    "pressure_fit_R_squared": 0.9892875420459865,
+    "activation_volume_m3_per_mol": 1.1205669705318193e-05,
+    "activation_volume_m3_per_particle": 1.8607452319527308e-29,
+    "volume_fit_standard_error_m3_per_mol": 6.732253874846268e-07,
+    "pressure_log_residuals": [
+      0.01963007648907933,
+      0.020397502112800225,
+      -0.07011344139176146,
+      0.00026480530608097297,
+      0.02982105748365882
+    ]
+  },
+  "R_J_per_mol_K": 8.31446261815324,
+  "single_path": {
+    "temperatures_K": [
+      800.0,
+      900.0,
+      1000.0,
+      1100.0,
+      1200.0
+    ],
+    "D_m2_per_s": [
+      3.215334963541827e-16,
+      3.93936881164111e-15,
+      2.92406469777097e-14,
+      1.5075218502471605e-13,
+      5.913266885368222e-13
+    ],
+    "recovered_prefactor_m2_per_s": 1.99999999999998e-06,
+    "recovered_enthalpy_J_per_mol": 149999.99999999994
+  },
+  "two_path": {
+    "temperatures_K": [
+      800.0,
+      1000.0,
+      1600.0
+    ],
+    "weights": [
+      [
+        0.9940564076228554,
+        0.005943592377144507
+      ],
+      [
+        0.9378496456634627,
+        0.0621503543365373
+      ],
+      [
+        0.2902567256806796,
+        0.7097432743193204
+      ]
+    ],
+    "apparent_enthalpy_kJ_per_mol": [
+      100.47548739017155,
+      104.972028346923,
+      156.77946194554562
+    ],
+    "crossover_temperature_K": 1392.8965365483912
+  },
+  "pressure": {
+    "temperature_K": 1000.0,
+    "pressures_GPa": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "D_over_D_at_zero_P": [
+      1.0,
+      0.8866789123554027,
+      0.7861994936157599,
+      0.6971065118935904,
+      0.6181096437616773
+    ],
+    "recovered_volume_m3_per_mol": 4.000000000000001e-06,
+    "per_atom_volume_m3": 6.642156268695386e-30,
+    "slope_per_GPa": -0.4810894201709042
+  },
+  "fcc_volume_example": {
+    "radius_nm": 0.128,
+    "lattice_volume_per_atom_nm3": 0.011863283203031443,
+    "hard_sphere_volume_nm3": 0.008784529755548188,
+    "ratio": 0.740480489693061
+  },
+  "melting_curve_volume_m3_per_mol": 4e-06
+}

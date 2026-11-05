@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Finite domains and reproducible diffusion computation — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a aria-current=page href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Finite domains and reproducible diffusion computation</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#finite-slab">4.1 A finite slab with absorbing faces L9 00:20</a></li><li><a href="#amount">4.2 Mean amount and the long-time mode L9 16:57</a></li><li><a href="#homogenization">4.3 Closed homogenization preserves the mean L9 24:06</a></li><li><a href="#plotting">4.4 From a Scilab demonstration to a reproducible Python calculation L11 00:20</a></li><li><a href="#numerics">4.5 A conservative explicit diffusion update</a></li><li><a href="#refinement">4.6 Check a solver by refinement against an exact mode</a></li><li><a href="#exercises">4.7 Exercises with worked solutions</a></li><li><a href="#sources">4.8 Sources, visual checks, and limits</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A finite specimen can become more uniform either by redistributing its solute internally or by losing solute through its surfaces. The concentration curves can look smoother in both cases. Their amount balances distinguish the processes, and the boundary conditions determine which calculation represents the experiment.</p>
+<p class="source-note">Source spine: L9's finite slab and homogenization modes, L10's related tutorial checks, and L11's Scilab plotting demonstrations. The explicit finite-difference solver, positivity argument, refinement experiment, and Python implementation are original teaching extensions. They are separate from evaluating an analytic profile in plotting software.</p>
+
+<section id="finite-slab"><h2>4.1 A finite slab with absorbing faces <a class="timestamp" href="https://www.youtube.com/watch?v=KtM4Oz1whN4&amp;t=20s">L9 00:20</a></h2>
+<p>Let a planar specimen occupy <span class="math">\(0&lt;x&lt;L\)</span>, with full thickness <span class="math">\(L&gt;0\)</span> in meters. Concentration <span class="math">\(c(x,t)\)</span> is in mol/m³, time in seconds, and constant scalar diffusivity <span class="math">\(D&gt;0\)</span> is in m²/s. The initial interior concentration is uniform, <span class="math">\(c_0&gt;0\)</span>. At positive time impose ideal absorbing faces: <span class="math">\(c(0,t)=c(L,t)=0\)</span>. The local equation remains <span class="math">\(\partial_tc=D\partial_{xx}c\)</span>.</p>
+<p>An absorbing face means the environment removes solute quickly enough to maintain its prescribed zero concentration. A vacuum does not establish that idealization by itself: desorption or surface reactions may limit removal. The model also assumes lateral dimensions large enough that edge transport is negligible. At the two initial/boundary corners the uniform initial interior and suddenly zero surfaces are incompatible pointwise. The series solution will recover the initial state inside the open interval and in an integral sense, while satisfying the zero boundaries for positive time.</p>
+<p>Seek a separated contribution <span class="math">\(c=X(x)T(t)\)</span>. On a region where neither factor vanishes, division gives <span class="math">\(T'/(DT)=X''/X\)</span>. The left side depends only on time and the right only on position, so both equal a separation constant. A nonzero spatial solution that vanishes at both ends requires a negative constant, written <span class="math">\(-k^2\)</span>. The spatial equation is <span class="math">\(X''+k^2X=0\)</span>, giving a sine plus cosine. The first boundary removes the cosine, and the second requires <span class="math">\(k=n\pi/L\)</span> for positive integer <span class="math">\(n\)</span>.</p>
+<p>The zero separation constant gives only the zero linear function under these boundaries. A positive separation constant gives hyperbolic functions whose two zero endpoints also force the zero solution. The nontrivial modes are therefore <span class="math">\(\sin(n\pi x/L)e^{-Dn^2\pi^2t/L^2}\)</span>. Each has the correct time sign: positive diffusivity makes it decay rather than grow.</p>
+<p>Linearity permits a sum of these modes. Orthogonality on the interval gives <span class="math">\(\int_0^L\sin(n\pi x/L)\sin(m\pi x/L)dx=(L/2)\delta_{nm}\)</span>, where <span class="math">\(\delta_{nm}\)</span> is one if the integer indices agree and zero otherwise. This follows by expressing the sine product as a difference of cosines and integrating. Multiplying the initial expansion by one sine and integrating selects its coefficient:</p>
+\[
+a_n=\frac2L\int_0^L c_0\sin\!\left(\frac{n\pi x}{L}\right)dx
+=\frac{2c_0}{n\pi}[1-(-1)^n]. \tag{4.1}
+\]
+<p>Even modes vanish; odd modes have coefficient <span class="math">\(4c_0/(n\pi)\)</span>. The resulting solution is</p>
+\[
+\frac{c(x,t)}{c_0}=\frac4\pi\sum_{j=0}^\infty
+\frac{\sin[(2j+1)\pi x/L]}{2j+1}
+\exp\!\left[-\frac{(2j+1)^2\pi^2Dt}{L^2}\right]. \tag{4.2}
+\]
+<p>At every positive time the exponential factors suppress high modes, permitting the needed termwise differentiation away from the initial limit. The index <span class="math">\(j\)</span> is dimensionless; <span class="math">\(L\)</span> is the full interval thickness. A formula written on a centered interval with half-thickness as its length parameter must be converted before comparing decay times. A factor-of-two length change becomes a factor of four in a diffusion time.</p>
+</section>
+
+<section id="amount"><h2>4.2 Mean amount and the long-time mode <a class="timestamp" href="https://www.youtube.com/watch?v=KtM4Oz1whN4&amp;t=1017s">L9 16:57</a></h2>
+<p>Define the spatial mean <span class="math">\(\bar c(t)=L^{-1}\int_0^L c(x,t)dx\)</span>. This bar denotes a mean, not a Laplace transform. Integrating each odd sine gives <span class="math">\(2L/[(2j+1)\pi]\)</span>. Thus</p>
+\[
+\frac{\bar c(t)}{c_0}=\frac8{\pi^2}\sum_{j=0}^\infty
+\frac{e^{-(2j+1)^2\pi^2Dt/L^2}}{(2j+1)^2}. \tag{4.3}
+\]
+<p>The total amount per area is <span class="math">\(L\bar c\)</span>. It decreases toward zero because both boundaries are sinks. At long time the first mode dominates; its relaxation time is <span class="math">\(\tau_0=L^2/(\pi^2D)\)</span>. The next nonzero mode decays nine times faster. This separation of time scales explains the usefulness of a one-mode approximation after the initial transient.</p>
+<p>The approximation needs a time criterion. Define dimensionless time <span class="math">\(\vartheta=Dt/L^2\)</span>. In the mean series, the omitted remainder relative to its first term is <span class="math">\(\sum_{j\geq1}(2j+1)^{-2}\exp(-[(2j+1)^2-1]\pi^2\vartheta)\)</span>. It is bounded above by <span class="math">\((\pi^2/8-1)e^{-8\pi^2\vartheta}\)</span>, since the odd reciprocal-square sum is <span class="math">\(\pi^2/8\)</span>. The sum identity also follows from (4.3) at its uniform initial integral limit. One can instead compare converged sums numerically without invoking that closed form.</p>
+<p>At <span class="math">\(\vartheta=0.1\)</span>, the laboratory gives mean fraction 0.30211809 and first-mode fraction 0.30210560. The relative error against the full sum is approximately <span class="math">\(4.1370\times10^{-5}\)</span>. A short-time use of the same approximation would miss the many modes needed to represent nearly uniform concentration with thin depleted boundary layers.</p>
+<p>Flux signs provide a second check. The signed left-face flux points toward decreasing <span class="math">\(x\)</span>; the signed right-face flux points toward increasing <span class="math">\(x\)</span>. Net outward rate per area is <span class="math">\(J(L,t)-J(0,t)\)</span>, not their signed sum. Differentiating (4.2) at both faces yields</p>
+\[
+J(L,t)-J(0,t)=\frac{8Dc_0}{L}
+\sum_{j=0}^\infty e^{-(2j+1)^2\pi^2Dt/L^2}
+=-L\frac{d\bar c}{dt}. \tag{4.4}
+\]
+<p>The final equality follows independently by differentiating the mean series. The code also checks it with a centered finite difference of the mean. At <span class="math">\(\vartheta=0.1\)</span>, the dimensionless outward rate in units <span class="math">\(Dc_0/L\)</span> is 2.98277293. A negative amount derivative and positive outward loss are consistent descriptions of the same balance.</p>
+<p>If both surfaces instead maintain the same nonzero concentration <span class="math">\(c_s\)</span>, subtract it first. The difference <span class="math">\(c-c_s\)</span> has zero boundary values and initial value <span class="math">\(c_0-c_s\)</span>, so (4.2) applies to that difference. The final uniform concentration is <span class="math">\(c_s\)</span>, approached from above during desorption and from below during absorption. The reservoir can change specimen amount throughout that approach.</p>
+</section>
+
+<section id="homogenization"><h2>4.3 Closed homogenization preserves the mean <a class="timestamp" href="https://www.youtube.com/watch?v=KtM4Oz1whN4&amp;t=1446s">L9 24:06</a></h2>
+<p>A composition modulation inside a closed specimen poses a different boundary problem. For a simple one-wavelength example, set <span class="math">\(c(x,0)=c_m+A_0\cos(2\pi x/L)\)</span>, with mean concentration <span class="math">\(c_m&gt;0\)</span> and amplitude <span class="math">\(|A_0|\leq c_m\)</span>. Its derivative vanishes at both faces, making it compatible with impermeable boundaries. The same function is also compatible with a periodic interval.</p>
+<p>Substitution shows that the mean remains constant while the amplitude obeys <span class="math">\(dA/dt=-D(2\pi/L)^2A\)</span>. Therefore</p>
+\[
+c(x,t)=c_m+A_0\cos(2\pi x/L)e^{-4\pi^2Dt/L^2}. \tag{4.5}
+\]
+<p>The cosine integrates to zero, so the amount per area remains <span class="math">\(Lc_m\)</span>. More generally, a Fourier mode of wavenumber <span class="math">\(k\)</span>, in m⁻¹, decays at rate <span class="math">\(Dk^2\)</span>. If its wavelength is <span class="math">\(\lambda=2\pi/k\)</span>, its amplitude relaxation time is <span class="math">\(\lambda^2/(4\pi^2D)\)</span>. Finer composition variations smooth sooner at the same diffusivity.</p>
+<p>The L11 slide at <a href="https://www.youtube.com/watch?v=-UCtJNHgLHY&amp;t=1320s">22:00</a> labels an odd sine series of the form (4.2) a homogenization problem. That displayed formula has absorbing endpoints and loses its mean. It cannot describe closed-system homogenization to a nonzero mean. Equation (4.5) supplies a mass-conserving model of that physical question. The distinction is visible in Figure 4.1, not merely a change of terminology.</p>
+<figure><img src="figures/ch04-boundary-models.svg" width="1000" height="380" alt="Finite specimen profiles under absorbing boundaries decay toward zero; a closed cosine-modulated specimen smooths toward mean one without loss."><figcaption>Figure 4.1. Original calculated time slices at <span class="math">\(Dt/L^2=0.01,0.05,0.2\)</span>. Left: initially uniform concentration normalized by <span class="math">\(c_0\)</span>, with two absorbing faces. Right: <span class="math">\(c/c_m=1+0.4\cos(2\pi x/L)e^{-4\pi^2Dt/L^2}\)</span>, with zero face flux. The smoothing curves have different amount balances. The static comparison and <a href="code/ch04.py">reproducible generator</a> expose both boundary models without implying measured material behavior.</figcaption></figure>
+</section>
+
+<section id="plotting"><h2>4.4 From a Scilab demonstration to a reproducible Python calculation <a class="timestamp" href="https://www.youtube.com/watch?v=-UCtJNHgLHY&amp;t=20s">L11 00:20</a></h2>
+<p>The source demonstration evaluates analytic expressions on arrays and plots the results. That is different from numerically integrating the diffusion PDE. Both can be useful, but they require different checks. An analytic profile implementation must preserve the formula, units, and source/boundary conditions. A PDE solver must additionally resolve spatial and temporal discretization errors and boundary updates.</p>
+<p>Scilab's range construction corresponds to creating a NumPy position array. An elementwise square evaluates a function separately at each array coordinate; a matrix product computes a different operation. In Python, NumPy arrays use <code>**</code> for elementwise powers, whereas <code>^</code> is not exponentiation. A loop over times should label the resulting curves by the physical time used in the formula, not merely the loop index. Curve labels and axis units are part of reproducibility.</p>
+<p>The source Scilab code visible at <a href="https://www.youtube.com/watch?v=-UCtJNHgLHY&amp;t=925s">L11 15:25</a> uses activation parameter <span class="math">\(Q=200000\)</span> J/mol, prefactor <span class="math">\(D_0=10^{-5}\)</span> m²/s, and gas constant <span class="math">\(R=8.314\)</span> J/(mol·K). It converts Celsius to kelvin by adding 273.15 and days to seconds by multiplying by 86400. These displayed values resolve a caption ambiguity that reduced the activation value to 200. They are illustrative source-code inputs, not a verified diffusivity database for a named steel.</p>
+<p>The Arrhenius expression is <span class="math">\(D=D_0e^{-Q/(RT)}\)</span>, with absolute temperature <span class="math">\(T\)</span> in kelvin. Using the displayed inputs at 1000 °C gives <span class="math">\(T=1273.15\)</span> K and <span class="math">\(D=6.2248442\times10^{-14}\)</span> m²/s. For one day and depth 1 mm, the normalized maintained-source excess is approximately <span class="math">\(5.3180\times10^{-22}\)</span>. The small value is a consequence of these particular input parameters and threshold location; it is not evidence that diffusion has a sharp finite front.</p>
+<p>The chapter program has no network access or external side effects when run without <code>--figures</code>; it returns a JSON record of model checks. With <code>--figures</code>, it writes the original SVG under <code>figures/</code>. The scientific inputs and assumptions are in the source. Its plotting routines evaluate the analytic solutions; its separate finite-difference routine advances a discretized PDE. The saved output makes those two computations distinguishable.</p>
+</section>
+
+<section id="numerics"><h2>4.5 A conservative explicit diffusion update</h2>
+<p>As an original numerical extension, introduce equally spaced nodes <span class="math">\(x_i=i\Delta x\)</span> and time levels <span class="math">\(t_n=n\Delta t\)</span>. Let <span class="math">\(u_i^n\)</span> approximate concentration at that node and time. Here the integer <span class="math">\(n\)</span> indexes time levels, not the spatial eigenmodes in (4.1). Approximate the face flux between neighboring nodes by <span class="math">\(J_{i+1/2}^n=-D(u_{i+1}^n-u_i^n)/\Delta x\)</span>.</p>
+<p>An interior cell's accumulation is minus the difference of its two face fluxes divided by cell width. A forward time step therefore gives</p>
+\[
+u_i^{n+1}=u_i^n+r(u_{i+1}^n-2u_i^n+u_{i-1}^n),
+\qquad r=\frac{D\Delta t}{\Delta x^2}. \tag{4.6}
+\]
+<p>The mesh ratio <span class="math">\(r\)</span> is dimensionless. Sharing one flux value at each face makes interior transfers cancel when cell balances are summed. This provides conservation for a finite-volume implementation with the appropriate boundary accounting. The laboratory uses fixed-value endpoint nodes, so a sum over interior nodes changes by the fluxes through its adjacent boundary faces; it does not claim that the absorbing specimen's amount stays constant.</p>
+<p>Rearrange (4.6) as <span class="math">\(u_i^{n+1}=r u_{i-1}^n+(1-2r)u_i^n+r u_{i+1}^n\)</span>. When <span class="math">\(0\leq r\leq1/2\)</span>, these weights are nonnegative and sum to one. Each interior update is a convex average, so it stays between the previous neighboring minimum and maximum. Nonnegative initial data remain nonnegative if the boundary updates also preserve nonnegativity. A boundary algorithm that injects a negative concentration can break that property even when the interior ratio is valid.</p>
+<p>The upper bound is necessary for this interior positivity property over arbitrary nonnegative data. Set a selected interior value to one and its neighbors to zero. The new central value is <span class="math">\(1-2r\)</span>, negative if <span class="math">\(r&gt;1/2\)</span>. At <span class="math">\(r=0.6\)</span> it becomes <span class="math">\(-0.2\)</span>. This counterexample is more informative than interpreting any one apparently smooth unstable run as evidence that the time step is safe.</p>
+<p>A Fourier check gives the related stability mechanism. For a periodic spatial mode <span class="math">\(u_i^n=G^n e^{\mathrm i i\kappa}\)</span>, where <span class="math">\(\mathrm i^2=-1\)</span> and <span class="math">\(\kappa\)</span> is the dimensionless phase increment, substitution yields <span class="math">\(G=1-4r\sin^2(\kappa/2)\)</span>. All modes in the continuum phase range have <span class="math">\(|G|\leq1\)</span> exactly for <span class="math">\(0\leq r\leq1/2\)</span>. At the upper endpoint the alternating mode has <span class="math">\(G=-1\)</span> and does not decay. Thus this limiting stability bound does not promise faithful damping of the shortest resolved wavelengths.</p>
+<p>A fixed finite Dirichlet grid samples a restricted eigenmode set and can have a slightly different sharp spectral bound. The convex-averaging limit remains a simple uniform positivity condition. We do not transfer the Fourier formula to arbitrary irregular grids, nonlinear coefficients, or complicated boundary updates. Those models require their own discrete operators and checks.</p>
+</section>
+
+<section id="refinement"><h2>4.6 Check a solver by refinement against an exact mode</h2>
+<p>Use dimensionless position <span class="math">\(X=x/L\)</span> and time <span class="math">\(\vartheta=Dt/L^2\)</span>. The smooth initial profile <span class="math">\(u(X,0)=\sin\pi X\)</span> is compatible with zero concentration at both ends. Its exact solution is <span class="math">\(u=\sin\pi X\,e^{-\pi^2\vartheta}\)</span>. This removes the initial corner discontinuity of the uniform absorbing slab and isolates a clean spatial/time accuracy test.</p>
+<p>On a grid with <span class="math">\(N\)</span> equal intervals, the sampled sine is also an exact eigenvector of the discrete update. Its per-step amplification is <span class="math">\(G_N=1-4r\sin^2[\pi/(2N)]\)</span>. After <span class="math">\(m\)</span> time steps its numerical amplitude is <span class="math">\(G_N^m\)</span>. This supplies an independent algebraic check on the implementation, beyond comparing two numerical solvers that might share the same error.</p>
+<p>At fixed <span class="math">\(r\)</span> and final dimensionless time, <span class="math">\(m\)</span> scales like <span class="math">\(N^2\)</span>. Expanding the sine and <span class="math">\(\ln G_N\)</span> shows that the accumulated exponent differs from <span class="math">\(-\pi^2\vartheta\)</span> by order <span class="math">\(N^{-2}\)</span>. Halving grid spacing should therefore reduce the error by approximately four for this smooth single-mode test, away from accidental cancellation in the error coefficient.</p>
+<p>The actual run uses <span class="math">\(r=0.4\)</span>, final <span class="math">\(\vartheta=0.05\)</span>, and 40, 80, and 160 intervals. Maximum errors are approximately <span class="math">\(2.1703351\times10^{-4}\)</span>, <span class="math">\(5.4216574\times10^{-5}\)</span>, and <span class="math">\(1.3551534\times10^{-5}\)</span>. Consecutive ratios are 4.00308 and 4.00077. These are executed numerical checks of the stated scheme and mode, not a proof of accuracy for every initial state or boundary condition.</p>
+<p>The cost consequence is immediate. Doubling resolution in one dimension doubles the number of nodes and requires roughly four times as many explicit steps for the same physical time. The arithmetic work therefore grows by roughly eight in this simple implementation. An implicit method can change the stability restriction, but then requires solving a coupled linear system and still needs an accuracy study. Stability, accuracy, conservation, and cost are separate design questions.</p>
+</section>
+
+<section id="exercises"><h2>4.7 Exercises with worked solutions</h2>
+<div class="exercise"><h3>1. Derive the odd-mode coefficients</h3><p>A slab initially has uniform concentration <span class="math">\(c_0\)</span>, while both surfaces maintain <span class="math">\(c_s\)</span> for positive time. Derive the coefficients for the difference from the final state. State the full-thickness convention and explain the initial corner mismatch.</p><details><summary>Worked solution</summary><p>Let <span class="math">\(v=c-c_s\)</span>. Its endpoints vanish and its initial interior value is <span class="math">\(c_0-c_s\)</span>. Orthogonality on <span class="math">\([0,L]\)</span> gives <span class="math">\(a_n=(2/L)(c_0-c_s)\int_0^L\sin(n\pi x/L)dx=2(c_0-c_s)[1-(-1)^n]/(n\pi)\)</span>. Only odd modes remain. Here <span class="math">\(L\)</span> is the full thickness; the slowest decay time is <span class="math">\(L^2/(\pi^2D)\)</span>. The initial interior limit can be uniform even though the positive-time boundary values differ at the two endpoints. Pointwise equality at those corners is not claimed; interior and integral initial convergence are the appropriate statements.</p></details></div>
+<div class="exercise"><h3>2. Relate mean loss to signed face fluxes</h3><p>Derive (4.4) directly from conservation. For an initially loaded absorbing slab, state the signs of the two Cartesian face fluxes and explain why their signed sum is the wrong measure of total loss.</p><details><summary>Worked solution</summary><p>Integrating <span class="math">\(\partial_tc=-\partial_xJ\)</span> across the specimen gives <span class="math">\(L\,d\bar c/dt=J(0,t)-J(L,t)\)</span>. Thus outward loss is <span class="math">\(J(L,t)-J(0,t)\)</span>. Near the left face concentration increases with <span class="math">\(x\)</span>, so <span class="math">\(J(0,t)&lt;0\)</span>; near the right face it decreases, so <span class="math">\(J(L,t)&gt;0\)</span>. Symmetry makes their signed sum zero even though both faces lose solute. The outward normals have opposite directions, so their outward contributions add as magnitudes in this symmetric desorption problem. The mean series derivative and profile-gradient calculation give the same positive rate.</p></details></div>
+<div class="exercise"><h3>3. Diagnose an incorrectly labeled homogenization plot</h3><p>A program evaluates the odd sine series (4.2) and calls the result closed-system homogenization. Identify two checks that reveal the mismatch. Give a compatible alternative model with a nonzero conserved mean.</p><details><summary>Worked solution</summary><p>The series forces zero concentration at both endpoints for positive time, which is an absorbing Dirichlet condition, not impermeability. Its integral from (4.3) decreases to zero, contradicting conservation of nonzero initial amount in a closed specimen. The alternative (4.5) has zero derivatives at the faces and integral <span class="math">\(Lc_m\)</span> at every time. Its cosine amplitude decays while its mean survives. A graph becoming flatter is insufficient to distinguish loss from internal redistribution; check the boundary data and integrated amount.</p></details></div>
+<div class="exercise"><h3>4. Find a positivity failure before running a long simulation</h3><p>Show that (4.6) maps every nonnegative interior data vector to nonnegative values when <span class="math">\(0\leq r\leq1/2\)</span>, assuming nonnegative boundary values. Construct a counterexample at <span class="math">\(r=0.6\)</span>. Does this positivity result alone establish accurate diffusion?</p><details><summary>Worked solution</summary><p>The update weights are <span class="math">\((r,1-2r,r)\)</span>. In the stated range they are nonnegative and sum to one, so each new value is a convex average of nonnegative neighbors. At <span class="math">\(r=0.6\)</span>, a nonnegative unit spike surrounded by zeros gives central value <span class="math">\(1-1.2=-0.2\)</span>. This one-step counterexample is independent of long-time visual appearance. Positivity does not establish accuracy: a stable but coarse grid can damp a concentration pattern at the wrong rate, and the limiting alternating mode at <span class="math">\(r=1/2\)</span> is not damped at all. Refinement against a known solution addresses that separate question.</p></details></div>
+<div class="exercise"><h3>5. Predict the discrete single-mode solution</h3><p>For nodes <span class="math">\(i=0,\ldots,N\)</span> with zero endpoints, insert <span class="math">\(u_i=\sin(\pi i/N)\)</span> into the explicit update. Derive its amplitude after <span class="math">\(m\)</span> steps and explain how it checks the implementation independently of the continuum solution.</p><details><summary>Worked solution</summary><p>The sine-addition identity gives <span class="math">\(u_{i+1}+u_{i-1}=2\cos(\pi/N)u_i\)</span>. Therefore one step multiplies the vector by <span class="math">\(1+2r[\cos(\pi/N)-1]=1-4r\sin^2[\pi/(2N)]\)</span>. After <span class="math">\(m\)</span> steps the factor is its <span class="math">\(m\)</span>th power. The program compares its time-stepped array with this discrete exact result, detecting indexing, in-place-update, or step-count errors. Comparing that amplitude with <span class="math">\(e^{-\pi^2\vartheta}\)</span> then tests discretization error. The two checks isolate implementation from approximation.</p></details></div>
+<div class="exercise"><h3>6. Design a reproducibility and cost check</h3><p>Specify a compact check of a Python counterpart to the source plotting demonstration. Include units, a boundary-value check, and a numerical-refinement test if a PDE solver is added. Explain the cost of doubling resolution for the explicit one-dimensional scheme.</p><details><summary>Worked solution</summary><p>Record the concentration convention, <span class="math">\(D_0,Q,R\)</span> with consistent units, absolute temperature, elapsed seconds, domain, initial concentration, and surface condition. Convert Celsius and days explicitly. Evaluate the analytic maintained-source profile at the surface and far into the solid; it must approach the specified values. Check that its integrated uptake equals time-integrated surface flux. For an added PDE solver, use a compatible exact sine mode, keep the mesh ratio fixed, and compare errors after each grid refinement. The executed errors here decrease by roughly four when spacing halves. Doubling node count requires roughly four times as many explicit steps at the same final time, giving roughly eight times the work in this implementation. These are arithmetic scaling estimates, not measured universal wall times.</p></details></div>
+</section>
+
+<section id="sources"><h2>4.8 Sources, visual checks, and limits</h2><p><a href="https://www.youtube.com/watch?v=KtM4Oz1whN4">L9</a> supplies the finite-slab and modulation source spine; <a href="https://www.youtube.com/watch?v=W550ilil_mc">L10</a> supplies supporting tutorial checks, including the steady flux whose distinction from transient uptake is developed in Chapters 1 and 3; <a href="https://www.youtube.com/watch?v=-UCtJNHgLHY">L11</a> supplies the Scilab demonstration. Selected 720p source frames verify the first-mode loss formula (L9 22:03), the displayed Scilab constants and conversions (L11 15:25), and the boundary-condition mismatch on the slide labeled homogenization (L11 22:00). This is a bounded visual inspection, not a complete audiovisual audit.</p><p>The series assume a fixed planar specimen, constant scalar diffusivity, and the stated ideal boundary conditions. Numerical verification concerns the specified explicit scheme and smooth test mode. It does not certify an industrial heat treatment or a proprietary software simulation. Closed homogenization, absorbing degassing, and maintained-surface uptake retain separate amount balances throughout the notes. Crystal geometry and atomic defects next explain which microscopic paths can produce the continuum rates used so far.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch04.py"><code>code/ch04.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Finite-slab modes, source parameters, and numerical refinement checks.&quot;&quot;&quot;
+
+import argparse
+import json
+from pathlib import Path
+import numpy as np
+from scipy.special import erfc
+
+
+def absorbing_profile(x, tau, terms=100):
+    odd = np.arange(1, 2 * terms, 2, dtype=float)
+    return np.sum(
+        4
+        / (np.pi * odd[:, None])
+        * np.sin(np.pi * odd[:, None] * x[None, :])
+        * np.exp(-(np.pi**2) * odd[:, None] ** 2 * tau),
+        axis=0,
+    )
+
+
+def finite_difference(cells, final_tau, ratio=0.4):
+    if cells &lt; 3 or not 0 &lt; ratio &lt;= 0.5 or final_tau &lt;= 0:
+        raise ValueError(&quot;Invalid grid, time, or explicit mesh ratio&quot;)
+    x = np.linspace(0, 1, cells + 1)
+    dx = 1 / cells
+    steps = int(np.ceil(final_tau / (ratio * dx * dx)))
+    dtau = final_tau / steps
+    r = dtau / (dx * dx)
+    u = np.sin(np.pi * x)
+    u[[0, -1]] = 0
+    for _ in range(steps):
+        old = u.copy()
+        u[1:-1] = old[1:-1] + r * (old[2:] - 2 * old[1:-1] + old[:-2])
+        assert np.min(u) &gt;= -1e-14
+    exact = np.sin(np.pi * x) * np.exp(-(np.pi**2) * final_tau)
+    amplification = 1 - 4 * r * np.sin(np.pi / (2 * cells)) ** 2
+    discrete_exact = np.sin(np.pi * x) * amplification**steps
+    assert np.max(np.abs(u - discrete_exact)) &lt; 1e-12
+    return dict(
+        cells=cells,
+        steps=steps,
+        actual_ratio=r,
+        max_error=float(np.max(np.abs(u - exact))),
+    )
+
+
+def run():
+    odd = np.arange(1, 401, 2, dtype=float)
+    tau = 0.1
+    mean = np.sum(8 / (np.pi**2 * odd**2) * np.exp(-(odd**2) * np.pi**2 * tau))
+    first_mean = 8 / np.pi**2 * np.exp(-(np.pi**2) * tau)
+    outward = 8 * np.sum(np.exp(-(odd**2) * np.pi**2 * tau))
+    eps = 1e-6
+
+    def slab_mean(time):
+        return np.sum(
+            8 / (np.pi**2 * odd**2) * np.exp(-(odd**2) * np.pi**2 * time)
+        )
+
+    derivative = (slab_mean(tau + eps) - slab_mean(tau - eps)) / (2 * eps)
+    assert abs(derivative + outward) &lt; 1e-8
+    x = np.linspace(0, 1, 10001)
+    closed = 1 + 0.4 * np.cos(2 * np.pi * x) * np.exp(-4 * np.pi**2 * tau)
+    assert abs(np.trapezoid(closed, x) - 1) &lt; 1e-12
+    refinements = [finite_difference(n, 0.05) for n in (40, 80, 160)]
+    ratios = [
+        refinements[i][&quot;max_error&quot;] / refinements[i + 1][&quot;max_error&quot;]
+        for i in range(2)
+    ]
+    assert all(3.8 &lt; value &lt; 4.2 for value in ratios)
+    # An unstable update makes a nonnegative spike negative for r&gt;1/2.
+    invalid = 1 - 2 * 0.6
+    assert invalid &lt; 0
+    # Visually checked source Scilab inputs; not measured steel data.
+    Q, D0, gas_constant = 200000.0, 1e-5, 8.314
+    T_C, days = 1000.0, 1.0
+    T_K, seconds = T_C + 273.15, days * 86400
+    source_D = D0 * np.exp(-Q / (gas_constant * T_K))
+    incorrect_D = D0 * np.exp(-200 / (gas_constant * T_K))
+    normalized_at_1mm = erfc(1e-3 / (2 * np.sqrt(source_D * seconds)))
+    return dict(
+        absorbing_mean_at_tau_point1=float(mean),
+        first_mode_mean_at_tau_point1=float(first_mean),
+        first_mode_relative_error=float((mean - first_mean) / mean),
+        outward_flux_in_Dc0_per_L_units=float(outward),
+        closed_mean=1.0,
+        refinements=refinements,
+        error_ratios=ratios,
+        unstable_spike_center=invalid,
+        illustrative_source_parameters=dict(
+            Q_J_per_mol=Q,
+            D0_m2_per_s=D0,
+            R_J_per_mol_K=gas_constant,
+            T_C=T_C,
+            T_K=T_K,
+            days=days,
+        ),
+        illustrative_source_D_m2_per_s=float(source_D),
+        activation_unit_error_multiplier=float(incorrect_D / source_D),
+        illustrative_normalized_1mm_profile=float(normalized_at_1mm),
+    )
+
+
+def figures():
+    import matplotlib
+
+    matplotlib.use(&quot;Agg&quot;)
+    matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch04&quot;
+    import matplotlib.pyplot as plt
+
+    root = Path(__file__).resolve().parents[1]
+    plt.style.use(&quot;dark_background&quot;)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.8), constrained_layout=True)
+    x = np.linspace(0, 1, 501)
+    for tau in (0.01, 0.05, 0.2):
+        axes[0].plot(x, absorbing_profile(x, tau), label=f&quot;τ={tau:g}&quot;)
+        axes[1].plot(
+            x, 1 + 0.4 * np.cos(2 * np.pi * x) * np.exp(-4 * np.pi**2 * tau)
+        )
+    for axis in axes:
+        axis.set_xlabel(&quot;Position x/L&quot;)
+        axis.set_ylabel(&quot;Normalized concentration&quot;)
+        axis.grid(alpha=0.2)
+    axes[0].set_title(&quot;Absorbing faces: amount decreases&quot;)
+    axes[1].set_title(&quot;Closed specimen: mean remains one&quot;)
+    axes[0].legend()
+    (root / &quot;figures&quot;).mkdir(exist_ok=True)
+    fig.savefig(
+        root / &quot;figures/ch04-boundary-models.svg&quot;, metadata={&quot;Date&quot;: None}
+    )
+    plt.close(fig)
+
+
+if __name__ == &quot;__main__&quot;:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--figures&quot;, action=&quot;store_true&quot;)
+    args = parser.parse_args()
+    print(json.dumps(run(), indent=2))
+    if args.figures:
+        figures()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;absorbing_mean_at_tau_point1&quot;: 0.30211809377327326,
+  &quot;first_mode_mean_at_tau_point1&quot;: 0.3021055950832642,
+  &quot;first_mode_relative_error&quot;: 4.137021339230699e-05,
+  &quot;outward_flux_in_Dc0_per_L_units&quot;: 2.982772925059304,
+  &quot;closed_mean&quot;: 1.0,
+  &quot;refinements&quot;: [
+    {
+      &quot;cells&quot;: 40,
+      &quot;steps&quot;: 200,
+      &quot;actual_ratio&quot;: 0.3999999999999999,
+      &quot;max_error&quot;: 0.000217033513196907
+    },
+    {
+      &quot;cells&quot;: 80,
+      &quot;steps&quot;: 800,
+      &quot;actual_ratio&quot;: 0.3999999999999999,
+      &quot;max_error&quot;: 5.42165743065981e-05
+    },
+    {
+      &quot;cells&quot;: 160,
+      &quot;steps&quot;: 3200,
+      &quot;actual_ratio&quot;: 0.3999999999999999,
+      &quot;max_error&quot;: 1.3551533839195606e-05
+    }
+  ],
+  &quot;error_ratios&quot;: [
+    4.0030842223554925,
+    4.000770315001943
+  ],
+  &quot;unstable_spike_center&quot;: -0.19999999999999996,
+  &quot;illustrative_source_parameters&quot;: {
+    &quot;Q_J_per_mol&quot;: 200000.0,
+    &quot;D0_m2_per_s&quot;: 1e-05,
+    &quot;R_J_per_mol_K&quot;: 8.314,
+    &quot;T_C&quot;: 1000.0,
+    &quot;T_K&quot;: 1273.15,
+    &quot;days&quot;: 1.0
+  },
+  &quot;illustrative_source_D_m2_per_s&quot;: 6.224844244642626e-14,
+  &quot;activation_unit_error_multiplier&quot;: 157639714.37907174,
+  &quot;illustrative_normalized_1mm_profile&quot;: 5.317960140531607e-22
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-03.html">← Previous</a><a href="chapter-05.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

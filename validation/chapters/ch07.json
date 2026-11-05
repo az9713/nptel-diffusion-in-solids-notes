@@ -1,0 +1,42 @@
+{
+  "reviews": [
+    {
+      "chapter": 7,
+      "round": 1,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "a3a89aa34cc1c5cd89ff797e5e75175ca3fd36cfb41dae63310efd93ecaa355d",
+      "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+      "assets": {
+        "assets/ch07-walk-moments.svg": "01f59067f3efd8d182e36d27a1d10cc040703367836941f810b24792dcb30580"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "The selected source carbon-frequency example is not reconstructed from its ambiguous lattice parameter/coefficient caption; no specific source number is falsely reproduced.",
+        "This is scientific manuscript/code/asset-model acceptance. Browser appearance, responsive layout, print, accessibility, and comprehensive slide verification remain separate."
+      ],
+      "private_review_record_sha256": "a594b74be43ac783df468e2e47cc4a8c28c9684eee17dca1a7895ba5f2302a36"
+    },
+    {
+      "chapter": 7,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "a3a89aa34cc1c5cd89ff797e5e75175ca3fd36cfb41dae63310efd93ecaa355d",
+      "code_sha256": "1d8dd944f6120f08517bb0c86276a47d065b3016aef666ee9eff860e56448479",
+      "assets": {
+        "assets/ch07-walk-moments.svg": "01f59067f3efd8d182e36d27a1d10cc040703367836941f810b24792dcb30580"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source maps checked; no new full direct caption/audio/source-frame review",
+        "Current scientific SVG rendered and inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "1dc1733cfb3fbeeae8892d73f7234f0593acbb5b3c8ec0c812ba64f0ba53d7c5"
+    }
+  ]
+}

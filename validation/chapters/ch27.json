@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 27,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "5889a7051d57455f74a19b192575aeb249248e4dd5b422162c4b9848d9fbe33f",
+      "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+      "assets": {
+        "assets/ch27-minimum.svg": "3bf4501cda548ff953f4c49ebfd3e2c5ec4fbfb95171554ab86684b174632744"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Morgan garnet factors are not transferred to halides",
+        "No material-specific formation/binding energies or measured concentration curves verified",
+        "No whole-reader/browser/print acceptance"
+      ],
+      "private_review_record_sha256": "785860d8c14c551bc1ab5bc5a8741c00cca4034a228298a1a85eaaba918069c9"
+    },
+    {
+      "chapter": 27,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "5889a7051d57455f74a19b192575aeb249248e4dd5b422162c4b9848d9fbe33f",
+      "code_sha256": "36ea3b294b4335927e0d5e050b1a7cad972e353de7953a67a89d552d2b95132d",
+      "assets": {
+        "assets/ch27-minimum.svg": "3bf4501cda548ff953f4c49ebfd3e2c5ec4fbfb95171554ab86684b174632744"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Source numerical formation/binding energies and coordination examples are not imported as material calibration. The chapter does not claim to execute the cited garnet simulation or transfer its geometry factors to halides.",
+        "Browser layout/reader assembly and full media review remain separate evidence."
+      ],
+      "private_review_record_sha256": "0ecacc62ee73c5a6524ffb76cecfca42995bf35be530df4c1360b2dd153f81f1"
+    }
+  ]
+}

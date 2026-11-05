@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>NMR diffusion measurements and local jump times — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a aria-current=page href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>NMR diffusion measurements and local jump times</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#spins">18.1 Precession, excitation, and relaxation are separate terms L39 00:21</a></li><li><a href="#phase">18.2 A field gradient converts displacement into phase L39 08:32</a></li><li><a href="#pulsed">18.3 Derive the finite-pulse Stejskal–Tanner factor L39 16:45</a></li><li><a href="#local-relaxation">18.4 Local-field fluctuations produce a different inverse problem L39 18:48</a></li><li><a href="#exercises">18.5 Exercises with complete solutions</a></li><li><a href="#sources">18.6 Sources and scope</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A spin echo can lose amplitude because atoms changed position in a field gradient or because their local magnetic environments fluctuated. Those are different observations. The first can encode a displacement distribution directly; the second yields a correlation time whose relation to diffusion depends on a microscopic model.</p>
+<p class="source-note">Lecture 39 supplies NMR foundations, gradient echoes, and indirect relaxation. Lecture 40 supplies Bloch-equation and motional-narrowing questions; Lecture 41's opening NMR reference is context only. The pulse-sequence timing is checked against the original Stejskal–Tanner paper at printed pp. 289–290. Numerical parameters below are synthetic.</p>
+
+<section id="spins"><h2>18.1 Precession, excitation, and relaxation are separate terms <a class="timestamp" href="https://www.youtube.com/watch?v=1N7zVBUdJpo&amp;t=21s">L39 00:21</a></h2>
+<p>A nucleus with angular momentum <span class="math">\(\boldsymbol I\)</span> can have magnetic moment <span class="math">\(\boldsymbol\mu=\gamma\boldsymbol I\)</span>, where the gyromagnetic ratio <span class="math">\(\gamma\)</span> has units rad/(s·T) in the angular-frequency convention. In a uniform static magnetic field <span class="math">\(\boldsymbol B=B_0\boldsymbol e_z\)</span>, the magnetic energy is <span class="math">\(-\boldsymbol\mu\cdot\boldsymbol B\)</span>. For a spin-one-half nucleus, the two Zeeman levels differ by <span class="math">\(\hbar|\gamma|B_0\)</span>, with reduced Planck constant hbar in J·s. Their thermal population imbalance produces an equilibrium longitudinal magnetization.</p>
+<p>A radio-frequency field near the Larmor angular frequency <span class="math">\(\omega_0=|\gamma|B_0\)</span> rotates magnetization away from that equilibrium direction. The classical ensemble magnetization <span class="math">\(\boldsymbol M\)</span> then precesses and relaxes. A phenomenological Bloch–Torrey model for an isotropic constant diffusivity D is</p>
+\[
+\partial_t\boldsymbol M=\gamma\boldsymbol M\times\boldsymbol B
+-\frac{M_x\boldsymbol e_x+M_y\boldsymbol e_y}{T_2}
+-\frac{M_z-M_{\rm eq}}{T_1}\boldsymbol e_z
++D\nabla^2\boldsymbol M. \tag{18.1}
+\]
+<p>Here <span class="math">\(T_1\)</span> is the longitudinal recovery time and <span class="math">\(T_2\)</span> the transverse coherence-decay time, both in seconds; <span class="math">\(M_{\rm eq}\)</span> is the uniform equilibrium longitudinal magnetization. The first term is precession, the next two describe relaxation, and the last transports magnetization with diffusing spins. Flow, exchange between environments, spatially varying equilibrium, and anisotropic diffusion require additional terms or a modified operator.</p>
+<p>Inversion recovery probes the return of longitudinal magnetization after a pulse sequence changes its sign. Transverse free-induction decay also contains static field inhomogeneity, often summarized by an apparent <span class="math">\(T_2^*\)</span>; refocusing echoes can remove a reversible static contribution without undoing every dynamic process. The distinction prevents static broadening from being misidentified as irreversible diffusion.</p>
+<p>There is no universal inequality <span class="math">\(T_2\leq T_1\)</span>. In a simple passive Markov two-level model with an additional nonnegative pure-dephasing rate, <span class="math">\(T_2^{-1}=(2T_1)^{-1}+T_\varphi^{-1}\)</span>, implying <span class="math">\(T_2\leq2T_1\)</span> within that model. Many solids have much shorter transverse times, but that common regime is not the stronger universal theorem. Relaxation conventions and the measured sequence must accompany reported times.</p>
+</section>
+
+<section id="phase"><h2>18.2 A field gradient converts displacement into phase <a class="timestamp" href="https://www.youtube.com/watch?v=1N7zVBUdJpo&amp;t=512s">L39 08:32</a></h2>
+<p>Take one spatial direction x and a field gradient <span class="math">\(g(t)\)</span>, in T/m. The local angular frequency shift is <span class="math">\(\gamma g(t)x\)</span>. Radio-frequency refocusing pulses reverse the sign with which some parts of the trajectory contribute to the final phase. Let <span class="math">\(g_{\rm eff}(t)\)</span> denote that signed effective gradient. A spin at trajectory <span class="math">\(x(t)\)</span> accumulates phase <span class="math">\(\phi=\gamma\int_0^{T_E}g_{\rm eff}(t)x(t)dt\)</span>, where <span class="math">\(T_E\)</span> is echo time.</p>
+<p>A balanced echo has <span class="math">\(\int_0^{T_E}g_{\rm eff}dt=0\)</span>, so a stationary spin's position-dependent phase refocuses. Define <span class="math">\(q_g(t)=\gamma\int_0^t g_{\rm eff}(s)ds\)</span>, in m⁻¹. The subscript distinguishes this gradient moment from a nuclear-scattering wavevector. Integration by parts gives <span class="math">\(\phi=-\int_0^{T_E}q_g(t)dx(t)\)</span> when the endpoint moments vanish.</p>
+<p>For unrestricted Brownian motion with coefficient D, increments have zero mean and variance <span class="math">\(2Ddt\)</span>. The stochastic integral is Gaussian with variance <span class="math">\(\langle\phi^2\rangle=2D\int q_g^2dt\)</span>. The characteristic function of a zero-mean Gaussian is <span class="math">\(\langle e^{i\phi}\rangle=e^{-\langle\phi^2\rangle/2}\)</span>. The normalized diffusion attenuation is therefore</p>
+\[
+\frac{S(g)}{S(0)}=e^{-bD},\qquad
+b=\int_0^{T_E}q_g^2(t)dt. \tag{18.2}
+\]
+<p>The b value has units s/m², making the exponent dimensionless. Normalizing by a zero-gradient sequence at identical timing removes a common transverse-relaxation factor in this simple model. It does not remove flow phase, exchange, restricted geometry, or gradient-dependent artifacts. The Gaussian-increment assumption is the hinge of the monoexponential free-diffusion result.</p>
+<p>For a constant physical gradient with a refocusing pulse at time tau and echo at twice tau, the effective gradient changes sign halfway. The moment is triangular: <span class="math">\(q_g=\gamma gt\)</span> on the first interval and <span class="math">\(q_g=\gamma g(2\tau-t)\)</span> on the second. Integrating its square gives <span class="math">\(b=2\gamma^2g^2\tau^3/3\)</span>. Including independent transverse relaxation, the unnormalized echo factor is <span class="math">\(\exp[-2\tau/T_2-(2/3)\gamma^2g^2D\tau^3]\)</span>. The coefficient two-thirds belongs to this sequence and timing convention.</p>
+</section>
+
+<section id="pulsed"><h2>18.3 Derive the finite-pulse Stejskal–Tanner factor <a class="timestamp" href="https://www.youtube.com/watch?v=1N7zVBUdJpo&amp;t=1005s">L39 16:45</a></h2>
+<p>Consider two rectangular effective-gradient pulses of equal magnitude g, duration <span class="math">\(\delta\)</span>, and opposite sign, with leading edges separated by <span class="math">\(\Delta\geq\delta\)</span>. The first occupies <span class="math">\([0,\delta]\)</span>, and the second <span class="math">\([\Delta,\Delta+\delta]\)</span>. Between them, the gradient moment is constant even though the applied effective gradient is zero. At the end it returns to zero.</p>
+<p>The moment rises as <span class="math">\(\gamma gt\)</span> during the first pulse, remains <span class="math">\(\gamma g\delta\)</span> until time Delta, then falls as <span class="math">\(\gamma g(\Delta+\delta-t)\)</span>. Its squared integral is the sum of two ramps and a plateau:</p>
+\[
+b=\gamma^2g^2\left[\frac{\delta^3}{3}
++\delta^2(\Delta-\delta)+\frac{\delta^3}{3}\right]
+=\gamma^2g^2\delta^2\left(\Delta-\frac\delta3\right). \tag{18.3}
+\]
+<p>Equation (18.2) then gives the free-diffusion pulsed-gradient echo. The finite-pulse correction is not optional unless the pulse is short relative to separation at the required accuracy. Using only <span class="math">\(\gamma^2g^2\delta^2\Delta\)</span> overestimates b and consequently underestimates a fitted D from the same attenuation. Leading-edge separation is specified because defining Delta as a gap instead changes the algebraic expression.</p>
+<p><a href="https://doi.org/10.1063/1.1695690">Stejskal and Tanner's original 1965 paper</a>, printed pp. 289–290, develops the gradient-echo attenuation with explicit timing. The inspected original copy confirms the constant-gradient coefficient and the rectangular-pulse <span class="math">\(\delta^2(\Delta-\delta/3)\)</span> term. This citation supports the pulse model, while the derivation above makes its assumptions and units locally inspectable.</p>
+<p>The laboratory uses synthetic <span class="math">\(\gamma=10^8\)</span> rad/(s·T), <span class="math">\(\delta=0.005\)</span> s, <span class="math">\(\Delta=0.05\)</span> s, and <span class="math">\(D=2\times10^{-12}\)</span> m²/s. At g ten T/m, b is <span class="math">\(1.208333\times10^{12}\)</span> s/m² and normalized echo is 0.0892185. Fitting ln echo against b recovers <span class="math">\(2\times10^{-12}\)</span> m²/s. Numerical integration of the actual piecewise moment agrees with (18.3) to relative error <span class="math">\(3.45\times10^{-8}\)</span>. These are model checks, not a claim that those settings suit a particular spectrometer or material.</p>
+</section>
+
+<section id="local-relaxation"><h2>18.4 Local-field fluctuations produce a different inverse problem <a class="timestamp" href="https://www.youtube.com/watch?v=1N7zVBUdJpo&amp;t=1128s">L39 18:48</a></h2>
+<p>Indirect diffusion-sensitive NMR observes fluctuations of magnetic dipolar, electric quadrupolar, or electronic local environments. A local reorientation can modulate those environments without transporting a nucleus far across the specimen. For a minimal magnetic-field model, let h(t) be a stationary, zero-mean scalar field fluctuation in tesla. Define its correlation \(C(t)=\langle h(t)h(0)\rangle\), in T². A simple model is \(C(t)=C_0e^{-|t|/\tau_c}\), where \(C_0=\langle h^2\rangle\) is the field variance and \(\tau_c\gt0\) is a correlation time in seconds. Other interactions require their corresponding fluctuating coupling instead of this scalar field. The two-sided angular-frequency spectral density is</p>
+\[
+J(\omega)=\int_{-\infty}^{\infty}C(t)e^{-i\omega t}dt
+=\frac{2C_0\tau_c}{1+\omega^2\tau_c^2}. \tag{18.4}
+\]
+<p>The result follows by adding the two half-line exponential integrals, or integrating the cosine transform. Relaxation rates sample combinations of these spectral densities at zero, Larmor, and sometimes harmonic frequencies, weighted by the interaction geometry and spin quantum numbers. Equation (18.4) alone does not fix a universal T1 or T2 expression for every nucleus. Spin locking introduces a rotating-frame time <span class="math">\(T_{1\rho}\)</span>; metallic electrons can add a Korringa-type contribution. Separate channels must not be automatically assigned to diffusion.</p>
+<p>At fixed nonzero frequency, the function <span class="math">\(\tau_c/(1+\omega^2\tau_c^2)\)</span> rises and then falls, peaking at <span class="math">\(\omega\tau_c=1\)</span>. A single measured relaxation rate can therefore correspond to either a short or a long correlation time. In the normalized example, values <span class="math">\(\omega\tau_c=0.1\)</span> and ten both give 0.0990099. Multi-frequency and temperature measurements can help select a regime, but only with a justified interaction model.</p>
+<p>A minimal calculation explains <dfn>motional narrowing</dfn>. Assume the scalar field h(t) is Gaussian and produces a frequency fluctuation \(\delta\omega(t)=\gamma h(t)\). Its free-precession phase is \(\theta(t)=\gamma\int_0^t h(s)ds\). Stationarity gives \(\langle\theta^2\rangle=2\gamma^2\int_0^t(t-s)C(s)ds\). For the exponential correlation, the normalized coherence is therefore</p>
+\[
+\langle e^{i\theta(t)}\rangle
+=\exp\!\left\{-\gamma^2C_0\left[\tau_ct-\tau_c^2(1-e^{-t/\tau_c})\right]\right\}.
+\]
+<p>At \(t\ll\tau_c\), this becomes \(\exp(-\gamma^2C_0t^2/2)\), the quasistatic Gaussian dephasing limit. At \(t\gg\tau_c\), its logarithmic decay rate tends to \(T_{2,\rm dyn}^{-1}=\gamma^2C_0\tau_c\). In the fast-fluctuation regime \(|\gamma|\sqrt{C_0}\tau_c\ll1\), the coherence survives many correlation times and is approximately exponential over its decay scale. At fixed field variance, shortening the correlation time then reduces this linewidth contribution and lengthens transverse coherence. This scalar Gaussian model illustrates the mechanism; it does not supply every dipolar or quadrupolar relaxation rate. Confined hopping, molecular rotations, and exchanges within a local cluster can decorrelate a field without unlimited displacement, so narrowing alone does not determine long-range diffusion.</p>
+<p>To convert a microscopic waiting time \(\tau_j\) into long-time three-dimensional diffusivity, independent isotropic jumps of length ell give \(D=\ell^2/(6\tau_j)\). A correlated jump model may instead give \(D=f\ell^2/(6\tau_j)\), where f is the specified model's dimensionless tracer correlation factor; independence gives f equal to one. A local-field correlation time need not equal that waiting time: several jumps can be needed to randomize a local environment, or one rotation can do so without net translation. This is why direct gradient attenuation and indirect relaxation require different interpretation even when both are called NMR diffusion measurements.</p>
+<figure><img src="assets/figures/ch18-nmr.svg" alt="Left: synthetic normalized gradient echo decays exponentially with b. Right: an exponential local-field spectral density peaks at frequency times correlation time one and has equal values at 0.1 and ten."><figcaption>Figure 18.1. Distinct NMR inversions. Gradient attenuation encodes a displacement model; local relaxation samples a spectral density that is not one-to-one in correlation time. Both panels are synthetic and use the stated angular-frequency convention.</figcaption></figure>
+<p>The <a href="code/ch18.py">laboratory</a> writes <a href="code/ch18-output.json">actual numerical output</a>, checks the pulse moment by quadrature, and fits noiseless synthetic echo data. It establishes no confidence interval for an experiment and includes no restricted diffusion, flow, exchange, or pulse imperfections. Those would change the observation model, not merely add more digits to D.</p>
+</section>
+
+<section id="exercises"><h2>18.5 Exercises with complete solutions</h2>
+<div class="exercise"><h3>1. Identify Bloch–Torrey terms</h3><p>Which terms in (18.1) describe precession, longitudinal recovery, transverse decay, and diffusion? Why does a gradient not replace the relaxation terms?</p><details><summary>Worked solution</summary><p>The cross product rotates magnetization around the field. The term proportional to <span class="math">\(M_z-M_{\rm eq}\)</span> restores longitudinal magnetization, while the x and y terms reduce transverse coherence. The Laplacian transports magnetization carried by moving spins. A gradient changes position-dependent precession and, with motion, the phase distribution; it does not account for all local spin–lattice or spin–spin relaxation. Removing T1 and T2 because a diffusion term is present would discard physically distinct processes.</p></details></div>
+<div class="exercise"><h3>2. A constant-gradient echo</h3><p>Integrate the triangular moment for a refocusing pulse at tau. Recover the two-thirds coefficient.</p><details><summary>Worked solution</summary><p>The first half contributes <span class="math">\(\gamma^2g^2\int_0^\tau t^2dt=\gamma^2g^2\tau^3/3\)</span>. The second half is the reflected triangle and contributes the same amount. Thus <span class="math">\(b=2\gamma^2g^2\tau^3/3\)</span>, and the normalized diffusion factor is <span class="math">\(e^{-bD}\)</span>. A common independent transverse decay over total time twice tau multiplies it by <span class="math">\(e^{-2\tau/T_2}\)</span>. Confusing tau with total echo time changes a cubic factor, not just notation.</p></details></div>
+<div class="exercise"><h3>3. Quantify the narrow-pulse bias</h3><p>For the synthetic delta 0.005 s and Delta 0.05 s, by what fraction does omitting delta/3 overestimate b? What happens to an inferred coefficient?</p><details><summary>Worked solution</summary><p>The relative overestimate is <span class="math">\(\Delta/(\Delta-\delta/3)-1=\delta/(3\Delta-\delta)=0.0344828\)</span>, or 3.448%. With fixed measured attenuation, fitted D equals the true D times <span class="math">\((\Delta-\delta/3)/\Delta=0.966667\)</span>, a 3.333% underestimate. The percentages differ because one is normalized by the true b and the other by the true D. The correction requires the leading-edge separation convention.</p></details></div>
+<div class="exercise"><h3>4. Derive the Lorentzian local spectrum</h3><p>Transform the exponential correlation and explain its inverse ambiguity at one frequency.</p><details><summary>Worked solution</summary><p>Evenness gives <span class="math">\(J=2C_0\int_0^\infty e^{-t/\tau_c}\cos(\omega t)dt\)</span>. Taking the real part of <span class="math">\(2C_0/(1/\tau_c+i\omega)\)</span> gives (18.4). With <span class="math">\(u=\omega\tau_c\)</span>, the normalized response is <span class="math">\(u/(1+u^2)\)</span>, unchanged by replacing u with its reciprocal. A single rate proportional to that spectrum cannot generally distinguish fast and slow branches without additional information.</p></details></div>
+<div class="exercise"><h3>5. Counterexample to a universal time inequality</h3><p>In the simple relation <span class="math">\(T_2^{-1}=(2T_1)^{-1}+T_\varphi^{-1}\)</span>, what occurs when pure dephasing vanishes?</p><details><summary>Worked solution</summary><p>Setting <span class="math">\(T_\varphi^{-1}=0\)</span> gives <span class="math">\(T_2=2T_1\)</span>, which directly contradicts a proposed universal <span class="math">\(T_2\leq T_1\)</span> inequality. Nonnegative pure dephasing yields the weaker bound within the stated passive Markov model. Many solids occupy a much stronger-dephasing regime, but an empirical tendency cannot substitute for the actual model conditions.</p></details></div>
+<div class="exercise"><h3>6. Relaxation without transport</h3><p>A nucleus rotates between orientations in a fixed cage and has a temperature-dependent correlation time. Can that time determine long-range D?</p><details><summary>Worked solution</summary><p>No. Rotation can change dipolar or quadrupolar fields and therefore NMR relaxation while the nucleus remains confined. Its mean-square displacement saturates instead of growing indefinitely as <span class="math">\(6Dt\)</span>. A long-range coefficient would require a model of cage escape or translational jumps, with jump length, waiting-time statistics, and correlations. Gradient-time dependence or complementary tracer/scattering measurements can help distinguish localized reorientation from transport, but the local relaxation time alone is insufficient.</p></details></div>
+</section>
+
+<section id="sources"><h2>18.6 Sources and scope</h2><p><a href="https://www.youtube.com/watch?v=1N7zVBUdJpo">L39</a> supplies the NMR spine, and <a href="https://www.youtube.com/watch?v=BYsrUKCe578&amp;t=821s">L40's bounded relaxation questions</a> supply diagnostic prompts. The original Stejskal–Tanner paper was inspected at printed pp. 289–290; the pulse factors are both cited and derived locally. No empirical nuclear constant is inferred from the synthetic gyromagnetic ratio used in the laboratory.</p><p>Gradient echoes require an accessible displacement and coherence window. Indirect relaxation requires an interaction and correlation model. The next chapter uses recoil-free nuclear resonance and neutron scattering to observe frequency and wavevector dependence, adding information about jump geometry while retaining its own resolution and linewidth conventions.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch18.py"><code>code/ch18.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Synthetic pulsed-gradient echo and local-correlation checks.&quot;&quot;&quot;
+
+import json
+from pathlib import Path
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import trapezoid
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch18&quot;
+BASE = Path(__file__).resolve().parents[1]
+gamma, delta, separation, diffusion = 1e8, 0.005, 0.05, 2e-12
+gradient = np.linspace(0, 10, 21)
+b = gamma**2 * gradient**2 * delta**2 * (separation - delta / 3)
+signal = np.exp(-b * diffusion)
+fitted = -np.polyfit(b, np.log(signal), 1)[0]
+assert np.isclose(fitted, diffusion, rtol=1e-12, atol=0)
+clock = np.linspace(0, separation + delta, 11001)
+q = (
+    gamma
+    * 10
+    * np.where(
+        clock &lt;= delta,
+        clock,
+        np.where(clock &lt;= separation, delta, separation + delta - clock),
+    )
+)
+numerical_b = trapezoid(q * q, clock)
+assert abs(numerical_b / b[-1] - 1) &lt; 1e-7
+u = np.logspace(-3, 3, 601)
+spectral = u / (1 + u * u)
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+ax[0].plot(b / 1e12, signal, &quot;o-&quot;)
+ax[0].set(
+    xlabel=&quot;b / 10¹² s per square meter&quot;, ylabel=&quot;Normalized echo amplitude&quot;
+)
+ax[1].semilogx(u, spectral)
+ax[1].set(
+    xlabel=&quot;Larmor angular frequency × correlation time&quot;,
+    ylabel=&quot;Normalized exponential spectral density&quot;,
+)
+fig.tight_layout()
+fig.savefig(BASE / &quot;assets/figures/ch18-nmr.svg&quot;, metadata={&quot;Date&quot;: None})
+out = {
+    &quot;synthetic&quot;: True,
+    &quot;gamma_rad_s_T&quot;: gamma,
+    &quot;pulse_duration_s&quot;: delta,
+    &quot;pulse_leading_edge_separation_s&quot;: separation,
+    &quot;D_true_m2_s&quot;: diffusion,
+    &quot;D_fitted_m2_s&quot;: float(fitted),
+    &quot;b_at_10_T_m_s_m2&quot;: float(b[-1]),
+    &quot;echo_at_10_T_m&quot;: float(signal[-1]),
+    &quot;numerical_b_relative_error&quot;: float(numerical_b / b[-1] - 1),
+    &quot;narrow_pulse_b_relative_overestimate&quot;: delta / (3 * separation - delta),
+    &quot;equal_local_spectral_values_u_0p1_and_10&quot;: [0.1 / 1.01, 10 / 101],
+}
+text = json.dumps(out, indent=2)
+(BASE / &quot;code/ch18-output.json&quot;).write_text(text + &quot;\n&quot;, encoding=&quot;utf-8&quot;)
+print(text)
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;synthetic&quot;: true,
+  &quot;gamma_rad_s_T&quot;: 100000000.0,
+  &quot;pulse_duration_s&quot;: 0.005,
+  &quot;pulse_leading_edge_separation_s&quot;: 0.05,
+  &quot;D_true_m2_s&quot;: 2e-12,
+  &quot;D_fitted_m2_s&quot;: 1.9999999999999996e-12,
+  &quot;b_at_10_T_m_s_m2&quot;: 1208333333333.3335,
+  &quot;echo_at_10_T_m&quot;: 0.08921851740926008,
+  &quot;numerical_b_relative_error&quot;: 3.4482758648479717e-08,
+  &quot;narrow_pulse_b_relative_overestimate&quot;: 0.034482758620689655,
+  &quot;equal_local_spectral_values_u_0p1_and_10&quot;: [
+    0.09900990099009901,
+    0.09900990099009901
+  ]
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-17.html">← Previous</a><a href="chapter-19.html">Next →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

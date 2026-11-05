@@ -1,0 +1,30 @@
+{
+  "synthetic": true,
+  "fcc_packing": 0.7404804896930609,
+  "bcc_packing": 0.6801747615878316,
+  "fcc_octahedral_radius_ratio": 0.41421356237309515,
+  "fcc_tetrahedral_radius_ratio": 0.22474487139158894,
+  "fcc_radius_nm": 0.12727922061357855,
+  "fcc_burgers_nm": 0.2545584412271571,
+  "fcc_primitive_to_conventional_volume": 0.25,
+  "angles_degrees": [
+    2.0,
+    10.0
+  ],
+  "spacing_nm": [
+    7.162336062318773,
+    1.434214155708732
+  ],
+  "small_angle_spacing_nm": [
+    7.16197243913529,
+    1.432394487827058
+  ],
+  "frenkel_site_fractions": [
+    0.00017320508075688773,
+    5.773502691896258e-05
+  ],
+  "triple_defect_atom_counts": [
+    99,
+    99
+  ]
+}

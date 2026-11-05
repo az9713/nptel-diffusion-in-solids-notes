@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 3,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7d34882216a27fbe6eb9924b5793d6c3fcb332a95289b95460ee8c6d681da6b5",
+      "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+      "assets": {
+        "figures/ch03-profile-families.svg": "ac6f59c231d28f784719770c8ef4428b4edfea5e6ac648f5be5fe27ac6697e82"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No new source-frame or comprehensive audiovisual review",
+        "Full reader/browser/accessibility/print/export release checks separate"
+      ],
+      "private_review_record_sha256": "d261c42d96f47ac0df52fa13fd6bd00ed0be7df38c7f53d22ba25564219ba982"
+    },
+    {
+      "chapter": 3,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "7d34882216a27fbe6eb9924b5793d6c3fcb332a95289b95460ee8c6d681da6b5",
+      "code_sha256": "c20042e12d97e164008354ce4f6e08e983e4a3fab1502ba40e73450452e55a41",
+      "assets": {
+        "figures/ch03-profile-families.svg": "ac6f59c231d28f784719770c8ef4428b4edfea5e6ac648f5be5fe27ac6697e82"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "L7/8 checked through complete source map; not full captions reread",
+        "L10 full normalized captions read directly; no source frames/audio",
+        "Scientific SVG rendered/inspected; no full browser/print audit"
+      ],
+      "private_review_record_sha256": "6bc0a792cdd56cb75b862a74e36c3c71771e245d9c11077bdd18a3a4776a6777"
+    }
+  ]
+}

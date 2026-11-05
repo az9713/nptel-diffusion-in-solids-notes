@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 6,
+      "round": 1,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "d3e21e0593d6f15b707204a6bcfc34bd0ab2114bc72305bbd9bb0a37dbdf8b01",
+      "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+      "assets": {
+        "assets/ch06-trapping.svg": "940076a1d857750d20fc56abb4ae80e2132b7ec8449c5fa1a56d7d23dea8825f"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full empirical positron spectrum or source software dataset was available or claimed reproduced.",
+        "Browser/print/accessibility and comprehensive source-frame verification remain separate checks."
+      ],
+      "private_review_record_sha256": "7d5dfc6de6acf53c6582ffd179da6a732a013071d561b728ea33848dd7a55105"
+    },
+    {
+      "chapter": 6,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "d3e21e0593d6f15b707204a6bcfc34bd0ab2114bc72305bbd9bb0a37dbdf8b01",
+      "code_sha256": "efafa731eb4f691deb713ca0896487d0ae81a3442f094c8830749b6fe7ad81c5",
+      "assets": {
+        "assets/ch06-trapping.svg": "940076a1d857750d20fc56abb4ae80e2132b7ec8449c5fa1a56d7d23dea8825f"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source maps read plus targeted L15/L20 captions; not complete direct caption/audio reread",
+        "SelectedL20@280 frame shows pair question, not solute decimal; no decimal visual certification",
+        "Current scientific SVG rendered and inspected; full reader/print checks separate"
+      ],
+      "private_review_record_sha256": "068cbf65ccf6568f2511f3dc4f1e5791c31ec340eb25fd29a995f3b081418713"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "synthetic": true,
+  "seed": 7142026,
+  "walkers": 40000,
+  "sample_steps": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    200
+  ],
+  "sample_msd_over_length_squared": [
+    1.0,
+    4.9919,
+    10.0238,
+    24.98695,
+    50.0669,
+    100.0105,
+    200.02775
+  ],
+  "final_sample_mean_over_length": [
+    0.006625,
+    0.001225,
+    -0.03835
+  ],
+  "gamma_per_s": 6000000.0,
+  "jump_length_m": 2e-10,
+  "diffusivity_m2_per_s": 4.0000000000000006e-14,
+  "tutorial_msd_m2": 1.2000000000000002e-08,
+  "tutorial_rms_m": 0.00010954451150103323,
+  "million_step_rms_nm": 100.0,
+  "biased_walk": {
+    "steps": 100,
+    "positive_probability": 0.6,
+    "mean_over_length": 19.999999999999996,
+    "variance_over_length_squared": 96.0,
+    "second_moment_over_length_squared": 495.9999999999999
+  },
+  "dimensionless_wave_numbers": [
+    0.1,
+    0.5,
+    2.0
+  ],
+  "exact_to_diffusive_decay_ratio": [
+    0.9991669443948357,
+    0.9793395048770179,
+    0.7080734182735712
+  ],
+  "fcc_direction_second_moment": [
+    [
+      3.9999999999999996,
+      -3.3140008060500445e-17,
+      -3.3140008060500445e-17
+    ],
+    [
+      -3.3140008060500445e-17,
+      3.9999999999999996,
+      -3.3140008060500445e-17
+    ],
+    [
+      -3.3140008060500445e-17,
+      -3.3140008060500445e-17,
+      3.9999999999999996
+    ]
+  ],
+  "ninefold_rms_step_ratio_fixed_length": 81,
+  "ninefold_rms_step_ratio_tripled_length": 9
+}

@@ -1,0 +1,40 @@
+{
+  "status": "synthetic defects; separately labeled source oxygen D data",
+  "oxygen_tutorial": {
+    "source_frame": "L55 at1248s",
+    "T_C": [
+      600,
+      650,
+      700,
+      750,
+      800,
+      850
+    ],
+    "D_m2_s": [
+      3.24e-20,
+      2e-19,
+      1.03e-18,
+      4.48e-18,
+      1.71e-17,
+      5.77e-17
+    ],
+    "slope_K": -29363.91379618557,
+    "ln_prefactor_SI": -11.246040386218313,
+    "Q_J_mol": 244145.1635810591,
+    "D_at_1000C_m2_s": 1.2570277336866137e-15,
+    "limit": "lecture exercise extrapolation; no empirical validation"
+  },
+  "charged_model_at_ratio_10_m2_s": 2.1000000000000002e-17,
+  "source_sink_x_at100s": 6.6890850294570185,
+  "pair_conservation": {
+    "dopant_error": 4.440892098500626e-16,
+    "defect_error": 1.942890293094024e-16
+  },
+  "Si31_activity_fraction_half_life_2p6h": {
+    "1": 0.7659831786679869,
+    "10": 0.06953321725603046,
+    "50": 1.6254051140376568e-06,
+    "100": 2.6419417847397683e-12,
+    "200": 6.979856393953953e-24
+  }
+}

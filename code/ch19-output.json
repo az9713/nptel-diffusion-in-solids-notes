@@ -1,0 +1,13 @@
+{
+  "Fe57_evaluated_half_life_s": 9.8e-08,
+  "Fe57_mean_life_s": 1.4138411400711842e-07,
+  "natural_single_line_FWHM_eV": 4.655487369095562e-09,
+  "natural_single_line_Doppler_FWHM_m_s": 9.68351379536536e-05,
+  "synthetic_jump_length_m": 3e-10,
+  "synthetic_residence_time_s": 1e-09,
+  "synthetic_D_m2_s": 1.5e-11,
+  "test_q_per_m": 1000000000.0,
+  "continuum_angular_HWHM_per_s": 15000000.0,
+  "continuum_energy_HWHM_eV": 9.8731793542636e-09,
+  "small_q_jump_to_continuum_ratio": 0.9999950000127988
+}

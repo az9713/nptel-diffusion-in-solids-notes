@@ -1,0 +1,851 @@
+{
+  "scope": "Actual selected lecture-frame inspections, separately from complete available-caption reading. Repeated contexts are retained. Acquisition alone is not inspection; title-only/partial frames carry explicit limits. Raw frames remain private.",
+  "inspections": [
+    {
+      "reviewer": "root",
+      "lecture": 2,
+      "seconds": [
+        700
+      ],
+      "scope": "Selected derivative/tangent source discussion; not complete audiovisual review."
+    },
+    {
+      "reviewer": "root",
+      "lecture": 4,
+      "seconds": [
+        1628
+      ],
+      "scope": "Displayed ODE solution coefficient distinguished from inconsistent captioned verbal correction."
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 4,
+      "seconds": [
+        1628
+      ],
+      "scope": "Displayed ODE particular solution has the correct sine coefficient; bounded check of verbal/caption conflict.",
+      "frame_sha256": "542f000083b87f6b10597d4431e1e81d46ced19bf39953da3d1a76b3e3d40241"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 4,
+      "seconds": [
+        1628
+      ],
+      "scope": "Correct displayed ODE solution has minus1/3 sin2t; differs from final captioned verbal correction.",
+      "frame_sha256": "542f000083b87f6b10597d4431e1e81d46ced19bf39953da3d1a76b3e3d40241"
+    },
+    {
+      "reviewer": "root",
+      "lecture": 5,
+      "seconds": [
+        636
+      ],
+      "scope": "Displayed rational numerator/partial-fraction setup."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 5,
+      "seconds": [
+        636
+      ],
+      "scope": "Rational numerator8s²−4s+12 and partial-fraction setup; not final inversion.",
+      "frame_sha256": "1b32b1549513d01243f5078fcfe7a4783e0bdf3366c3398c4844ad331c3b7b2d"
+    },
+    {
+      "reviewer": "root",
+      "lecture": 9,
+      "seconds": [
+        1323
+      ],
+      "scope": "First-mode mean and outward-loss expression."
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 9,
+      "seconds": [
+        1323
+      ],
+      "scope": "Finite-domain numerical tutorial settings and boundary interpretation.",
+      "frame_sha256": "7457fab1a555668cdf902f94128c483a9b121d2b1cfd0dded56aad6a6992b5b8"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 9,
+      "seconds": [
+        1323
+      ],
+      "scope": "First-mode mean concentration and combined outward loss expression.",
+      "frame_sha256": "7457fab1a555668cdf902f94128c483a9b121d2b1cfd0dded56aad6a6992b5b8"
+    },
+    {
+      "reviewer": "root",
+      "lecture": 11,
+      "seconds": [
+        925,
+        1320
+      ],
+      "scope": "Scilab Arrhenius/unit settings and absorbing-slab versus closed-homogenization slide mismatch."
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 11,
+      "seconds": [
+        925
+      ],
+      "scope": "Homogenization/degassing tutorial constants and source-model mismatch.",
+      "frame_sha256": "0f2217d50927ac6e5d43c59dcdee9516616890e350f6873fe33e81062923e1cd"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 11,
+      "seconds": [
+        925
+      ],
+      "scope": "ScilabQ200000J/mol, D0=1e-5m²/s,R8.314, Celsius and days conversions.",
+      "frame_sha256": "0f2217d50927ac6e5d43c59dcdee9516616890e350f6873fe33e81062923e1cd"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 11,
+      "seconds": [
+        1320
+      ],
+      "scope": "Homogenization/degassing tutorial constants and source-model mismatch.",
+      "frame_sha256": "3408dc94f381b407bafe6d6b0f3a148a146edbce790135842b93924515221686"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 11,
+      "seconds": [
+        1320
+      ],
+      "scope": "Homogenization-labeled slide displays absorbing odd sine series.",
+      "frame_sha256": "3408dc94f381b407bafe6d6b0f3a148a146edbce790135842b93924515221686"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 18,
+      "seconds": [
+        1445
+      ],
+      "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+      "frame_sha256": "d90bba0c2fefbe6fbdfbdee6b6218a6eb71a0c8284ddb86bf8ca225e4202878e"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 18,
+      "seconds": [
+        1445,
+        1500,
+        1560
+      ],
+      "scope": "Five-frequency source derivation and coefficient inconsistency; selected source slides."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 18,
+      "seconds": [
+        1445
+      ],
+      "scope": "Five-frequency shell event counts1,4,7 and immediate reversal probability.",
+      "frame_sha256": "d90bba0c2fefbe6fbdfbdee6b6218a6eb71a0c8284ddb86bf8ca225e4202878e"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 18,
+      "seconds": [
+        1500
+      ],
+      "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+      "frame_sha256": "260abe902ff2849c053feddc90bd311571da1d4e89ee6238565453fc98ebf697"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 18,
+      "seconds": [
+        1500
+      ],
+      "scope": "Displayed approximate/exact FCC expressions have inconsistent rotation coefficients; selected primary formula checked separately.",
+      "frame_sha256": "260abe902ff2849c053feddc90bd311571da1d4e89ee6238565453fc98ebf697"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 18,
+      "seconds": [
+        1560
+      ],
+      "scope": "Selected correlation/five-frequency equations;1500 slide coefficients conflict with the primary standard formula, explicitly corrected in Ch8.",
+      "frame_sha256": "c8842ee694855fe7d8fb0391bcac1816fc4cedc0967e167b5ac1489eec75636d"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 18,
+      "seconds": [
+        1560
+      ],
+      "scope": "Restricted BCC expression and absence of within-first-shell nearest-neighbor rotation.",
+      "frame_sha256": "c8842ee694855fe7d8fb0391bcac1816fc4cedc0967e167b5ac1489eec75636d"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 20,
+      "seconds": [
+        280
+      ],
+      "scope": "Divacancy schematic only; this frame does not verify the separate solute-binding input.",
+      "frame_sha256": "d26286d660b48066bd1e5499e50a57117f4888e2035816132b6926807f439574"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 20,
+      "seconds": [
+        280
+      ],
+      "scope": "Q2 generic divacancy-dominance statement/schematic; not subsequent solute-decimal question.",
+      "frame_sha256": "d26286d660b48066bd1e5499e50a57117f4888e2035816132b6926807f439574"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 20,
+      "seconds": [
+        1690
+      ],
+      "scope": "Q14 temperature/pressure datasets and pressure-fit convention; actual inputs and units checked.",
+      "frame_sha256": "8fa081970617a988d05a457f09ef5f6b05693501a7c7bfbea7a1d8975b6af492"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 20,
+      "seconds": [
+        1690,
+        1810
+      ],
+      "scope": "Tutorial Arrhenius temperature/diffusivity and pressure/diffusivity tables; units and exponent verification."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 20,
+      "seconds": [
+        1690
+      ],
+      "scope": "Q14 full temperature/pressure exercise table; Celsius and10^5Pa labels; fixed800K pressure experiment.",
+      "frame_sha256": "8fa081970617a988d05a457f09ef5f6b05693501a7c7bfbea7a1d8975b6af492"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 20,
+      "seconds": [
+        1810
+      ],
+      "scope": "Q14 temperature/pressure datasets and pressure-fit convention; actual inputs and units checked.",
+      "frame_sha256": "9b18ad9fd259a82b238284544b27e896a22f3a29d6600c685e54aa77c3b6d050"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 20,
+      "seconds": [
+        1810
+      ],
+      "scope": "Pressure regression slope and handwritten dimensional slip in logarithmic slope units.",
+      "frame_sha256": "9b18ad9fd259a82b238284544b27e896a22f3a29d6600c685e54aa77c3b6d050"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 30,
+      "seconds": [
+        1129
+      ],
+      "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+      "frame_sha256": "1cf1a11e6666ad7756334780aaafd88064dfcd251734c928570ea22b3d9a2bb3"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 30,
+      "seconds": [
+        1129,
+        1376,
+        1439
+      ],
+      "scope": "Darken tutorial composition.38,gradient250/m,marker velocity4.5e-12m/s,interdiffusion3.25e-14m2/s and weighting."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 30,
+      "seconds": [
+        1129
+      ],
+      "scope": "Tutorial inputs show composition, marker velocity and profile-gradient inverse setup.",
+      "frame_sha256": "1cf1a11e6666ad7756334780aaafd88064dfcd251734c928570ea22b3d9a2bb3"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 30,
+      "seconds": [
+        1376
+      ],
+      "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+      "frame_sha256": "1f1534ea34b8730caed68715149ace1c4dd53490089be891336aef8a84b78d33"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 30,
+      "seconds": [
+        1376
+      ],
+      "scope": "Displayed interdiffusion coefficient and crossed intrinsic-weighting setup support tutorial inverse.",
+      "frame_sha256": "1f1534ea34b8730caed68715149ace1c4dd53490089be891336aef8a84b78d33"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 30,
+      "seconds": [
+        1439
+      ],
+      "scope": "Kirkendall tutorial inputs, concentration gradient, marker direction and reference-frame sign.",
+      "frame_sha256": "3482720e82ad44a2badb865f49f0993c1f7fe468d8597ee4fcbb3b2bf7dca8b5"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 30,
+      "seconds": [
+        1439
+      ],
+      "scope": "Displayed intrinsic-coefficient difference/sum setup; source numerical inference checked.",
+      "frame_sha256": "3482720e82ad44a2badb865f49f0993c1f7fe468d8597ee4fcbb3b2bf7dca8b5"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        203
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "c86328d175b97223581848a1d06aeeb02cb39cbd2e3bb3ff4f6d80543a1baf16"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 34,
+      "seconds": [
+        203,
+        450,
+        573,
+        636,
+        759,
+        885,
+        1009,
+        1196,
+        1258,
+        1319,
+        1380,
+        1503
+      ],
+      "scope": "Selected DICTRA tutorial setup, axes, output times and phase-fraction settings. Supports bounded screenshot description, not complete project acquisition or local execution."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        203
+      ],
+      "scope": "Slide states initially homogeneous Fe-0.15 mass percent C moving-boundary demonstration.",
+      "frame_sha256": "c86328d175b97223581848a1d06aeeb02cb39cbd2e3bb3ff4f6d80543a1baf16"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        450
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "6493d80ead73dd128521cb8ed84948e9afbda832850944300b12278b9a9841d0"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        450
+      ],
+      "scope": "Ferrite BCC_A2 seed width0.001micrometers with10linear points.",
+      "frame_sha256": "6493d80ead73dd128521cb8ed84948e9afbda832850944300b12278b9a9841d0"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        573
+      ],
+      "scope": "1050K/0.15masspercentC equilibrium context; BCC carbon about1e-4massfraction=0.01masspercent.",
+      "frame_sha256": "4dd2a2889e23edd822549af3a018db91f1a3aedcf760e137a7fcb7a45635bd83"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        636
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "326aa670c9969af37817c2398bd65037020d128434c6b340473adf32ad62274c"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        636
+      ],
+      "scope": "Same equilibrium composition slide confirms phase-specific BCC carbon context.",
+      "frame_sha256": "326aa670c9969af37817c2398bd65037020d128434c6b340473adf32ad62274c"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        759
+      ],
+      "scope": "Repeated equilibrium context slide; does not itself display the interface trajectory.",
+      "frame_sha256": "a39df3eb02bb883d68478b80226604b655cc58a1dc777d53a41b1c609b0e7736"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        885
+      ],
+      "scope": "Source interface trajectory plotted over0-30hours; no independent late-time equilibrium proof.",
+      "frame_sha256": "1f3bfc1299e84c22b890037a3a963af9c281940cb74150016b764034f7d85ed4"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        1009
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "6f194e797bab1daa8ed558ed7fb3fb44ecaf364d0f4acb7775d1d93e674ab8bc"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1009
+      ],
+      "scope": "Carbon profile output settings0,1e-4,300hours and0-2000micrometer distance range.",
+      "frame_sha256": "6f194e797bab1daa8ed558ed7fb3fb44ecaf364d0f4acb7775d1d93e674ab8bc"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        1196
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "1695be9e027a2369b640ebfcba645614a164c95b43896cca8008333f79dd47ac"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1196
+      ],
+      "scope": "Planar0.003mregion;100geometric points ratio1.02; FCC_A1,M3C2,M7C3 labels.",
+      "frame_sha256": "1695be9e027a2369b640ebfcba645614a164c95b43896cca8008333f79dd47ac"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        1258
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "c3019fd8a43a3879447c3d40468c5932ab3834005952fa8df6bd3db23f183ff9"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1258
+      ],
+      "scope": "General upper Hashin-Shtrikman bound selected in homogenization options.",
+      "frame_sha256": "c3019fd8a43a3879447c3d40468c5932ab3834005952fa8df6bd3db23f183ff9"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1319
+      ],
+      "scope": "Generic boundary-condition screen shows closed-system selections; not later activity value.",
+      "frame_sha256": "6aed4d7931d44c04fd470cca2c75ab55d6704434229d32acd59deb5a4969269c"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        1380
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "de85d34bd01e733ccc09440563c649afef9e1d7cf8ac31e3cab52c4bb45bb2da"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1380
+      ],
+      "scope": "Carbon component reference explicitly set to GRAPHITE.",
+      "frame_sha256": "de85d34bd01e733ccc09440563c649afef9e1d7cf8ac31e3cab52c4bb45bb2da"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 34,
+      "seconds": [
+        1503
+      ],
+      "scope": "Selected DICTRA demonstration conditions and setup/results sequence; inspection does not reproduce proprietary calculations.",
+      "frame_sha256": "8e1224098e1ba6b3be9040aaf46e2f5af8ef8a3deb624e8284b822c7199123db"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 34,
+      "seconds": [
+        1503
+      ],
+      "scope": "Source phase fraction plot places M3C2near surface and M7C3farther in.",
+      "frame_sha256": "8e1224098e1ba6b3be9040aaf46e2f5af8ef8a3deb624e8284b822c7199123db"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1007
+      ],
+      "scope": "Relaxation tutorial parameters and source numerical conventions.",
+      "frame_sha256": "8387b8ae367f05b95016f5dc639a408cf123eca415358faabea633468199999a"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 40,
+      "seconds": [
+        1007,
+        1068,
+        1128,
+        1189
+      ],
+      "scope": "Snoek/Gorsky numerical inputs and source model; sample-ratio orientation checked."
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1068
+      ],
+      "scope": "Relaxation tutorial parameters and source numerical conventions.",
+      "frame_sha256": "bb69d7bbfbdb8f2db59ffaf522d9988e69600ef9484f2ab6a76ae3a722be0fcb"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1128
+      ],
+      "scope": "Relaxation tutorial parameters and source numerical conventions.",
+      "frame_sha256": "d889aec742ceae4424b75a55eafd4b0092cc7f0659ba29d28644dc90a788b7c9"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1189
+      ],
+      "scope": "Relaxation tutorial parameters and source numerical conventions.",
+      "frame_sha256": "6e1127b66abf57a471fb3ed832e50b47eaa76c34a026b7370bdc459c7d26fccb"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1249
+      ],
+      "scope": "Tracer tutorial table of nine values and fit presentation.",
+      "frame_sha256": "8009e7bb0fbf5a46c9f783852ade613b640d588bc2c0d331e1d14cd99c1512be"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 40,
+      "seconds": [
+        1249,
+        1311
+      ],
+      "scope": "Nine-point radiotracer depth/activity table and displayed fit; log base, anneal time and slope checked."
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 40,
+      "seconds": [
+        1311
+      ],
+      "scope": "Tracer tutorial table of nine values and fit presentation.",
+      "frame_sha256": "872bd6eba56d516a5bebd31c408f725d13417ac45a907025dc8aea6a7d49a7c1"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 43,
+      "seconds": [
+        1014
+      ],
+      "scope": "B-regime introductory bullet only; no product formula yet.",
+      "frame_sha256": "9805d561e21d7fdabe010c1a3cc08dc9b62645a46848268239b17fb678583a84"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 43,
+      "seconds": [
+        1075
+      ],
+      "scope": "Instantaneous-source1.308 product formula displayed; slope appears to omit logarithm, resolved by primary Eq3.",
+      "frame_sha256": "541a9886b129b87d05b96c4ae8ecec4405c632a022ac06739591bf290c56c035"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 43,
+      "seconds": [
+        1323
+      ],
+      "scope": "Segregation-factor section title only; no numerical relation verified.",
+      "frame_sha256": "f0266ae1484ee81a371378d1b028f6fdb869fa5ed3d58a93d9b268075802338c"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 46,
+      "seconds": [
+        702
+      ],
+      "scope": "Six-jump-cycle title and net110 displacement; sequence not yet visible.",
+      "frame_sha256": "963e8aa383335ffe8bb9d284bcf2f7797cf172671fc4094818df151bfc23875b"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 46,
+      "seconds": [
+        948,
+        1695
+      ],
+      "scope": "Ordered-alloy six-jump schematic and nearest-neighbor tutorial; source minority-neighbor error checked against coordinates."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 46,
+      "seconds": [
+        948
+      ],
+      "scope": "Complete displayed six-jump configuration sequence with restored order and110 displacement.",
+      "frame_sha256": "f9719764d6f7b9ffea263a4d7f6b49a87073479c4da6fae624340dca3ac9744d"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 46,
+      "seconds": [
+        1262
+      ],
+      "scope": "Six-jump model-specific diffusivity-ratio discussion withq approximately2.",
+      "frame_sha256": "bfedb2f9004845a16455b239a4656b785307bf2ff5a81a7b784aae3710dcb4f3"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 46,
+      "seconds": [
+        1447
+      ],
+      "scope": "Partial triple-defect translation sequence; no complete trajectory inferred.",
+      "frame_sha256": "e2956cd0b67271f73d1efc13899bb64c68da24e218bc7b86f349828034a7499f"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 46,
+      "seconds": [
+        1695
+      ],
+      "scope": "Actual L1_2 slide states erroneous minority coordination4; geometric correction to12 independently checked.",
+      "frame_sha256": "15c65ce370749add4552b65a5c929e238146c52e38b942158bec9762b30821b0"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 46,
+      "seconds": [
+        1695
+      ],
+      "scope": "Actual L12 slide incorrectly gives minority atom only4 majority neighbors; ideal geometry requires12.",
+      "frame_sha256": "15c65ce370749add4552b65a5c929e238146c52e38b942158bec9762b30821b0"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 47,
+      "seconds": [
+        1374
+      ],
+      "scope": "Effective-diffusivities title only; Maxwell typography not verified.",
+      "frame_sha256": "e0d7fa7c218da6acdacd79109349393f8f6233739f2bd0e725852e599eb0fd51"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 55,
+      "seconds": [
+        1248
+      ],
+      "scope": "Six oxygen diffusivity/temperature entries verified; extremely small solubility values are indeed labeledm^-3 and remain unvalidated as physical densities.",
+      "frame_sha256": "b976e69d290dbc39862cea0a279718988cf78532404b068073f92ee8408c5332"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 55,
+      "seconds": [
+        1248,
+        1370
+      ],
+      "scope": "Oxygen diffusivity/solubility tutorial tables; retained correct diffusivity values while rejecting physically unsupported negative solubility exponent interpretation."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 55,
+      "seconds": [
+        1248
+      ],
+      "scope": "Oxygen tutorial D table transcribed; solubility negative exponents withm^-3 label remain physically unvalidated.",
+      "frame_sha256": "b976e69d290dbc39862cea0a279718988cf78532404b068073f92ee8408c5332"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 55,
+      "seconds": [
+        1370
+      ],
+      "scope": "Oxygen solubility fitted result retains problematic printed number-density convention; not adopted as validated empirical data.",
+      "frame_sha256": "3e34c80367620fa5e21ca115427ce4b5e321cd40ac1d18a2a9a359e6a734e3a7"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 58,
+      "seconds": [
+        1191
+      ],
+      "scope": "Impurity-vacancy frequency expression and tight-binding correlation limit displayed.",
+      "frame_sha256": "56a7ef9a6e9cba544bfc5114d433e67c7abf4bf0390919c5c14dfde66515ec37"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 58,
+      "seconds": [
+        1313
+      ],
+      "scope": "Association p/(1+p) equation and inconsistent p=1 saturation statement verified.",
+      "frame_sha256": "b0c5c9a2c417ab051ff93adf80a0efec1e96593e5d5be0bc2d9443bf7e2e2eb2"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 58,
+      "seconds": [
+        1313,
+        1373
+      ],
+      "scope": "Association fraction versus odds and p/(1+p) formula with inconsistent p=1 limit."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 58,
+      "seconds": [
+        1313
+      ],
+      "scope": "Association fraction terminology paired withp/(1+p) formula.",
+      "frame_sha256": "b0c5c9a2c417ab051ff93adf80a0efec1e96593e5d5be0bc2d9443bf7e2e2eb2"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 58,
+      "seconds": [
+        1373
+      ],
+      "scope": "Association p/(1+p) equation and inconsistent p=1 saturation statement verified.",
+      "frame_sha256": "cdd3134e175f9f0def6f39b9a460d63159d8099c63ea3d9d1f920d62d8b1bd18"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 58,
+      "seconds": [
+        1373
+      ],
+      "scope": "Inconsistentp=1 saturation limit on actual source slide.",
+      "frame_sha256": "cdd3134e175f9f0def6f39b9a460d63159d8099c63ea3d9d1f920d62d8b1bd18"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 59,
+      "seconds": [
+        510
+      ],
+      "scope": "Glass polynomial input and handwritten2.67e-13m²/h answer verified.",
+      "frame_sha256": "ac738eddb716e726148d7987062d9c936ff9e7dee1b482e3b53087bb3d3bda45"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 59,
+      "seconds": [
+        510,
+        573
+      ],
+      "scope": "Metallic-glass time-dependent diffusivity polynomial,48h input and handwritten average266.4e-15m2/h."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 59,
+      "seconds": [
+        510
+      ],
+      "scope": "Glass polynomial(300−t/3−t²/30)×10^-15m²/h and48h input verified.",
+      "frame_sha256": "ac738eddb716e726148d7987062d9c936ff9e7dee1b482e3b53087bb3d3bda45"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 59,
+      "seconds": [
+        573
+      ],
+      "scope": "Glass polynomial input and handwritten2.67e-13m²/h answer verified.",
+      "frame_sha256": "5c722ad61ff85ab7a04f85b123b6fdf325e62fde563c7d7234486c1c8a0e64ff"
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 59,
+      "seconds": [
+        573
+      ],
+      "scope": "Handwritten mean266.4×10^-15=2.67×10^-13m²/h is correct; caption exponent corruption resolved.",
+      "frame_sha256": "5c722ad61ff85ab7a04f85b123b6fdf325e62fde563c7d7234486c1c8a0e64ff"
+    },
+    {
+      "reviewer": "source_review_a",
+      "lecture": 59,
+      "seconds": [
+        1004
+      ],
+      "scope": "Q12 interstitialcy assertion only; does not show the separate vacancy-charge question.",
+      "frame_sha256": "acf8b16af3de7daa55f2f9c0c05ec0c888d336386439e0aea1f4951cc2427b42"
+    },
+    {
+      "reviewer": "source_review_b",
+      "lecture": 59,
+      "seconds": [
+        1004
+      ],
+      "scope": "Interstitialcy assertion/reason tutorial slide. This frame does not show the subsequent effective-vacancy-charge question."
+    },
+    {
+      "reviewer": "source_review_c",
+      "lecture": 59,
+      "seconds": [
+        1004
+      ],
+      "scope": "Q12 Ag interstitialcy assertion; notQ13 vacancy-charge question.",
+      "frame_sha256": "acf8b16af3de7daa55f2f9c0c05ec0c888d336386439e0aea1f4951cc2427b42"
+    }
+  ]
+}

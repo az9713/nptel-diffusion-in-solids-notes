@@ -1,0 +1,16 @@
+{
+  "synthetic": true,
+  "gamma_rad_s_T": 100000000.0,
+  "pulse_duration_s": 0.005,
+  "pulse_leading_edge_separation_s": 0.05,
+  "D_true_m2_s": 2e-12,
+  "D_fitted_m2_s": 1.9999999999999996e-12,
+  "b_at_10_T_m_s_m2": 1208333333333.3335,
+  "echo_at_10_T_m": 0.08921851740926008,
+  "numerical_b_relative_error": 3.4482758648479717e-08,
+  "narrow_pulse_b_relative_overestimate": 0.034482758620689655,
+  "equal_local_spectral_values_u_0p1_and_10": [
+    0.09900990099009901,
+    0.09900990099009901
+  ]
+}

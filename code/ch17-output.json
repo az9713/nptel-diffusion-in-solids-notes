@@ -1,0 +1,21 @@
+{
+  "source_Snoek_D_m2_s": 2.2880277777777775e-15,
+  "Gorsky_host_mobility_proxy_assumption": true,
+  "temperatures_K": [
+    573.15,
+    673.15
+  ],
+  "proxy_diffusivities_m2_s": [
+    6.984346117658529e-30,
+    4.314205006889422e-26
+  ],
+  "proxy_Gorsky_times_s_Phi_equals_1": [
+    3.626724031694511e+21,
+    2.3485481909305743e+18
+  ],
+  "time_ratio_sample1_over_sample2": 1544.2408402347835,
+  "synthetic_modulus_loss_peak_omega_tau": 1.0,
+  "synthetic_tan_delta_peak_omega_tau": 0.9128709291752769,
+  "synthetic_RC_peak_angular_frequency_rad_s": 1000.0,
+  "synthetic_RC_peak_negative_imaginary_ohm": 500.0
+}

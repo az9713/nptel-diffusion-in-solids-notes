@@ -1,0 +1,41 @@
+{
+  "reviews": [
+    {
+      "chapter": 1,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "246e446dc00cc714eb9413de493a278d689c601e9985397a68f541d4811d5833",
+      "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+      "assets": {
+        "assets/diffusion.js": "11d999bd668f4d56901642e86df708813cbf69a893c228dc53172c66844e84d6"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No audio or source video frame review",
+        "No independent DOI metadata verification in this round",
+        "No full reader rendering, print or accessibility acceptance by this reviewer",
+        "Scientific/current-content editorial acceptance is separate from source coverage, browser acceptance and full-course release"
+      ],
+      "private_review_record_sha256": "cb204b6184ebcb816dd2ce6e5a72ea1398c28eaad0a8bd63e7fbdae3cb86346e"
+    },
+    {
+      "chapter": 1,
+      "round": 2,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "246e446dc00cc714eb9413de493a278d689c601e9985397a68f541d4811d5833",
+      "code_sha256": "f90b3b5a7f9cd68e134026646ad7a40cea208a031631ed2064d7b3b4aee3c165",
+      "assets": {
+        "assets/diffusion.js": "11d999bd668f4d56901642e86df708813cbf69a893c228dc53172c66844e84d6"
+      },
+      "open_blockers": 0,
+      "limitations": [],
+      "private_review_record_sha256": "20bab105bac216a2a63acf64ccef3669e1298611a5d0b0e829f33d01ded19502"
+    }
+  ]
+}

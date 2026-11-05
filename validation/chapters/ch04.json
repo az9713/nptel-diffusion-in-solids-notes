@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 4,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "d1ffec5df30a01a94cc0ad73d43eaa29b4800c1942b3589b289f1cd6b501089a",
+      "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+      "assets": {
+        "figures/ch04-boundary-models.svg": "65105be4dd8ed02ce1dae55c328fa36fe2f1bf5f07b46007134cf7f27c5a8831"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Selected frames only; no complete audiovisual review",
+        "Source-coverage closure and full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "36dc98136aeac140c1c8df4e81304f5921fcd6a9c0ad5a8117a52719bf90be2f"
+    },
+    {
+      "chapter": 4,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "d1ffec5df30a01a94cc0ad73d43eaa29b4800c1942b3589b289f1cd6b501089a",
+      "code_sha256": "9f88e0ac09734f9e42bcd627fd365fcfc8d8b1a6aab5cfc7309eda5307d7318e",
+      "assets": {
+        "figures/ch04-boundary-models.svg": "65105be4dd8ed02ce1dae55c328fa36fe2f1bf5f07b46007134cf7f27c5a8831"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "L9/L11 checked through complete source map and three selected source frames; no full direct caption or audio reread",
+        "L10 full captions directly read in same context",
+        "Scientific figure rendered and inspected; full reader/print check separate"
+      ],
+      "private_review_record_sha256": "cb8177d8774fb57860a916a5b527684b8342665cd42286ad4a143cc18314371d"
+    }
+  ]
+}

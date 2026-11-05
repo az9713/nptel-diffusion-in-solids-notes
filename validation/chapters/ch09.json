@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "chapter": 9,
+      "round": 1,
+      "reviewer": "source_review_b",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "a27a64761e85c997404b99bbb78006f9bf374d675c4109790a8cbd8182569563",
+      "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+      "assets": {
+        "assets/ch09-arrhenius.svg": "320f94f8839f112f49adc8fd58d1411cb3d1deed2a1615e0fc48fa14e6cf5b08"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Source material identity, original experimental uncertainties and protocol are not established by the tutorial table and are not claimed verified.",
+        "No browser, print, accessibility or comprehensive source-video acceptance is granted; scientific argument/code/asset-model acceptance is separate."
+      ],
+      "private_review_record_sha256": "3f9441fa5016a6d81668b9408ea9557e05769735bec89edb9049ac36d205a1fc"
+    },
+    {
+      "chapter": 9,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "a27a64761e85c997404b99bbb78006f9bf374d675c4109790a8cbd8182569563",
+      "code_sha256": "9631e3da936d851cf31918d0877251f14a3c6dfb9028534752ccac82e7087929",
+      "assets": {
+        "assets/ch09-arrhenius.svg": "320f94f8839f112f49adc8fd58d1411cb3d1deed2a1615e0fc48fa14e6cf5b08"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map checked and selectedL20frames1690/1810; not full direct audiovisual review",
+        "Unknown source-table experimental provenance and measurement uncertainty remain unknown",
+        "Current SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "41f87c88ece5df2dfd47d09675c88f20e522f516181cf34a36bfa53195c32ce6"
+    }
+  ]
+}

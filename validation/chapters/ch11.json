@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 11,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "03221823b83eb357ad8f7761e15698cb069ce7e450853330c9b1e4f24992bbf6",
+      "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+      "assets": {
+        "assets/figures/ch11-profiles.svg": "936841833d29798ce0b5bbfc8eea4be5d7ca78c735300cb64fff01fcf3333e17"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No full raw-caption reading L24\u201326 by this reviewer",
+        "Spectator profile conserves baseline inventory but is not a solved kinetic history",
+        "No source micrograph audit",
+        "Full reader/release checks separate"
+      ],
+      "private_review_record_sha256": "6bf53bddd20bff5b135584e7936746be56cb8ab17691d68d71801c8143f45d62"
+    },
+    {
+      "chapter": 11,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "03221823b83eb357ad8f7761e15698cb069ce7e450853330c9b1e4f24992bbf6",
+      "code_sha256": "e64dd4b9b16089dd89e97a4d530793fa653fa7267e71907fe36567a570a69966",
+      "assets": {
+        "assets/figures/ch11-profiles.svg": "936841833d29798ce0b5bbfc8eea4be5d7ca78c735300cb64fff01fcf3333e17"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map checked; no full direct audiovisual review",
+        "Current scientific SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "9cccb126f38751f80dd47cb03d6f6bdf99d9fc3a0ee1cb44c3a9038f0dbb73bc"
+    }
+  ]
+}

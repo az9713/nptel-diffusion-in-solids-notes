@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent study notes for Diffusion in Solids, NPTEL IIT Hyderabad: derivations, worked solutions, and Python laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Synthesis: from a transport question to defensible evidence — Diffusion in Solids</title>
+<link rel="stylesheet" href="assets/book.css">
+<script defer src="assets/math-config.js"></script><script defer src="assets/mathjax-tex-svg.js"></script>
+<script defer src="assets/search-index.js"></script><script defer src="assets/book.js"></script>
+<script defer src="assets/diffusion.js"></script></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="toolbar"><a class="brand" href="index.html">DIFFUSION IN SOLIDS</a>
+<div class="controls"><button type="button" data-action="theme">Theme</button>
+<button type="button" data-action="smaller" aria-label="Smaller text">A−</button>
+<button type="button" data-action="larger" aria-label="Larger text">A+</button>
+<button type="button" data-action="print">Print / PDF</button></div></header>
+<div class="layout"><aside class="sidebar"><details open><summary>Course contents</summary><ol><li><a href="chapter-01.html">1. Conservation, gradients, and Fick&#x27;s laws</a></li><li><a href="chapter-02.html">2. Laplace transforms and diffusion initial data</a></li><li><a href="chapter-03.html">3. Gaussian and error-function diffusion solutions</a></li><li><a href="chapter-04.html">4. Finite domains and reproducible diffusion computation</a></li><li><a href="chapter-05.html">5. Crystal geometry, sublattices, and defect bookkeeping</a></li><li><a href="chapter-06.html">6. Vacancy populations, binding, and defect measurements</a></li><li><a href="chapter-07.html">7. Random walks and atomistic diffusion mechanisms</a></li><li><a href="chapter-08.html">8. Correlation factors and tracer memory</a></li><li><a href="chapter-09.html">9. Temperature, pressure, and activation parameters</a></li><li><a href="chapter-10.html">10. Free energy, interdiffusion, and phase formation</a></li><li><a href="chapter-11.html">11. Reading composition profiles and diffusion paths</a></li><li><a href="chapter-12.html">12. Boltzmann–Matano analysis as an inverse problem</a></li><li><a href="chapter-13.html">13. Kirkendall markers, intrinsic fluxes, and Darken relations</a></li><li><a href="chapter-14.html">14. CALPHAD thermodynamics and kinetic databases</a></li><li><a href="chapter-15.html">15. Moving boundaries and multiphase simulation</a></li><li><a href="chapter-16.html">16. Tracer profiles, SIMS, and electron-probe measurements</a></li><li><a href="chapter-17.html">17. Mechanical relaxation and electrical diffusion probes</a></li><li><a href="chapter-18.html">18. NMR diffusion measurements and local jump times</a></li><li><a href="chapter-19.html">19. Mössbauer and neutron scattering probes</a></li><li><a href="chapter-20.html">20. Grain-boundary diffusion and kinetic regimes</a></li><li><a href="chapter-21.html">21. Dislocation pipe diffusion and pathway competition</a></li><li><a href="chapter-22.html">22. Ordered, nanocrystalline, and quasicrystalline materials</a></li><li><a href="chapter-23.html">23. Diffusion mechanisms in metallic alloys</a></li><li><a href="chapter-24.html">24. High-entropy alloys and the evidence for diffusion claims</a></li><li><a href="chapter-25.html">25. Defect-mediated diffusion in semiconductors</a></li><li><a href="chapter-26.html">26. Diffusion and structural relaxation in metallic glasses</a></li><li><a href="chapter-27.html">27. Ionic solids, defect chemistry, and coupled charge transport</a></li><li><a aria-current=page href="chapter-28.html">28. Synthesis: from a transport question to defensible evidence</a></li></ol>
+<nav class="utility" aria-label="Companion pages"><a href="index.html">Home and search</a>
+<a href="study-guide.html">Study guide</a><a href="source-map.html">Recordings and timestamps</a>
+<a href="laboratory.html">Python laboratory</a><a href="references.html">References and attribution</a>
+<a href="about.html">Sources and verification</a></nav></details></aside>
+<main id="main"><p class="eyebrow">IIT Hyderabad · NPTEL · Independent study edition</p>
+<h1>Synthesis: from a transport question to defensible evidence</h1><nav class="toc" aria-label="Chapter sections"><ul><li><a href="#question">28.1 Start with an amount, a frame, and a boundary L60 00:20</a></li><li><a href="#chain">28.2 Connect carriers to the quantity an instrument measures L60 07:30</a></li><li><a href="#case">28.3 A complete profile does not split a population–mobility product L60 24:51</a></li><li><a href="#remedy">28.4 Choose an observable with a different parameter dependence L60 21:47</a></li><li><a href="#study">28.5 A cumulative study has explicit rejection tests L60 28:57</a></li><li><a href="#exercises">28.6 Cumulative exercises and worked solutions</a></li><li><a href="#companion-python">Python laboratory and recorded output</a></li></ul></nav><p class="lede">A precise concentration profile can be explained by the wrong microscopic story. Completing a diffusion study therefore requires two achievements: a forward model that predicts the measured quantity, and an experiment that distinguishes that model from plausible alternatives. Precision helps only after those alternatives produce different observables.</p>
+<p class="source-note">Source spine: the course-wide revision in L60. This chapter organizes its continuum, atomistic, measurement, and materials connections around an original cumulative study. The synthetic nonidentifiability example and proposed extra observable are derived here, not reported measurements of a named material.</p>
+
+<section id="question"><h2>28.1 Start with an amount, a frame, and a boundary <a class="timestamp" href="https://www.youtube.com/watch?v=VNDyig0Y--c&amp;t=20s">L60 00:20</a></h2>
+<p>Suppose a coating must retain a solute during an anneal. The engineering question concerns the amount remaining in a specified region after a specified time. A tracer experiment instead asks how labeled atoms spread. An electrical measurement asks how charge responds to an applied field. These tasks may involve the same atoms but require different observables and different constitutive reductions.</p>
+<p>For a conserved molar concentration <span class="math">\(c\)</span>, in molm⁻³, and molar flux <span class="math">\(\mathbf J\)</span>, in molm⁻²s⁻¹, a stationary-frame balance is <span class="math">\(\partial_tc=-\nabla\cdot\mathbf J+S\)</span>, with source <span class="math">\(S\)</span> in molm⁻³s⁻¹. A reaction can remove one chemical state while conserving total atoms across several states. A moving boundary can transfer inventory between regions. A good balance identifies the conserved total before adopting a single-species source term.</p>
+<p>The constitutive law supplies additional physics. <span class="math">\(\mathbf J=-D\nabla c\)</span> assumes an appropriate scalar Fickian coefficient; anisotropy requires a tensor, interacting components may require chemical-potential gradients, and an evolving structure may require time-dependent coefficients. In cylindrical geometry, radial area changes with radius. At a moving interface, the concentration jump and interface speed enter conservation. These features belong to the model, not to an after-the-fact adjustment of an inconvenient solution.</p>
+<p>State the reference frame explicitly. A marker tracks lattice motion relative to a specimen frame; an intrinsic flux is defined relative to a chosen lattice frame. A Matano plane arises from a profile mass-balance construction under its assumptions. Neither plane is automatically the initial contact plane or the marker plane. An apparent marker displacement therefore provides additional information about flux imbalance; it does not establish that every atomic event follows a vacancy mechanism.</p>
+<p>Boundary preparation selects the forward solution. A finite deposited amount, maintained surface concentration, prescribed flux, and impermeable surface are different conditions. An infinite-line Gaussian can approximate an internal narrow tracer layer before external surfaces matter; a half-space surface source has different normalization. A finite specimen must eventually feel its boundaries. Recording specimen size and source width makes that approximation testable.</p></section>
+
+<section id="chain"><h2>28.2 Connect carriers to the quantity an instrument measures <a class="timestamp" href="https://www.youtube.com/watch?v=VNDyig0Y--c&amp;t=450s">L60 07:30</a></h2>
+<p>A microscopic description supplies jump lengths, rates, and memory. For independent isotropic jumps of length <span class="math">\(\ell\)</span> at total successful rate <span class="math">\(\Gamma\)</span> in three dimensions, <span class="math">\(D=\Gamma\ell^2/6\)</span>. A per-neighbor rate differs by a coordination factor. Vacancy return or constrained ordered sequences add correlation. Equilibrium defect formation controls carrier abundance, while migration controls motion conditional on a carrier. Apparent Arrhenius and pressure derivatives can mix these contributions.</p>
+<p>Thermodynamics supplies another part of the chain. A phase diagram constrains coexistence and solubility; it does not set a reaction-layer width or a diffusion time scale by itself. A local interface can be at equilibrium while the whole diffusion zone is evolving. The number of sequential layers in a couple is not obtained by applying one local phase-rule expression as a global layer-count theorem. CALPHAD free energies and mobility data have distinct roles, and a proprietary simulation demonstration is not reproduced merely by drawing a similar profile.</p>
+<p>An instrument usually observes a transformed or averaged field. Serial sectioning averages across fast and slow paths. SIMS adds depth calibration, matrix response, and finite source or sputter broadening. Electron-probe resolution can smear a narrow composition gradient. Pulsed-gradient NMR encodes displacement over its gradient timing; relaxation NMR measures spectral responses related to local dynamics through a model. Mechanical loss, Mössbauer broadening, and quasielastic neutron scattering have different time and wavevector windows. Conductivity includes collective charge correlations. Coefficients inferred from these signals become comparable only through their defined forward models.</p>
+<table><caption>Table28.1. An observable and an informative complementary constraint.</caption><thead><tr><th>Primary observable</th><th>Typical ambiguity</th><th>Useful independent constraint</th></tr></thead><tbody>
+<tr><td>One Gaussian tracer profile</td><td>Initial width, response width, diffusion product</td><td>Zero-time calibration and an anneal-time series</td></tr>
+<tr><td>Boundary B-tail product</td><td>Segregation capacity versus boundary mobility</td><td>C-regime coefficient or calibrated segregation measurement</td></tr>
+<tr><td>Deep short-circuit tail</td><td>Line versus plane pathways and leakage</td><td>Time variation and spatially resolved path characterization</td></tr>
+<tr><td>Dopant chemical profile</td><td>Active fraction and native-defect supply</td><td>Electrical activation and source–sink controls</td></tr>
+<tr><td>Ionic conductivity</td><td>Carrier density and collective correlations</td><td>Defect chemistry and species-resolved tracer motion</td></tr>
+<tr><td>Final profile in an aging glass</td><td>Many histories share one accumulated mobility</td><td>Identically prepared intermediate-time specimens</td></tr>
+</tbody></table>
+<p>Material structure determines which alternatives deserve attention. Ordered compounds constrain chemical configurations; nanocrystals add dense, possibly evolving interfacial networks; quasicrystal symmetry constrains the tensor without uniquely identifying phason transport. Multicomponent alloy labels do not establish sluggishness. Semiconductor electronic conditions alter charged populations, while ionic neutrality couples populations of opposite effective charge. A glass can retain local order and relax during an anneal. Each observation should be interpreted within those material-specific conditions, rather than by a universal structural slogan.</p></section>
+
+<section id="case"><h2>28.3 A complete profile does not split a population–mobility product <a class="timestamp" href="https://www.youtube.com/watch?v=VNDyig0Y--c&amp;t=1491s">L60 24:51</a></h2>
+<p>Consider an original synthetic experiment on a chemically uniform specimen containing an internal narrow tracer layer. Work on the infinite line, in a stationary lattice frame, at fixed temperature. Assume dilute noninteracting tracer, no drift or loss, no fast-path heterogeneity, and a time-independent vacancy-mediated coefficient. Parameterize it as</p>
+\[D^*=x_VB_V,\tag{28.1}\]
+<p>where <span class="math">\(x_V&gt;0\)</span> is dimensionless vacancy fraction and <span class="math">\(B_V&gt;0\)</span>, in m²s⁻¹, packages jump geometry, conditional exchange rate, and tracer correlation per unit vacancy fraction. This is a deliberately restricted mechanism model. It makes no assertion that a correlation factor is directly measured or that all vacancies in a real specimen are equivalent.</p>
+<p>Let the initial tracer layer be a normalized centered Gaussian with standard deviation <span class="math">\(\sigma_0\)</span>. A centered independent Gaussian measurement response has width <span class="math">\(\sigma_R\)</span>. Constant-coefficient diffusion adds variance <span class="math">\(2D^*t\)</span>, and independent Gaussian convolution adds the response variance. Thus the observed normalized profile is</p>
+\[p_{\mathrm{obs}}(x,t)=\frac{e^{-x^2/[2s^2(t)]}}{\sqrt{2\pi s^2(t)}},\qquad s^2(t)=\sigma_0^2+2x_VB_Vt+\sigma_R^2.\tag{28.2}\]
+<p>Here <span class="math">\(p_{\mathrm{obs}}\)</span> has units m⁻¹ and integrates to one; multiplying by a conserved areal tracer amount gives a concentration. The zero mean and full-line geometry are part of the construction. Real source or response shapes need not be Gaussian, but their calibration is still necessary.</p>
+<p>Model A has <span class="math">\(x_V=10^{-6},B_V=10^{-10}\)</span>m²s⁻¹. Model B has <span class="math">\(x_V=10^{-4},B_V=10^{-12}\)</span>m²s⁻¹. Both give <span class="math">\(D^*=10^{-16}\)</span>m²s⁻¹. With <span class="math">\(\sigma_0=20\)</span>nm, <span class="math">\(\sigma_R=15\)</span>nm, and <span class="math">\(t=3600\)</span>s, both give <span class="math">\(s^2=7.20625\times10^{-13}\)</span>m² and observed width0.848896µm. Their entire observed profiles agree, not merely a fitted slope or second moment.</p>
+<p>More generally, replacing <span class="math">\(x_V\)</span> by <span class="math">\(a x_V\)</span> and <span class="math">\(B_V\)</span> by <span class="math">\(B_V/a\)</span>, for any positive factor that keeps the dilute model admissible, leaves every profile at every time unchanged. This proves structural nonidentifiability of the two factors from these tracer profiles. An anneal-time series can separate the slope <span class="math">\(2D^*\)</span> from the fixed source-plus-response intercept. It still cannot split <span class="math">\(x_VB_V\)</span>.</p>
+<p>The laboratory uses900,1800,3600,7200s and recovers <span class="math">\(D^*=10^{-16}\)</span>m²s⁻¹ together with intercept <span class="math">\(6.25\times10^{-16}\)</span>m². That verifies profile evolution and broadening bookkeeping under the assumed model. It does not tell whether the observed coefficient came from few highly mobile defects or many less effective defects. The distinction is the experimental target of the next section.</p></section>
+
+<section id="remedy"><h2>28.4 Choose an observable with a different parameter dependence <a class="timestamp" href="https://www.youtube.com/watch?v=VNDyig0Y--c&amp;t=1307s">L60 21:47</a></h2>
+<p>Suppose a separately calibrated defect measurement gives dimensionless signal <span class="math">\(y=\kappa x_V\)</span> with known positive calibration <span class="math">\(\kappa\)</span>. Differential dilatometry or a calibrated trapping measurement, developed in <a href="chapter-06.html">Chapter6</a>, can motivate a population constraint, but each needs its own response model, defect specificity, and saturation checks. The linear signal here is a synthetic idealization; it is not a universal positron or volume law.</p>
+<p>Set synthetic <span class="math">\(\kappa=0.5\)</span>. Models A and B predict signals <span class="math">\(5\times10^{-7}\)</span> and <span class="math">\(5\times10^{-5}\)</span>, respectively. If a measurement resolves these values and the calibration applies to the same defect population present during annealing, it distinguishes the models. Inversion becomes <span class="math">\(x_V=y/\kappa\)</span> and <span class="math">\(B_V=D^*\kappa/y\)</span>. If the specimen is quenched for measurement, defect survival and redistribution during the quench require verification.</p>
+<p>The information gain is visible algebraically. Define dimensionless logarithmic parameters <span class="math">\(a=\ln x_V\)</span> and <span class="math">\(b=\ln[B_V/B_{\mathrm{ref}}]\)</span>, with fixed positive reference <span class="math">\(B_{\mathrm{ref}}\)</span> in m²s⁻¹. The tracer log observable <span class="math">\(\ln[D^*/B_{\mathrm{ref}}]=a+b\)</span> has sensitivity row <span class="math">\((1,1)\)</span>. The independent signal log <span class="math">\(\ln(y/\kappa)=a\)</span> has row <span class="math">\((1,0)\)</span>. Together they give</p>
+\[\mathsf J=\begin{pmatrix}1&amp;1\\1&amp;0\end{pmatrix},\qquad \det\mathsf J=-1.\tag{28.3}\]
+<p>The single-observable Jacobian has rank one; the augmented matrix has rank two. This establishes local identifiability of these two positive parameters within the chosen model. It does not establish that every alternative microscopic model has been eliminated. If the calibration <span class="math">\(\kappa\)</span> is also unknown, another parameter enters and the ambiguity can return. Measurement noise and weak sensitivity create practical uncertainty even when rank is formally full.</p>
+<figure><img src="assets/ch28-identifiability.svg" alt="Two synthetic models give identical tracer profiles but vacancy-sensitive signals that differ by a factor of one hundred." loading="eager" width="864" height="384"><figcaption>Figure28.1. An independent observable separates a chosen pair of microscopic explanations. Repeating an observable with the same population–mobility product cannot supply the missing direction in parameter space.</figcaption></figure>
+<p>The same design principle explains the complementary measurements in Table28.1. A C-regime experiment constrains boundary mobility separately from a B product; electrical activation constrains a dopant inventory different from chemical total; charge transport and tracer displacement contain different correlations. A useful extra experiment changes parameter dependence. It should be selected from the ambiguity in the model, not merely because another instrument is available.</p></section>
+
+<section id="study"><h2>28.5 A cumulative study has explicit rejection tests <a class="timestamp" href="https://www.youtube.com/watch?v=VNDyig0Y--c&amp;t=1737s">L60 28:57</a></h2>
+<p>For the synthetic study, first characterize phase identity, grain and dislocation structure, source width, specimen dimensions, and instrument response. Then measure a time series on equivalently prepared specimens, checking conserved tracer amount and linear variance growth. Persistent non-Gaussian tails, changing phase, or time-dependent slope reject the simple homogeneous stationary model and direct attention to leakage, trapping, or relaxation. A good residual is necessary but cannot identify factors that enter only through one product.</p>
+<p>Next obtain the independent population observable under conditions linked to the anneal. Fit both observables jointly, propagate calibration uncertainty, and test whether one parameter set predicts all times and conditions. Changing temperature, electronic state, sink density, or pressure can supply further constraints, but each intervention may also change the mechanism or structural state. A temperature sweep across a phase transition cannot be treated as a clean perturbation of one constant model.</p>
+<p>The scientific report should preserve input units, preparation, measured signals, forward equations, fit domain, residuals, and alternatives not excluded. Original research is needed for empirical mechanism claims; the source revision's bibliography is not reconstructed from unread slide text. Earlier chapters integrate the inspected primary sources beside their supported claims. The reproducible <a href="code/ch28.py">laboratory</a> and <a href="code/ch28-output.json">saved output</a> complete the synthetic study with equal-profile, time-series, and rank checks. They establish the stated mathematical example, not an experimental material result.</p></section>
+
+<section id="exercises"><h2>28.6 Cumulative exercises and worked solutions</h2><ol class="exercises">
+<li><p><strong>Perfect data.</strong> Would exact profiles at every time determine both parameters in (28.1)?</p><details><summary>Solution</summary><p>No. The transformation <span class="math">\((x_V,B_V)\mapsto(ax_V,B_V/a)\)</span> leaves their product and hence every forward profile unchanged. Exact observations remove statistical uncertainty in the product but leave a continuum of parameter pairs. This is structural nonidentifiability. It differs from a poorly resolved estimate that could improve with more precise data of the same kind.</p></details></li>
+<li><p><strong>Resolution bias.</strong> If one profile is inverted using a zero-width source and perfect instrument despite the stated nonzero widths, what coefficient is inferred?</p><details><summary>Solution</summary><p>The naive estimate is <span class="math">\(D_{\mathrm{naive}}=s^2/(2t)=D^*+(\sigma_0^2+\sigma_R^2)/(2t)\)</span>. It overestimates diffusion. The bias decreases with anneal time for constant widths. A time-series slope separates this fixed intercept from diffusion, but cannot by itself distinguish initial width from instrument width. Zero-time and response calibrations address those separate terms.</p></details></li>
+<li><p><strong>Unknown calibration.</strong> Suppose <span class="math">\(\kappa\)</span> is unknown. Explain why adding the population signal can leave an ambiguity.</p><details><summary>Solution</summary><p>There are now three unknown positive parameters with observables <span class="math">\(D^*=x_VB_V\)</span> and <span class="math">\(y=\kappa x_V\)</span>. The transformation <span class="math">\(x_V\to ax_V,B_V\to B_V/a,\kappa\to\kappa/a\)</span> leaves both unchanged. A separate calibration or another independent observable is required. An instrument's sensitivity is not equivalent to known parameter specificity.</p></details></li>
+<li><p><strong>Model rejection.</strong> A tracer second moment is linear in time, but the profile has persistent deep tails. Does the moment validate the Gaussian model?</p><details><summary>Solution</summary><p>No. Many non-Gaussian distributions share the same second moment, and mixtures can have linear variance. Compare the full profile with the instrument-convolved forward prediction and test tail reproducibility, amount conservation, and microstructural localization. A homogeneous Gaussian model predicts all its shape, not only its variance. The tail may motivate fast paths or multiple populations, but its existence alone does not uniquely select either.</p></details></li>
+<li><p><strong>A research claim.</strong> Formulate a defensible conclusion after the two observables agree with Model A and reject Model B.</p><details><summary>Solution</summary><p>State that, within the homogeneous dilute vacancy model and the calibrated population-response assumptions, the measured tracer coefficient and independent signal support the lower-population/higher-mobility parameter set over the specified alternative. Report uncertainties and the annealing domain. Do not conclude that every possible defect geometry or microscopic correlation model has been excluded. New observables would be needed to decompose the mobility factor or challenge the common mechanism assumption itself.</p></details></li>
+</ol><p>A complete diffusion argument connects conserved inventory, carrier statistics, constitutive law, boundary preparation, instrument response, and identifiable parameters. The final scientific product is a conditional explanation with explicit tests that could overturn it.</p></section>
+<section id="companion-python"><h2>Python laboratory</h2><p>Run <a href="code/ch28.py"><code>code/ch28.py</code></a>. Inputs and scientific limits are specified in the chapter and program.</p><details><summary>Complete runnable source</summary><pre><code class="language-python">&quot;&quot;&quot;Cumulative inverse problem: identical profiles, different carriers.&quot;&quot;&quot;
+
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.use(&quot;Agg&quot;)
+matplotlib.rcParams[&quot;svg.hashsalt&quot;] = &quot;ch28&quot;
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main():
+    fraction = np.array([1e-6, 1e-4])
+    mobility = np.array([1e-10, 1e-12])
+    diffusion = fraction * mobility
+    assert diffusion[0] == diffusion[1]
+    initial_width, resolution, time = 20e-9, 15e-9, 3600.0
+    observed_var = initial_width**2 + 2 * diffusion * time + resolution**2
+    coordinate = np.linspace(
+        -5 * np.sqrt(observed_var[0]), 5 * np.sqrt(observed_var[0]), 1201
+    )
+    profiles = np.exp(
+        -(coordinate[None, :] ** 2) / (2 * observed_var[:, None])
+    )
+    profiles /= np.sqrt(2 * np.pi * observed_var[:, None])
+    times = np.array([900.0, 1800.0, 3600.0, 7200.0])
+    variances = initial_width**2 + resolution**2 + 2 * diffusion[0] * times
+    slope, intercept = np.polyfit(times, variances, 1)
+    coefficient = 0.5
+    independent_signal = coefficient * fraction
+    profile_J = np.array([[1.0, 1.0]])
+    augmented_J = np.array([[1.0, 1.0], [1.0, 0.0]])
+    out = {
+        &quot;status&quot;: &quot;synthetic identifiability construction; no material fit&quot;,
+        &quot;models&quot;: [
+            {
+                &quot;vacancy_fraction&quot;: float(v),
+                &quot;mobility_factor_m2_s&quot;: float(b),
+                &quot;tracer_D_m2_s&quot;: float(d),
+                &quot;independent_signal&quot;: float(y),
+            }
+            for v, b, d, y in zip(
+                fraction, mobility, diffusion, independent_signal
+            )
+        ],
+        &quot;at_3600s&quot;: {
+            &quot;observed_variance_m2&quot;: float(observed_var[0]),
+            &quot;observed_width_m&quot;: float(np.sqrt(observed_var[0])),
+            &quot;profile_max_difference&quot;: float(
+                np.max(abs(profiles[0] - profiles[1]))
+            ),
+        },
+        &quot;time_series&quot;: {
+            &quot;times_s&quot;: times.tolist(),
+            &quot;variances_m2&quot;: variances.tolist(),
+            &quot;recovered_D_m2_s&quot;: float(slope / 2),
+            &quot;recovered_initial_plus_resolution_var_m2&quot;: float(intercept),
+        },
+        &quot;log_parameter_ranks&quot;: {
+            &quot;profile_only&quot;: int(np.linalg.matrix_rank(profile_J)),
+            &quot;augmented&quot;: int(np.linalg.matrix_rank(augmented_J)),
+        },
+    }
+    assert np.isclose(slope / 2, diffusion[0], rtol=1e-12, atol=0)
+    assert np.max(abs(profiles[0] - profiles[1])) == 0
+    fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+    axes[0].plot(coordinate * 1e6, profiles[0] * 1e-6, label=&quot;Model A&quot;)
+    axes[0].plot(coordinate * 1e6, profiles[1] * 1e-6, &quot;--&quot;, label=&quot;Model B&quot;)
+    axes[0].set(
+        xlabel=&quot;Depth coordinate (µm)&quot;, ylabel=&quot;Normalized density (µm⁻¹)&quot;
+    )
+    axes[0].legend()
+    axes[1].bar([&quot;A&quot;, &quot;B&quot;], independent_signal)
+    axes[1].set(ylabel=&quot;Synthetic independent vacancy signal&quot;, yscale=&quot;log&quot;)
+    for ax in axes:
+        ax.grid(alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(
+        ROOT / &quot;assets/ch28-identifiability.svg&quot;, metadata={&quot;Date&quot;: None}
+    )
+    plt.close(fig)
+    (ROOT / &quot;code/ch28-output.json&quot;).write_text(
+        json.dumps(out, indent=2) + &quot;\n&quot;
+    )
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></details><details><summary>Recorded execution output</summary><pre><code>{
+  &quot;status&quot;: &quot;synthetic identifiability construction; no material fit&quot;,
+  &quot;models&quot;: [
+    {
+      &quot;vacancy_fraction&quot;: 1e-06,
+      &quot;mobility_factor_m2_s&quot;: 1e-10,
+      &quot;tracer_D_m2_s&quot;: 1e-16,
+      &quot;independent_signal&quot;: 5e-07
+    },
+    {
+      &quot;vacancy_fraction&quot;: 0.0001,
+      &quot;mobility_factor_m2_s&quot;: 1e-12,
+      &quot;tracer_D_m2_s&quot;: 1e-16,
+      &quot;independent_signal&quot;: 5e-05
+    }
+  ],
+  &quot;at_3600s&quot;: {
+    &quot;observed_variance_m2&quot;: 7.20625e-13,
+    &quot;observed_width_m&quot;: 8.488963423174822e-07,
+    &quot;profile_max_difference&quot;: 0.0
+  },
+  &quot;time_series&quot;: {
+    &quot;times_s&quot;: [
+      900.0,
+      1800.0,
+      3600.0,
+      7200.0
+    ],
+    &quot;variances_m2&quot;: [
+      1.80625e-13,
+      3.60625e-13,
+      7.20625e-13,
+      1.4406249999999998e-12
+    ],
+    &quot;recovered_D_m2_s&quot;: 1.0000000000000001e-16,
+    &quot;recovered_initial_plus_resolution_var_m2&quot;: 6.250000000003159e-16
+  },
+  &quot;log_parameter_ranks&quot;: {
+    &quot;profile_only&quot;: 1,
+    &quot;augmented&quot;: 2
+  }
+}
+</code></pre></details></section><nav class="chapter-nav" aria-label="Chapter navigation"><a href="chapter-27.html">← Previous</a><a href="index.html">Home →</a></nav>
+<footer>Independent educational notes following Prof. Mayur Vaidya’s course.
+No institutional endorsement. Source recordings remain with their creators.</footer></main></div></body></html>

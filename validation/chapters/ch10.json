@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "chapter": 10,
+      "round": 1,
+      "reviewer": "source_review_a",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "69848ea5c04939565305230d26218f518597addd6c5222eeaa9f0f37299cf178",
+      "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+      "assets": {
+        "assets/figures/ch10-free-energy.svg": "edd7e5797fe0a6968991f73c235c7a667c640abd0b471441deb64d059c7a424c"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "No comprehensive source video review",
+        "Full source fidelity/planning maps independently completed elsewhere; my later-source raw reading scope is explicitly bounded",
+        "Browser/release checks separate"
+      ],
+      "private_review_record_sha256": "1312ea4a8a88a4fafc5e135f3c25cdf72157d943ff97d81c456ba1cc95461582"
+    },
+    {
+      "chapter": 10,
+      "round": 2,
+      "reviewer": "source_review_c",
+      "independent_context": true,
+      "full_review": true,
+      "verdict": "accepted",
+      "body_sha256": "69848ea5c04939565305230d26218f518597addd6c5222eeaa9f0f37299cf178",
+      "code_sha256": "e106757b13e44fccd289882b824e8a99b7d70d78f4aa8327696835d4c29c36c5",
+      "assets": {
+        "assets/figures/ch10-free-energy.svg": "edd7e5797fe0a6968991f73c235c7a667c640abd0b471441deb64d059c7a424c"
+      },
+      "open_blockers": 0,
+      "limitations": [
+        "Complete source map read; no new full direct L21-23caption/audio/source-frame review",
+        "Synthetic thermodynamics only; no empirical Cu-Ni assessment verified",
+        "Current scientific SVG inspected; full reader/print separate"
+      ],
+      "private_review_record_sha256": "09caabe4abe54254aac916cb6626986c8bd9d0545f9ac415da2fa952be04ce4e"
+    }
+  ]
+}
